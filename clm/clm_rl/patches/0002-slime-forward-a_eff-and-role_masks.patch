@@ -1,0 +1,67 @@
+diff --git a/slime/backends/megatron_utils/actor.py b/slime/backends/megatron_utils/actor.py
+index 586f88de..a6963d9b 100644
+--- a/slime/backends/megatron_utils/actor.py
++++ b/slime/backends/megatron_utils/actor.py
+@@ -200,6 +200,13 @@ class MegatronTrainRayActor(TrainRayActor):
+         rollout_data["loss_masks"] = [
+             torch.tensor(t, dtype=torch.int, device=torch.cuda.current_device()) for t in rollout_data["loss_masks"]
+         ]
++        # Per-response-token role tags (1 = context-management turn) for the custom
++        # advantage function; one tensor per sample, aligned with its advantages.
++        if "role_masks" in rollout_data:
++            rollout_data["role_masks"] = [
++                torch.tensor(t, dtype=torch.float32, device=torch.cuda.current_device())
++                for t in rollout_data["role_masks"]
++            ]
+         if "multimodal_train_inputs" in rollout_data:
+             # Move multimodal training tensors to GPU in advance
+             rollout_data["multimodal_train_inputs"] = [
+diff --git a/slime/backends/megatron_utils/data.py b/slime/backends/megatron_utils/data.py
+index 19db1f47..2d78b1be 100644
+--- a/slime/backends/megatron_utils/data.py
++++ b/slime/backends/megatron_utils/data.py
+@@ -412,6 +412,7 @@ def log_rollout_data(
+                 "tokens",
+                 "multimodal_train_inputs",
+                 "loss_masks",
++                "role_masks",
+                 "sample_indices",
+                 "rollout_routed_experts",
+                 "max_seq_lens",
+diff --git a/slime/ray/rollout.py b/slime/ray/rollout.py
+index cde7a9e0..52daa460 100644
+--- a/slime/ray/rollout.py
++++ b/slime/ray/rollout.py
+@@ -718,6 +718,23 @@ class RolloutManager:
+             loss_masks.append(sample.loss_mask)
+         train_data["loss_masks"] = loss_masks
+ 
++        # Efficiency advantage (a_eff, per trajectory) and role tags (role_mask, per
++        # response token) for the dual-channel advantage. Only forwarded when the
++        # reward post-process produced a_eff, so other runs are unchanged.
++        if any(sample.metadata and "a_eff" in sample.metadata for sample in samples):
++            train_data["a_eff"] = [
++                float(sample.metadata.get("a_eff", 0.0)) if sample.metadata else 0.0
++                for sample in samples
++            ]
++            role_masks = []
++            for sample in samples:
++                polar = (sample.metadata or {}).get("polar") or {}
++                rm = polar.get("role_mask")
++                if not isinstance(rm, list) or len(rm) != sample.response_length:
++                    rm = [0] * sample.response_length
++                role_masks.append(rm)
++            train_data["role_masks"] = role_masks
++
+         # Overwrite raw_reward when available. Mixed-source batches may only
+         # populate this field for a subset of samples (e.g. SWE but not code).
+         if any(sample.metadata and "raw_reward" in sample.metadata for sample in samples):
+@@ -785,6 +802,8 @@ class RolloutManager:
+                 "rollout_routed_experts",
+                 "prompt",
+                 "teacher_log_probs",
++                "role_masks",
++                "a_eff",
+             ]:
+                 if key not in data:
+                     continue

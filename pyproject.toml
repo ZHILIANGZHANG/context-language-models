@@ -1,0 +1,34 @@
+[project]
+name = "clm"
+version = "0.1.0"
+description = "CLM (Context Language Model): a Harbor agent harness in which the model manages its own context by editing a mirrored transcript file."
+readme = "README.md"
+requires-python = ">=3.12,<3.14"
+license = { file = "LICENSE" }
+dependencies = [
+  "harbor==0.16.1",
+  "litellm>=1.70,<2",
+  "tiktoken>=0.7",
+  "pyyaml>=6.0",
+]
+
+[project.scripts]
+clm-harbor = "clm_harness.cli:main"
+
+[project.optional-dependencies]
+# Exact-tokenizer FLOPs accounting for open models (falls back to tiktoken without it).
+hf = ["transformers>=4.40"]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["clm"]
+include = ["clm_harness*", "clm_icl*"]
+
+[tool.setuptools.package-data]
+"clm_harness" = ["configs/*.yaml"]
+"clm_harness.clm_agent" = ["*.yaml"]
+"clm_harness.task_templates" = ["*.yaml"]
+"clm_icl" = ["*.md"]

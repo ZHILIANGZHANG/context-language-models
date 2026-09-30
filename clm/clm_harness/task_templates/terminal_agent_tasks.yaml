@@ -1,0 +1,50 @@
+# Task-instruction (instance) template for TERMINAL-AGENT tasks — SWE-bench / terminal-
+# bench style problems solved by acting in a shell, using the native `bash` tool and a
+# PERSISTENT shell. This is the default `task_template`.
+instance_template: |
+  Please solve this task:
+
+  {{task}}
+
+  You can execute bash commands and edit files (with `sed`, `cat > file << 'EOF'`,
+  etc.) to implement the necessary changes.
+
+  ## Recommended Workflow
+
+  This workflow should be done step-by-step so that you can iterate on your
+  changes and any possible problems.
+
+  1. Analyze the codebase / environment by finding and reading relevant files.
+  2. If applicable, create a script to reproduce the issue or expected behaviour.
+  3. Implement the change(s) by editing the source code or environment state.
+  4. Verify your fix works by running your script (or relevant test) again.
+  5. Test edge cases to ensure your fix is robust.
+  6. Submit your changes and finish your work by issuing the standalone command
+     `echo COMPLETE_TASK_AND_SUBMIT_FINAL_OUTPUT` — do not combine it with any
+     other command. After this command you cannot continue working on this task.
+
+  ## Important Rules
+
+  1. Every response must contain exactly one tool call to `bash`.
+  2. Directory and environment-variable changes ARE persistent across calls in
+     this harness — `cd` and `export` stick (unlike upstream mini-swe-agent's
+     subshell model; treat the shell as a long-running login shell).
+  3. Long-running commands: wrap with `timeout`, e.g. `timeout 30 <command>`.
+  4. Interactive commands are not possible. Use non-interactive flags or pipe
+     `yes`/`no` as appropriate.
+  5. Output may be truncated. Use `head`, `tail`, `grep`, `sed -n 'A,Bp'`, etc.
+     to filter large outputs.
+
+  ## Useful command examples
+
+  ### Create a new file:
+  `cat <<'EOF' > newfile.py
+  import numpy as np
+  print("hello")
+  EOF`
+
+  ### Edit files with sed:
+  `sed -i 's/old_string/new_string/g' filename.py`
+
+  ### View file content:
+  `nl -ba filename.py | sed -n '10,20p'`

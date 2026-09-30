@@ -1,0 +1,8 @@
+# Task-instruction (instance) template for OPEN-PROBLEM tasks — open-ended questions
+# solved by research/reasoning (e.g. DeepSearchQA), where the task text already carries
+# its own instructions (the question + any output requirement, such as writing an answer
+# file). Unlike terminal_agent_tasks, no domain workflow is imposed here — the template
+# just presents the task and lets the base surface + submit protocol handle the
+# rest. Select with `task_template=open_problems`.
+instance_template: |
+  {{task}}

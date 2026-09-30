@@ -1,0 +1,76 @@
+diff --git a/src/slime_bridge/dual_channel_advantage.py b/src/slime_bridge/dual_channel_advantage.py
+new file mode 100644
+index 00000000..f596e810
+--- /dev/null
++++ b/src/slime_bridge/dual_channel_advantage.py
+@@ -0,0 +1,70 @@
++"""Dual-channel GRPO advantage for context-management RL.
++
++Wired into Slime with
++``--custom-advantage-function-path slime_bridge.dual_channel_advantage.custom_advantage_function``.
++
++Two credit channels, applied per response token:
++
++* Task channel: the group-normalized task reward, broadcast uniformly to every
++  response token (identical to Slime's default GRPO returns).
++* Efficiency channel: a per-trajectory scalar ``a_eff`` added only on the tokens of
++  context-management turns (``role_masks[i] == 1``), scaled by
++  ``POLAR_DUAL_CHANNEL_W_EFF``. ``a_eff`` is computed on the reward side: for each
++  rollout group, over the trajectories that solved the task,
++  ``a_eff = clip((mean_flops - flops) / mean_flops, -1, 1)``; all other trajectories
++  get 0.
++
++A trajectory that edits its context and ends up cheaper than its successful
++siblings reinforces the tokens that made the edit; a more expensive one discourages
++them. Task credit is unchanged. Samples without ``a_eff``/``role_masks`` fall back to
++plain GRPO returns.
++"""
++
++from __future__ import annotations
++
++import os
++from argparse import Namespace
++
++import torch
++
++
++def _w_eff() -> float:
++    try:
++        return float(os.environ.get("POLAR_DUAL_CHANNEL_W_EFF", "1.0"))
++    except (TypeError, ValueError):
++        return 1.0
++
++
++def custom_advantage_function(args: Namespace, rollout_data: dict) -> None:
++    """Fill ``rollout_data["advantages"]`` and ``rollout_data["returns"]`` in place.
++
++    Runs after KL is computed (``rollout_data["kl"]`` is present) and sets per-sample
++    lists of per-token tensors, as Slime's advantage hook expects.
++    """
++    kl = rollout_data["kl"]
++    device = kl[0].device
++    rewards = torch.tensor(rollout_data["rewards"], dtype=torch.float32, device=device)
++
++    # Task channel: uniform per-token broadcast of the group-normalized reward.
++    returns = [torch.ones_like(kl[i]) * rewards[i] for i in range(len(rewards))]
++
++    a_eff = rollout_data.get("a_eff")
++    role_masks = rollout_data.get("role_masks")
++    if a_eff is not None and role_masks is not None:
++        w = _w_eff()
++        for i in range(len(returns)):
++            ae = float(a_eff[i])
++            if ae == 0.0:
++                continue
++            rm = role_masks[i]
++            if not torch.is_tensor(rm):
++                rm = torch.tensor(rm)
++            rm = rm.to(dtype=returns[i].dtype, device=returns[i].device)
++            if rm.shape[0] != returns[i].shape[0]:
++                # Misaligned mask (e.g. context-parallel slicing): keep task credit only.
++                continue
++            # Efficiency channel: context-management tokens only.
++            returns[i] = returns[i] + w * ae * rm
++
++    rollout_data["advantages"] = list(returns)
++    rollout_data["returns"] = returns

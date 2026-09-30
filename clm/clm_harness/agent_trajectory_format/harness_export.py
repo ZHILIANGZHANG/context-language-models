@@ -1,0 +1,468 @@
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+# All rights reserved.
+#
+# This source code is licensed under the license found in the
+# LICENSE file in the root directory of this source tree.
+
+"""Export CLM harness rollouts into ``ATIF-CTX`` trajectories.
+
+A self-compacting rollout is reduced to per-epoch segment records
+``{"messages": [...], "prompt_len": int}`` (see :func:`segment_records_from_snapshots`).
+This module maps those 1:1 onto the structured format:
+
+    messages[:prompt_len]  ->  Segment.input_context   (the masked prefix)
+    messages[prompt_len:]  ->  Segment.steps           (assistant-only-trained)
+
+so every segment boundary a compaction created becomes an explicit
+:class:`Segment` with its ``input_context`` snapshot and a :class:`BranchTrigger`.
+No snapshot re-diffing here: consume whatever produced the records.
+"""
+
+from __future__ import annotations
+
+import json
+import logging
+import re
+from pathlib import Path
+from typing import Any, Callable
+
+from .builder import TrajectoryBuilder
+from .models import (
+    Agent,
+    BranchTrigger,
+    Metrics,
+    Observation,
+    ObservationResult,
+    Step,
+    ToolCall,
+    Trajectory,
+)
+
+logger = logging.getLogger(__name__)
+
+_EDIT_TOOL_NAMES = ("edit_context",)
+# Marks the stand-in for a reply that a rollback removed (see _discarded_reply).
+_DISCARDED_KEY = "_discarded_reply"
+
+
+def _content(m: dict[str, Any]) -> Any:
+    return m.get("content")
+
+
+def _to_tool_calls(raw: Any) -> list[ToolCall] | None:
+    if not raw:
+        return None
+    out: list[ToolCall] = []
+    for tc in raw:
+        fn = (tc.get("function") or {}) if isinstance(tc, dict) else {}
+        out.append(
+            ToolCall(
+                tool_call_id=(tc.get("id") or tc.get("tool_call_id") or "") if isinstance(tc, dict) else "",
+                function_name=fn.get("name") or (tc.get("name") if isinstance(tc, dict) else "") or "",
+                arguments=fn.get("arguments") if "arguments" in fn else tc.get("arguments"),
+            )
+        )
+    return out
+
+
+def _is_edit_step(step: Step, edit_tool_names: tuple[str, ...]) -> bool:
+    return step.source == "agent" and any(
+        (tc.function_name in edit_tool_names) for tc in (step.tool_calls or [])
+    )
+
+
+def messages_to_steps(messages: list[dict[str, Any]]) -> list[Step]:
+    """Group an OpenAI message list into ATIF steps (ids left 0 for the builder):
+    each ``assistant`` turn + its trailing ``tool`` messages -> one agent step;
+    standalone ``user``/``system`` messages -> their own step."""
+    steps: list[Step] = []
+    i = 0
+    n = len(messages)
+    while i < n:
+        m = messages[i]
+        role = m.get("role")
+        if role == "assistant":
+            step = Step(
+                step_id=0,
+                source="agent",
+                message=_content(m),
+                reasoning_content=m.get("reasoning_content") or None,
+                tool_calls=_to_tool_calls(m.get("tool_calls")),
+            )
+            if m.get(_DISCARDED_KEY):
+                step.extra = {"discarded_reply": True}
+            j = i + 1
+            results: list[ObservationResult] = []
+            while j < n and messages[j].get("role") == "tool":
+                t = messages[j]
+                results.append(ObservationResult(source_call_id=t.get("tool_call_id"), content=_content(t)))
+                j += 1
+            if results:
+                step.observation = Observation(results=results)
+            steps.append(step)
+            i = j
+        elif role in ("user", "system"):
+            steps.append(Step(step_id=0, source=role, message=_content(m)))
+            i += 1
+        else:  # orphan tool / unknown role: keep as context (masked), don't train
+            steps.append(Step(step_id=0, source="user", message=_content(m)))
+            i += 1
+    return steps
+
+
+def trajectory_from_segment_records(
+    records: list[dict[str, Any]],
+    agent: Agent | dict[str, Any],
+    *,
+    session_id: str | None = None,
+    trajectory_id: str | None = None,
+    token_counter: Callable[[list[dict[str, Any]]], int] | None = None,
+    edit_tool_names: tuple[str, ...] = _EDIT_TOOL_NAMES,
+) -> Trajectory:
+    """Build a :class:`Trajectory` from ordered ``{"messages", "prompt_len"}``
+    segment records (as produced by :func:`segment_records_from_snapshots`)."""
+    if not records:
+        raise ValueError("no segment records to export")
+    builder = TrajectoryBuilder(
+        agent, session_id=session_id, trajectory_id=trajectory_id, token_counter=token_counter
+    )
+    prev_trigger_id: int | None = None
+    prev_kind = "context_edit"
+    for idx, rec in enumerate(records):
+        messages = rec.get("messages") or []
+        prompt_len = int(rec.get("prompt_len", 0) or 0)
+        prompt_len = max(0, min(prompt_len, len(messages)))
+        input_context = messages[:prompt_len] or messages[:1]  # never empty
+        tail = messages[prompt_len:]
+
+        if idx == 0:
+            builder.open_segment(input_context)
+        else:
+            builder.branch(
+                input_context,
+                trigger=BranchTrigger(
+                    kind=prev_kind,
+                    source_step_id=prev_trigger_id,
+                    summary=f"context branch at step {prev_trigger_id}" if prev_trigger_id else "context branch",
+                ),
+            )
+
+        # The turn that triggered the NEXT branch is the last agent step of this
+        # segment (the bash turn that rewrote the mirror in the CLM harness, or an
+        # edit tool call).
+        last_agent_id: int | None = None
+        saw_edit = False
+        for step in messages_to_steps(tail):
+            added = builder.add_step(step)
+            if added.source == "agent":
+                last_agent_id = added.step_id
+                saw_edit = saw_edit or _is_edit_step(added, edit_tool_names)
+        prev_trigger_id = last_agent_id
+        prev_kind = "context_edit" if saw_edit else "context_sync"
+
+    return builder.build()
+
+
+# ---------------------------------------------------------------------------
+# Snapshot reading + compaction split.
+# ---------------------------------------------------------------------------
+def _msg_key(msg: dict[str, Any]) -> str:
+    return json.dumps(
+        {
+            "role": msg.get("role"),
+            "content": msg.get("content"),
+            "tool_calls": msg.get("tool_calls"),
+            "tool_call_id": msg.get("tool_call_id"),
+        },
+        sort_keys=True,
+        default=str,
+    )
+
+
+def _common_prefix_len(a: list[dict[str, Any]], b: list[dict[str, Any]]) -> int:
+    n = 0
+    for x, y in zip(a, b):
+        if _msg_key(x) == _msg_key(y):
+            n += 1
+        else:
+            break
+    return n
+
+
+def _lead_context_len(messages: list[dict[str, Any]]) -> int:
+    n = 0
+    for m in messages:
+        if m.get("role") in ("system", "user"):
+            n += 1
+        else:
+            break
+    return n
+
+
+def _snapshot_has_edit(msg: dict[str, Any], edit_tool_names: tuple[str, ...]) -> bool:
+    if msg.get("role") != "assistant":
+        return False
+    for tc in msg.get("tool_calls") or []:
+        name = ((tc.get("function") or {}).get("name") or tc.get("name")) if isinstance(tc, dict) else None
+        if name in edit_tool_names:
+            return True
+    return False
+
+
+def _response_after_rewrite(
+    cur: list[dict[str, Any]],
+    nxt: list[dict[str, Any]],
+    edit_tool_names: tuple[str, ...],
+) -> list[dict[str, Any]]:
+    """The reply to the request ``cur`` as it appears in ``nxt`` when ``nxt`` does not
+    extend ``cur`` (a context rewrite or a rollback), with its tool results.
+
+    A dedicated edit tool is matched by name. The CLM harness edits through an ordinary
+    ``bash`` call: it rewrites the context, appends that assistant turn and its tool
+    result, and may then append harness notices (user role) before the next request, so
+    the reply is not necessarily the last two messages. ``parse_back`` never produces
+    ``tool_calls``, so the reply is the last assistant turn carrying ``tool_calls`` that
+    is followed only by its tool results and user/system notices and does not already
+    occur in ``cur``. Returns ``[]`` when there is none (a rollback discarded the reply)."""
+    tail = nxt[-2:]
+    if len(tail) == 2 and _snapshot_has_edit(tail[0], edit_tool_names):
+        return list(tail)
+    end = len(nxt)
+    while end > 0 and nxt[end - 1].get("role") in ("user", "system"):
+        end -= 1
+    start = end
+    while start > 0 and nxt[start - 1].get("role") == "tool":
+        start -= 1
+    j = start - 1
+    if j < 0:
+        return []
+    reply = nxt[j]
+    if reply.get("role") != "assistant" or not reply.get("tool_calls"):
+        return []
+    key = _msg_key(reply)
+    if any(_msg_key(m) == key for m in cur):
+        return []
+    return list(nxt[j:end])
+
+
+def _read_snapshot_files(agent_dir: Path | str) -> list[tuple[str | None, list[dict[str, Any]]]]:
+    """``(kind, messages)`` per ``context_snapshots/turn-*.json``, in turn order.
+
+    The harness tags one snapshot per LM call (``kind="agent"``) plus the final context
+    (``kind="final"``); a second writer sharing the directory leaves untagged copies.
+    When tagged snapshots are present, only those are returned."""
+    d = Path(agent_dir) / "context_snapshots"
+    if not d.is_dir():
+        return []
+    files = sorted(d.glob("turn-*.json"), key=lambda p: int(re.search(r"turn-(\d+)", p.name).group(1)))
+    out: list[tuple[str | None, list[dict[str, Any]]]] = []
+    for p in files:
+        try:
+            data = json.loads(p.read_text(encoding="utf-8"))
+        except Exception:  # noqa: BLE001
+            continue
+        if isinstance(data, dict) and isinstance(data.get("messages"), list):
+            out.append((data.get("kind"), data["messages"]))
+    if any(kind for kind, _ in out):
+        out = [(kind, msgs) for kind, msgs in out if kind in ("agent", "final")]
+    return out
+
+
+def read_snapshots(agent_dir: Path | str) -> list[list[dict[str, Any]]]:
+    """Ordered per-turn message lists from ``context_snapshots/turn-*.json``."""
+    return [msgs for _, msgs in _read_snapshot_files(agent_dir)]
+
+
+def _discarded_reply() -> dict[str, Any]:
+    """Stand-in for a reply that was sent but is absent from every later snapshot (a
+    rollback removed it). It keeps one agent step per LM call, so the request is
+    still costed and per-call metrics stay aligned."""
+    return {"role": "assistant", "content": None, _DISCARDED_KEY: True}
+
+
+def _with_discarded(messages: list[dict[str, Any]], holes: list[int]) -> list[dict[str, Any]]:
+    out = list(messages)
+    for pos in sorted(holes, reverse=True):
+        out.insert(pos, _discarded_reply())
+    return out
+
+
+def segment_records_from_snapshots(
+    snapshots: list[list[dict[str, Any]]],
+    final_messages: list[dict[str, Any]] | None = None,
+    *,
+    edit_tool_names: tuple[str, ...] = _EDIT_TOOL_NAMES,
+) -> list[dict[str, Any]]:
+    """Split per-turn snapshots into ``{messages, prompt_len}`` epoch segments at
+    every compaction (a turn whose next snapshot no longer extends it).
+
+    ``snapshots`` holds one request per LM call, in order. Every call contributes one
+    assistant message: the reply that ended an epoch is located explicitly (see
+    :func:`_response_after_rewrite`), and a reply that a rollback removed is kept as a
+    content-less stand-in, so agent steps line up 1:1 with LM calls."""
+    snaps = snapshots
+    if (final_messages is not None and snaps
+            and _common_prefix_len(snaps[-1], final_messages) < len(snaps[-1])):
+        # The last call rewrote the context: treat the final context as one more
+        # snapshot so that call's reply is found like any other.
+        snaps = list(snaps) + [final_messages]
+    if len(snaps) < 2:
+        msgs = final_messages if final_messages is not None else (snaps[0] if snaps else [])
+        return [{"messages": msgs, "prompt_len": _lead_context_len(msgs)}]
+
+    segments: list[dict[str, Any]] = []
+    epoch_prompt_len = _lead_context_len(snaps[0])
+    # Positions (in the current epoch's message list) of replies that were sent and
+    # then rolled back without changing anything else in the context.
+    holes: list[int] = []
+    for k in range(len(snaps) - 1):
+        cur, nxt = snaps[k], snaps[k + 1]
+        if _common_prefix_len(cur, nxt) < len(cur):
+            reply = _response_after_rewrite(cur, nxt, edit_tool_names) or [_discarded_reply()]
+            segments.append({"messages": _with_discarded(cur, holes) + reply,
+                             "prompt_len": min(epoch_prompt_len, len(cur))})
+            holes = []
+            epoch_prompt_len = len(nxt)
+        elif not any(m.get("role") == "assistant" for m in nxt[len(cur):]):
+            holes.append(len(cur))
+
+    final = final_messages if final_messages is not None else snaps[-1]
+    segments.append({"messages": _with_discarded(final, holes),
+                     "prompt_len": min(epoch_prompt_len, len(final))})
+    return segments
+
+
+# ---------------------------------------------------------------------------
+# Per-turn server metrics + top-level export
+# ---------------------------------------------------------------------------
+def response_metrics(response: Any) -> dict[str, Any]:
+    """Compact per-call usage from a litellm/OpenAI response: ``prompt_tokens``,
+    ``completion_tokens`` and (for exact KV-cache-aware FLOPs) the prefix-cache
+    hit count ``prompt_tokens_details.cached_tokens``."""
+    out: dict[str, Any] = {}
+    usage = getattr(response, "usage", None)
+    if usage is not None:
+        pt = getattr(usage, "prompt_tokens", None)
+        ct = getattr(usage, "completion_tokens", None)
+        if pt is not None:
+            out["prompt_tokens"] = int(pt)
+        if ct is not None:
+            out["completion_tokens"] = int(ct)
+        details = getattr(usage, "prompt_tokens_details", None)
+        cached = getattr(details, "cached_tokens", None) if details is not None else None
+        if cached is None and isinstance(details, dict):
+            cached = details.get("cached_tokens")
+        if cached is not None:
+            out["cached_tokens"] = int(cached)
+    return out
+
+
+def _attach_agent_step_metrics(traj: Trajectory, per_call: list[dict[str, Any]]) -> None:
+    """Attach ordered per-LLM-call metrics onto the trajectory's agent steps (1:1,
+    in run order). Best-effort: on a count mismatch, attach up to the shorter."""
+    agent_steps = [st for seg in traj.segments for st in seg.steps if st.source == "agent"]
+    if len(per_call) != len(agent_steps):
+        logger.warning(
+            "ctx-export: %d per-call metrics vs %d agent steps; attaching min()",
+            len(per_call), len(agent_steps),
+        )
+    for step, md in zip(agent_steps, per_call):
+        if not md:
+            continue
+        step.metrics = Metrics(
+            prompt_tokens=md.get("prompt_tokens"),
+            completion_tokens=md.get("completion_tokens"),
+            cached_tokens=md.get("cached_tokens"),
+        )
+
+
+def _record_export_check(
+    traj: Trajectory,
+    entries: list[tuple[str | None, list[dict[str, Any]]]],
+    per_call: list[dict[str, Any]] | None,
+) -> dict[str, Any]:
+    """Compare agent steps with LM calls (one ``kind="agent"`` snapshot per call) and
+    with the per-call metrics; store the counts in ``trajectory.extra["export_check"]``
+    and warn on any mismatch."""
+    steps = [st for seg in traj.segments for st in seg.steps if st.source == "agent"]
+    tagged = any(kind for kind, _ in entries)
+    check: dict[str, Any] = {
+        "agent_steps": len(steps),
+        "lm_calls": sum(1 for kind, _ in entries if kind == "agent") if tagged else None,
+        "per_call_metrics": len(per_call) if per_call is not None else None,
+        "discarded_replies": sum(1 for st in steps if (st.extra or {}).get("discarded_reply")),
+    }
+    counts = {v for k, v in check.items() if k != "discarded_replies" and v is not None}
+    check["consistent"] = len(counts) <= 1
+    if not check["consistent"]:
+        logger.warning(
+            "ctx-export: %s agent steps vs %s LM calls vs %s per-call metrics",
+            check["agent_steps"], check["lm_calls"], check["per_call_metrics"],
+        )
+    traj.extra = {**(traj.extra or {}), "export_check": check}
+    return check
+
+
+def export_ctx_trajectory(
+    agent_dir: Path | str,
+    *,
+    agent: Agent | dict[str, Any],
+    final_messages: list[dict[str, Any]] | None = None,
+    agent_step_metrics: list[dict[str, Any]] | None = None,
+    session_id: str | None = None,
+    trajectory_id: str | None = None,
+    model: str | None = None,
+    model_key: str | None = None,
+    n_body: float | None = None,
+    tokenizer: Any = None,
+    cost_usd: float | None = None,
+    cost_metric: str = "auto",
+    completion_tokens_total: int | None = None,
+    token_counter: Callable[[list[dict[str, Any]]], int] | None = None,
+    edit_tool_names: tuple[str, ...] = _EDIT_TOOL_NAMES,
+    aux_prefill_tokens: int = 0,
+    aux_gen_tokens: int = 0,
+    n_aux_calls: int = 0,
+    filename: str | None = "trajectory.ctx.json",
+) -> Trajectory:
+    """One-call export used by the harness ``finally`` block: read the per-turn
+    snapshots this run wrote, split at compactions, convert to ATIF-CTX, attach
+    per-call server metrics, compute KV-cache-aware FLOPs + the unified
+    ``compute_cost`` headline (USD for API models, FLOPs for open), and (if
+    ``filename``) write ``agent_dir/filename``. Returns the :class:`Trajectory`."""
+    from ..flops_metrics import attach_compute_cost, attach_flops
+
+    entries = _read_snapshot_files(agent_dir)
+    snaps = [msgs for _, msgs in entries]
+    records = segment_records_from_snapshots(snaps, final_messages, edit_tool_names=edit_tool_names)
+    traj = trajectory_from_segment_records(
+        records, agent, session_id=session_id, trajectory_id=trajectory_id,
+        token_counter=token_counter, edit_tool_names=edit_tool_names,
+    )
+    _record_export_check(traj, entries, agent_step_metrics)
+    if agent_step_metrics:
+        _attach_agent_step_metrics(traj, agent_step_metrics)
+    resolved_model = model or (agent.get("model_name") if isinstance(agent, dict) else getattr(agent, "model_name", None))
+    attach_flops(
+        traj, n_body=n_body, model_key=model_key, model=resolved_model,
+        tokenizer=tokenizer, completion_tokens_total=completion_tokens_total,
+        aux_prefill_tokens=aux_prefill_tokens, aux_gen_tokens=aux_gen_tokens,
+        n_aux_calls=n_aux_calls,
+    )
+    # Rates (USD/token) let attach_compute_cost also emit a provider-INDEPENDENT USD
+    # estimate from the local prefix-match token counts, alongside the provider one.
+    try:
+        from ..utils.pricing import rates_for
+        _rates = rates_for(resolved_model)
+    except Exception:  # noqa: BLE001 - pricing must never break export
+        _rates = None
+    _in, _out = _rates if _rates else (None, None)
+    attach_compute_cost(
+        traj, cost_usd=cost_usd, model=resolved_model, cost_metric=cost_metric,
+        in_rate=_in, out_rate=_out,
+    )
+    if filename:
+        out = Path(agent_dir)
+        out.mkdir(parents=True, exist_ok=True)
+        (out / filename).write_text(json.dumps(traj.to_json_dict(), indent=2, default=str) + "\n", encoding="utf-8")
+    return traj

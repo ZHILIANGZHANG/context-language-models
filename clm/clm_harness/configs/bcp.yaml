@@ -1,0 +1,27 @@
+# ClmAgent settings used for BrowseComp-Plus (deep research over a local corpus).
+# clm/examples/run_harbor.sh exports `env` and passes each `agent_kwargs` entry as --agent-kwarg.
+
+env:
+  CLM_EDIT_GATE: shrink          # differs from the default (fit): an edit must shrink the context
+
+agent_kwargs:
+  max_steps: 500                 # task-step budget; 100, 500 and 2000 were all used
+  max_tokens: 4096
+  temperature: 0.7
+  top_p: 0.95
+  command_timeout: 120
+  persistent_bash: true
+  observation_max_chars: 60000   # search results and documents arrive whole
+  context_budget_tokens: 28672   # 32768-token window minus max_tokens
+  context_budget_reserve_tokens: 2048
+  nudge_ratios: "0.25,0.5,0.75"
+  persistent_nudge_ratio: 0.9
+  max_num_retry_on_limit: 6      # differs from the default (50)
+  retry_edit_margin_tokens: 2048
+  finalize_nudge_turns: 3
+  ctx_hint: default
+  # The task instruction carries the full brief (search tools, answer file, format).
+  task_template: open_problems
+  # FLOPs accounting for a locally served Qwen3.6-27B; use cost_metric: usd for an API model.
+  cost_metric: flops
+  flops_model_key: 27b

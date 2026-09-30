@@ -1,0 +1,43 @@
+# Task-instruction (instance) template for EDGEBENCH tasks. Selected with
+# `task_template=edgebench`.
+#
+# Contract of EdgeBench tasks:
+#   * there is no universal `evaluate.py` — each task ships its OWN local tooling,
+#     described in the task text (a tester binary, a pytest suite, `lake build`, ...)
+#   * the run is bounded by TIME/COST, not by a count of scored submissions — the
+#     agent works until stopped
+#   * scoring is a LOOP, not an endpoint: the agent submits to the judge during the
+#     run (`edgebench-submit`) and refines against the score, and its result is the
+#     BEST submission it ever made -- so the prompt pushes it to submit early and often
+#   * scratch must stay OUT of the submitted tree, since some tasks submit everything
+#
+# NOTE: prose paragraphs are intentionally kept on single (unwrapped) lines so the YAML
+# literal block does not inject mid-sentence newlines into the prompt text.
+instance_template: |
+  {{task}}
+
+  ## How to work on this problem
+
+  This task is scored on HOW GOOD your solution is, not on whether you finished. There is no pass/fail gate and no "done" state: a working first version earns a low score, and essentially all of your score comes from the improvement you make afterwards. Plan for a long run.
+
+  Start by reading what is already in the task directory — the README, the project skeleton, and especially any local tooling the task mentions (generators, testers, benchmarks, test suites). That tooling is your score signal. Get a baseline measured EARLY, before optimizing anything: you cannot tell an improvement from a regression without a number to compare against.
+
+  Then loop: make one change, measure it with the local tooling, keep it if it helps and revert it if it does not, and repeat. Measure little and often rather than making many changes and evaluating once at the end — a batch of changes that regresses tells you nothing about which change was at fault.
+
+  Your submitted files are graded EXACTLY as they are on disk whenever the run ends, and the run can end at any time without warning. So never leave the submission in a broken or half-edited state: develop risky changes in a scratch copy and only promote a change into the submitted path once you have measured it and it builds/runs.
+
+
+  ## Use the judge, not just your local tools
+
+  The task text tells you how to submit your work to the official judge (`edgebench-submit`). That score is the ONLY thing that counts, and your FINAL result is the BEST submission you ever make -- so submitting is free and a bad attempt costs you nothing. Submit ONCE IMMEDIATELY, before you start optimising or delegating, so a baseline is banked; then submit again after each meaningful change. A background process also auto-submits every few minutes, so keep the submitted paths runnable at all times. Use `edgebench-submit --list` to see your own score history and tell real improvements from regressions. Local tools are faster and unlimited: use them to filter ideas cheaply, and use the judge to confirm what actually helps.
+
+  ## Search discipline (what reliably improves quality)
+
+  - Keep a scratch tree OUTSIDE the submitted paths (e.g. `/tmp/edgebench/`) for experiments, candidate copies, and notes. Some tasks submit the whole directory, so stray experiment files can end up in your submission or confuse the judge.
+  - Keep an on-disk ledger of what you measured: append `"<score>\t<file-or-tag>\t<what changed>"` to `/tmp/edgebench/ledger.tsv`, and keep a short `/tmp/edgebench/notes.md` with your current best and WHY, the changes that IMPROVED the score, and the changes that REGRESSED. Do not retry a known dead end — re-testing one burns time you cannot get back.
+  - Branch from your CURRENT BEST measured version, not a stale or weaker one.
+  - Change ONE thing per measurement so the delta is attributable.
+  - Go DEEP when a method looks promising but underperforms: debug and tune THAT method over several attempts before pivoting. A correct, well-tuned strong approach beats many shallow different ones. Only move on once it is correct and still not improving.
+  - Spend the compute you are given: a longer or multi-restart search usually beats a cleverer but shorter one, when the task's evaluation allows it.
+  - Work in two phases. Early: try structurally different approaches to find a strong basin (explore). Once you are clearly strong: stop making structural changes and refine locally in smaller and smaller steps (exploit).
+  - Re-measure before you stop. The last thing you do should leave the submitted paths in their best MEASURED state, not in whatever state your final experiment left them.
