@@ -18,6 +18,10 @@
 <p align="center">
   <sup>1</sup>University of Washington &nbsp; <sup>2</sup>Meta Superintelligence Labs &nbsp; <sup>3</sup>MIT &nbsp; <sup>4</sup>Trillium Labs
 </p>
+<p align="center">
+  <a href="https://arxiv.org/abs/2609.37725"><img src="https://img.shields.io/badge/arXiv-2609.37725-b31b1b.svg" alt="arXiv"></a>
+  <a href="https://arxiv.org/abs/2609.37725"><img src="https://img.shields.io/badge/Twitter-thread-1DA1F2.svg?logo=x&logoColor=white" alt="Twitter"></a>
+</p>
 
 <p align="center"><img src="assets/teaser.png" width="100%" alt="Context Language Models"></p>
 
@@ -76,12 +80,13 @@ pi install git:github.com/lolipopshock/pi-clm
 If you find our work helpful, we would appreciate it if you could cite our paper:
 
 ```bibtex
-@misc{shao2026contextlanguagemodels,
-  title  = {Context Language Models},
-  author = {Shao, Rulin and Shen, Shannon Zejiang and Yin, Junjie Oscar and Li, Yuetai and
-            Wang, Minheng and Ivison, Hamish and Poovendran, Radha and Lambert, Nathan and
-            Xiao, Teng and Lewis, Mike and Yih, Wen-tau and Zettlemoyer, Luke and Koh, Pang Wei},
-  year   = {2026}
+@article{shao2026context,
+  title   = {Context Language Models},
+  author  = {Shao, Rulin and Shen, Shannon Zejiang and Yin, Junjie Oscar and Li, Yuetai and
+             Wang, Minheng and Ivison, Hamish and Poovendran, Radha and Lambert, Nathan and
+             Xiao, Teng and Lewis, Mike and Yih, Wen-tau and Zettlemoyer, Luke and Koh, Pang Wei},
+  journal = {arXiv preprint arXiv:2609.37725},
+  year    = {2026}
 }
 ```
 
