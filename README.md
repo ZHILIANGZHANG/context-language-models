@@ -20,7 +20,7 @@
 </p>
 <p align="center">
   <a href="https://arxiv.org/abs/2609.37725"><img src="https://img.shields.io/badge/arXiv-2609.37725-b31b1b.svg" alt="arXiv"></a>
-  <a href="https://arxiv.org/abs/2609.37725"><img src="https://img.shields.io/badge/Twitter-thread-1DA1F2.svg?logo=x&logoColor=white" alt="Twitter"></a>
+  <a href="https://x.com/RulinShao/status/2105282444270448647"><img src="https://img.shields.io/badge/Twitter-thread-1DA1F2.svg?logo=x&logoColor=white" alt="Twitter"></a>
 </p>
 
 <p align="center"><img src="assets/teaser.png" width="100%" alt="Context Language Models"></p>
@@ -43,6 +43,14 @@ contexts coexist as files.
   CLMs, improving Qwen3.5-9B performance on BrowseComp-Plus by 47.6% while using 12% fewer
   FLOPs.
 
+## Day 1 Support
+
+CLM for [Pi](https://github.com/earendil-works/pi):
+
+```sh
+pi install npm:@lolipopshock/pi-clm
+```
+
 ## Getting started
 
 Run the minimal CLM agent on any [Harbor](https://github.com/laude-institute/harbor) task:
@@ -56,20 +64,14 @@ clm-harbor run -p <harbor-task> -a clm-minimal -m openai/<model> \
 `clm-harbor` is the Harbor CLI with CLM available as `-a clm-minimal`. See
 [`clm/clm_harness`](clm/clm_harness/) for configuration and serving.
 
-## Day 1 support: pi-clm for [Pi agent](https://github.com/earendil-works/pi)
-
-```sh
-pi install npm:@lolipopshock/pi-clm
-```
-
 ## Repository
 
 | | |
 |---|---|
-| [`clm/clm_harness`](clm/clm_harness/) | CLM implemented in [Harbor](https://github.com/laude-institute/harbor) |
-| [`clm/clm_icl`](clm/clm_icl/) | skill evolution |
-| [`clm/clm_rl`](clm/clm_rl/) | reinforcement learning |
-| [`suffix_cache_reuse`](suffix_cache_reuse/) | Suffix Cache Reuse: KV-cache reuse for CLM serving, as a patch to SGLang |
+| [`clm/clm_harness`](clm/clm_harness/) | CLMs implemented in [Harbor](https://github.com/laude-institute/harbor) |
+| [`clm/clm_icl`](clm/clm_icl/) | In-context learning for CLMs |
+| [`clm/clm_rl`](clm/clm_rl/) | Reinforcement learning for CLMs |
+| [`suffix_cache_reuse`](suffix_cache_reuse/) | Suffix Cache Reuse for CLM efficient serving |
 
 ## Coming soon
 
