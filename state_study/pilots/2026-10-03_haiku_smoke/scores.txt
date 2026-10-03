@@ -1,0 +1,12 @@
+delayed/raw                  2/3 correct, 0 deaf-errors, 0 unparsed
+delayed/state                3/3 correct, 0 deaf-errors, 0 unparsed
+delayed/state_noq            0/3 correct, 3 deaf-errors, 0 unparsed
+explicit/delete              3/3 correct, 0 deaf-errors, 0 unparsed
+explicit/raw                 2/3 correct, 0 deaf-errors, 0 unparsed
+explicit/state               3/3 correct, 0 deaf-errors, 0 unparsed
+explicit/state_log           3/3 correct, 0 deaf-errors, 0 unparsed
+explicit/tomb_inline         2/3 correct, 0 deaf-errors, 0 unparsed
+explicit/tomb_tail           3/3 correct, 0 deaf-errors, 0 unparsed
+implicit/raw                 2/3 correct, 1 deaf-errors, 0 unparsed
+implicit/state               3/3 correct, 0 deaf-errors, 0 unparsed
+implicit/tomb_tail           3/3 correct, 0 deaf-errors, 0 unparsed

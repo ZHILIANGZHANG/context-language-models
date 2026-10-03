@@ -30,7 +30,7 @@
 │   └── references/          delayed-relevance（只读的设计参考，没有 license）
 ├── scripts/
 │   └── setup_third_party.sh 按分组初始化 submodule
-└── state_study/             （计划中）我们自己的代码：各对照组的 ContextProvider、真值抽取、按缓存计价、错误账本
+└── state_study/             我们自己的代码：probes/（I3 仓库探针）、pilots/（冒烟测试记录）、tests/；后续加入各对照组的 ContextProvider、真值抽取、错误账本
 ```
 
 ## 快速开始
@@ -45,6 +45,9 @@ scripts/setup_third_party.sh core
 
 # 2. CLM（对照组 A2）的安装方式与上游一致
 pip install -e .
+
+# 3. I3 探针的测试（只需标准库 + pytest）
+python -m pytest state_study/tests
 ```
 
 各基准的环境依赖（ALFWorld 的数据、LOCA 的 Node.js 和 MCP、LongMemEval 的数据下载）见 [`third_party/README.md`](third_party/README.md) 和提案 §10。
@@ -53,9 +56,11 @@ pip install -e .
 
 - [x] 文献与代码调研，第三方仓库以固定版本接入
 - [x] 研究提案 v0.1
+- [x] I3 探针环境与渲染条件（`state_study/probes`，19 个测试通过）
+- [x] I3 冒烟测试：Haiku 子 agent，36 题，管线端到端跑通（[`state_study/pilots/2026-10-03_haiku_smoke`](state_study/pilots/2026-10-03_haiku_smoke/README.md)）
+- [ ] I3 正式实验：需要模型 API 密钥（见提案 §6.7）
 - [ ] W1：在选定模型上复现 PoS 在 ALFWorld 和 LOCA 8K 上的结果（检查点 G1）
 - [ ] W2：实现各对照组和真值抽取器
-- [ ] W3：I3 实验
 
 ## License
 
