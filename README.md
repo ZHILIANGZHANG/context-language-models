@@ -1,97 +1,63 @@
-# Context Language Models (CLMs)
+# Where Agents Keep the Truth
 
-<p align="center">
-  <a href="https://rulinshao.github.io/">Rulin Shao</a><sup>1,2</sup>,
-  <a href="https://www.szj.io/">Shannon Zejiang Shen</a><sup>3</sup>,
-  <a href="https://oseyincs.io/">Junjie Oscar Yin</a><sup>1,2</sup>,
-  <a href="https://yuetl9.github.io/">Yuetai Li</a><sup>1</sup>,
-  <a href="https://minhengwang.github.io/">Minheng Wang</a><sup>1</sup>,
-  <a href="https://ivison.id.au">Hamish Ivison</a><sup>1</sup>,
-  <a href="https://people.ece.uw.edu/radha/">Radha Poovendran</a><sup>1</sup>,
-  <a href="https://natolambert.com/">Nathan Lambert</a><sup>4</sup>,
-  <a href="https://tengxiao1.github.io/">Teng Xiao</a><sup>1</sup>,
-  <a href="https://ai.meta.com/people/209431298931133/mike-lewis/">Mike Lewis</a><sup>2</sup>,
-  <a href="https://scottyih.org/">Wen-tau Yih</a><sup>2</sup>,
-  <a href="https://homes.cs.washington.edu/~lsz/">Luke Zettlemoyer</a><sup>1,2</sup>,
-  <a href="https://koh.pw/">Pang Wei Koh</a><sup>1</sup>
-</p>
-<p align="center">
-  <sup>1</sup>University of Washington &nbsp; <sup>2</sup>Meta Superintelligence Labs &nbsp; <sup>3</sup>MIT &nbsp; <sup>4</sup>Trillium Labs
-</p>
-<p align="center">
-  <a href="https://arxiv.org/abs/2609.37725"><img src="https://img.shields.io/badge/arXiv-2609.37725-b31b1b.svg" alt="arXiv"></a>
-  <a href="https://x.com/RulinShao/status/2105282444270448647"><img src="https://img.shields.io/badge/Twitter-thread-1DA1F2.svg?logo=x&logoColor=white" alt="Twitter"></a>
-</p>
+**长程 Agent 上下文表示研究工作区：状态 vs 历史，结构来源、错误归因与绑定时机。**
 
-<p align="center"><img src="assets/teaser.png" width="100%" alt="Context Language Models"></p>
+本仓库最初 fork 自 [facebookresearch/context-language-models](https://github.com/facebookresearch/context-language-models)（CLM，arXiv 2609.37725），现已改造成一个完整的研究工作区。它由三部分组成：
 
-We introduce **Context Language Models (CLMs)**, language models that natively manage their own
-context. We implement this by treating the **context as a file** and allowing the model to make
-unrestricted updates to this file. This allows the model to learn what is most important to
-maintain in context, and naturally extends to multi-agent systems where multiple agent
-contexts coexist as files.
+- **CLM 原始实现**：保留在 [`clm/`](clm/) 和 [`suffix_cache_reuse/`](suffix_cache_reuse/)，在研究中作为"自由形式上下文编辑"这一对照组；
+- **第三方代码与基准**：2026 年"状态派"工作（PoS、SKILL.state、Scroll、VISTA……）的代码和要用的基准，以固定版本的 git submodule 形式接入 [`third_party/`](third_party/)；
+- **研究文档**：提案和文献地图，在 [`docs/`](docs/)。
 
-- **Zero-shot.** Building CLMs zero-shot with existing models outperforms SOTA
-  context-management strategies across a variety of tasks: 11.4% higher accuracy with 21.5%
-  fewer FLOPs on BrowseComp-Plus, 5% higher scores with 59% fewer FLOPs on 12-hour EdgeBench,
-  and 65% greater improvement with the same compute on a 24-hour multi-repository agent-swarm
-  task.
-- **In-context learning.** We show that CLMs can be steered with natural-language
-  instructions evolved through a standard skill-optimization loop, improving held-out
-  accuracy by up to 35.9 points on a context-management task while reducing compute.
-- **Reinforcement learning.** We also introduce an online reinforcement learning method for
-  CLMs, improving Qwen3.5-9B performance on BrowseComp-Plus by 47.6% while using 12% fewer
-  FLOPs.
+## 文档
 
-## Day 1 Support
+| 文档 | 内容 |
+|---|---|
+| [`docs/proposal.md`](docs/proposal.md) | **研究提案**：四个 idea（I1 结构来源与规模、I2 状态错误账本、I3 新旧矛盾 vs 唯一真相来源、I4 动作时刻召回）的出发点、假设、实验设计、指标、时间线、预算和风险 |
+| [`docs/literature_map.md`](docs/literature_map.md) | **文献地图**：CLM 和状态派各工作在做什么、彼此有什么区别、代码和基准是否可用、有哪些证据、趋势是什么 |
+| [`third_party/README.md`](third_party/README.md) | **第三方清单**：每个 submodule 的上游地址、固定的 commit、license，以及在本研究中的用途 |
+| [`clm/README.md`](clm/README.md) | CLM 上游的原始 README |
 
-CLM for [Pi](https://github.com/earendil-works/pi):
+## 目录结构
 
-```sh
-pi install npm:@lolipopshock/pi-clm
+```
+.
+├── docs/                    提案与文献地图
+├── clm/                     CLM 原始实现（harness、ICL、RL patch）—— 对照组 A2
+├── suffix_cache_reuse/      CLM 的 SGLang 推理服务优化（SCR）
+├── third_party/
+│   ├── methods/             pos、skill-state-runtime、scroll、vista、rlm、selfcompact、acm、belief-world-models
+│   ├── benchmarks/          loca-bench、alfworld、longmemeval、supersede、state-bench（可选）、beam（可选，约 4 GB）
+│   └── references/          delayed-relevance（只读的设计参考，没有 license）
+├── scripts/
+│   └── setup_third_party.sh 按分组初始化 submodule
+└── state_study/             （计划中）我们自己的代码：各对照组的 ContextProvider、真值抽取、按缓存计价、错误账本
 ```
 
-## Getting started
-
-Run the minimal CLM agent on any [Harbor](https://github.com/laude-institute/harbor) task:
+## 快速开始
 
 ```bash
+git clone https://github.com/ZHILIANGZHANG/context-language-models.git
+cd context-language-models
+
+# 1. 拉取第一批实验需要的依赖：PoS 循环、LOCA、ALFWorld、SKILL.state 运行时、Supersede、LongMemEval
+scripts/setup_third_party.sh core
+#    其他分组：methods | benchmarks | references | optional | all
+
+# 2. CLM（对照组 A2）的安装方式与上游一致
 pip install -e .
-clm-harbor run -p <harbor-task> -a clm-minimal -m openai/<model> \
-  --agent-kwarg api_base=http://localhost:8000/v1
 ```
 
-`clm-harbor` is the Harbor CLI with CLM available as `-a clm-minimal`. See
-[`clm/clm_harness`](clm/clm_harness/) for configuration and serving.
+各基准的环境依赖（ALFWorld 的数据、LOCA 的 Node.js 和 MCP、LongMemEval 的数据下载）见 [`third_party/README.md`](third_party/README.md) 和提案 §10。
 
-## Repository
+## 当前进度
 
-| | |
-|---|---|
-| [`clm/clm_harness`](clm/clm_harness/) | CLMs implemented in [Harbor](https://github.com/laude-institute/harbor) |
-| [`clm/clm_icl`](clm/clm_icl/) | In-context learning for CLMs |
-| [`clm/clm_rl`](clm/clm_rl/) | Reinforcement learning for CLMs |
-| [`suffix_cache_reuse`](suffix_cache_reuse/) | Suffix Cache Reuse for CLM efficient serving |
-
-## Coming soon
-
-- [ ] ContextBench
-
-## Citation
-
-If you find our work helpful, we would appreciate it if you could cite our paper:
-
-```bibtex
-@article{shao2026context,
-  title   = {Context Language Models},
-  author  = {Shao, Rulin and Shen, Shannon Zejiang and Yin, Junjie Oscar and Li, Yuetai and
-             Wang, Minheng and Ivison, Hamish and Poovendran, Radha and Lambert, Nathan and
-             Xiao, Teng and Lewis, Mike and Yih, Wen-tau and Zettlemoyer, Luke and Koh, Pang Wei},
-  journal = {arXiv preprint arXiv:2609.37725},
-  year    = {2026}
-}
-```
+- [x] 文献与代码调研，第三方仓库以固定版本接入
+- [x] 研究提案 v0.1
+- [ ] W1：在选定模型上复现 PoS 在 ALFWorld 和 LOCA 8K 上的结果（检查点 G1）
+- [ ] W2：实现各对照组和真值抽取器
+- [ ] W3：I3 实验
 
 ## License
 
-This project is licensed under [CC BY-NC 4.0](LICENSE). See also [NOTICE](NOTICE).
+- `clm/` 和 `suffix_cache_reuse/` 沿用上游的 [CC BY-NC 4.0](LICENSE)，另见 [NOTICE](NOTICE)。
+- `third_party/` 下的每个 submodule 遵循各自上游的 license，见 [`third_party/README.md`](third_party/README.md)。**VISTA、belief-world-models、delayed-relevance 没有 license**，只作为基线运行或设计参考，不要把它们的代码复制进本仓库。

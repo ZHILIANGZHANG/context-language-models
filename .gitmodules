@@ -1,0 +1,75 @@
+[submodule "third_party/methods/pos"]
+	path = third_party/methods/pos
+	url = https://github.com/luoyu100/PoS.git
+	branch = main
+	shallow = true
+[submodule "third_party/methods/scroll"]
+	path = third_party/methods/scroll
+	url = https://github.com/niceIrene/QwenPaw.git
+	branch = scroll-research
+	shallow = true
+[submodule "third_party/methods/skill-state-runtime"]
+	path = third_party/methods/skill-state-runtime
+	url = https://github.com/WUWeifeng710/skill-state-runtime.git
+	branch = main
+	shallow = true
+[submodule "third_party/methods/vista"]
+	path = third_party/methods/vista
+	url = https://github.com/binyxu/VISTA.git
+	branch = main
+	shallow = true
+[submodule "third_party/methods/rlm"]
+	path = third_party/methods/rlm
+	url = https://github.com/alexzhang13/rlm.git
+	branch = main
+	shallow = true
+[submodule "third_party/methods/selfcompact"]
+	path = third_party/methods/selfcompact
+	url = https://github.com/tianjianl/selfcompact.git
+	branch = main
+	shallow = true
+[submodule "third_party/methods/acm"]
+	path = third_party/methods/acm
+	url = https://github.com/lixiaochuan2020/agentic-context-management.git
+	branch = main
+	shallow = true
+[submodule "third_party/methods/belief-world-models"]
+	path = third_party/methods/belief-world-models
+	url = https://github.com/skumar-ml/belief-world-models.git
+	branch = master
+	shallow = true
+[submodule "third_party/references/delayed-relevance"]
+	path = third_party/references/delayed-relevance
+	url = https://github.com/JaviMaligno/delayed-relevance.git
+	branch = main
+	shallow = true
+[submodule "third_party/benchmarks/loca-bench"]
+	path = third_party/benchmarks/loca-bench
+	url = https://github.com/hkust-nlp/LOCA-bench.git
+	branch = main
+	shallow = true
+[submodule "third_party/benchmarks/alfworld"]
+	path = third_party/benchmarks/alfworld
+	url = https://github.com/alfworld/alfworld.git
+	branch = master
+	shallow = true
+[submodule "third_party/benchmarks/longmemeval"]
+	path = third_party/benchmarks/longmemeval
+	url = https://github.com/xiaowu0162/LongMemEval.git
+	branch = main
+	shallow = true
+[submodule "third_party/benchmarks/supersede"]
+	path = third_party/benchmarks/supersede
+	url = https://github.com/Vrin-cloud/supersede.git
+	branch = main
+	shallow = true
+[submodule "third_party/benchmarks/state-bench"]
+	path = third_party/benchmarks/state-bench
+	url = https://github.com/microsoft/STATE-Bench.git
+	branch = main
+	shallow = true
+[submodule "third_party/benchmarks/beam"]
+	path = third_party/benchmarks/beam
+	url = https://github.com/mohammadtavakoli78/BEAM.git
+	branch = main
+	shallow = true
