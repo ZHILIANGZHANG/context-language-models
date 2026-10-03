@@ -256,6 +256,8 @@ delayed-relevance 自己的文档把这个结果解释为"历史要在每一步�
 
 ## 5. 下一步与预算
 
+> **2026-10-03 更新**：用户指示云端测试默认用 Claude 子 agent，下表里"需要 API 密钥"的步骤改用子 agent 跑；API 只在需要复核或精确计费时再用。步骤 1 的重放题带着原轨迹里别的模型写的推理，在 sonnet / opus 子 agent 上被安全分类器拦截，所以改为步骤 2 的闭环：自写环境 `state_study/validation/wh_env.py`，每个模型从头自己玩（[research_log.md](research_log.md) §5.5）。规模和模型等用户确认。
+
 按每单位成本带来的信息量排序：
 
 | 步骤 | 内容 | 需要 | 估计花费 |

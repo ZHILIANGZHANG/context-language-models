@@ -24,11 +24,12 @@
   - `state_study/probes/`：仓库探针、11 种条件、出题和打分、错误账本；
   - `state_study/groundtruth/alfworld_facts.py`：ALFWorld 逐步真值；
   - `state_study/validation/`：第三轮验证的自写探针，以及 delayed-relevance 轨迹的重放和分析（运行时导入，不复制）；
-  - `state_study/tests/`：40 个测试；
+  - `state_study/validation/wh_env.py`：闭环仓库环境，子 agent 自己逐步玩完一个回合；
+  - `state_study/tests/`：99 个测试；
   - 三轮冒烟测试，在 `state_study/pilots/`。
-- **卡点**：没有模型 API 密钥；多数模型服务域名和 arxiv、HF 被网络策略拦截。所以正式实验都没跑。
+- **卡点**：测试不再卡在 API 密钥上（默认用子 agent，见"约定"）；仍然被拦的是 arxiv、HF 等网络，读不了论文原文。
 - **第三轮验证（2026-10-03）**：结论见 `docs/validation_2026-10-03.md`。主线是否改写成"到达时绑定"，待用户决定。
-- **下一步**：见 `docs/validation_2026-10-03.md` §5：读最接近的五篇原文 → 用 API 重做全部重放 → 闭环实验 → 第二个领域。
+- **下一步**：见 `docs/validation_2026-10-03.md` §5：读最接近的五篇原文 → 在更大的模型上复核 → 闭环实验 → 第二个领域。重放题在 sonnet / opus 子 agent 上被安全分类器拦截，所以复核改用闭环环境 `wh_env.py`（见 `docs/research_log.md` §5.5）。闭环试验的规模和模型**等用户确认**后再跑。
 
 ## 仓库地图
 
@@ -41,7 +42,7 @@ state_study/                我们自己的代码
   groundtruth/              alfworld_facts.py
   tests/                    test_warehouse_probe.py
   pilots/                   冒烟测试记录（README、key、responses、blind_map、scores）
-  validation/               第三轮验证：自写探针，以及 delayed-relevance 轨迹的重放和分析（只运行、不复制）
+  validation/               第三轮验证：自写探针，以及 delayed-relevance 轨迹的重放和分析（只运行、不复制）；闭环环境 wh_env.py、wh_pilot.py
 docs/                       全部研究文档
 ```
 
@@ -62,7 +63,12 @@ PoS 和 ALFWorld 的虚拟环境搭建、离线检查、真值重放命令见 `d
 - **提交信息**：结尾加上会话要求的 Co-Authored-By 和 Claude-Session 两行；不要在提交、PR、代码里写模型标识。
 - **没有 license 的仓库**：VISTA、belief-world-models、delayed-relevance 没有 license，只能运行或参考思路，**不能复制代码**进本仓库。仓库探针是按 SKILL.state 论文 §4.1 的描述重新实现的。
 - **凭证**：不要把本会话自己的登录凭证拿去调模型 API；不要让用户把密钥贴到聊天里。密钥应该由用户在云环境设置里配置。
-- **冒烟测试**：没有 API 时，可以用 Claude 子 agent 中转做管线冒烟测试。规则是题目文件盲化、答案单独存放、每题一个子 agent。结果只说明方向，**不能当实验数据**。
+- **云端测试默认用子 agent**（用户 2026-10-03 指示）：不等 API 密钥，直接用 Agent 工具调 Claude 子 agent 测，可选 haiku / sonnet / opus / fable 四档。
+  - **先说明再跑**：每次启动子 agent 之前，先告诉用户跑什么、跑几个、预计用量（每个子 agent 都要重读 Claude Code 的系统提示，一个 50 步的闭环回合约 280 万 token 缓存读取），等用户确认再跑（用户 2026-10-03 要求）。
+  - **题目类测试**：题目文件盲化、答案单独存放、每题一个子 agent，子 agent 只许 Read 题目和 Write 一次答案。
+  - **闭环测试**（`state_study/validation/wh_env.py`）：子 agent 只许跑 start / act 两条命令；事后用 `wh_pilot.py audit` 读子 agent 记录，核对它没跑别的命令。
+  - **安全分类器**：题目里带着别的模型写的推理文字（例如 delayed-relevance 轨迹里的推理），sonnet / opus 子 agent 会被拦截（`reasoning_extraction`）。不要改写题目去绕开它，改用闭环。
+  - **限制**：子 agent 带着 Claude Code 的系统提示，温度不可控。子 agent 记录（`~/.claude/projects/<项目>/<会话>/subagents/agent-*.jsonl`）里能读到输入和缓存 token 数，输出 token 数不可靠，thinking 内容是空的。结果要标成"子 agent 测量"，并写明这些限制。投稿前是否再用 API 复核，由用户决定。
 - **核实标记**：论文数字要标来源：[R] 读过仓库、[N] 全文读书笔记、[S] 只看过搜索摘要。[S] 的数字引用前必须核对原文。
 - **提交前**：清理 `__pycache__`、`.pytest_cache`；不要提交 submodule 里下载的数据，例如 `third_party/methods/pos/benchmarks/ALFWorld/`。
 - **新领域的探针**：必须配"规则读者"测试，证明只看文本就能答对，否则模型答错不能归因于模型。

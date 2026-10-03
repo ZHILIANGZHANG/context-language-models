@@ -43,6 +43,9 @@
 | 20 | 把全部算法设计、调研结果、related work 详细写进文档，方便下次新会话 | 本文档及配套的 algorithm_design、related_work、clm_notes、idea_bank、根目录 CLAUDE.md |
 | 21 | 把这些 paper 引领的趋势捋清楚：是不是从 memory 往 state 走？最好的切入点是什么 | 趋势确实在往状态走，但证据比宣称的弱；提出"显式状态是用干扰换持久"（C1 干扰律、C2 持久律、C3 交叉点可预测、C4 规模） |
 | 22 | 先验证 paper 路径可行、方法初步可靠，再交付 | C1 不成立、C2 一半成立、C3 无法检验；发现 delayed-relevance 的 L2 事后更正探针自相矛盾（§2.7）。修正为"决定成败的是到达时的写入，不是表示方式"。见 [validation_2026-10-03.md](validation_2026-10-03.md)，**主线待用户决定是否改写** |
+| 23 | 回到 CLM 本身：它在干什么、和之前的区别、经济效益、哪里有用 | 写进 [clm_notes.md](clm_notes.md) §13 和 `state_study/validation/clm_cost_model.py`。提交 `a760ff6` |
+| 24 | 云端测试默认调自己的子 agent | 约定写进 CLAUDE.md。重放题在 sonnet / opus 子 agent 上 13/13 被安全分类器拦截，没有改写绕开；改用自写的闭环环境 `wh_env.py`。Haiku 沙盒回合 1 个（§5.5） |
+| 25 | "你在干什么，我都不知道你在跑什么" | 停下来说明。约定：启动子 agent 前先列出跑什么、几个、预计用量，等用户确认。已建好的 21 个回合文件没有启动 |
 
 ---
 
@@ -279,11 +282,32 @@
 
 ### 5.4 不调模型的验证
 
-- **探针测试**：40 个全部通过（`python -m pytest state_study/tests`；其中 20 个是第三轮新加的规则读者测试）；
+- **探针测试**：99 个全部通过（`python -m pytest state_study/tests`；其中 20 个是第三轮新加的规则读者测试，59 个是闭环环境 `wh_env.py` 的测试）；
 - **PoS 离线检查**：`check_behavior_equivalence.py --self-test` 和 `check_method.py` 输出 "Passed: Raw, full PoS, both ablations, and diagnostic PoS"；28 个单元测试通过；
 - **ALFWorld 真值**：valid-unseen 134 局；重放 12 局、6 种任务类型、0 违规；clean/hot/cool 属性正确；
 - **submodule**：所有固定 commit 都用 `git ls-remote` 解析过；抽 3 个实际拉取，都检出到对应 commit；`setup_third_party.sh` 遇到未知分组时退出码 2；
 - **文档链接**：相对链接全部能找到目标。
+
+### 5.5 第四轮：闭环环境（进行中，2026-10-03）
+
+**为什么改成闭环**：用户指示云端测试默认用子 agent 之后，打算在 sonnet / opus 上重做 L1 重放。12 个 sonnet、1 个 opus 子 agent **全部被安全分类器拦截**，标签是 `reasoning_extraction`。原因是重放题里带着原轨迹里另一个模型写的推理文字（L1 重放用的是原 Haiku 轨迹）。没有改写题目去绕开。Haiku 子 agent 不拦，前几轮的重放都是 Haiku 做的。
+
+**闭环环境**（`state_study/validation/wh_env.py`，自写，license 干净）：
+
+- 子 agent 用命令行从第 0 步自己玩到第 49 步，每步一条命令，看到的历史全是它自己的；
+- 第 8 步来一条 `facility_notice`：货架 S 隔离，`do_not_store=true`；
+- 第 48 步 S 第一次成为最低空位，正确做法是跳过 S。生成器保证 S 在第 8 到 48 步之间从没被碰过；
+- 物理上不可能的动作（往占用的货架存、发不存在的货）会被拒，并要求重答同一事件；往 S 存货物理上可行，所以不会被拒，违规是静默的；
+- 条件：BASE（说明书不提通知）、RULE（说明书写明通知的规则）、PIN（可以 `--pin` 钉住笔记，之后每步重放）、REM（环境每步提醒）；
+- 规则读者测试：只看命令行输出的读者，在四种条件下都全对；忽略通知的读者在第 48 步违规；不记事、只看提醒行或钉住笔记的读者也全对。
+
+**沙盒回合**（1 个，只验证流程，不是结果）：Haiku，BASE，种子 0。
+
+- 50 步对了 49 步，唯一的错就在第 48 步：存到了隔离的货架 15（正确是 16）。第 8 步的回答是 `Wait({})`，交回的报告把通知和遥测归在一起，都说成"回 Wait"；
+- 审计：只跑了规定的 51 条命令，没有拒绝；
+- 用时约 2 分 15 秒；约 283 万 token 缓存读取（每步重读 Claude Code 的系统提示和前面的记录）。
+
+**还没跑**：21 个回合已经建好文件、没有启动。Haiku 的 BASE、PIN、RULE 各 6 个种子，REM 3 个，外加 sonnet BASE 1 个，用来看闭环会不会被拦。规模和模型**等用户确认**。
 
 ---
 
@@ -302,6 +326,7 @@
 | api.github.com | 被拦截，改用 `git ls-remote` / `git clone` |
 | 网络上可达但没有密钥 | api.anthropic.com、Gemini 接口 |
 | 模型 API 密钥 | 环境变量里没有任何模型服务的 key |
+| 子 agent 的安全分类器 | 题目里带着别的模型写的推理文字时，sonnet / opus 子 agent 会被拦截（`reasoning_extraction`）；haiku 不拦。不要改写题目去绕开 |
 | tiktoken | 词表下载被拦，token 数按字符数 ÷ 4 估算 |
 | 生命周期 | 容器闲置后会被回收；不适合跑几天的实验矩阵 |
 
@@ -310,6 +335,8 @@
 - 不要求用户把密钥贴到聊天里。
 
 ### 6.2 解除阻碍需要用户做的事
+
+**2026-10-03 更新**：用户指示云端测试默认用 Claude 子 agent（haiku / sonnet / opus / fable），所以下面第 2 条不再是测试的前提，只在需要 API 复核或精确计费时才用。
 
 入口是会话标题栏的云环境菜单 → Edit：
 
@@ -387,7 +414,7 @@ pip download harbor==0.16.1 --no-deps --python-version 3.12 --only-binary=:all: 
 **2026-10-03 更新**：第三轮验证改变了优先级，按 [validation_2026-10-03.md](validation_2026-10-03.md) §5 执行：
 
 1. 读最接近的五篇原文（需要放行 arxiv.org 或用户提供 PDF）；
-2. 用 API 重做全部重放（Haiku 4.5 / Sonnet 5.5 / Opus 5.5，每格 n=24，约 30 美元）；
+2. 在更大的模型上复核：重放题在 sonnet / opus 子 agent 上被安全分类器拦截（§5.5），改用闭环环境 `wh_env.py`，每个模型从头自己玩。规模和模型等用户确认；
 3. 在自写仓库环境上做闭环实验，因子为更正是否一致、通知是否过时、延迟约束 / 延迟事实；
 4. 第二个领域（ALFWorld 注入延迟约束）；
 5. 用户决定是否把主线改写成"到达时绑定"。

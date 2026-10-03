@@ -18,6 +18,8 @@
 | `dr_tables.py` | 从原轨迹重新统计 L1、L2 的表格，以及自由字段的"到达时是否写下"分解 | 同上 |
 | `clm_cost_model.py` | 示意性成本模型：不管理、定时摘要、CLM 两种压缩日程，在 FLOPs、API 缓存计费、CLM 本地美元估计下的相对成本（不是测量） | 自写 |
 | `dr_persistence.py`、`dr_adoption.py` | 显式状态闭环里信念偏差的持续时间、被拒后的采纳率、错误成串程度 | 同上 |
+| `wh_env.py` | **闭环**仓库环境（命令行）：子 agent 自己逐步玩完 50 步，历史就是它自己的对话记录，不含别的模型写的文字。第 8 步隔离货架 S，第 48 步 S 第一次成为最低空位；条件 BASE / RULE / PIN / REM | 自写 |
+| `wh_pilot.py` | 闭环试验的盲化建回合、生成统一的子 agent 指令、审计子 agent 实际跑过的命令（读 `agent-*.jsonl`）、按模型 × 条件汇总 | 自写 |
 
 delayed-relevance **没有 license**：这些脚本只在运行时从 `third_party/references/delayed-relevance/src` 导入它的环境，读取它公开分支上的轨迹，从不复制它的代码或数据。脚本设置了 `sys.dont_write_bytecode`，不会在 submodule 里留下 `__pycache__`。
 
