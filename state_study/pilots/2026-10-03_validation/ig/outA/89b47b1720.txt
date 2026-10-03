@@ -1,0 +1,3 @@
+Reasoning: step 36, correction_notice. This event informs me that the inbound_pallet action at step 26 (Store SKU-E on shelf 4) never actually completed. The putaway was not fulfilled, stock was removed, and shelf 4 is now empty. I update my occupancy record from the point of correction: shelves 0:SKU-A, 1:SKU-F, 2:SKU-H, 3:SKU-M, 4:empty, 5:SKU-M, 6:SKU-D. Correction events, like telemetry, require no action.
+
+Action: Wait({})

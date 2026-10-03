@@ -1,0 +1,3 @@
+Reasoning & Action: Reasoning: This is a facility_notice event reporting scheduled maintenance on shelf 4. The event type is not inbound_pallet, outbound_order, or telemetry. Facility notices are informational and do not change shelf occupancy or require a Store, Ship, or Move action. The correct response is Wait({}).
+
+Action: Wait({})

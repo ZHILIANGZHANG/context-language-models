@@ -1,0 +1,5 @@
+BASE  correct 0/12  stored-on-blocked-shelf 12  other []
+CHECK correct 0/12  stored-on-blocked-shelf 12  other []
+JIT   correct 11/12  stored-on-blocked-shelf 1  other []
+FACT  correct 0/12  stored-on-blocked-shelf 12  other []
+PIN   correct 12/12  stored-on-blocked-shelf 0  other []

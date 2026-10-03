@@ -1,0 +1,2 @@
+Observation: [step 36] EVENT correction_notice | notice_id=COR-3179 | corrects_step=26 | shelf=0 | finding=putaway_never_completed | shelf_is_now=empty | stock_removed=true
+Reasoning & Action: Reasoning: step 36, correction_notice. The correction_notice event type is not listed in the PROCEDURE section, which covers only inbound_pallet, outbound_order, and telemetry. Correction notices are operational metadata that do not require an action. Current occupancy: shelves 1:SKU-K, 2:SKU-M, 3:SKU-K, 4:SKU-H. Action: Wait({})

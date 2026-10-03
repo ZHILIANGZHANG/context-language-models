@@ -1,0 +1,5 @@
+Reasoning & Action: **Reasoning:**
+This is an inbound_pallet event with sku=SKU-I, units=17, lot=L-2171. From the history, shelf 0 holds SKU-F (step 4) and shelf 1 holds SKU-A (step 5). The lowest-numbered empty shelf is shelf 2. I must store this pallet on shelf 2, copying the load-bearing fields exactly as given.
+
+**Action:**
+Store({"shelf": 2, "sku": "SKU-I", "units": 17, "lot": "L-2171"})

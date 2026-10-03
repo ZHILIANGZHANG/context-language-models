@@ -1,0 +1,4 @@
+Reasoning:
+Event type is correction_notice, an audit system event reporting that step 0's putaway of SKU-J to shelf 0 never completed. The notice confirms shelf 0 is now empty and stock_removed=true. Per procedure, system events that do not require warehouse actions are acknowledged with Wait({}). Occupancy records updated: shelf 0 is empty.
+
+Action: Wait({})

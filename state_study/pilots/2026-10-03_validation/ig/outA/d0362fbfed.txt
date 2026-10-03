@@ -1,0 +1,3 @@
+Correction notice: shelf 13 putaway at step 26 never completed; stock removal confirmed, shelf now empty.
+
+{"state_patch": {"shelf_contents": {"13": null}}, "action": "Wait({})"}

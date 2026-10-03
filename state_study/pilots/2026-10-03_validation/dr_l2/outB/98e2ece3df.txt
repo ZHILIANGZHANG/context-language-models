@@ -1,0 +1,4 @@
+Reasoning:
+Step 11, event type: inbound_pallet. Load-bearing fields: sku=SKU-A, units=1, lot=L-8131. Correction notice at step 10 confirmed shelf 0 is empty after cycle count removed misplaced stock. The lowest-numbered empty shelf is 0. Store the pallet there with exact fields from event.
+
+Action: Store({"shelf": 0, "sku": "SKU-A", "units": 1, "lot": "L-8131"})

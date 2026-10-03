@@ -1,0 +1,4 @@
+Reasoning:
+This is a facility_notice event reporting that shelf 5 is occupied by a maintenance rig. The instruction set defines procedures for inbound_pallet, outbound_order, and telemetry only. Facility notices are operational metadata that do not affect shelf management or require inventory actions. Current occupancy: shelf 0 holds SKU-D; shelves 1-499 empty.
+
+Action: Wait({})

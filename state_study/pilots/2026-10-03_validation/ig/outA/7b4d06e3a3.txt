@@ -1,0 +1,10 @@
+Correction notice corrects step 26: shelf 5's putaway was never completed, so the shelf is now empty. Update occupancy accordingly; correction notices require no action.
+
+{
+  "state_patch": {
+    "shelf_contents": {
+      "5": null
+    }
+  },
+  "action": "Wait({})"
+}

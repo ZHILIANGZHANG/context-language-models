@@ -1,0 +1,4 @@
+Reasoning:
+This is a correction_notice event, not one of the three event types (inbound_pallet, outbound_order, telemetry) for which the warehouse procedure defines explicit actions. The event reports that shelf 0's putaway was never completed. Since the procedure specifies no action for correction_notice events, the correct response is to wait.
+
+Action: Wait({})

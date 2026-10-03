@@ -1,0 +1,4 @@
+Reasoning:
+This is a facility_notice event reporting that shelf 4 is occupied by a maintenance rig for scheduled maintenance. Like telemetry events, facility_notice is purely informational status metadata and does not require pallet storage or shipment operations. The procedure specifies actions only for inbound_pallet, outbound_order, and telemetry events. Facility notices are informational and do not affect shelf occupancy accounting. The correct response is Wait({}).
+
+Action: Wait({})

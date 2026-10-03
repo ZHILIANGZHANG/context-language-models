@@ -1,0 +1,1 @@
+Reasoning & Action: Reasoning: step 36, correction_notice. This event type is not covered by the PROCEDURE, and correction notices are operational metadata that do not affect warehouse actions. The shelf state has been corrected (shelf 9 now empty). Action: Wait({})

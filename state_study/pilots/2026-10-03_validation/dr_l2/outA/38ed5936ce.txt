@@ -1,0 +1,4 @@
+Reasoning:
+Correction notice event. This event type is not covered in the standard procedure (which specifies only inbound_pallet, outbound_order, and telemetry). Correction notices are informational audits of prior actions and do not trigger warehouse operations. Reply Wait({}).
+
+Action: Wait({})

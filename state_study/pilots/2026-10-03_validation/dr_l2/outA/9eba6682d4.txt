@@ -1,0 +1,4 @@
+**Reasoning:**
+Step 10 receives a `correction_notice` event reporting that step 4's putaway was never completed—shelf 0 is confirmed empty. This event type is not covered by the procedure (which handles inbound_pallet, outbound_order, and telemetry). The correction provides metadata about warehouse state but presents no new order or pallet to process. No action is required.
+
+**Action:** Wait({})

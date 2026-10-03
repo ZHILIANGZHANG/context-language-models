@@ -1,0 +1,7 @@
+seed used in its L2 runs: {'seed': 0, 'notice_step': 10, 'shelf': 0, 'names_step': 0, 'occupant_step': 8, 'named_pallet_shipped': True, 'coherent': False}
+seed used in its L2 runs: {'seed': 1, 'notice_step': 10, 'shelf': 0, 'names_step': 0, 'occupant_step': 6, 'named_pallet_shipped': True, 'coherent': False}
+seed used in its L2 runs: {'seed': 2, 'notice_step': 10, 'shelf': 0, 'names_step': 0, 'occupant_step': None, 'named_pallet_shipped': True, 'coherent': False}
+seed used in its L2 runs: {'seed': 4, 'notice_step': 10, 'shelf': 0, 'names_step': 0, 'occupant_step': 4, 'named_pallet_shipped': True, 'coherent': False}
+seed used in its L2 runs: {'seed': 6, 'notice_step': 10, 'shelf': 0, 'names_step': 0, 'occupant_step': 4, 'named_pallet_shipped': True, 'coherent': False}
+seed used in its L2 runs: {'seed': 10, 'notice_step': 10, 'shelf': 0, 'names_step': 0, 'occupant_step': 8, 'named_pallet_shipped': True, 'coherent': False}
+coherent notices over seeds 0..39: 4/40

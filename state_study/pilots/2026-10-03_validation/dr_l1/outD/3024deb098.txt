@@ -1,0 +1,6 @@
+Reasoning:
+This is an inbound_pallet event with sku=SKU-J, units=2, lot=L-4632. Current warehouse state: shelves 0–8 are occupied (0=SKU-E, 1=SKU-E, 2=SKU-C, 3=SKU-B, 4=SKU-A, 5=SKU-C, 6=SKU-E, 7=SKU-H, 8=SKU-K). The lowest-numbered empty shelf is 9, but it is quarantined per the PINNED NOTE and do_not_store=true. Per procedure, use the next available lowest-numbered empty shelf, which is 10.
+
+PIN: Shelf 9 is quarantined and must not be used for storage (expires: none).
+
+Action: Store({"shelf": 10, "sku": "SKU-J", "units": 2, "lot": "L-4632"})

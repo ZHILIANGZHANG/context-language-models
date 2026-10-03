@@ -1,0 +1,5 @@
+REASONING:
+This event is facility_notice, not one of the three operational event types (inbound_pallet, outbound_order, telemetry). It reports scheduled maintenance with metadata only, no load-bearing fields for inventory operations. Like telemetry events, this requires no action.
+
+ACTION:
+Wait({})

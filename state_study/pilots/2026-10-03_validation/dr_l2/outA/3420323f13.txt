@@ -1,0 +1,5 @@
+Reasoning & Action: **Reasoning:**
+Event type is correction_notice. The correction_notice reports a historical finding: the putaway at step 0 was never completed, and shelf 0 is now empty. This is a correction to prior inventory records, not an inbound, outbound, or telemetry event requiring warehouse action. Per procedure, only inbound_pallet, outbound_order, and telemetry events trigger Store, Ship, Move, or Wait actions. Since correction_notice is not among these three types, I reply Wait({}).
+
+**Action:**
+Wait({})

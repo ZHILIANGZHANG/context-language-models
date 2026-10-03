@@ -1,0 +1,322 @@
+{
+ "8b841fa797": {
+  "id": "Hf_covered-s0",
+  "cell": "Hf_covered",
+  "rep": "H",
+  "covered": true,
+  "integrate": false,
+  "filt": true,
+  "seed": 0,
+  "a_id": "cd506b3d31"
+ },
+ "e518adafa1": {
+  "id": "Hf_covered-s1",
+  "cell": "Hf_covered",
+  "rep": "H",
+  "covered": true,
+  "integrate": false,
+  "filt": true,
+  "seed": 1,
+  "a_id": "f1ac81cb3b"
+ },
+ "611d56a069": {
+  "id": "Hf_covered-s2",
+  "cell": "Hf_covered",
+  "rep": "H",
+  "covered": true,
+  "integrate": false,
+  "filt": true,
+  "seed": 2,
+  "a_id": "a4b6e790d5"
+ },
+ "bddc216f47": {
+  "id": "Hf_covered-s3",
+  "cell": "Hf_covered",
+  "rep": "H",
+  "covered": true,
+  "integrate": false,
+  "filt": true,
+  "seed": 3,
+  "a_id": "d6e1f4056f"
+ },
+ "162ee07c0d": {
+  "id": "Hf_covered-s4",
+  "cell": "Hf_covered",
+  "rep": "H",
+  "covered": true,
+  "integrate": false,
+  "filt": true,
+  "seed": 4,
+  "a_id": "d0ca0b7f3e"
+ },
+ "2cde1964ae": {
+  "id": "Hf_covered-s5",
+  "cell": "Hf_covered",
+  "rep": "H",
+  "covered": true,
+  "integrate": false,
+  "filt": true,
+  "seed": 5,
+  "a_id": "c469355d08"
+ },
+ "3d96af40f3": {
+  "id": "Hf_covered-s6",
+  "cell": "Hf_covered",
+  "rep": "H",
+  "covered": true,
+  "integrate": false,
+  "filt": true,
+  "seed": 6,
+  "a_id": "0cdcaa9321"
+ },
+ "e4abff804a": {
+  "id": "Hf_covered-s7",
+  "cell": "Hf_covered",
+  "rep": "H",
+  "covered": true,
+  "integrate": false,
+  "filt": true,
+  "seed": 7,
+  "a_id": "c96f1145c3"
+ },
+ "1d4e68caa7": {
+  "id": "Hf_uncovered-s0",
+  "cell": "Hf_uncovered",
+  "rep": "H",
+  "covered": false,
+  "integrate": false,
+  "filt": true,
+  "seed": 0,
+  "a_id": "b7eaa437c3"
+ },
+ "3a659ea394": {
+  "id": "Hf_uncovered-s1",
+  "cell": "Hf_uncovered",
+  "rep": "H",
+  "covered": false,
+  "integrate": false,
+  "filt": true,
+  "seed": 1,
+  "a_id": "954c805949"
+ },
+ "18cbdd810e": {
+  "id": "Hf_uncovered-s2",
+  "cell": "Hf_uncovered",
+  "rep": "H",
+  "covered": false,
+  "integrate": false,
+  "filt": true,
+  "seed": 2,
+  "a_id": "59f7648dd9"
+ },
+ "e132c5f8fd": {
+  "id": "Hf_uncovered-s3",
+  "cell": "Hf_uncovered",
+  "rep": "H",
+  "covered": false,
+  "integrate": false,
+  "filt": true,
+  "seed": 3,
+  "a_id": "6cb24e7905"
+ },
+ "16e2ebcd5c": {
+  "id": "Hf_uncovered-s4",
+  "cell": "Hf_uncovered",
+  "rep": "H",
+  "covered": false,
+  "integrate": false,
+  "filt": true,
+  "seed": 4,
+  "a_id": "e2ca3e00d4"
+ },
+ "ec42247e00": {
+  "id": "Hf_uncovered-s5",
+  "cell": "Hf_uncovered",
+  "rep": "H",
+  "covered": false,
+  "integrate": false,
+  "filt": true,
+  "seed": 5,
+  "a_id": "fb154c2c91"
+ },
+ "b2a67e3ad4": {
+  "id": "Hf_uncovered-s6",
+  "cell": "Hf_uncovered",
+  "rep": "H",
+  "covered": false,
+  "integrate": false,
+  "filt": true,
+  "seed": 6,
+  "a_id": "f742052a16"
+ },
+ "9f8935cb2d": {
+  "id": "Hf_uncovered-s7",
+  "cell": "Hf_uncovered",
+  "rep": "H",
+  "covered": false,
+  "integrate": false,
+  "filt": true,
+  "seed": 7,
+  "a_id": "bff52cb2a9"
+ },
+ "4f4fca0ff0": {
+  "id": "Hf_uncovered_integrate-s0",
+  "cell": "Hf_uncovered_integrate",
+  "rep": "H",
+  "covered": false,
+  "integrate": true,
+  "filt": true,
+  "seed": 0,
+  "a_id": "7052a45c93"
+ },
+ "4374951b6d": {
+  "id": "Hf_uncovered_integrate-s1",
+  "cell": "Hf_uncovered_integrate",
+  "rep": "H",
+  "covered": false,
+  "integrate": true,
+  "filt": true,
+  "seed": 1,
+  "a_id": "e5190a03fa"
+ },
+ "0c860f42c2": {
+  "id": "Hf_uncovered_integrate-s2",
+  "cell": "Hf_uncovered_integrate",
+  "rep": "H",
+  "covered": false,
+  "integrate": true,
+  "filt": true,
+  "seed": 2,
+  "a_id": "a749f15703"
+ },
+ "43663b471e": {
+  "id": "Hf_uncovered_integrate-s3",
+  "cell": "Hf_uncovered_integrate",
+  "rep": "H",
+  "covered": false,
+  "integrate": true,
+  "filt": true,
+  "seed": 3,
+  "a_id": "814efbf93f"
+ },
+ "88c0ef1dbe": {
+  "id": "Hf_uncovered_integrate-s4",
+  "cell": "Hf_uncovered_integrate",
+  "rep": "H",
+  "covered": false,
+  "integrate": true,
+  "filt": true,
+  "seed": 4,
+  "a_id": "adfe809e71"
+ },
+ "bc821165cf": {
+  "id": "Hf_uncovered_integrate-s5",
+  "cell": "Hf_uncovered_integrate",
+  "rep": "H",
+  "covered": false,
+  "integrate": true,
+  "filt": true,
+  "seed": 5,
+  "a_id": "a8635624bb"
+ },
+ "2c269cd44a": {
+  "id": "Hf_uncovered_integrate-s6",
+  "cell": "Hf_uncovered_integrate",
+  "rep": "H",
+  "covered": false,
+  "integrate": true,
+  "filt": true,
+  "seed": 6,
+  "a_id": "89b47b1720"
+ },
+ "8cf532b746": {
+  "id": "Hf_uncovered_integrate-s7",
+  "cell": "Hf_uncovered_integrate",
+  "rep": "H",
+  "covered": false,
+  "integrate": true,
+  "filt": true,
+  "seed": 7,
+  "a_id": "7c99c43b28"
+ },
+ "67b9eb12b9": {
+  "id": "Sf_uncovered-s0",
+  "cell": "Sf_uncovered",
+  "rep": "S",
+  "covered": false,
+  "integrate": false,
+  "filt": true,
+  "seed": 0,
+  "a_id": "0dbf5e7cdd"
+ },
+ "9f3d0feebe": {
+  "id": "Sf_uncovered-s1",
+  "cell": "Sf_uncovered",
+  "rep": "S",
+  "covered": false,
+  "integrate": false,
+  "filt": true,
+  "seed": 1,
+  "a_id": "1eb48360ca"
+ },
+ "01d4443da9": {
+  "id": "Sf_uncovered-s2",
+  "cell": "Sf_uncovered",
+  "rep": "S",
+  "covered": false,
+  "integrate": false,
+  "filt": true,
+  "seed": 2,
+  "a_id": "4881caa11e"
+ },
+ "fe9d64c9e1": {
+  "id": "Sf_uncovered-s3",
+  "cell": "Sf_uncovered",
+  "rep": "S",
+  "covered": false,
+  "integrate": false,
+  "filt": true,
+  "seed": 3,
+  "a_id": "9b0a8851f1"
+ },
+ "53d1d5b0d1": {
+  "id": "Sf_uncovered-s4",
+  "cell": "Sf_uncovered",
+  "rep": "S",
+  "covered": false,
+  "integrate": false,
+  "filt": true,
+  "seed": 4,
+  "a_id": "7cfec15baf"
+ },
+ "801d5d860a": {
+  "id": "Sf_uncovered-s5",
+  "cell": "Sf_uncovered",
+  "rep": "S",
+  "covered": false,
+  "integrate": false,
+  "filt": true,
+  "seed": 5,
+  "a_id": "46dd93adc2"
+ },
+ "38b1e09020": {
+  "id": "Sf_uncovered-s6",
+  "cell": "Sf_uncovered",
+  "rep": "S",
+  "covered": false,
+  "integrate": false,
+  "filt": true,
+  "seed": 6,
+  "a_id": "9423f6338e"
+ },
+ "d20861b054": {
+  "id": "Sf_uncovered-s7",
+  "cell": "Sf_uncovered",
+  "rep": "S",
+  "covered": false,
+  "integrate": false,
+  "filt": true,
+  "seed": 7,
+  "a_id": "229873a790"
+ }
+}

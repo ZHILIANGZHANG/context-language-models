@@ -1,0 +1,4 @@
+Reasoning:
+The correction_notice confirms that the step 0 putaway never completed and shelf 0 is now empty. Updated occupancy: shelf 1 has SKU-B, shelf 4 has SKU-A, others empty. This event type doesn't require a Store, Ship, or Move action.
+
+Action: Wait({})

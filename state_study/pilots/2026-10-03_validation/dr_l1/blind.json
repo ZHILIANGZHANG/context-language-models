@@ -1,0 +1,362 @@
+{
+ "fdf13978a6": {
+  "key": "BASE-s0-r0",
+  "cell": "BASE",
+  "seed": 0,
+  "rep": 0,
+  "step": 49,
+  "shelf": 5,
+  "esperado": "Store({\"lot\": \"L-5200\", \"shelf\": 6, \"sku\": \"SKU-D\", \"units\": 20})",
+  "ejecutado_api": "Store({\"lot\": \"L-5200\", \"shelf\": 5, \"sku\": \"SKU-D\", \"units\": 20})"
+ },
+ "ce45c142e3": {
+  "key": "BASE-s0-r1",
+  "cell": "BASE",
+  "seed": 0,
+  "rep": 1,
+  "step": 49,
+  "shelf": 5,
+  "esperado": "Store({\"lot\": \"L-5200\", \"shelf\": 6, \"sku\": \"SKU-D\", \"units\": 20})",
+  "ejecutado_api": "Store({\"lot\": \"L-5200\", \"shelf\": 5, \"sku\": \"SKU-D\", \"units\": 20})"
+ },
+ "53dd2eb296": {
+  "key": "BASE-s0-r2",
+  "cell": "BASE",
+  "seed": 0,
+  "rep": 2,
+  "step": 49,
+  "shelf": 5,
+  "esperado": "Store({\"lot\": \"L-5200\", \"shelf\": 6, \"sku\": \"SKU-D\", \"units\": 20})",
+  "ejecutado_api": "Store({\"lot\": \"L-5200\", \"shelf\": 5, \"sku\": \"SKU-D\", \"units\": 20})"
+ },
+ "199e7d419d": {
+  "key": "BASE-s0-r3",
+  "cell": "BASE",
+  "seed": 0,
+  "rep": 3,
+  "step": 49,
+  "shelf": 5,
+  "esperado": "Store({\"lot\": \"L-5200\", \"shelf\": 6, \"sku\": \"SKU-D\", \"units\": 20})",
+  "ejecutado_api": "Store({\"lot\": \"L-5200\", \"shelf\": 5, \"sku\": \"SKU-D\", \"units\": 20})"
+ },
+ "6ec3f10255": {
+  "key": "BASE-s3-r0",
+  "cell": "BASE",
+  "seed": 3,
+  "rep": 0,
+  "step": 46,
+  "shelf": 4,
+  "esperado": "Store({\"lot\": \"L-6840\", \"shelf\": 5, \"sku\": \"SKU-D\", \"units\": 19})",
+  "ejecutado_api": "Store({\"lot\": \"L-6840\", \"shelf\": 4, \"sku\": \"SKU-D\", \"units\": 19})"
+ },
+ "d3b91dca04": {
+  "key": "BASE-s3-r1",
+  "cell": "BASE",
+  "seed": 3,
+  "rep": 1,
+  "step": 46,
+  "shelf": 4,
+  "esperado": "Store({\"lot\": \"L-6840\", \"shelf\": 5, \"sku\": \"SKU-D\", \"units\": 19})",
+  "ejecutado_api": "Store({\"lot\": \"L-6840\", \"shelf\": 4, \"sku\": \"SKU-D\", \"units\": 19})"
+ },
+ "fcd13ee37a": {
+  "key": "BASE-s3-r2",
+  "cell": "BASE",
+  "seed": 3,
+  "rep": 2,
+  "step": 46,
+  "shelf": 4,
+  "esperado": "Store({\"lot\": \"L-6840\", \"shelf\": 5, \"sku\": \"SKU-D\", \"units\": 19})",
+  "ejecutado_api": "Store({\"lot\": \"L-6840\", \"shelf\": 4, \"sku\": \"SKU-D\", \"units\": 19})"
+ },
+ "2b4f494003": {
+  "key": "BASE-s3-r3",
+  "cell": "BASE",
+  "seed": 3,
+  "rep": 3,
+  "step": 46,
+  "shelf": 4,
+  "esperado": "Store({\"lot\": \"L-6840\", \"shelf\": 5, \"sku\": \"SKU-D\", \"units\": 19})",
+  "ejecutado_api": "Store({\"lot\": \"L-6840\", \"shelf\": 4, \"sku\": \"SKU-D\", \"units\": 19})"
+ },
+ "2ba57d0d66": {
+  "key": "BASE-s6-r0",
+  "cell": "BASE",
+  "seed": 6,
+  "rep": 0,
+  "step": 40,
+  "shelf": 9,
+  "esperado": "Store({\"lot\": \"L-4632\", \"shelf\": 10, \"sku\": \"SKU-J\", \"units\": 2})",
+  "ejecutado_api": "Store({\"lot\": \"L-4632\", \"shelf\": 9, \"sku\": \"SKU-J\", \"units\": 2})"
+ },
+ "d89957912f": {
+  "key": "BASE-s6-r1",
+  "cell": "BASE",
+  "seed": 6,
+  "rep": 1,
+  "step": 40,
+  "shelf": 9,
+  "esperado": "Store({\"lot\": \"L-4632\", \"shelf\": 10, \"sku\": \"SKU-J\", \"units\": 2})",
+  "ejecutado_api": "Store({\"lot\": \"L-4632\", \"shelf\": 9, \"sku\": \"SKU-J\", \"units\": 2})"
+ },
+ "f1a6f91097": {
+  "key": "BASE-s6-r2",
+  "cell": "BASE",
+  "seed": 6,
+  "rep": 2,
+  "step": 40,
+  "shelf": 9,
+  "esperado": "Store({\"lot\": \"L-4632\", \"shelf\": 10, \"sku\": \"SKU-J\", \"units\": 2})",
+  "ejecutado_api": "Store({\"lot\": \"L-4632\", \"shelf\": 9, \"sku\": \"SKU-J\", \"units\": 2})"
+ },
+ "d153755b08": {
+  "key": "BASE-s6-r3",
+  "cell": "BASE",
+  "seed": 6,
+  "rep": 3,
+  "step": 40,
+  "shelf": 9,
+  "esperado": "Store({\"lot\": \"L-4632\", \"shelf\": 10, \"sku\": \"SKU-J\", \"units\": 2})",
+  "ejecutado_api": "Store({\"lot\": \"L-4632\", \"shelf\": 9, \"sku\": \"SKU-J\", \"units\": 2})"
+ },
+ "6811125625": {
+  "key": "CHECK-s0-r0",
+  "cell": "CHECK",
+  "seed": 0,
+  "rep": 0,
+  "step": 49,
+  "shelf": 5,
+  "esperado": "Store({\"lot\": \"L-5200\", \"shelf\": 6, \"sku\": \"SKU-D\", \"units\": 20})",
+  "ejecutado_api": "Store({\"lot\": \"L-5200\", \"shelf\": 5, \"sku\": \"SKU-D\", \"units\": 20})"
+ },
+ "3486039b26": {
+  "key": "CHECK-s0-r1",
+  "cell": "CHECK",
+  "seed": 0,
+  "rep": 1,
+  "step": 49,
+  "shelf": 5,
+  "esperado": "Store({\"lot\": \"L-5200\", \"shelf\": 6, \"sku\": \"SKU-D\", \"units\": 20})",
+  "ejecutado_api": "Store({\"lot\": \"L-5200\", \"shelf\": 5, \"sku\": \"SKU-D\", \"units\": 20})"
+ },
+ "f0519da003": {
+  "key": "CHECK-s0-r2",
+  "cell": "CHECK",
+  "seed": 0,
+  "rep": 2,
+  "step": 49,
+  "shelf": 5,
+  "esperado": "Store({\"lot\": \"L-5200\", \"shelf\": 6, \"sku\": \"SKU-D\", \"units\": 20})",
+  "ejecutado_api": "Store({\"lot\": \"L-5200\", \"shelf\": 5, \"sku\": \"SKU-D\", \"units\": 20})"
+ },
+ "f60aeb2f5b": {
+  "key": "CHECK-s0-r3",
+  "cell": "CHECK",
+  "seed": 0,
+  "rep": 3,
+  "step": 49,
+  "shelf": 5,
+  "esperado": "Store({\"lot\": \"L-5200\", \"shelf\": 6, \"sku\": \"SKU-D\", \"units\": 20})",
+  "ejecutado_api": "Store({\"lot\": \"L-5200\", \"shelf\": 5, \"sku\": \"SKU-D\", \"units\": 20})"
+ },
+ "f048d2ee47": {
+  "key": "CHECK-s3-r0",
+  "cell": "CHECK",
+  "seed": 3,
+  "rep": 0,
+  "step": 46,
+  "shelf": 4,
+  "esperado": "Store({\"lot\": \"L-6840\", \"shelf\": 5, \"sku\": \"SKU-D\", \"units\": 19})",
+  "ejecutado_api": "Store({\"lot\": \"L-6840\", \"shelf\": 4, \"sku\": \"SKU-D\", \"units\": 19})"
+ },
+ "0472813f77": {
+  "key": "CHECK-s3-r1",
+  "cell": "CHECK",
+  "seed": 3,
+  "rep": 1,
+  "step": 46,
+  "shelf": 4,
+  "esperado": "Store({\"lot\": \"L-6840\", \"shelf\": 5, \"sku\": \"SKU-D\", \"units\": 19})",
+  "ejecutado_api": "Store({\"lot\": \"L-6840\", \"shelf\": 4, \"sku\": \"SKU-D\", \"units\": 19})"
+ },
+ "69d4f54966": {
+  "key": "CHECK-s3-r2",
+  "cell": "CHECK",
+  "seed": 3,
+  "rep": 2,
+  "step": 46,
+  "shelf": 4,
+  "esperado": "Store({\"lot\": \"L-6840\", \"shelf\": 5, \"sku\": \"SKU-D\", \"units\": 19})",
+  "ejecutado_api": "Store({\"lot\": \"L-6840\", \"shelf\": 4, \"sku\": \"SKU-D\", \"units\": 19})"
+ },
+ "99b1e8cff4": {
+  "key": "CHECK-s3-r3",
+  "cell": "CHECK",
+  "seed": 3,
+  "rep": 3,
+  "step": 46,
+  "shelf": 4,
+  "esperado": "Store({\"lot\": \"L-6840\", \"shelf\": 5, \"sku\": \"SKU-D\", \"units\": 19})",
+  "ejecutado_api": "Store({\"lot\": \"L-6840\", \"shelf\": 4, \"sku\": \"SKU-D\", \"units\": 19})"
+ },
+ "01a5f6f952": {
+  "key": "CHECK-s6-r0",
+  "cell": "CHECK",
+  "seed": 6,
+  "rep": 0,
+  "step": 40,
+  "shelf": 9,
+  "esperado": "Store({\"lot\": \"L-4632\", \"shelf\": 10, \"sku\": \"SKU-J\", \"units\": 2})",
+  "ejecutado_api": "Store({\"lot\": \"L-4632\", \"shelf\": 9, \"sku\": \"SKU-J\", \"units\": 2})"
+ },
+ "a6b0d14dd7": {
+  "key": "CHECK-s6-r1",
+  "cell": "CHECK",
+  "seed": 6,
+  "rep": 1,
+  "step": 40,
+  "shelf": 9,
+  "esperado": "Store({\"lot\": \"L-4632\", \"shelf\": 10, \"sku\": \"SKU-J\", \"units\": 2})",
+  "ejecutado_api": "Store({\"lot\": \"L-4632\", \"shelf\": 9, \"sku\": \"SKU-J\", \"units\": 2})"
+ },
+ "2658d05140": {
+  "key": "CHECK-s6-r2",
+  "cell": "CHECK",
+  "seed": 6,
+  "rep": 2,
+  "step": 40,
+  "shelf": 9,
+  "esperado": "Store({\"lot\": \"L-4632\", \"shelf\": 10, \"sku\": \"SKU-J\", \"units\": 2})",
+  "ejecutado_api": "Store({\"lot\": \"L-4632\", \"shelf\": 9, \"sku\": \"SKU-J\", \"units\": 2})"
+ },
+ "b531788844": {
+  "key": "CHECK-s6-r3",
+  "cell": "CHECK",
+  "seed": 6,
+  "rep": 3,
+  "step": 40,
+  "shelf": 9,
+  "esperado": "Store({\"lot\": \"L-4632\", \"shelf\": 10, \"sku\": \"SKU-J\", \"units\": 2})",
+  "ejecutado_api": "Store({\"lot\": \"L-4632\", \"shelf\": 9, \"sku\": \"SKU-J\", \"units\": 2})"
+ },
+ "67728494a7": {
+  "key": "JIT-s0-r0",
+  "cell": "JIT",
+  "seed": 0,
+  "rep": 0,
+  "step": 49,
+  "shelf": 5,
+  "esperado": "Store({\"lot\": \"L-5200\", \"shelf\": 6, \"sku\": \"SKU-D\", \"units\": 20})",
+  "ejecutado_api": "Store({\"lot\": \"L-5200\", \"shelf\": 5, \"sku\": \"SKU-D\", \"units\": 20})"
+ },
+ "2999c266b0": {
+  "key": "JIT-s0-r1",
+  "cell": "JIT",
+  "seed": 0,
+  "rep": 1,
+  "step": 49,
+  "shelf": 5,
+  "esperado": "Store({\"lot\": \"L-5200\", \"shelf\": 6, \"sku\": \"SKU-D\", \"units\": 20})",
+  "ejecutado_api": "Store({\"lot\": \"L-5200\", \"shelf\": 5, \"sku\": \"SKU-D\", \"units\": 20})"
+ },
+ "8cc259dbbe": {
+  "key": "JIT-s0-r2",
+  "cell": "JIT",
+  "seed": 0,
+  "rep": 2,
+  "step": 49,
+  "shelf": 5,
+  "esperado": "Store({\"lot\": \"L-5200\", \"shelf\": 6, \"sku\": \"SKU-D\", \"units\": 20})",
+  "ejecutado_api": "Store({\"lot\": \"L-5200\", \"shelf\": 5, \"sku\": \"SKU-D\", \"units\": 20})"
+ },
+ "f0c7bf39f8": {
+  "key": "JIT-s0-r3",
+  "cell": "JIT",
+  "seed": 0,
+  "rep": 3,
+  "step": 49,
+  "shelf": 5,
+  "esperado": "Store({\"lot\": \"L-5200\", \"shelf\": 6, \"sku\": \"SKU-D\", \"units\": 20})",
+  "ejecutado_api": "Store({\"lot\": \"L-5200\", \"shelf\": 5, \"sku\": \"SKU-D\", \"units\": 20})"
+ },
+ "d7702f134a": {
+  "key": "JIT-s3-r0",
+  "cell": "JIT",
+  "seed": 3,
+  "rep": 0,
+  "step": 46,
+  "shelf": 4,
+  "esperado": "Store({\"lot\": \"L-6840\", \"shelf\": 5, \"sku\": \"SKU-D\", \"units\": 19})",
+  "ejecutado_api": "Store({\"lot\": \"L-6840\", \"shelf\": 4, \"sku\": \"SKU-D\", \"units\": 19})"
+ },
+ "6572ba6c13": {
+  "key": "JIT-s3-r1",
+  "cell": "JIT",
+  "seed": 3,
+  "rep": 1,
+  "step": 46,
+  "shelf": 4,
+  "esperado": "Store({\"lot\": \"L-6840\", \"shelf\": 5, \"sku\": \"SKU-D\", \"units\": 19})",
+  "ejecutado_api": "Store({\"lot\": \"L-6840\", \"shelf\": 4, \"sku\": \"SKU-D\", \"units\": 19})"
+ },
+ "b8d60ef565": {
+  "key": "JIT-s3-r2",
+  "cell": "JIT",
+  "seed": 3,
+  "rep": 2,
+  "step": 46,
+  "shelf": 4,
+  "esperado": "Store({\"lot\": \"L-6840\", \"shelf\": 5, \"sku\": \"SKU-D\", \"units\": 19})",
+  "ejecutado_api": "Store({\"lot\": \"L-6840\", \"shelf\": 4, \"sku\": \"SKU-D\", \"units\": 19})"
+ },
+ "248321a1a8": {
+  "key": "JIT-s3-r3",
+  "cell": "JIT",
+  "seed": 3,
+  "rep": 3,
+  "step": 46,
+  "shelf": 4,
+  "esperado": "Store({\"lot\": \"L-6840\", \"shelf\": 5, \"sku\": \"SKU-D\", \"units\": 19})",
+  "ejecutado_api": "Store({\"lot\": \"L-6840\", \"shelf\": 4, \"sku\": \"SKU-D\", \"units\": 19})"
+ },
+ "f0c82c3f2e": {
+  "key": "JIT-s6-r0",
+  "cell": "JIT",
+  "seed": 6,
+  "rep": 0,
+  "step": 40,
+  "shelf": 9,
+  "esperado": "Store({\"lot\": \"L-4632\", \"shelf\": 10, \"sku\": \"SKU-J\", \"units\": 2})",
+  "ejecutado_api": "Store({\"lot\": \"L-4632\", \"shelf\": 9, \"sku\": \"SKU-J\", \"units\": 2})"
+ },
+ "9655f44c9e": {
+  "key": "JIT-s6-r1",
+  "cell": "JIT",
+  "seed": 6,
+  "rep": 1,
+  "step": 40,
+  "shelf": 9,
+  "esperado": "Store({\"lot\": \"L-4632\", \"shelf\": 10, \"sku\": \"SKU-J\", \"units\": 2})",
+  "ejecutado_api": "Store({\"lot\": \"L-4632\", \"shelf\": 9, \"sku\": \"SKU-J\", \"units\": 2})"
+ },
+ "4fdf39eed7": {
+  "key": "JIT-s6-r2",
+  "cell": "JIT",
+  "seed": 6,
+  "rep": 2,
+  "step": 40,
+  "shelf": 9,
+  "esperado": "Store({\"lot\": \"L-4632\", \"shelf\": 10, \"sku\": \"SKU-J\", \"units\": 2})",
+  "ejecutado_api": "Store({\"lot\": \"L-4632\", \"shelf\": 9, \"sku\": \"SKU-J\", \"units\": 2})"
+ },
+ "5dd2b7265a": {
+  "key": "JIT-s6-r3",
+  "cell": "JIT",
+  "seed": 6,
+  "rep": 3,
+  "step": 40,
+  "shelf": 9,
+  "esperado": "Store({\"lot\": \"L-4632\", \"shelf\": 10, \"sku\": \"SKU-J\", \"units\": 2})",
+  "ejecutado_api": "Store({\"lot\": \"L-4632\", \"shelf\": 9, \"sku\": \"SKU-J\", \"units\": 2})"
+ }
+}

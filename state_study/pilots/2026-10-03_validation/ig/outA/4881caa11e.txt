@@ -1,0 +1,3 @@
+Correction notice indicates shelf 13's putaway from step 26 was never completed; shelf 13 is now empty per correction.
+
+{"state_patch": {"shelf_contents": {"13": null}}, "action": "Wait({})"}

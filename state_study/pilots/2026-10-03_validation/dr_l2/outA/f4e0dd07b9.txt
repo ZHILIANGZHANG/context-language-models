@@ -1,0 +1,5 @@
+Reasoning & Action: **Reasoning:**
+Correction_notice is not one of the three operational event types (inbound_pallet, outbound_order, telemetry). It is informational bookkeeping that does not require a Store, Ship, or Move action. Per the procedure, unspecified event types receive no action.
+
+**Action:**
+Wait({})

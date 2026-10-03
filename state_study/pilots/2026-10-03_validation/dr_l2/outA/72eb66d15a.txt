@@ -1,0 +1,4 @@
+**Reasoning:**
+Step 10 is a correction_notice reporting that the putaway in step 8 never completed. Shelf 0, which I recorded as holding SKU-D, is now confirmed empty and the stock has been removed. Correction notices, like telemetry, do not request actions on shelf occupancy. Per procedure rule 3, reply Wait({}).
+
+**Action:** Wait({})

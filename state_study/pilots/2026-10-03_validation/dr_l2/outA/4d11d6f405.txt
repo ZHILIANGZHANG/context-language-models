@@ -1,0 +1,5 @@
+Reasoning & Action: **Reasoning:**
+This is a correction_notice event reporting retroactively that step 0's putaway never completed and shelf 0 is now empty. Correction notices are audit/metadata events similar to telemetry—they carry no load-bearing operational fields and require no Store, Ship, or Move action. The procedure covers telemetry: "On telemetry: reply Wait({})." Unknown event types with no operational consequence follow the same pattern.
+
+**Action:**
+Wait({})

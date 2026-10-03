@@ -1,0 +1,2 @@
+Inbound pallet SKU-M arrived; shelves 0-4 are occupied, so store on lowest empty shelf 5.
+{"state_patch": {"5": {"sku": "SKU-M", "units": 20, "lot": "L-8496"}}, "action": "Store({\"shelf\": 5, \"sku\": \"SKU-M\", \"units\": 20, \"lot\": \"L-8496\"})"}

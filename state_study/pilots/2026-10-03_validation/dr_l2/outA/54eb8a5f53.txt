@@ -1,0 +1,4 @@
+Reasoning & Action: Reasoning:
+This is a correction_notice event reporting a retroactive finding about step 0: the putaway was never completed and shelf 0 is empty. Correction notices are informational, not operational events. They are not among the three defined event types (inbound_pallet, outbound_order, telemetry) and do not require a current action. Per the procedure, I reply Wait({}).
+
+Action: Wait({})

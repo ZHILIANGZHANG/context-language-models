@@ -1,0 +1,3 @@
+Reasoning & Action: Reasoning: This is a correction_notice reporting that step 0's putaway never completed on shelf 0. It is not an inbound_pallet or outbound_order requiring operational action. Correction notices are diagnostic records informing my shelf occupancy model, similar to telemetry. The correct response is Wait({}).
+
+Action: Wait({})

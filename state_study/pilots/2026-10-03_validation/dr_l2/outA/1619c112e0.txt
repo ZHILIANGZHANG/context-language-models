@@ -1,0 +1,5 @@
+**Reasoning:**
+This is a correction_notice retroactively reporting that the step 0 putaway of SKU-D to shelf 0 never actually completed and shelf 0 is now confirmed empty. Correction notices update historical shelf records but carry no load-bearing fields requiring a new Store, Ship, or Move action. No operational response is needed.
+
+**Action:**
+Wait({})

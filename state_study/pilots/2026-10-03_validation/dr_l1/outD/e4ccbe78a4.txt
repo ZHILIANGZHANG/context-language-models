@@ -1,0 +1,8 @@
+Reasoning:
+This is an inbound_pallet event for sku=SKU-D, units=20, lot=L-5200. I need to:
+1. Find the lowest-numbered empty shelf
+2. Current occupancy: shelf 0 holds SKU-J, shelf 1 holds SKU-L, shelf 2 holds SKU-J, shelf 3 holds SKU-D, shelf 4 holds SKU-G, shelf 5 is quarantined (skip), shelves 6-499 are empty
+3. Shelf 6 is the lowest empty shelf
+4. Store on shelf 6
+
+Action: Store({"shelf": 6, "sku": "SKU-D", "units": 20, "lot": "L-5200"})

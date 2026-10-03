@@ -1,0 +1,4 @@
+Reasoning & Action: Reasoning:
+Event type is correction_notice, which is not among the three actionable event types (inbound_pallet, outbound_order, telemetry). Correction notices provide audit information and do not require shelf operations. Reply with Wait({}).
+
+Action: Wait({})

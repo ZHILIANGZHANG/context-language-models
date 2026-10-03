@@ -1,0 +1,4 @@
+**Reasoning:**
+Step 11 is an inbound_pallet for sku=SKU-A, units=1, lot=L-8131. Tracking shelf occupancy: shelf 0 currently holds SKU-D (stored in step 8, never shipped). The lowest-numbered empty shelf is 1. Store the pallet there.
+
+**Action:** Store({"shelf": 1, "sku": "SKU-A", "units": 1, "lot": "L-8131"})

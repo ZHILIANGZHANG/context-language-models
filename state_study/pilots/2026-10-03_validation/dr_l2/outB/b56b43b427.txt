@@ -1,0 +1,4 @@
+**Reasoning:**
+Step 11 is an inbound_pallet for sku=SKU-A, units=1, lot=L-8131. The correction notice at step 10 confirmed shelf 0 is empty. The lowest-numbered empty shelf is shelf 0. Store this pallet at shelf 0.
+
+**Action:** Store({"shelf": 0, "sku": "SKU-A", "units": 1, "lot": "L-8131"})

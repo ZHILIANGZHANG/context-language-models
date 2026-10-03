@@ -1,0 +1,5 @@
+**Reasoning:**
+Correction_notice event corrects step 0: the SKU-J putaway on shelf 0 never completed and shelf 0 is now confirmed empty. This is audit metadata, not a procedural event type. Following the telemetry pattern for informational events that require no operational action, I respond Wait({}).
+
+**Action:**
+Wait({})

@@ -1,0 +1,1 @@
+Reasoning: step 36, correction_notice. The notice corrects step 26, indicating that shelf 5's putaway of SKU-K was never completed and the shelf is now empty. Correction notices are informational (similar to telemetry) and do not require an action. Current occupancy: shelves 0:SKU-J, 1:SKU-F, 2:SKU-K, 3:SKU-C, 4:SKU-N, 5:empty. Action: Wait({})

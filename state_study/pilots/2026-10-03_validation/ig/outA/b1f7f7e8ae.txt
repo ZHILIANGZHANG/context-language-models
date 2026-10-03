@@ -1,0 +1,2 @@
+Observation: [step 36] EVENT correction_notice | notice_id=COR-8534 | corrects_step=26 | shelf=5 | finding=putaway_never_completed | shelf_is_now=empty | stock_removed=true
+Reasoning & Action: Reasoning: step 36, correction_notice. This corrects step 26 where the putaway of SKU-K on shelf 5 never actually completed. Updated occupancy: shelves 0:SKU-J, 1:SKU-F, 2:SKU-K, 3:SKU-C, 4:SKU-N, 5:empty. Correction notices are informational and require no action. Action: Wait({})

@@ -1,0 +1,4 @@
+Reasoning:
+Event type is facility_notice, which is operational metadata about scheduled maintenance on shelf 4. This is not one of the three standard event types (inbound_pallet, outbound_order, telemetry) that require actions. Facility notices do not affect shelf occupancy and never require Store, Ship, or Move. Per the procedure, reply Wait({}).
+
+Action: Wait({})

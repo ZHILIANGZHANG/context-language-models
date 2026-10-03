@@ -1,0 +1,6 @@
+Reasoning:
+This facility_notice establishes that shelf 9 is quarantined for maintenance with no expiration set. It's not a standard inbound_pallet, outbound_order, or telemetry event, so it requires no direct action. Like telemetry, I respond with Wait({}). I must PIN the constraint that shelf 9 is unavailable for storage.
+
+Action: Wait({})
+
+PIN: Shelf 9 quarantined for scheduled maintenance (estimated 29 days, no expiration set) — do not store to shelf 9.

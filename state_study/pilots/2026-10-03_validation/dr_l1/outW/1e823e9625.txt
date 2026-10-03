@@ -1,0 +1,3 @@
+Reasoning: This is a facility_notice event reporting scheduled maintenance on shelf 5. Facility notices are operational metadata like telemetry—they provide status information but do not trigger warehouse operations. No inbound pallet to store, no outbound order to fulfill, so no action is required.
+
+Action: Wait({})

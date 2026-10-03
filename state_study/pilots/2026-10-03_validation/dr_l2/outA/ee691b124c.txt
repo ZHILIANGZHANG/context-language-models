@@ -1,0 +1,4 @@
+Reasoning:
+Correction notice event reveals step 0 putaway never completed; shelf 0 is now confirmed empty. Update shelf occupancy: shelf 0 empty, shelf 1 holds SKU-B, shelf 2 empty, shelf 3 empty, shelf 4 holds SKU-A. Correction notices are status notifications like telemetry - they inform but require no Store, Ship, or Move action. Reply Wait({}).
+
+Action: Wait({})

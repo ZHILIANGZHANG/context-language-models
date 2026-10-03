@@ -1,0 +1,4 @@
+Reasoning:
+Facility_notice event reporting scheduled maintenance on shelf 5. This is operational metadata about facility status, not a warehouse action event. Similar to telemetry, it does not affect shelf occupancy or require fulfillment. No Store, Ship, or Move action needed.
+
+Action: Wait({})

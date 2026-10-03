@@ -1,0 +1,4 @@
+Reasoning & Action: Reasoning:
+Event type is inbound_pallet for sku=SKU-A, units=1, lot=L-8131. Shelf 0 is confirmed empty per step 10 correction notice. Lowest-numbered empty shelf is 0. Store the pallet there.
+
+Action: Store({"shelf": 0, "sku": "SKU-A", "units": 1, "lot": "L-8131"})

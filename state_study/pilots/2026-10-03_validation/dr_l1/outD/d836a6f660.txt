@@ -1,0 +1,6 @@
+Reasoning & Action: Reasoning:
+This is an inbound_pallet event with sku=SKU-J, units=2, lot=L-4632. I must find the lowest-numbered empty shelf. Current occupancy: shelves 0-8 all hold stock, shelf 9 is quarantined (maintenance window). The lowest-numbered empty shelf that is available is shelf 10. Store the pallet there with the exact SKU, units, and lot values from the event.
+
+Action: Store({"shelf": 10, "sku": "SKU-J", "units": 2, "lot": "L-4632"})
+
+PIN: Shelf 9 is quarantined (scheduled maintenance expires=none). Do not store on shelf 9.

@@ -1,0 +1,4 @@
+Reasoning & Action: Reasoning:
+This is a facility_notice event reporting scheduled maintenance on shelf 5. Facility status notifications do not affect inbound or outbound pallet operations and do not change inventory shelf occupancy. No action required.
+
+Action: Wait({})

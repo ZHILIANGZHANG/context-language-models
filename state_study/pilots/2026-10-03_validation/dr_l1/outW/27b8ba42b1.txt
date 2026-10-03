@@ -1,0 +1,4 @@
+Reasoning:
+Event type is facility_notice for shelf 4, indicating scheduled maintenance with a maintenance rig occupying the shelf. This is a facilities/operations status notification, not an operational event requiring fulfillment. Like telemetry, facility_notice does not trigger Store, Ship, or Move actions. Per procedure, reply Wait({}).
+
+Action: Wait({})

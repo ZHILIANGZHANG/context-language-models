@@ -1,0 +1,1 @@
+Reasoning: step 36, correction_notice. This is an informational event that corrects step 26: shelf 2 is now confirmed empty due to an uncompleted putaway (stock_removed=true). Correction notices, like telemetry, are operational metadata that do not require an action. The procedure specifies actions only for inbound_pallet, outbound_order, and telemetry. Action: Wait({})

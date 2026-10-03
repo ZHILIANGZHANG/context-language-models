@@ -1,0 +1,5 @@
+Haiku T=200 SKILL.state {'rejections': 85, 'rejections_on_wrong_belief': 78, 'fixed_by_next_patch': 8} | how wrong beliefs start: {'action_correct_patch_wrong': 19, 'action_wrong': 51}
+   unfixed after rejection: ('adj_T200_claude-haiku-4-5_skillstate_s2_h2.jsonl', 138, 'ACTION REJECTED: shelf 3 holds SKU-K, not SKU-J; the state transition was not applied', 'Move({"from": 5, "to": 3})')
+   unfixed after rejection: ('adj_T200_claude-haiku-4-5_skillstate_s2_h2.jsonl', 143, 'ACTION REJECTED: shelf 2 is already occupied; the state transition was not applied', 'Ship({"shelf": 2, "sku": "SKU-J"})')
+   unfixed after rejection: ('adj_T200_claude-haiku-4-5_skillstate_s2_h2.jsonl', 169, 'ACTION REJECTED: shelf 3 holds SKU-K, not SKU-H; the state transition was not applied', 'Move({"from": 0, "to": 2})')
+Sonnet L2 SKILL.state {} | how wrong beliefs start: {'action_correct_patch_wrong': 26}

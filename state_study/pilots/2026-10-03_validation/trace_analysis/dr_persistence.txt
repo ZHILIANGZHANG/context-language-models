@@ -1,0 +1,40 @@
+== error dynamics from per-step correctness (actionable steps) ==
+T= 50 claude-haiku-4-5       react      {'episodes': 24, 'steps': 1200, 'err_rate': 0.0217, 'p_err_after_err': 0.32, 'p_err_after_ok': 0.0156, 'lift': 20.5, 'mean_run': 1.44, 'max_run': 3, 'eps_with_err': 8, 'errs_per_ep': [8, 7, 5, 2, 1, 1, 1, 1]}
+T= 50 claude-haiku-4-5       memory     {'episodes': 33, 'steps': 1650, 'err_rate': 0.1691, 'p_err_after_err': 0.542, 'p_err_after_ok': 0.1011, 'lift': 5.4, 'mean_run': 2.04, 'max_run': 12, 'eps_with_err': 30, 'errs_per_ep': [32, 31, 28, 19, 17, 15, 12, 12]}
+T= 50 claude-haiku-4-5       stateful   {'episodes': 66, 'steps': 3300, 'err_rate': 0.0033, 'p_err_after_err': 0.091, 'p_err_after_ok': 0.0031, 'lift': 29.3, 'mean_run': 1.1, 'max_run': 2, 'eps_with_err': 7, 'errs_per_ep': [5, 1, 1, 1, 1, 1, 1, 0]}
+T= 50 claude-haiku-4-5       skillstate {'episodes': 24, 'steps': 1200, 'err_rate': 0.0008, 'p_err_after_err': 0.0, 'p_err_after_ok': 0.0009, 'lift': 0.0, 'mean_run': 1, 'max_run': 1, 'eps_with_err': 1, 'errs_per_ep': [1, 0, 0, 0, 0, 0, 0, 0]}
+T= 50 gemini-3-flash-preview react      {'episodes': 60, 'steps': 3000, 'err_rate': 0.0637, 'p_err_after_err': 0.376, 'p_err_after_ok': 0.0439, 'lift': 8.6, 'mean_run': 1.58, 'max_run': 10, 'eps_with_err': 46, 'errs_per_ep': [19, 13, 13, 11, 9, 8, 8, 7]}
+T= 50 gemini-3-flash-preview memory     {'episodes': 15, 'steps': 750, 'err_rate': 0.0467, 'p_err_after_err': 0.467, 'p_err_after_ok': 0.0298, 'lift': 15.7, 'mean_run': 1.67, 'max_run': 3, 'eps_with_err': 8, 'errs_per_ep': [11, 11, 5, 4, 1, 1, 1, 1]}
+T= 50 gemini-3-flash-preview stateful   {'episodes': 30, 'steps': 1500, 'err_rate': 0.004, 'p_err_after_err': 0.0, 'p_err_after_ok': 0.0041, 'lift': 0.0, 'mean_run': 1, 'max_run': 1, 'eps_with_err': 6, 'errs_per_ep': [1, 1, 1, 1, 1, 1, 0, 0]}
+T= 50 gemini-3-flash-preview skillstate {'episodes': 15, 'steps': 750, 'err_rate': 0.0, 'p_err_after_err': nan, 'p_err_after_ok': 0.0, 'lift': None, 'mean_run': 0, 'max_run': 0, 'eps_with_err': 0, 'errs_per_ep': [0, 0, 0, 0, 0, 0, 0, 0]}
+T=200 claude-haiku-4-5       react      {'episodes': 24, 'steps': 4800, 'err_rate': 0.0262, 'p_err_after_err': 0.508, 'p_err_after_ok': 0.0133, 'lift': 38.1, 'mean_run': 2.03, 'max_run': 7, 'eps_with_err': 7, 'errs_per_ep': [53, 46, 11, 8, 4, 3, 1, 0]}
+T=200 claude-haiku-4-5       memory     {'episodes': 24, 'steps': 4800, 'err_rate': 0.3473, 'p_err_after_err': 0.628, 'p_err_after_ok': 0.201, 'lift': 3.1, 'mean_run': 2.66, 'max_run': 18, 'eps_with_err': 24, 'errs_per_ep': [141, 106, 106, 104, 98, 96, 89, 85]}
+T=200 claude-haiku-4-5       stateful   {'episodes': 54, 'steps': 10800, 'err_rate': 0.0006, 'p_err_after_err': 0.167, 'p_err_after_ok': 0.0005, 'lift': 358.0, 'mean_run': 1.2, 'max_run': 2, 'eps_with_err': 4, 'errs_per_ep': [3, 1, 1, 1, 0, 0, 0, 0]}
+T=200 claude-haiku-4-5       skillstate {'episodes': 24, 'steps': 4800, 'err_rate': 0.0419, 'p_err_after_err': 0.543, 'p_err_after_ok': 0.0203, 'lift': 26.7, 'mean_run': 2.16, 'max_run': 11, 'eps_with_err': 17, 'errs_per_ep': [29, 29, 28, 27, 27, 25, 15, 3]}
+T=200 gemini-3-flash-preview react      {'episodes': 24, 'steps': 4182, 'err_rate': 0.0928, 'p_err_after_err': 0.455, 'p_err_after_ok': 0.0569, 'lift': 8.0, 'mean_run': 1.8, 'max_run': 12, 'eps_with_err': 23, 'errs_per_ep': [57, 35, 33, 30, 28, 26, 25, 19]}
+T=200 gemini-3-flash-preview memory     {'episodes': 15, 'steps': 3000, 'err_rate': 0.1903, 'p_err_after_err': 0.477, 'p_err_after_ok': 0.1238, 'lift': 3.9, 'mean_run': 1.91, 'max_run': 16, 'eps_with_err': 15, 'errs_per_ep': [65, 62, 62, 49, 48, 45, 37, 34]}
+T=200 gemini-3-flash-preview stateful   {'episodes': 30, 'steps': 6000, 'err_rate': 0.079, 'p_err_after_err': 0.553, 'p_err_after_ok': 0.0389, 'lift': 14.2, 'mean_run': 2.21, 'max_run': 22, 'eps_with_err': 25, 'errs_per_ep': [84, 59, 53, 40, 40, 39, 32, 27]}
+T=200 gemini-3-flash-preview skillstate {'episodes': 15, 'steps': 3000, 'err_rate': 0.0, 'p_err_after_err': nan, 'p_err_after_ok': 0.0, 'lift': None, 'mean_run': 0, 'max_run': 0, 'eps_with_err': 0, 'errs_per_ep': [0, 0, 0, 0, 0, 0, 0, 0]}
+
+== L2 retroactive-correction probe ==
+claude-haiku-4-5       react      {'episodes': 24, 'steps': 800, 'err_rate': 0.2188, 'p_err_after_err': 0.632, 'p_err_after_ok': 0.108, 'lift': 5.9, 'mean_run': 2.69, 'max_run': 6, 'eps_with_err': 24, 'errs_per_ep': [13, 11, 11, 11, 11, 11, 11, 11]}
+claude-haiku-4-5       skillstate {'episodes': 24, 'steps': 800, 'err_rate': 0.0013, 'p_err_after_err': 0.0, 'p_err_after_ok': 0.0013, 'lift': 0.0, 'mean_run': 1, 'max_run': 1, 'eps_with_err': 1, 'errs_per_ep': [1, 0, 0, 0, 0, 0, 0, 0]}
+claude-sonnet-5        react      {'episodes': 24, 'steps': 800, 'err_rate': 0.17, 'p_err_after_err': 0.573, 'p_err_after_ok': 0.0946, 'lift': 6.1, 'mean_run': 2.23, 'max_run': 23, 'eps_with_err': 22, 'errs_per_ep': [25, 13, 11, 11, 8, 8, 7, 7]}
+claude-sonnet-5        skillstate {'episodes': 24, 'steps': 800, 'err_rate': 0.0587, 'p_err_after_err': 0.457, 'p_err_after_ok': 0.0356, 'lift': 12.8, 'mean_run': 1.81, 'max_run': 6, 'eps_with_err': 14, 'errs_per_ep': [12, 11, 5, 4, 3, 2, 2, 2]}
+gemini-3-flash-preview react      {'episodes': 24, 'steps': 800, 'err_rate': 0.22, 'p_err_after_err': 0.636, 'p_err_after_ok': 0.1067, 'lift': 6.0, 'mean_run': 2.75, 'max_run': 6, 'eps_with_err': 24, 'errs_per_ep': [11, 11, 11, 11, 11, 11, 11, 11]}
+gemini-3-flash-preview skillstate {'episodes': 24, 'steps': 800, 'err_rate': 0.0, 'p_err_after_err': nan, 'p_err_after_ok': 0.0, 'lift': None, 'mean_run': 0, 'max_run': 0, 'eps_with_err': 0, 'errs_per_ep': [0, 0, 0, 0, 0, 0, 0, 0]}
+
+== belief-reality discrepancies in explicit-state (SKILL.state) runs ==
+
+-- Haiku T=200: 70 belief-reality discrepancies
+   phantom_vacancy    n=  46  median_dur=  24.0  mean_dur=  21.7  max=  50  still_open_at_end= 15  failures_during= 446  got_rejection_feedback=22
+   wrong_sku          n=  24  median_dur=  15.0  mean_dur=  30.0  max=  67  still_open_at_end= 20  failures_during= 255  got_rejection_feedback=10
+
+-- Haiku T=50: 0 belief-reality discrepancies
+
+-- Sonnet L2: 26 belief-reality discrepancies
+   phantom_vacancy    n=  26  median_dur=   1.0  mean_dur=   1.2  max=   5  still_open_at_end=  0  failures_during=   4  got_rejection_feedback=0
+
+-- Haiku L2: 25 belief-reality discrepancies
+   phantom_occupancy  n=   1  median_dur=   1.0  mean_dur=   1.0  max=   1  still_open_at_end=  0  failures_during=   1  got_rejection_feedback=0
+   phantom_vacancy    n=  24  median_dur=   1.0  mean_dur=   1.0  max=   1  still_open_at_end=  0  failures_during=   0  got_rejection_feedback=0

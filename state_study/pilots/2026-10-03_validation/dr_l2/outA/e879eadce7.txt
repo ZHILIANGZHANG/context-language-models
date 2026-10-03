@@ -1,0 +1,4 @@
+**Reasoning:**
+Step 10 is a correction_notice revealing the putaway at step 0 (SKU-J) never completed. This invalidates my shelf occupancy record—shelf 0 was never occupied by that pallet. The audit confirms shelf 0 is now empty. Correction notices are non-operational audit findings requiring no inventory action.
+
+**Action:** Wait({})

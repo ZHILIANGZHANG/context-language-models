@@ -1,0 +1,1 @@
+Reasoning: step 37, inbound_pallet with sku=SKU-M. Current occupancy: shelves 0:SKU-J, 1:SKU-F, 2:SKU-K, 3:SKU-C, 4:SKU-N. The lowest-numbered empty shelf is 5. Action: Store({"shelf": 5, "sku": "SKU-M", "units": 20, "lot": "L-8496"})

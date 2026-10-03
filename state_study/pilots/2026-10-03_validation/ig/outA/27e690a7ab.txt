@@ -1,0 +1,3 @@
+Correction notice: shelf 13 was recorded as holding SKU-K but a putaway_never_completed audit found it empty and stock already removed. Update shelf 13 to null and take no action per procedure.
+
+{"state_patch": {"shelf_contents": {"13": null}}, "action": "Wait({})"}

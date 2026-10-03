@@ -1,0 +1,4 @@
+Hf_covered               n=8  correct=8/8  deaf=0  other=[]
+Hf_uncovered             n=8  correct=8/8  deaf=0  other=[]
+Hf_uncovered_integrate   n=8  correct=8/8  deaf=0  other=[]
+Sf_uncovered             n=8  correct=7/8  deaf=1  other=[]

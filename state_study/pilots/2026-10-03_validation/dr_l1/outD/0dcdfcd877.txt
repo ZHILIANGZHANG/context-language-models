@@ -1,0 +1,4 @@
+Reasoning:
+Inbound pallet with sku=SKU-D, units=20, lot=L-5200 arrives. Current occupancy: shelves 0-4 are occupied (0:SKU-J step 43, 1:SKU-L step 39, 2:SKU-J step 44, 3:SKU-D step 46, 4:SKU-G step 47). Shelf 5 is quarantined and cannot be used. The lowest-numbered empty non-quarantined shelf is 6. Store the pallet there.
+
+Action: Store({"shelf": 6, "sku": "SKU-D", "units": 20, "lot": "L-5200"})

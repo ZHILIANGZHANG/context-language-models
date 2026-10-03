@@ -1,0 +1,2 @@
+Inbound pallet SKU-E arrives; lowest-numbered empty shelf is 6.
+{"state_patch": {"shelf_contents": {"6": {"sku": "SKU-E", "units": 3, "lot": "L-8070"}}}, "action": "Store({\"shelf\": 6, \"sku\": \"SKU-E\", \"units\": 3, \"lot\": \"L-8070\"})"}

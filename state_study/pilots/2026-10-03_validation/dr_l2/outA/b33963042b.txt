@@ -1,0 +1,3 @@
+Reasoning: This is a correction_notice event reporting that step 0's putaway never completed—shelf 0 is empty and the stock was removed. This is informational and does not require a Store, Ship, or Move action. Like telemetry, correction events are acknowledged but do not change the current action. I must reply Wait({}).
+
+Action: Wait({})

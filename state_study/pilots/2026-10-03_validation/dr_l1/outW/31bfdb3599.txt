@@ -1,0 +1,5 @@
+REASONING (57 words):
+The event is a facility_notice reporting scheduled maintenance on shelf 9. This is operational metadata that does not require Store, Ship, or Move actions. Similar to telemetry events, facility notices are status notifications that require no warehouse action. The procedure directs that when an event requires no action, reply Wait({}).
+
+ACTION:
+Wait({})

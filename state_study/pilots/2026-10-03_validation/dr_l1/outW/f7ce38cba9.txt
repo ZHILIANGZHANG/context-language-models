@@ -1,0 +1,8 @@
+Reasoning:
+This is a facility_notice event reporting shelf 5 quarantine for maintenance. It is not an inbound_pallet, outbound_order, or telemetry event, so it requires no action on shelf occupancy.
+
+PIN: Shelf 5 quarantined for scheduled maintenance (do_not_store=true). Skip shelf 5 when finding empty shelves.
+
+Current shelf occupancy state: [shelf 0: SKU-D; shelves 1-499: empty (accounting for shelf 5 quarantine)]
+
+Action: Wait({})

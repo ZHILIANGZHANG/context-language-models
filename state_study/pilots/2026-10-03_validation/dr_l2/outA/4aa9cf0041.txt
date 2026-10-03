@@ -1,0 +1,4 @@
+Reasoning & Action: **Reasoning:**
+Step 10, event type `correction_notice`. The procedure specifies actions only for three event types: inbound_pallet, outbound_order, and telemetry. Since correction_notice is unlisted, treat it like telemetry—no action required. Current occupancy: shelf 0 has SKU-F, shelf 1 has SKU-A.
+
+**Action:** Wait({})

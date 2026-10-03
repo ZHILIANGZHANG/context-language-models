@@ -1,0 +1,6 @@
+Reasoning:
+This is a facility_notice about shelf 4 quarantine. Since it is not an inbound_pallet, outbound_order, or telemetry event, and facility notices are operational status information with no immediate action requirement, the correct response is Wait({}). The quarantine establishes a constraint for future operations.
+
+PIN: Shelf 4 is quarantined (maintenance, do_not_store=true, expires=none). When finding the lowest-numbered empty shelf for future inbound_pallets, skip shelf 4 and use the next available empty shelf.
+
+Action: Wait({})

@@ -1,0 +1,4 @@
+Reasoning:
+This is a correction_notice event that reports the putaway at step 0 was never completed and shelf 0 is now empty. Correction notices are informational and do not correspond to any of the three core event types requiring action (inbound_pallet, outbound_order, telemetry). Similar to telemetry, a correction notice provides status information but does not require a Store, Ship, or Move action.
+
+Action: Wait({})

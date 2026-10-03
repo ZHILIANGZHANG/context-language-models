@@ -1,0 +1,6 @@
+Reasoning:
+Event type is facility_notice reporting shelf 4 quarantined for maintenance with do_not_store=true. This is informational; it requires no Store, Ship, or Move action. Reply Wait({}).
+
+Action: Wait({})
+
+PIN: Shelf 4 is quarantined and unavailable for storage operations.

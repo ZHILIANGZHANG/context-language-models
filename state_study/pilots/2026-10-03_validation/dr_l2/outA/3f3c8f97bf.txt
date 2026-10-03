@@ -1,0 +1,4 @@
+Reasoning & Action: Reasoning:
+Step 10, event type: correction_notice. This event type is not covered by the procedure, which specifies only inbound_pallet, outbound_order, and telemetry. Like telemetry, correction notices carry no actionable instruction and do not require warehouse operations. Reply Wait({}).
+
+Action: Wait({})

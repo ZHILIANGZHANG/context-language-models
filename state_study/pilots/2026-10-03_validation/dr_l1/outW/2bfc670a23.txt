@@ -1,0 +1,3 @@
+Reasoning: The event is facility_notice, not inbound_pallet, outbound_order, or telemetry. The procedure specifies actions only for those three types. Facility notices are operational metadata that do not affect shelf occupancy or fulfillment. Therefore, the correct action is Wait.
+
+Action: Wait({})

@@ -1,0 +1,4 @@
+Reasoning:
+Step 10, event type: correction_notice. The audit finding corrects step 8: the SKU-D putaway never completed and shelf 0 is confirmed empty by the cycle count team. Correction notices are audit reports, not warehouse operations. Similar to telemetry, they require no Store, Ship, or Move action.
+
+Action: Wait({})

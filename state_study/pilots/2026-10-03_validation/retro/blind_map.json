@@ -1,0 +1,450 @@
+{
+ "c8b67144e3": {
+  "id": "fwd_none_raw-s0",
+  "cell": "fwd_none_raw",
+  "form": "forward",
+  "thoughts": false,
+  "cond": "raw",
+  "seed": 0
+ },
+ "edd1e7e5bb": {
+  "id": "fwd_none_raw-s1",
+  "cell": "fwd_none_raw",
+  "form": "forward",
+  "thoughts": false,
+  "cond": "raw",
+  "seed": 1
+ },
+ "4e0872d37f": {
+  "id": "fwd_none_raw-s2",
+  "cell": "fwd_none_raw",
+  "form": "forward",
+  "thoughts": false,
+  "cond": "raw",
+  "seed": 2
+ },
+ "b525284ac3": {
+  "id": "fwd_none_raw-s3",
+  "cell": "fwd_none_raw",
+  "form": "forward",
+  "thoughts": false,
+  "cond": "raw",
+  "seed": 3
+ },
+ "69df696f1b": {
+  "id": "fwd_none_raw-s4",
+  "cell": "fwd_none_raw",
+  "form": "forward",
+  "thoughts": false,
+  "cond": "raw",
+  "seed": 4
+ },
+ "3b666ed04c": {
+  "id": "fwd_none_raw-s5",
+  "cell": "fwd_none_raw",
+  "form": "forward",
+  "thoughts": false,
+  "cond": "raw",
+  "seed": 5
+ },
+ "3f59e3c23b": {
+  "id": "fwd_none_raw-s6",
+  "cell": "fwd_none_raw",
+  "form": "forward",
+  "thoughts": false,
+  "cond": "raw",
+  "seed": 6
+ },
+ "48b67b8182": {
+  "id": "fwd_none_raw-s7",
+  "cell": "fwd_none_raw",
+  "form": "forward",
+  "thoughts": false,
+  "cond": "raw",
+  "seed": 7
+ },
+ "c51f732ac9": {
+  "id": "fwd_thought_raw-s0",
+  "cell": "fwd_thought_raw",
+  "form": "forward",
+  "thoughts": true,
+  "cond": "raw",
+  "seed": 0
+ },
+ "fef67bfd0b": {
+  "id": "fwd_thought_raw-s1",
+  "cell": "fwd_thought_raw",
+  "form": "forward",
+  "thoughts": true,
+  "cond": "raw",
+  "seed": 1
+ },
+ "7c72fc247f": {
+  "id": "fwd_thought_raw-s2",
+  "cell": "fwd_thought_raw",
+  "form": "forward",
+  "thoughts": true,
+  "cond": "raw",
+  "seed": 2
+ },
+ "7ee71cece9": {
+  "id": "fwd_thought_raw-s3",
+  "cell": "fwd_thought_raw",
+  "form": "forward",
+  "thoughts": true,
+  "cond": "raw",
+  "seed": 3
+ },
+ "7d3b24ce4b": {
+  "id": "fwd_thought_raw-s4",
+  "cell": "fwd_thought_raw",
+  "form": "forward",
+  "thoughts": true,
+  "cond": "raw",
+  "seed": 4
+ },
+ "015558b32f": {
+  "id": "fwd_thought_raw-s5",
+  "cell": "fwd_thought_raw",
+  "form": "forward",
+  "thoughts": true,
+  "cond": "raw",
+  "seed": 5
+ },
+ "d9088f36b9": {
+  "id": "fwd_thought_raw-s6",
+  "cell": "fwd_thought_raw",
+  "form": "forward",
+  "thoughts": true,
+  "cond": "raw",
+  "seed": 6
+ },
+ "355d8ebe41": {
+  "id": "fwd_thought_raw-s7",
+  "cell": "fwd_thought_raw",
+  "form": "forward",
+  "thoughts": true,
+  "cond": "raw",
+  "seed": 7
+ },
+ "55f3ec85cf": {
+  "id": "retro_none_raw-s0",
+  "cell": "retro_none_raw",
+  "form": "retro",
+  "thoughts": false,
+  "cond": "raw",
+  "seed": 0
+ },
+ "bbf4a49245": {
+  "id": "retro_none_raw-s1",
+  "cell": "retro_none_raw",
+  "form": "retro",
+  "thoughts": false,
+  "cond": "raw",
+  "seed": 1
+ },
+ "b4fd03d021": {
+  "id": "retro_none_raw-s2",
+  "cell": "retro_none_raw",
+  "form": "retro",
+  "thoughts": false,
+  "cond": "raw",
+  "seed": 2
+ },
+ "5311c43149": {
+  "id": "retro_none_raw-s3",
+  "cell": "retro_none_raw",
+  "form": "retro",
+  "thoughts": false,
+  "cond": "raw",
+  "seed": 3
+ },
+ "826d6595ab": {
+  "id": "retro_none_raw-s4",
+  "cell": "retro_none_raw",
+  "form": "retro",
+  "thoughts": false,
+  "cond": "raw",
+  "seed": 4
+ },
+ "ac287ac414": {
+  "id": "retro_none_raw-s5",
+  "cell": "retro_none_raw",
+  "form": "retro",
+  "thoughts": false,
+  "cond": "raw",
+  "seed": 5
+ },
+ "53335286ee": {
+  "id": "retro_none_raw-s6",
+  "cell": "retro_none_raw",
+  "form": "retro",
+  "thoughts": false,
+  "cond": "raw",
+  "seed": 6
+ },
+ "41e05e46a9": {
+  "id": "retro_none_raw-s7",
+  "cell": "retro_none_raw",
+  "form": "retro",
+  "thoughts": false,
+  "cond": "raw",
+  "seed": 7
+ },
+ "f9a36fbd20": {
+  "id": "retro_thought_raw-s0",
+  "cell": "retro_thought_raw",
+  "form": "retro",
+  "thoughts": true,
+  "cond": "raw",
+  "seed": 0
+ },
+ "1f1e9f246d": {
+  "id": "retro_thought_raw-s1",
+  "cell": "retro_thought_raw",
+  "form": "retro",
+  "thoughts": true,
+  "cond": "raw",
+  "seed": 1
+ },
+ "1ea49f7c55": {
+  "id": "retro_thought_raw-s2",
+  "cell": "retro_thought_raw",
+  "form": "retro",
+  "thoughts": true,
+  "cond": "raw",
+  "seed": 2
+ },
+ "a78c312ead": {
+  "id": "retro_thought_raw-s3",
+  "cell": "retro_thought_raw",
+  "form": "retro",
+  "thoughts": true,
+  "cond": "raw",
+  "seed": 3
+ },
+ "5af4f5b7e9": {
+  "id": "retro_thought_raw-s4",
+  "cell": "retro_thought_raw",
+  "form": "retro",
+  "thoughts": true,
+  "cond": "raw",
+  "seed": 4
+ },
+ "41a5858f12": {
+  "id": "retro_thought_raw-s5",
+  "cell": "retro_thought_raw",
+  "form": "retro",
+  "thoughts": true,
+  "cond": "raw",
+  "seed": 5
+ },
+ "4526cd778c": {
+  "id": "retro_thought_raw-s6",
+  "cell": "retro_thought_raw",
+  "form": "retro",
+  "thoughts": true,
+  "cond": "raw",
+  "seed": 6
+ },
+ "0a4eed151e": {
+  "id": "retro_thought_raw-s7",
+  "cell": "retro_thought_raw",
+  "form": "retro",
+  "thoughts": true,
+  "cond": "raw",
+  "seed": 7
+ },
+ "42d96c0994": {
+  "id": "retro_thought_tomb-s0",
+  "cell": "retro_thought_tomb",
+  "form": "retro",
+  "thoughts": true,
+  "cond": "tomb",
+  "seed": 0
+ },
+ "757fe8c4fc": {
+  "id": "retro_thought_tomb-s1",
+  "cell": "retro_thought_tomb",
+  "form": "retro",
+  "thoughts": true,
+  "cond": "tomb",
+  "seed": 1
+ },
+ "ff17ff3700": {
+  "id": "retro_thought_tomb-s2",
+  "cell": "retro_thought_tomb",
+  "form": "retro",
+  "thoughts": true,
+  "cond": "tomb",
+  "seed": 2
+ },
+ "9005553d2f": {
+  "id": "retro_thought_tomb-s3",
+  "cell": "retro_thought_tomb",
+  "form": "retro",
+  "thoughts": true,
+  "cond": "tomb",
+  "seed": 3
+ },
+ "5b1607fb2b": {
+  "id": "retro_thought_tomb-s4",
+  "cell": "retro_thought_tomb",
+  "form": "retro",
+  "thoughts": true,
+  "cond": "tomb",
+  "seed": 4
+ },
+ "34e1dc1f88": {
+  "id": "retro_thought_tomb-s5",
+  "cell": "retro_thought_tomb",
+  "form": "retro",
+  "thoughts": true,
+  "cond": "tomb",
+  "seed": 5
+ },
+ "8be2b25ea6": {
+  "id": "retro_thought_tomb-s6",
+  "cell": "retro_thought_tomb",
+  "form": "retro",
+  "thoughts": true,
+  "cond": "tomb",
+  "seed": 6
+ },
+ "31d30cc00e": {
+  "id": "retro_thought_tomb-s7",
+  "cell": "retro_thought_tomb",
+  "form": "retro",
+  "thoughts": true,
+  "cond": "tomb",
+  "seed": 7
+ },
+ "d71020b3b0": {
+  "id": "retro_thought_state-s0",
+  "cell": "retro_thought_state",
+  "form": "retro",
+  "thoughts": true,
+  "cond": "state",
+  "seed": 0
+ },
+ "27c1e73224": {
+  "id": "retro_thought_state-s1",
+  "cell": "retro_thought_state",
+  "form": "retro",
+  "thoughts": true,
+  "cond": "state",
+  "seed": 1
+ },
+ "b6b34abefa": {
+  "id": "retro_thought_state-s2",
+  "cell": "retro_thought_state",
+  "form": "retro",
+  "thoughts": true,
+  "cond": "state",
+  "seed": 2
+ },
+ "3221ad8bb9": {
+  "id": "retro_thought_state-s3",
+  "cell": "retro_thought_state",
+  "form": "retro",
+  "thoughts": true,
+  "cond": "state",
+  "seed": 3
+ },
+ "b34cd55817": {
+  "id": "retro_thought_state-s4",
+  "cell": "retro_thought_state",
+  "form": "retro",
+  "thoughts": true,
+  "cond": "state",
+  "seed": 4
+ },
+ "03d8aefe4f": {
+  "id": "retro_thought_state-s5",
+  "cell": "retro_thought_state",
+  "form": "retro",
+  "thoughts": true,
+  "cond": "state",
+  "seed": 5
+ },
+ "7905acd072": {
+  "id": "retro_thought_state-s6",
+  "cell": "retro_thought_state",
+  "form": "retro",
+  "thoughts": true,
+  "cond": "state",
+  "seed": 6
+ },
+ "20c00e3779": {
+  "id": "retro_thought_state-s7",
+  "cell": "retro_thought_state",
+  "form": "retro",
+  "thoughts": true,
+  "cond": "state",
+  "seed": 7
+ },
+ "f8638451ab": {
+  "id": "retro_thought_logstate-s0",
+  "cell": "retro_thought_logstate",
+  "form": "retro",
+  "thoughts": true,
+  "cond": "log_state",
+  "seed": 0
+ },
+ "c4737a0364": {
+  "id": "retro_thought_logstate-s1",
+  "cell": "retro_thought_logstate",
+  "form": "retro",
+  "thoughts": true,
+  "cond": "log_state",
+  "seed": 1
+ },
+ "801902cbb6": {
+  "id": "retro_thought_logstate-s2",
+  "cell": "retro_thought_logstate",
+  "form": "retro",
+  "thoughts": true,
+  "cond": "log_state",
+  "seed": 2
+ },
+ "24e24c1eac": {
+  "id": "retro_thought_logstate-s3",
+  "cell": "retro_thought_logstate",
+  "form": "retro",
+  "thoughts": true,
+  "cond": "log_state",
+  "seed": 3
+ },
+ "3f713ca685": {
+  "id": "retro_thought_logstate-s4",
+  "cell": "retro_thought_logstate",
+  "form": "retro",
+  "thoughts": true,
+  "cond": "log_state",
+  "seed": 4
+ },
+ "c7d1691c45": {
+  "id": "retro_thought_logstate-s5",
+  "cell": "retro_thought_logstate",
+  "form": "retro",
+  "thoughts": true,
+  "cond": "log_state",
+  "seed": 5
+ },
+ "f354620fde": {
+  "id": "retro_thought_logstate-s6",
+  "cell": "retro_thought_logstate",
+  "form": "retro",
+  "thoughts": true,
+  "cond": "log_state",
+  "seed": 6
+ },
+ "5bb83afa9c": {
+  "id": "retro_thought_logstate-s7",
+  "cell": "retro_thought_logstate",
+  "form": "retro",
+  "thoughts": true,
+  "cond": "log_state",
+  "seed": 7
+ }
+}

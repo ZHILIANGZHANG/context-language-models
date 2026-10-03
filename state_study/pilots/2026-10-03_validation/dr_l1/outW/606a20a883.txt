@@ -1,0 +1,5 @@
+Reasoning: Event type facility_notice is not one of the three action types (inbound_pallet, outbound_order, telemetry). Shelf 9 is quarantined for scheduled maintenance with do_not_store=true. No action required for this notice.
+
+PIN: Shelf 9 is quarantined and must not be used for storage (expires: none).
+
+Action: Wait({})

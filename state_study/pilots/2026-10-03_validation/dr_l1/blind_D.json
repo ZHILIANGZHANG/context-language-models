@@ -1,0 +1,266 @@
+{
+ "e4ccbe78a4": {
+  "key": "PIN-s0-r0",
+  "cell": "PIN",
+  "seed": 0,
+  "rep": 0,
+  "w": "f7ce38cba9",
+  "pins": [
+   "PIN: Shelf 5 quarantined for scheduled maintenance (do_not_store=true). Skip shelf 5 when finding empty shelves."
+  ],
+  "esperado": "Store({\"lot\": \"L-5200\", \"shelf\": 6, \"sku\": \"SKU-D\", \"units\": 20})",
+  "shelf": 5
+ },
+ "ee04e4d23f": {
+  "key": "PIN-s0-r1",
+  "cell": "PIN",
+  "seed": 0,
+  "rep": 1,
+  "w": "7ff93317a9",
+  "pins": [
+   "PIN: Shelf 5 is quarantined due to scheduled maintenance; do not store to shelf 5."
+  ],
+  "esperado": "Store({\"lot\": \"L-5200\", \"shelf\": 6, \"sku\": \"SKU-D\", \"units\": 20})",
+  "shelf": 5
+ },
+ "0dcdfcd877": {
+  "key": "PIN-s0-r2",
+  "cell": "PIN",
+  "seed": 0,
+  "rep": 2,
+  "w": "1508b3c730",
+  "pins": [
+   "PIN: Shelf 5 is quarantined for scheduled maintenance (do_not_store=true, effective immediately); all future inbound_pallets must skip shelf 5 and use the next lowest empty shelf."
+  ],
+  "esperado": "Store({\"lot\": \"L-5200\", \"shelf\": 6, \"sku\": \"SKU-D\", \"units\": 20})",
+  "shelf": 5
+ },
+ "1b430ad35a": {
+  "key": "PIN-s0-r3",
+  "cell": "PIN",
+  "seed": 0,
+  "rep": 3,
+  "w": "25f47b5206",
+  "pins": [
+   "PIN: Shelf 5 is quarantined for scheduled maintenance (effective immediately, expires=none); do not store pallets on shelf 5."
+  ],
+  "esperado": "Store({\"lot\": \"L-5200\", \"shelf\": 6, \"sku\": \"SKU-D\", \"units\": 20})",
+  "shelf": 5
+ },
+ "0846c77394": {
+  "key": "PIN-s3-r0",
+  "cell": "PIN",
+  "seed": 3,
+  "rep": 0,
+  "w": "231cc9d37c",
+  "pins": [
+   "PIN: Shelf 4 is quarantined and unavailable for storage operations."
+  ],
+  "esperado": "Store({\"lot\": \"L-6840\", \"shelf\": 5, \"sku\": \"SKU-D\", \"units\": 19})",
+  "shelf": 4
+ },
+ "cd7bc20784": {
+  "key": "PIN-s3-r1",
+  "cell": "PIN",
+  "seed": 3,
+  "rep": 1,
+  "w": "228775bbc3",
+  "pins": [
+   "PIN: Shelf 4 is quarantined for scheduled maintenance (do_not_store=true until further notice). Skip shelf 4 when selecting the lowest-numbered empty shelf for future inbound pallets."
+  ],
+  "esperado": "Store({\"lot\": \"L-6840\", \"shelf\": 5, \"sku\": \"SKU-D\", \"units\": 19})",
+  "shelf": 4
+ },
+ "596e1d4357": {
+  "key": "PIN-s3-r2",
+  "cell": "PIN",
+  "seed": 3,
+  "rep": 2,
+  "w": "ed36874688",
+  "pins": [
+   "PIN: Shelf 4 is quarantined for maintenance (21 days estimated) and do_not_store=true; skip it when locating the lowest empty shelf for future inbound_pallet events."
+  ],
+  "esperado": "Store({\"lot\": \"L-6840\", \"shelf\": 5, \"sku\": \"SKU-D\", \"units\": 19})",
+  "shelf": 4
+ },
+ "639fa5450b": {
+  "key": "PIN-s3-r3",
+  "cell": "PIN",
+  "seed": 3,
+  "rep": 3,
+  "w": "d5e2ec469e",
+  "pins": [
+   "PIN: Shelf 4 is quarantined (maintenance, do_not_store=true, expires=none). When finding the lowest-numbered empty shelf for future inbound_pallets, skip shelf 4 and use the next available empty shelf."
+  ],
+  "esperado": "Store({\"lot\": \"L-6840\", \"shelf\": 5, \"sku\": \"SKU-D\", \"units\": 19})",
+  "shelf": 4
+ },
+ "3024deb098": {
+  "key": "PIN-s6-r0",
+  "cell": "PIN",
+  "seed": 6,
+  "rep": 0,
+  "w": "606a20a883",
+  "pins": [
+   "PIN: Shelf 9 is quarantined and must not be used for storage (expires: none)."
+  ],
+  "esperado": "Store({\"lot\": \"L-4632\", \"shelf\": 10, \"sku\": \"SKU-J\", \"units\": 2})",
+  "shelf": 9
+ },
+ "ef55a90df3": {
+  "key": "PIN-s6-r1",
+  "cell": "PIN",
+  "seed": 6,
+  "rep": 1,
+  "w": "132fbd758f",
+  "pins": [
+   "PIN: Shelf 9 is quarantined for scheduled maintenance (expires=none). Never store on shelf 9."
+  ],
+  "esperado": "Store({\"lot\": \"L-4632\", \"shelf\": 10, \"sku\": \"SKU-J\", \"units\": 2})",
+  "shelf": 9
+ },
+ "d836a6f660": {
+  "key": "PIN-s6-r2",
+  "cell": "PIN",
+  "seed": 6,
+  "rep": 2,
+  "w": "3c0a47fa65",
+  "pins": [
+   "PIN: Shelf 9 is quarantined (scheduled maintenance expires=none). Do not store on shelf 9."
+  ],
+  "esperado": "Store({\"lot\": \"L-4632\", \"shelf\": 10, \"sku\": \"SKU-J\", \"units\": 2})",
+  "shelf": 9
+ },
+ "f28679a042": {
+  "key": "PIN-s6-r3",
+  "cell": "PIN",
+  "seed": 6,
+  "rep": 3,
+  "w": "b723a2521b",
+  "pins": [
+   "PIN: Shelf 9 quarantined for scheduled maintenance (estimated 29 days, no expiration set) \u2014 do not store to shelf 9."
+  ],
+  "esperado": "Store({\"lot\": \"L-4632\", \"shelf\": 10, \"sku\": \"SKU-J\", \"units\": 2})",
+  "shelf": 9
+ },
+ "e1b8f21253": {
+  "key": "FACT-s0-r0",
+  "cell": "FACT",
+  "seed": 0,
+  "rep": 0,
+  "w": "7131df0ed1",
+  "pins": [],
+  "esperado": "Store({\"lot\": \"L-5200\", \"shelf\": 6, \"sku\": \"SKU-D\", \"units\": 20})",
+  "shelf": 5
+ },
+ "5c50b3732b": {
+  "key": "FACT-s0-r1",
+  "cell": "FACT",
+  "seed": 0,
+  "rep": 1,
+  "w": "b3405f43ba",
+  "pins": [],
+  "esperado": "Store({\"lot\": \"L-5200\", \"shelf\": 6, \"sku\": \"SKU-D\", \"units\": 20})",
+  "shelf": 5
+ },
+ "190e10d3c7": {
+  "key": "FACT-s0-r2",
+  "cell": "FACT",
+  "seed": 0,
+  "rep": 2,
+  "w": "8dd289e857",
+  "pins": [],
+  "esperado": "Store({\"lot\": \"L-5200\", \"shelf\": 6, \"sku\": \"SKU-D\", \"units\": 20})",
+  "shelf": 5
+ },
+ "5ae3335fb6": {
+  "key": "FACT-s0-r3",
+  "cell": "FACT",
+  "seed": 0,
+  "rep": 3,
+  "w": "1e823e9625",
+  "pins": [],
+  "esperado": "Store({\"lot\": \"L-5200\", \"shelf\": 6, \"sku\": \"SKU-D\", \"units\": 20})",
+  "shelf": 5
+ },
+ "c36b45618b": {
+  "key": "FACT-s3-r0",
+  "cell": "FACT",
+  "seed": 3,
+  "rep": 0,
+  "w": "b800a2d7ab",
+  "pins": [],
+  "esperado": "Store({\"lot\": \"L-6840\", \"shelf\": 5, \"sku\": \"SKU-D\", \"units\": 19})",
+  "shelf": 4
+ },
+ "cd83a43e9f": {
+  "key": "FACT-s3-r1",
+  "cell": "FACT",
+  "seed": 3,
+  "rep": 1,
+  "w": "f29a74a01b",
+  "pins": [],
+  "esperado": "Store({\"lot\": \"L-6840\", \"shelf\": 5, \"sku\": \"SKU-D\", \"units\": 19})",
+  "shelf": 4
+ },
+ "6d713ed4d4": {
+  "key": "FACT-s3-r2",
+  "cell": "FACT",
+  "seed": 3,
+  "rep": 2,
+  "w": "27b8ba42b1",
+  "pins": [],
+  "esperado": "Store({\"lot\": \"L-6840\", \"shelf\": 5, \"sku\": \"SKU-D\", \"units\": 19})",
+  "shelf": 4
+ },
+ "ccad920629": {
+  "key": "FACT-s3-r3",
+  "cell": "FACT",
+  "seed": 3,
+  "rep": 3,
+  "w": "89e141773f",
+  "pins": [],
+  "esperado": "Store({\"lot\": \"L-6840\", \"shelf\": 5, \"sku\": \"SKU-D\", \"units\": 19})",
+  "shelf": 4
+ },
+ "91fa9f62d7": {
+  "key": "FACT-s6-r0",
+  "cell": "FACT",
+  "seed": 6,
+  "rep": 0,
+  "w": "5077bff65f",
+  "pins": [],
+  "esperado": "Store({\"lot\": \"L-4632\", \"shelf\": 10, \"sku\": \"SKU-J\", \"units\": 2})",
+  "shelf": 9
+ },
+ "eaac168d06": {
+  "key": "FACT-s6-r1",
+  "cell": "FACT",
+  "seed": 6,
+  "rep": 1,
+  "w": "31bfdb3599",
+  "pins": [],
+  "esperado": "Store({\"lot\": \"L-4632\", \"shelf\": 10, \"sku\": \"SKU-J\", \"units\": 2})",
+  "shelf": 9
+ },
+ "3a9f9e1780": {
+  "key": "FACT-s6-r2",
+  "cell": "FACT",
+  "seed": 6,
+  "rep": 2,
+  "w": "b04297b566",
+  "pins": [],
+  "esperado": "Store({\"lot\": \"L-4632\", \"shelf\": 10, \"sku\": \"SKU-J\", \"units\": 2})",
+  "shelf": 9
+ },
+ "fa8e337046": {
+  "key": "FACT-s6-r3",
+  "cell": "FACT",
+  "seed": 6,
+  "rep": 3,
+  "w": "2bfc670a23",
+  "pins": [],
+  "esperado": "Store({\"lot\": \"L-4632\", \"shelf\": 10, \"sku\": \"SKU-J\", \"units\": 2})",
+  "shelf": 9
+ }
+}

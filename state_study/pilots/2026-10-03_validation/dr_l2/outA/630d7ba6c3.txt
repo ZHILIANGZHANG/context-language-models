@@ -1,0 +1,5 @@
+Reasoning & Action: **Reasoning:**
+This is a correction_notice event reporting that step 4's putaway of SKU-F to shelf 0 never completed and the stock was removed. This is metadata about a prior state, not an operational event requiring a new Store, Ship, or Move. Like telemetry, correction_notice carries no load-bearing fields and requires no action.
+
+**Action:**
+Wait({})

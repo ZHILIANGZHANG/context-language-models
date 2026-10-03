@@ -1,0 +1,4 @@
+Reasoning & Action: Reasoning:
+This is a correction_notice confirming that the putaway from step 0 never completed on shelf 0. The shelf is now confirmed empty and the stock has been removed by the system. This is an informational correction event - the system has already resolved the issue. No warehouse action is required.
+
+Action: Wait({})

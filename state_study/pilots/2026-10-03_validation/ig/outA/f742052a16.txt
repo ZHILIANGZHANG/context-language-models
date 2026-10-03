@@ -1,0 +1,1 @@
+Reasoning & Action: Reasoning: step 36, correction_notice. The notice reports that the putaway at step 26 (SKU-E, shelf 4) was never completed and shelf 4 is now empty. This is a correction notification that does not require an action (similar to telemetry). Action: Wait({})

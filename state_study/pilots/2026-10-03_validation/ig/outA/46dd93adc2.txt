@@ -1,0 +1,3 @@
+Reasoning: Correction notice indicates shelf 0 was cleared due to incomplete putaway at step 26; this is informational metadata requiring a state update but no operational action.
+
+{"state_patch": {"shelf_contents": {"0": null}}, "action": "Wait({})"}

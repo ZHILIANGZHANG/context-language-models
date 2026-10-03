@@ -1,0 +1,3 @@
+Correction notice retroactively empties shelf 7; state must be updated to reflect the stock removal from step 26.
+
+{"state_patch": {"shelf_contents": {"7": null}}, "action": "Wait({})"}

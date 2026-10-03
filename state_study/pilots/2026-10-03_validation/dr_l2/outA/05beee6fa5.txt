@@ -1,0 +1,4 @@
+Reasoning:
+This is a correction_notice event (step 10) reporting that step 8's putaway of SKU-D to shelf 0 never completed. The shelf is now empty and stock was removed. The warehouse procedure specifies actions for three event types: inbound_pallet, outbound_order, and telemetry. Since correction_notice is not mentioned in the procedure, no action is required. I acknowledge the correction implicitly by updating my state model: shelf 0 is now empty, not occupied by SKU-D.
+
+Action: Wait({})

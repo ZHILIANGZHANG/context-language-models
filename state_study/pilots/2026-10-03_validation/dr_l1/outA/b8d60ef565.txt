@@ -1,0 +1,4 @@
+Reasoning & Action: Reasoning:
+Event type is inbound_pallet with sku=SKU-D, units=19, lot=L-6840. Current shelf occupancy: shelf 0 holds SKU-F, shelf 1 holds SKU-B, shelf 2 holds SKU-D, shelf 3 holds SKU-B, shelf 4 is quarantined (do_not_store=true). The lowest-numbered empty shelf is 5. Store the pallet there.
+
+Action: Store({"shelf": 5, "sku": "SKU-D", "units": 19, "lot": "L-6840"})

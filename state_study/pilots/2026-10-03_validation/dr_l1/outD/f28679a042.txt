@@ -1,0 +1,6 @@
+**Reasoning (59 words):**
+This is an inbound_pallet event with sku=SKU-J, units=2, lot=L-4632. Current shelf occupancy after step 39: shelves 0-8 are occupied, shelf 9 is quarantined for scheduled maintenance (cannot store). The lowest-numbered available empty shelf is 10. Store the pallet on shelf 10 with exact values from the event.
+
+**Action:** Store({"shelf": 10, "sku": "SKU-J", "units": 2, "lot": "L-4632"})
+
+PIN: Shelf 9 quarantined for scheduled maintenance (estimated 29 days, no expiration set) — do not store to shelf 9.

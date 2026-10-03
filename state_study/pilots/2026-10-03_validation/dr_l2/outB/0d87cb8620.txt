@@ -1,0 +1,4 @@
+Reasoning:
+Inbound pallet event. Extract load-bearing fields: sku=SKU-B, units=12, lot=L-6731. Current shelf occupancy: correction notice at step 10 invalidated step 4's putaway on shelf 0 (now empty). Shelf 1 holds SKU-B (different lot), shelf 4 holds SKU-A. Lowest-numbered empty shelf is 0. Store this pallet on shelf 0.
+
+Action: Store({"shelf": 0, "sku": "SKU-B", "units": 12, "lot": "L-6731"})

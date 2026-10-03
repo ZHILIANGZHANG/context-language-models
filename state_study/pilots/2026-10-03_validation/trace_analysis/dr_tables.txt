@@ -1,0 +1,41 @@
+== L2: first correction-dependent decision correct / episodes  (notice called out of scope)
+   claude-haiku-4-5         react       1/24   (18 out of scope)
+   claude-haiku-4-5         skillstate 24/24   (2 out of scope)
+   claude-sonnet-5          react       9/24   (5 out of scope)
+   claude-sonnet-5          skillstate 22/24   (0 out of scope)
+   gemini-3-flash-preview   react       0/24   (16 out of scope)
+   gemini-3-flash-preview   skillstate 24/24   (0 out of scope)
+
+== L1 v3 (k=40): first decision correct / episodes
+   claude-haiku-4-5         hatch     react       1/24
+   claude-haiku-4-5         hatch     skillstate 10/24
+   claude-haiku-4-5         oracle    react       0/24
+   claude-haiku-4-5         oracle    skillstate 24/24
+   claude-haiku-4-5         plain     react       0/24
+   claude-haiku-4-5         plain     skillstate  0/24
+   claude-haiku-4-5         reminder  react      23/24
+   claude-haiku-4-5         reminder  skillstate 24/24
+   claude-sonnet-5          hatch     react      12/24
+   claude-sonnet-5          hatch     skillstate 10/24
+   claude-sonnet-5          oracle    react      11/24
+   claude-sonnet-5          oracle    skillstate 20/24
+   claude-sonnet-5          plain     react       8/24
+   claude-sonnet-5          plain     skillstate  7/24
+   claude-sonnet-5          reminder  react      20/24
+   claude-sonnet-5          reminder  skillstate 20/24
+   gemini-3-flash-preview   hatch     react       0/24
+   gemini-3-flash-preview   hatch     skillstate  1/24
+   gemini-3-flash-preview   oracle    react       0/24
+   gemini-3-flash-preview   oracle    skillstate 16/24
+   gemini-3-flash-preview   plain     react       0/24
+   gemini-3-flash-preview   plain     skillstate  0/24
+   gemini-3-flash-preview   reminder  react      17/24
+   gemini-3-flash-preview   reminder  skillstate  0/24
+
+== L1 hatch runs: (wrote the quarantine down at the notice step, decision correct) -> episodes
+   claude-haiku-4-5         hatch_   {(False, False): 13, (True, True): 10, (True, False): 1}
+   claude-haiku-4-5         oracle_  {(True, True): 24}
+   claude-haiku-4-5         plain_   {(False, False): 24}
+   claude-sonnet-5          hatch_   {(False, False): 13, (False, True): 2, (True, True): 8, (True, False): 1}
+   claude-sonnet-5          oracle_  {(True, True): 20, (True, False): 4}
+   claude-sonnet-5          plain_   {(False, False): 16, (False, True): 1, (True, False): 1, (True, True): 6}

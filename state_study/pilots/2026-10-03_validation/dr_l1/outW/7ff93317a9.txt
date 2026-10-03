@@ -1,0 +1,5 @@
+Reasoning:
+This is a facility_notice event reporting that shelf 5 is quarantined for scheduled maintenance. This event type does not fall under the three main procedure categories (inbound_pallet, outbound_order, telemetry) and requires no action on shelf occupancy.
+
+Action: Wait({})
+PIN: Shelf 5 is quarantined due to scheduled maintenance; do not store to shelf 5.

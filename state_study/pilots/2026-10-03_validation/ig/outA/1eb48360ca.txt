@@ -1,0 +1,10 @@
+Correction notice indicates shelf 2 putaway was never completed; updating state to reflect shelf 2 is now empty.
+
+{
+  "state_patch": {
+    "shelf_contents": {
+      "2": null
+    }
+  },
+  "action": "Wait({})"
+}

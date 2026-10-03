@@ -1,0 +1,4 @@
+Reasoning:
+Inbound pallet with sku=SKU-D, units=20, lot=L-5200 arrives. Current occupancy: shelves 0–4 hold stock (SKU-J, SKU-L, SKU-J, SKU-D, SKU-G respectively). The lowest-numbered empty shelf is 5. Store the pallet there.
+
+Action: Store({"shelf": 5, "sku": "SKU-D", "units": 20, "lot": "L-5200"})

@@ -1,0 +1,5 @@
+Reasoning: This facility_notice reports shelf 9 quarantined for scheduled maintenance. The event is operational metadata establishing a constraint: do_not_store=true means shelf 9 must remain empty during the maintenance window. This doesn't affect current shelf occupancy or require an action, but it establishes a restriction for future put-aways.
+
+Action: Wait({})
+
+PIN: Shelf 9 is quarantined (scheduled maintenance expires=none). Do not store on shelf 9.

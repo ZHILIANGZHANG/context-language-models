@@ -1,0 +1,4 @@
+Reasoning & Action: Reasoning:
+This is a correction_notice event indicating that the putaway at step 0 never actually completed—SKU-J was never stored on shelf 0. This is informational metadata similar to telemetry. The correction confirms shelf 0 is empty. Correction notices are not defined in the procedure (only inbound_pallet, outbound_order, and telemetry have specified actions), so I reply with Wait({}) and update my occupancy record: shelf 0 is now empty.
+
+Action: Wait({})

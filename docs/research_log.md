@@ -41,6 +41,8 @@
 | 18 | I3 跑起来扎实吗？怎么撑满一篇论文 | 按现在的形态最多 workshop 短文；给出扩成完整论文的方案（三种机制、三领域、相图、真实基准、闭环、成本、机制分析） |
 | 19 | 需要扎实充实有 insight 的论文，找最 promising 的完整研究主线 | **确定主线**："写入时付代价，还是读取时付代价？"四个 idea 全部并入。写 `docs/research_line.md` |
 | 20 | 把全部算法设计、调研结果、related work 详细写进文档，方便下次新会话 | 本文档及配套的 algorithm_design、related_work、clm_notes、idea_bank、根目录 CLAUDE.md |
+| 21 | 把这些 paper 引领的趋势捋清楚：是不是从 memory 往 state 走？最好的切入点是什么 | 趋势确实在往状态走，但证据比宣称的弱；提出"显式状态是用干扰换持久"（C1 干扰律、C2 持久律、C3 交叉点可预测、C4 规模） |
+| 22 | 先验证 paper 路径可行、方法初步可靠，再交付 | C1 不成立、C2 一半成立、C3 无法检验；发现 delayed-relevance 的 L2 事后更正探针自相矛盾（§2.7）。修正为"决定成败的是到达时的写入，不是表示方式"。见 [validation_2026-10-03.md](validation_2026-10-03.md)，**主线待用户决定是否改写** |
 
 ---
 
@@ -89,6 +91,18 @@
 
 两份搜索摘要分别写 73.1 和 91.2，互相矛盾，**没有核实**。
 
+### 2.7 "事后更正时显式状态 93/93、完整历史 18/82"主要是探针伪影
+
+- **原说法**（§3.1、§3.2、proposal、literature_map、related_work、idea_bank 都引用过）：事实被更正后，显式状态 93/93 次用对，完整历史只对 18/82 次；解释是"历史要在每一步重新解决矛盾"。I3 的动机也来自这里。
+- **核实后**（运行 delayed-relevance 自己的环境，`state_study/validation/dr_coherence.py`）：
+  - 更正通知总是针对第 0 步的入库（货架 0），但那托货早已发出；
+  - 它 L2 用过的 6 个种子全部如此，其中 5 个种子的货架 0 上已经放了另一托货，环境仍把货架 0 清空；
+  - 种子 0–39 中 36 个通知与历史矛盾。
+- **影响**：
+  - 历史 agent 按时间线推理（"货架 0 上是第 8 步放的货"），被判错；状态 agent 看不到矛盾，照写，被判对；
+  - 只改通知里的 `corrects_step` 一个字段，Haiku 子 agent 重放从 4/12 升到 10/12（方向性，代理校准不好）。
+- **结论**：这组数字不能再当"状态在更正上胜出"的证据。I3 的真问题变成"通知与历史冲突时谁来裁决"，探针必须加一致性检查。详见 [validation_2026-10-03.md](validation_2026-10-03.md) §2.2–§2.3。
+
 ---
 
 ## 3. 已验证的事实与证据
@@ -99,7 +113,7 @@
 
 | 现象 | 数字 | 主线的解释 | 来源 |
 |---|---|---|---|
-| 程序性任务上状态赢 | delayed-relevance：事后更正时显式状态 93/93，完整历史 18/82；PoS：ALFWorld 88.81 vs Raw 62.69 vs 最强基线 72.39 | 以后需要什么可预测 → 写入误差小；回合长 → 读取误差大 | [R] |
+| 程序性任务上状态赢 | delayed-relevance：事后更正时显式状态 93/93，完整历史 18/82（⚠️ 主要是探针伪影，见 §2.7）；PoS：ALFWorld 88.81 vs Raw 62.69 vs 最强基线 72.39 | 以后需要什么可预测 → 写入误差小；回合长 → 读取误差大 | [R] |
 | 需求不可预测时完整上下文赢 | Supersede：LongMemEval-KU 上完整上下文 82/91/92，300 字符笔记 63/64/77（gpt-4.1-mini / gpt-4.1 / gpt-5.4）；给更多空间也恢复不了 | 问题在读完之后才出现 → 写入误差大 | [R] |
 | 排名随时长反转 | Ground Truth First（2607.21962）：记忆架构排名随使用时长反转，96% → 72% | 两类误差随长度增长的速度不同 → 必然有交叉点 | [S] |
 
@@ -108,8 +122,8 @@
 完整表格见 [related_work.md](related_work.md) §6.1。要点：
 
 - 成本：SKILL.state 的优势按 token 是 7.54 倍，按带缓存计费只剩 1.39 倍；ReAct 缓存节省 82%，所有会改写前缀的方法节省 0%；同样内容、可变状态放在历史前面，成本是放在后面的 5.7 倍；
-- 延迟相关（k=40，Haiku）：完整历史 2/12 = 17%；没有字段 0/24；原文照搬提醒 16/24 = 67%；提炼后的提醒 24/24 = 100%；notes 字段约 21%（9–40%）；
-- 事后更正：Haiku ReAct 3/44，SKILL.state 44/44；Sonnet ReAct 15/38，SKILL.state 49/49，但有 66 个不合 schema 的补丁、10 步无动作、21 个其他错误；
+- 延迟相关（k=40，Haiku）：完整历史 2/12 = 17%（这是较早版本；v3 轨迹重新统计是 0/24，见 [validation_2026-10-03.md](validation_2026-10-03.md) §2.4）；没有字段 0/24；原文照搬提醒 16/24 = 67%；提炼后的提醒 24/24 = 100%；notes 字段约 21%（9–40%）；
+- 事后更正（⚠️ 探针自相矛盾，见 §2.7）：Haiku ReAct 3/44，SKILL.state 44/44；Sonnet ReAct 15/38，SKILL.state 49/49，但有 66 个不合 schema 的补丁、10 步无动作、21 个其他错误；
 - Sonnet 上显式状态的主要失败：符合 schema、但语义抄错的补丁；
 - 方法论：先测噪声底，至少四个结论在测噪声后被推翻；按依赖步数选种子，信号多 4 倍；
 - 作者：SKILL.state 的作者是 Badhe、Tiwari、Chung；复现者是 Javier Aguilar（JaviMaligno）。
@@ -253,9 +267,19 @@
 - I1 在单题探针上测不出规模效应，需要多步回合或更难的探针；
 - 账本能自动区分 stale 和 occupied。
 
-### 5.3 不调模型的验证
+### 5.3 第三轮：验证"干扰换持久"（Haiku 子 agent + delayed-relevance 轨迹重新统计）
 
-- **探针测试**：20 个全部通过（`python -m pytest state_study/tests`）；
+记录：[`state_study/pilots/2026-10-03_validation`](../state_study/pilots/2026-10-03_validation/README.md)；结论：[validation_2026-10-03.md](validation_2026-10-03.md)。要点：
+
+- L2 事后更正探针自相矛盾（§2.7）；一字段修正后历史 4/12 → 10/12；
+- L1 延迟约束（相隔 40 步）：历史 0/24、状态无字段 0/24（原 API 轨迹）；状态的自由字段到达时写下 → 10/11 用对，没写下 → 0/13；
+- 重放：通用回看指令 0/12，改写成占用事实 0/12，决策时提醒 11/12，agent 自己钉住 12/12；
+- 短上下文下历史对更正很稳（24/24）；版本深度到 25 个版本看不出影响（18/20）；
+- 显式状态的错误信念中位持续 24 步，被拒后修好 8/78。
+
+### 5.4 不调模型的验证
+
+- **探针测试**：40 个全部通过（`python -m pytest state_study/tests`；其中 20 个是第三轮新加的规则读者测试）；
 - **PoS 离线检查**：`check_behavior_equivalence.py --self-test` 和 `check_method.py` 输出 "Passed: Raw, full PoS, both ablations, and diagnostic PoS"；28 个单元测试通过；
 - **ALFWorld 真值**：valid-unseen 134 局；重放 12 局、6 种任务类型、0 违规；clean/hot/cool 属性正确；
 - **submodule**：所有固定 commit 都用 `git ls-remote` 解析过；抽 3 个实际拉取，都检出到对应 commit；`setup_third_party.sh` 遇到未知分组时退出码 2；
@@ -321,6 +345,12 @@ python -m state_study.groundtruth.alfworld_facts --data third_party/methods/pos/
 python -m state_study.probes.build_items build --out OUT --seeds 0 1 2 --gap 60 --warmup 200 --plan explicit:raw,state
 python -m state_study.probes.build_items score --out OUT
 
+# delayed-relevance 轨迹重放和分析（只运行、只读，不复制进仓库）
+uv venv -q -p 3.11 <scratchpad>/venv-dr && <scratchpad>/venv-dr/bin/pip install -q anthropic google-genai numpy scipy pandas
+git -C third_party/references/delayed-relevance fetch --depth 1 origin runs/table1-gemini-3-flash-preview-vertex
+git -C third_party/references/delayed-relevance archive FETCH_HEAD results/ | tar -x -C <scratchpad>/drtraces
+# 具体命令见 state_study/validation/README.md
+
 # 只下载 Harbor wheel 查看注册表（不安装）
 pip download harbor==0.16.1 --no-deps --python-version 3.12 --only-binary=:all: -d harbor_pkg
 ```
@@ -346,10 +376,23 @@ pip download harbor==0.16.1 --no-deps --python-version 3.12 --only-binary=:all: 
 - [ ] LongMemEval-KU：能否从 `has_answer` 和 `answer_session_ids` 推出"哪一轮是被取代的旧值"
 - [ ] license：联系 VISTA 和 delayed-relevance 的作者
 - [ ] 每篇论文动笔前一周：重新检索撞车（关键词见 [related_work.md](related_work.md) §10）
+- [ ] 读原文：*Delivery, Not Storage*（2607.20972，最接近）、PIS（2609.01272）、PM-Bench（2607.12385）、TriggerBench（2606.23459，回顾性记忆的定义）、2609.37125；确认是否已经讨论"显式状态 vs 历史"
+- [ ] SKILL.state 原文的"静默漂移"实验：是否也有 L2 那样的一致性问题
+- [ ] 人工复核 `dr_tables.py` 里"自由字段到达时写下"的启发式判断
 
 ---
 
 ## 8. 下一步
+
+**2026-10-03 更新**：第三轮验证改变了优先级，按 [validation_2026-10-03.md](validation_2026-10-03.md) §5 执行：
+
+1. 读最接近的五篇原文（需要放行 arxiv.org 或用户提供 PDF）；
+2. 用 API 重做全部重放（Haiku 4.5 / Sonnet 5.5 / Opus 5.5，每格 n=24，约 30 美元）；
+3. 在自写仓库环境上做闭环实验，因子为更正是否一致、通知是否过时、延迟约束 / 延迟事实；
+4. 第二个领域（ALFWorld 注入延迟约束）；
+5. 用户决定是否把主线改写成"到达时绑定"。
+
+以下是第三轮之前的计划，保留备查：
 
 按主线阶段 1（[research_line.md](research_line.md) §8）：
 

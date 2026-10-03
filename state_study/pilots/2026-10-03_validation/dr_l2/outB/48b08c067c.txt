@@ -1,0 +1,4 @@
+Reasoning:
+This is an inbound_pallet event with sku=SKU-B, units=12, lot=L-6731. Step 10's correction notice revealed that shelf 0 is now empty. Current occupancy: shelf 0 empty, shelf 1 holds SKU-B, shelves 2–3 empty, shelf 4 holds SKU-A. The lowest-numbered empty shelf is 0.
+
+Action: Store({"shelf": 0, "sku": "SKU-B", "units": 12, "lot": "L-6731"})

@@ -1,0 +1,4 @@
+Reasoning: This is a facility_notice event reporting that shelf 4 is quarantined for scheduled maintenance with do_not_store=true. This event type is not listed in the actionable types (inbound_pallet, outbound_order, telemetry), so no action is required. The correct response is Wait({}).
+
+Action: Wait({})
+PIN: Shelf 4 is quarantined for scheduled maintenance (do_not_store=true until further notice). Skip shelf 4 when selecting the lowest-numbered empty shelf for future inbound pallets.

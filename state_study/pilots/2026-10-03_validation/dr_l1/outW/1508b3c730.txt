@@ -1,0 +1,6 @@
+Reasoning:
+Event type facility_notice is not covered by the standard procedure (inbound_pallet, outbound_order, telemetry). No load-bearing fields affect shelf occupancy or SKU operations. Reply Wait.
+
+PIN: Shelf 5 is quarantined for scheduled maintenance (do_not_store=true, effective immediately); all future inbound_pallets must skip shelf 5 and use the next lowest empty shelf.
+
+Action: Wait({})

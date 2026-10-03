@@ -1,0 +1,218 @@
+{
+ "b33963042b": {
+  "key": "ORIG-s4-r0",
+  "cell": "ORIG",
+  "seed": 4,
+  "rep": 0
+ },
+ "459c972646": {
+  "key": "ORIG-s4-r1",
+  "cell": "ORIG",
+  "seed": 4,
+  "rep": 1
+ },
+ "3420323f13": {
+  "key": "ORIG-s4-r2",
+  "cell": "ORIG",
+  "seed": 4,
+  "rep": 2
+ },
+ "4d11d6f405": {
+  "key": "ORIG-s4-r3",
+  "cell": "ORIG",
+  "seed": 4,
+  "rep": 3
+ },
+ "38ed5936ce": {
+  "key": "ORIG-s6-r0",
+  "cell": "ORIG",
+  "seed": 6,
+  "rep": 0
+ },
+ "f4e0dd07b9": {
+  "key": "ORIG-s6-r1",
+  "cell": "ORIG",
+  "seed": 6,
+  "rep": 1
+ },
+ "54eb8a5f53": {
+  "key": "ORIG-s6-r2",
+  "cell": "ORIG",
+  "seed": 6,
+  "rep": 2
+ },
+ "4983292d05": {
+  "key": "ORIG-s6-r3",
+  "cell": "ORIG",
+  "seed": 6,
+  "rep": 3
+ },
+ "3f3c8f97bf": {
+  "key": "ORIG-s10-r0",
+  "cell": "ORIG",
+  "seed": 10,
+  "rep": 0
+ },
+ "e36bbf3a10": {
+  "key": "ORIG-s10-r1",
+  "cell": "ORIG",
+  "seed": 10,
+  "rep": 1
+ },
+ "5bf7d1df06": {
+  "key": "ORIG-s10-r2",
+  "cell": "ORIG",
+  "seed": 10,
+  "rep": 2
+ },
+ "02c99d8f53": {
+  "key": "ORIG-s10-r3",
+  "cell": "ORIG",
+  "seed": 10,
+  "rep": 3
+ },
+ "1bc1f665a8": {
+  "key": "COH-s4-r0",
+  "cell": "COH",
+  "seed": 4,
+  "rep": 0
+ },
+ "9eba6682d4": {
+  "key": "COH-s4-r1",
+  "cell": "COH",
+  "seed": 4,
+  "rep": 1
+ },
+ "2246583a63": {
+  "key": "COH-s4-r2",
+  "cell": "COH",
+  "seed": 4,
+  "rep": 2
+ },
+ "630d7ba6c3": {
+  "key": "COH-s4-r3",
+  "cell": "COH",
+  "seed": 4,
+  "rep": 3
+ },
+ "c0e9850c37": {
+  "key": "COH-s6-r0",
+  "cell": "COH",
+  "seed": 6,
+  "rep": 0
+ },
+ "044b6c72b7": {
+  "key": "COH-s6-r1",
+  "cell": "COH",
+  "seed": 6,
+  "rep": 1
+ },
+ "023b8eb2df": {
+  "key": "COH-s6-r2",
+  "cell": "COH",
+  "seed": 6,
+  "rep": 2
+ },
+ "cf94a5481d": {
+  "key": "COH-s6-r3",
+  "cell": "COH",
+  "seed": 6,
+  "rep": 3
+ },
+ "f0a24d161d": {
+  "key": "COH-s10-r0",
+  "cell": "COH",
+  "seed": 10,
+  "rep": 0
+ },
+ "72eb66d15a": {
+  "key": "COH-s10-r1",
+  "cell": "COH",
+  "seed": 10,
+  "rep": 1
+ },
+ "05beee6fa5": {
+  "key": "COH-s10-r2",
+  "cell": "COH",
+  "seed": 10,
+  "rep": 2
+ },
+ "c560f58ff5": {
+  "key": "COH-s10-r3",
+  "cell": "COH",
+  "seed": 10,
+  "rep": 3
+ },
+ "f8db7c708a": {
+  "key": "INT-s4-r0",
+  "cell": "INT",
+  "seed": 4,
+  "rep": 0
+ },
+ "4aa9cf0041": {
+  "key": "INT-s4-r1",
+  "cell": "INT",
+  "seed": 4,
+  "rep": 1
+ },
+ "884bb4eed5": {
+  "key": "INT-s4-r2",
+  "cell": "INT",
+  "seed": 4,
+  "rep": 2
+ },
+ "1619c112e0": {
+  "key": "INT-s4-r3",
+  "cell": "INT",
+  "seed": 4,
+  "rep": 3
+ },
+ "ee691b124c": {
+  "key": "INT-s6-r0",
+  "cell": "INT",
+  "seed": 6,
+  "rep": 0
+ },
+ "94a78f0037": {
+  "key": "INT-s6-r1",
+  "cell": "INT",
+  "seed": 6,
+  "rep": 1
+ },
+ "027f16f4c3": {
+  "key": "INT-s6-r2",
+  "cell": "INT",
+  "seed": 6,
+  "rep": 2
+ },
+ "b4a16e30fc": {
+  "key": "INT-s6-r3",
+  "cell": "INT",
+  "seed": 6,
+  "rep": 3
+ },
+ "1f6eb6c190": {
+  "key": "INT-s10-r0",
+  "cell": "INT",
+  "seed": 10,
+  "rep": 0
+ },
+ "e879eadce7": {
+  "key": "INT-s10-r1",
+  "cell": "INT",
+  "seed": 10,
+  "rep": 1
+ },
+ "db9908979a": {
+  "key": "INT-s10-r2",
+  "cell": "INT",
+  "seed": 10,
+  "rep": 2
+ },
+ "f94f2bbb08": {
+  "key": "INT-s10-r3",
+  "cell": "INT",
+  "seed": 10,
+  "rep": 3
+ }
+}

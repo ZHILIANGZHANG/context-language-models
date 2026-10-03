@@ -1,0 +1,4 @@
+Reasoning & Action: Reasoning:
+This is a correction_notice event indicating that step 4's putaway was never completed and shelf 0 is now empty. Correction_notice is not listed in the procedure's actionable event types (only inbound_pallet, outbound_order, and telemetry require actions). This is informational metadata, similar to telemetry. No warehouse task is triggered.
+
+Action: Wait({})

@@ -1,0 +1,4 @@
+Reasoning:
+Inbound pallet event. Extract load-bearing fields: sku=SKU-B, units=12, lot=L-6731. Current shelf occupancy: shelf 0 holds SKU-D, shelf 1 holds SKU-B, shelf 2 is empty (shipped SKU-C in step 8), shelf 3 is empty (shipped SKU-K in step 9), shelf 4 holds SKU-A. Lowest-numbered empty shelf is 2. Store on shelf 2.
+
+Action: Store({"shelf": 2, "sku": "SKU-B", "units": 12, "lot": "L-6731"})

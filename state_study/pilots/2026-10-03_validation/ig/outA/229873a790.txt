@@ -1,0 +1,2 @@
+Correction notice: shelf 6 putaway was never completed; clearing shelf 6 from inventory state.
+{"state_patch": {"shelf_contents": {"6": null}}, "action": "Wait({})"}

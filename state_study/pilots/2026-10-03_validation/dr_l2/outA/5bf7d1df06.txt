@@ -1,0 +1,4 @@
+Reasoning:
+This correction_notice event confirms that the putaway at step 0 was never completed. The shelf is empty and stock was removed by cycle count audit. The procedure defines actions for inbound_pallet, outbound_order, and telemetry only. Since correction_notice is not listed as a type requiring action and is informational like telemetry, I respond Wait({}).
+
+Action: Wait({})

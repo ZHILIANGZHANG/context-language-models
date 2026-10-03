@@ -1,0 +1,3 @@
+Reasoning: Event type is correction_notice, a WMS status notice. The procedure specifies action only for inbound_pallet, outbound_order, and telemetry. Correction notices are informational/administrative, like telemetry, which requires no action per the procedure.
+
+Action: Wait({})

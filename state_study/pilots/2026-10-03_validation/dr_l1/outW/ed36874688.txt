@@ -1,0 +1,5 @@
+Reasoning:
+Event type is facility_notice, not an operational event requiring store/ship actions. The notice quarantines shelf 4 for maintenance starting immediately. No pallet arrives, no order needs fulfillment. The lowest-numbered empty shelf remains 1 (shelf 0 is empty per history, but shelf 4 is now restricted). Reply Wait({}).
+
+Action: Wait({})
+PIN: Shelf 4 is quarantined for maintenance (21 days estimated) and do_not_store=true; skip it when locating the lowest empty shelf for future inbound_pallet events.

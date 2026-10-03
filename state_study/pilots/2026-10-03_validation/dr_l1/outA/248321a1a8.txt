@@ -1,0 +1,4 @@
+Reasoning:
+This is an inbound_pallet event for sku=SKU-D, units=19, lot=L-6840. The STANDING NOTICE indicates shelf 4 is quarantined with do_not_store=true. Current occupancy: shelves 0–3 are filled. The lowest-numbered available empty shelf is shelf 5. Store the pallet there.
+
+Action: Store({"shelf": 5, "sku": "SKU-D", "units": 19, "lot": "L-6840"})

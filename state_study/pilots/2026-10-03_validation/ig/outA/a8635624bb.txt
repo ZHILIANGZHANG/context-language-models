@@ -1,0 +1,1 @@
+Reasoning: step 36, correction_notice correcting step 26. The putaway of SKU-M (12 units, lot L-4662) to shelf 0 was never completed and the shelf is now empty. Updating occupancy: shelves 1:SKU-K, 2:SKU-M, 3:SKU-K, 4:SKU-H, with shelf 0 now empty. This is a state correction notification requiring no warehouse action. Action: Wait({})

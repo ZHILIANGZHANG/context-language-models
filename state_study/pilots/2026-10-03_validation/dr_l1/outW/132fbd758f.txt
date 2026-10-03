@@ -1,0 +1,5 @@
+Reasoning: The facility_notice event type is not a defined operational event (inbound_pallet, outbound_order, or telemetry). It announces shelf 9 quarantined for maintenance and establishes do_not_store=true. This requires no immediate Store or Ship action, so Wait is correct. However, shelf 9 is now unavailable for storage.
+
+Action: Wait({})
+
+PIN: Shelf 9 is quarantined for scheduled maintenance (expires=none). Never store on shelf 9.

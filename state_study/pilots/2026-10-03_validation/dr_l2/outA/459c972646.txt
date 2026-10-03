@@ -1,0 +1,4 @@
+Reasoning & Action: **Reasoning:**
+Step 10, event type `correction_notice`. This event reports a post-hoc audit finding that step 0's putaway never actually completed and shelf 0 is now empty. This event type is not among the defined operative event types (inbound_pallet, outbound_order, telemetry), and correction notices carry no load-bearing fields affecting shelf occupancy decisions. Per procedure, reply with Wait({}).
+
+**Action:** Wait({})

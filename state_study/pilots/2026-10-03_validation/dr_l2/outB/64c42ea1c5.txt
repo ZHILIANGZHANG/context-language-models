@@ -1,0 +1,5 @@
+Reasoning & Action: **Reasoning:**
+This is an inbound_pallet event with sku=SKU-I, units=17, lot=L-2171. The correction notice at step 10 nullified step 4's putaway—shelf 0 is now empty. Shelf 1 holds SKU-A. The lowest-numbered empty shelf is 0. I must store this pallet on shelf 0.
+
+**Action:**
+Store({"shelf": 0, "sku": "SKU-I", "units": 17, "lot": "L-2171"})

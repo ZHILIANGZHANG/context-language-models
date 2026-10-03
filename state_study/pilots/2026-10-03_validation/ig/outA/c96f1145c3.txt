@@ -1,0 +1,2 @@
+Observation: [step 36] EVENT correction_notice | notice_id=COR-4992 | corrects_step=26 | shelf=6 | finding=putaway_never_completed | shelf_is_now=empty | stock_removed=true
+Reasoning & Action: Reasoning: step 36, correction_notice. Audit found that shelf 6 was never properly stocked in step 26. Shelf 6 is now empty. Current occupancy: shelves 0:SKU-J, 1:SKU-F, 2:SKU-L, 3:SKU-G, 4:SKU-L, 5:SKU-A, 6:empty, 7:SKU-G, 8:SKU-L, 9:SKU-B, 10:SKU-B. Correction notice requires no action. Action: Wait({})

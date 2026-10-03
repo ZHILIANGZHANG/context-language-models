@@ -1,0 +1,5 @@
+**Reasoning:**
+Event type is inbound_pallet with sku=SKU-I, units=17, lot=L-2171. Current shelf occupancy: shelf 0 holds SKU-F (stored in step 4), shelf 1 holds SKU-A (stored in step 5). The lowest-numbered empty shelf is shelf 2. Store the pallet there.
+
+**Action:**
+Store({"shelf": 2, "sku": "SKU-I", "units": 17, "lot": "L-2171"})

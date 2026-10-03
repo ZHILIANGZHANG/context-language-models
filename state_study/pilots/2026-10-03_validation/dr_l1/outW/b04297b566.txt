@@ -1,0 +1,3 @@
+Reasoning: Event type is facility_notice, not an operational event (inbound_pallet, outbound_order, or telemetry). This is a facilities status report indicating scheduled maintenance on shelf 9. It contains no load-bearing fields for inventory operations. Following the procedure: non-operational status notifications require no warehouse action.
+
+Action: Wait({})

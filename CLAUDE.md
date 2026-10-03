@@ -6,10 +6,11 @@
 
 新会话开始时按这个顺序读，就能接上全部进度：
 
-1. `docs/research_line.md`：**当前主线**。"写入时付代价，还是读取时付代价？"：误差分解、H1–H5、自适应绑定方法、分阶段计划
-2. `docs/research_log.md`：时间线、纠正过的错误、已验证事实、冒烟测试结果、环境限制和搭建命令、待核实清单、下一步
-3. `docs/algorithm_design.md`：探针、11 种条件、错误账本、真值、自适应绑定伪代码、各假设的实验方案、统计和成本协议、待实现清单
-4. 需要时再查：
+1. `docs/validation_2026-10-03.md`：**最新**。第三轮验证：上一轮的"干扰换持久"大半未通过，delayed-relevance 的事后更正探针自相矛盾，修正论点为"决定成败的是到达时的写入，不是表示方式"。主线可能要据此改写，先读这份
+2. `docs/research_line.md`：**当前主线**。"写入时付代价，还是读取时付代价？"：误差分解、H1–H5、自适应绑定方法、分阶段计划
+3. `docs/research_log.md`：时间线、纠正过的错误、已验证事实、冒烟测试结果、环境限制和搭建命令、待核实清单、下一步
+4. `docs/algorithm_design.md`：探针、11 种条件、错误账本、真值、自适应绑定伪代码、各假设的实验方案、统计和成本协议、待实现清单
+5. 需要时再查：
    - `docs/related_work.md`：相关工作全集，带核实标记；
    - `docs/clm_notes.md`：CLM 代码和论文细节；
    - `docs/idea_bank.md`：所有考虑过的 idea 和放弃原因；
@@ -22,10 +23,12 @@
 - **已实现**：
   - `state_study/probes/`：仓库探针、11 种条件、出题和打分、错误账本；
   - `state_study/groundtruth/alfworld_facts.py`：ALFWorld 逐步真值；
-  - `state_study/tests/`：20 个测试；
-  - 两轮冒烟测试，在 `state_study/pilots/`。
+  - `state_study/validation/`：第三轮验证的自写探针，以及 delayed-relevance 轨迹的重放和分析（运行时导入，不复制）；
+  - `state_study/tests/`：40 个测试；
+  - 三轮冒烟测试，在 `state_study/pilots/`。
 - **卡点**：没有模型 API 密钥；多数模型服务域名和 arxiv、HF 被网络策略拦截。所以正式实验都没跑。
-- **下一步**：阶段 1。先做不需要 API 的部分：H1 旋钮、`control` 场景、新条件、API 调用器、噪声底脚本。见 research_log §8。
+- **第三轮验证（2026-10-03）**：结论见 `docs/validation_2026-10-03.md`。主线是否改写成"到达时绑定"，待用户决定。
+- **下一步**：见 `docs/validation_2026-10-03.md` §5：读最接近的五篇原文 → 用 API 重做全部重放 → 闭环实验 → 第二个领域。
 
 ## 仓库地图
 
@@ -38,6 +41,7 @@ state_study/                我们自己的代码
   groundtruth/              alfworld_facts.py
   tests/                    test_warehouse_probe.py
   pilots/                   冒烟测试记录（README、key、responses、blind_map、scores）
+  validation/               第三轮验证：自写探针，以及 delayed-relevance 轨迹的重放和分析（只运行、不复制）
 docs/                       全部研究文档
 ```
 

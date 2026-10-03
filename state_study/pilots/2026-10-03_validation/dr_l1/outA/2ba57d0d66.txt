@@ -1,0 +1,4 @@
+Reasoning & Action: Reasoning:
+This is an inbound_pallet event with sku=SKU-J, units=2, lot=L-4632. Current warehouse state: shelf 0=SKU-E, shelf 1=SKU-E, shelf 2=SKU-C, shelf 3=SKU-B, shelf 4=SKU-A, shelf 5=SKU-C, shelf 6=SKU-E, shelf 7=SKU-H, shelf 8=SKU-K. The lowest-numbered empty shelf is 9. Store this pallet there.
+
+Action: Store({"shelf": 9, "sku": "SKU-J", "units": 2, "lot": "L-4632"})

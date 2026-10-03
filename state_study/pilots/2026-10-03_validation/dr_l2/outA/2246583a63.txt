@@ -1,0 +1,5 @@
+**Reasoning:**
+Event type is correction_notice. The procedure specifies three event types: inbound_pallet, outbound_order, and telemetry. Correction notices are metadata events not listed in the procedure. Per the general rule that metadata fields do not affect actions, and no action is specified for unknown event types, the correct response is Wait({}).
+
+**Action:**
+Wait({})

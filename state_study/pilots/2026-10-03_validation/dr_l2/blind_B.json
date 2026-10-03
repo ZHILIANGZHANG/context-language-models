@@ -1,0 +1,254 @@
+{
+ "48b08c067c": {
+  "key": "COH-s6-r2",
+  "cell": "COH",
+  "seed": 6,
+  "rep": 2,
+  "a_id": "023b8eb2df"
+ },
+ "36ca919d30": {
+  "key": "INT-s6-r2",
+  "cell": "INT",
+  "seed": 6,
+  "rep": 2,
+  "a_id": "027f16f4c3"
+ },
+ "4e7764bc64": {
+  "key": "ORIG-s10-r3",
+  "cell": "ORIG",
+  "seed": 10,
+  "rep": 3,
+  "a_id": "02c99d8f53"
+ },
+ "a8dfa22ef7": {
+  "key": "COH-s6-r1",
+  "cell": "COH",
+  "seed": 6,
+  "rep": 1,
+  "a_id": "044b6c72b7"
+ },
+ "01e040cf1b": {
+  "key": "COH-s10-r2",
+  "cell": "COH",
+  "seed": 10,
+  "rep": 2,
+  "a_id": "05beee6fa5"
+ },
+ "e88d13d78b": {
+  "key": "INT-s4-r3",
+  "cell": "INT",
+  "seed": 4,
+  "rep": 3,
+  "a_id": "1619c112e0"
+ },
+ "35d5d6f79d": {
+  "key": "COH-s4-r0",
+  "cell": "COH",
+  "seed": 4,
+  "rep": 0,
+  "a_id": "1bc1f665a8"
+ },
+ "98e2ece3df": {
+  "key": "INT-s10-r0",
+  "cell": "INT",
+  "seed": 10,
+  "rep": 0,
+  "a_id": "1f6eb6c190"
+ },
+ "7a93ffe7d7": {
+  "key": "COH-s4-r2",
+  "cell": "COH",
+  "seed": 4,
+  "rep": 2,
+  "a_id": "2246583a63"
+ },
+ "3b67e83880": {
+  "key": "ORIG-s4-r2",
+  "cell": "ORIG",
+  "seed": 4,
+  "rep": 2,
+  "a_id": "3420323f13"
+ },
+ "845f69e63a": {
+  "key": "ORIG-s6-r0",
+  "cell": "ORIG",
+  "seed": 6,
+  "rep": 0,
+  "a_id": "38ed5936ce"
+ },
+ "4599e14f63": {
+  "key": "ORIG-s10-r0",
+  "cell": "ORIG",
+  "seed": 10,
+  "rep": 0,
+  "a_id": "3f3c8f97bf"
+ },
+ "e1d16217be": {
+  "key": "ORIG-s4-r1",
+  "cell": "ORIG",
+  "seed": 4,
+  "rep": 1,
+  "a_id": "459c972646"
+ },
+ "12452818b4": {
+  "key": "ORIG-s6-r3",
+  "cell": "ORIG",
+  "seed": 6,
+  "rep": 3,
+  "a_id": "4983292d05"
+ },
+ "b11c98b292": {
+  "key": "INT-s4-r1",
+  "cell": "INT",
+  "seed": 4,
+  "rep": 1,
+  "a_id": "4aa9cf0041"
+ },
+ "78458d6ddb": {
+  "key": "ORIG-s4-r3",
+  "cell": "ORIG",
+  "seed": 4,
+  "rep": 3,
+  "a_id": "4d11d6f405"
+ },
+ "1ac4e5cb06": {
+  "key": "ORIG-s6-r2",
+  "cell": "ORIG",
+  "seed": 6,
+  "rep": 2,
+  "a_id": "54eb8a5f53"
+ },
+ "9a05289819": {
+  "key": "ORIG-s10-r2",
+  "cell": "ORIG",
+  "seed": 10,
+  "rep": 2,
+  "a_id": "5bf7d1df06"
+ },
+ "64c42ea1c5": {
+  "key": "COH-s4-r3",
+  "cell": "COH",
+  "seed": 4,
+  "rep": 3,
+  "a_id": "630d7ba6c3"
+ },
+ "a4c455d757": {
+  "key": "COH-s10-r1",
+  "cell": "COH",
+  "seed": 10,
+  "rep": 1,
+  "a_id": "72eb66d15a"
+ },
+ "6b536c5db0": {
+  "key": "INT-s4-r2",
+  "cell": "INT",
+  "seed": 4,
+  "rep": 2,
+  "a_id": "884bb4eed5"
+ },
+ "1435b0a32d": {
+  "key": "INT-s6-r1",
+  "cell": "INT",
+  "seed": 6,
+  "rep": 1,
+  "a_id": "94a78f0037"
+ },
+ "5b4ee12811": {
+  "key": "COH-s4-r1",
+  "cell": "COH",
+  "seed": 4,
+  "rep": 1,
+  "a_id": "9eba6682d4"
+ },
+ "041a350b76": {
+  "key": "ORIG-s4-r0",
+  "cell": "ORIG",
+  "seed": 4,
+  "rep": 0,
+  "a_id": "b33963042b"
+ },
+ "b4c7c11634": {
+  "key": "INT-s6-r3",
+  "cell": "INT",
+  "seed": 6,
+  "rep": 3,
+  "a_id": "b4a16e30fc"
+ },
+ "0d87cb8620": {
+  "key": "COH-s6-r0",
+  "cell": "COH",
+  "seed": 6,
+  "rep": 0,
+  "a_id": "c0e9850c37"
+ },
+ "e2737585e5": {
+  "key": "COH-s10-r3",
+  "cell": "COH",
+  "seed": 10,
+  "rep": 3,
+  "a_id": "c560f58ff5"
+ },
+ "66932e02bb": {
+  "key": "COH-s6-r3",
+  "cell": "COH",
+  "seed": 6,
+  "rep": 3,
+  "a_id": "cf94a5481d"
+ },
+ "c331ae0cd2": {
+  "key": "INT-s10-r2",
+  "cell": "INT",
+  "seed": 10,
+  "rep": 2,
+  "a_id": "db9908979a"
+ },
+ "ed8f295815": {
+  "key": "ORIG-s10-r1",
+  "cell": "ORIG",
+  "seed": 10,
+  "rep": 1,
+  "a_id": "e36bbf3a10"
+ },
+ "b56b43b427": {
+  "key": "INT-s10-r1",
+  "cell": "INT",
+  "seed": 10,
+  "rep": 1,
+  "a_id": "e879eadce7"
+ },
+ "ab222c42ac": {
+  "key": "INT-s6-r0",
+  "cell": "INT",
+  "seed": 6,
+  "rep": 0,
+  "a_id": "ee691b124c"
+ },
+ "a0223900bd": {
+  "key": "COH-s10-r0",
+  "cell": "COH",
+  "seed": 10,
+  "rep": 0,
+  "a_id": "f0a24d161d"
+ },
+ "8393f27355": {
+  "key": "ORIG-s6-r1",
+  "cell": "ORIG",
+  "seed": 6,
+  "rep": 1,
+  "a_id": "f4e0dd07b9"
+ },
+ "4cfa299d07": {
+  "key": "INT-s4-r0",
+  "cell": "INT",
+  "seed": 4,
+  "rep": 0,
+  "a_id": "f8db7c708a"
+ },
+ "ade36ada74": {
+  "key": "INT-s10-r3",
+  "cell": "INT",
+  "seed": 10,
+  "rep": 3,
+  "a_id": "f94f2bbb08"
+ }
+}

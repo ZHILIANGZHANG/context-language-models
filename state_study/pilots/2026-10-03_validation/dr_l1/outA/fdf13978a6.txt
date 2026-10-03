@@ -1,0 +1,4 @@
+Reasoning:
+This is an inbound_pallet event for sku=SKU-D, units=20, lot=L-5200. Current occupancy: shelves 0-4 hold stock (SKU-J, SKU-L, SKU-J, SKU-D, SKU-G). Shelf 5 is the lowest empty shelf. Store on shelf 5.
+
+Action: Store({"shelf": 5, "sku": "SKU-D", "units": 20, "lot": "L-5200"})

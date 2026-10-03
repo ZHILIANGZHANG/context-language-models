@@ -1,0 +1,4 @@
+**Reasoning:**
+Step 10 is a correction_notice reporting that step 0's putaway never completed and stock was removed from shelf 0. The procedure specifies actions only for inbound_pallet, outbound_order, and telemetry events. Correction_notice is not a transaction requiring action—it is informational metadata. Reply Wait({}).
+
+**Action:** Wait({})

@@ -1,0 +1,10 @@
+== haiku
+   raw_f0         4/4 correct   errors: -
+   raw_f1         2/2 correct   errors: -
+   raw_f3         5/5 correct   errors: -
+   raw_f6         3/5 correct   errors: {'superseded_low': 1, 'most_recent_empty': 1}
+   raw_f12        4/4 correct   errors: -
+   tomb_f12       4/4 correct   errors: -
+   state_f12      4/4 correct   errors: -
+   raw_f0_noirr   3/3 correct   errors: -
+   raw_f3_tele2x  5/5 correct   errors: -

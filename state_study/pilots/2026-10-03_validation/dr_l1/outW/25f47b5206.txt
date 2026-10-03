@@ -1,0 +1,4 @@
+Reasoning: This is a facility_notice event reporting that shelf 5 is quarantined for scheduled maintenance with do_not_store=true. Like telemetry, facility notices are informational status updates that do not require storage, shipping, or movement actions. Per the procedure, I must reply Wait({}).
+PIN: Shelf 5 is quarantined for scheduled maintenance (effective immediately, expires=none); do not store pallets on shelf 5.
+
+Action: Wait({})
