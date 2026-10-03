@@ -2,6 +2,8 @@
 
 本文整理 CLM 以及 2026 年这一波"用状态取代历史"的相关工作：它们在研究什么、彼此有什么区别、代码和基准是否可用。
 
+> 这是简明版。完整的相关工作目录（全部论文、代码、license、关键数字、和主线的区别、基准全表、Harbor 注册表、撞车监控）见 [related_work.md](related_work.md)。当前主线见 [research_line.md](research_line.md)。
+
 **核实说明**：本环境的网络策略拦截了 arxiv.org 和 huggingface.co，所以论文正文都没有读到。下面每条信息都标了来源：
 
 - **[R]**：从 GitHub 仓库实际拉取并读过（README、代码或 LICENSE）

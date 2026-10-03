@@ -4,7 +4,8 @@
 *Where Agents Keep the Truth: Structure, Errors, and Binding Time in Long-Horizon Agent Context*
 
 - 版本：v0.1（2026-10-03）
-- 配套文档：[文献地图](literature_map.md)、[第三方代码与基准清单](../third_party/README.md)
+- **注意：本提案已被主线吸收。** 2026-10-03 确定的主线是 [research_line.md](research_line.md)（"写入时付代价，还是读取时付代价？"），I1–I4 都并入其中。本文仍是 I1–I4 各自实验设计的详细出处；新的技术设计以 [algorithm_design.md](algorithm_design.md) 为准。
+- 配套文档：[文献地图](literature_map.md)、[相关工作全集](related_work.md)、[研究日志](research_log.md)、[第三方代码与基准清单](../third_party/README.md)
 - 状态：提案阶段。下文所有"已有结果"都标了来源。其中标 [S] 的数字只核对到搜索摘要，正式写作前必须对照原文（见 §12）。
 
 ---
