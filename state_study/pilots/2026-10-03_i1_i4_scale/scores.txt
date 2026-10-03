@@ -1,0 +1,14 @@
+haiku delayed/recall_alt             2/3 correct   errors: missed_lower=1
+haiku delayed/recall_cand            3/3 correct   errors: -
+haiku explicit/raw                   2/3 correct   errors: occupied=1
+haiku explicit/recall_alt            3/3 correct   errors: -
+haiku explicit/recall_cand           0/3 correct   errors: stale=3
+haiku explicit/self_schema           3/3 correct   errors: -
+haiku explicit/state                 3/3 correct   errors: -
+haiku explicit/state_stale           0/3 correct   errors: stale=3
+opus explicit/raw                    3/3 correct   errors: -
+opus explicit/self_schema            3/3 correct   errors: -
+opus explicit/state                  3/3 correct   errors: -
+sonnet explicit/raw                  3/3 correct   errors: -
+sonnet explicit/self_schema          3/3 correct   errors: -
+sonnet explicit/state                3/3 correct   errors: -

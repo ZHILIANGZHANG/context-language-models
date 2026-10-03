@@ -36,7 +36,11 @@ def _solve_from_text(prompt: str) -> int:
     if m and "HISTORY LOG" not in prompt:
         st = json.loads(m.group(1))
         q = set(st.get("quarantined", []))
-        return next(int(k[1:]) for k, v in st["shelves"].items() if v == "EMPTY" and k not in q)
+        empty = {k for k, v in st["shelves"].items() if v == "EMPTY"}
+        for shelf, status, quar in re.findall(r"- (S\d+): status=(EMPTY|OCCUPIED).*?quarantined=(YES|NO)", prompt):
+            (empty.add if status == "EMPTY" else empty.discard)(shelf)
+            (q.add if quar == "YES" else q.discard)(shelf)
+        return min(int(k[1:]) for k in empty if k not in q)
     occupied, quarantined, void_steps = set(), set(), set()
     body = prompt.split("=== CONTEXT ===")[1].split("=== END CONTEXT ===")[0]
     for line in body.splitlines():
@@ -98,8 +102,12 @@ def test_text_is_sufficient(kind):
             if not applicable(sc, cond):
                 continue
             got = _solve_from_text(render(sc, cond))
-            if cond == "state_noq":
-                assert got == sc.deaf_answer  # the schema cannot represent the quarantine
+            # Insufficient by design: the stale state, the schema without a quarantine field,
+            # and recalling only the intended shelf when the fix is a lower, freed shelf.
+            insufficient = cond in ("state_noq", "state_stale") or (
+                cond == "recall_cand" and kind in ("explicit", "implicit"))
+            if insufficient:
+                assert got == sc.deaf_answer, (kind, seed, cond)
             else:
                 assert got == sc.answer, (kind, seed, cond)
 
@@ -118,3 +126,12 @@ def test_condition_shapes():
     assert '"quarantined"' in render(generate("delayed", seed=1), "state")
     for cond in CONDITIONS:
         assert f'"shelf": "S{sc.answer}"' not in render(sc, cond)
+
+
+def test_recall_contents():
+    d = generate("delayed", seed=2, gap=30)
+    assert "quarantined=YES" in render(d, "recall_cand")
+    e = generate("explicit", seed=2, gap=30)
+    assert "audit correction" not in render(e, "recall_cand")
+    assert "audit correction" in render(e, "recall_alt")
+    assert "<state>" in render(e, "self_schema")

@@ -56,9 +56,12 @@ python -m pytest state_study/tests
 
 - [x] 文献与代码调研，第三方仓库以固定版本接入
 - [x] 研究提案 v0.1
-- [x] I3 探针环境与渲染条件（`state_study/probes`，19 个测试通过）
-- [x] I3 冒烟测试：Haiku 子 agent，36 题，管线端到端跑通（[`state_study/pilots/2026-10-03_haiku_smoke`](state_study/pilots/2026-10-03_haiku_smoke/README.md)）
-- [ ] I3 正式实验：需要模型 API 密钥（见提案 §6.7）
+- [x] 仓库探针与全部条件（`state_study/probes`，20 个测试通过），覆盖 I1 / I3 / I4
+- [x] I3 冒烟测试：Haiku，36 题（[`pilots/2026-10-03_haiku_smoke`](state_study/pilots/2026-10-03_haiku_smoke/README.md)）
+- [x] I1 + I4 冒烟测试：Haiku / Sonnet / Opus，36 题（[`pilots/2026-10-03_i1_i4_scale`](state_study/pilots/2026-10-03_i1_i4_scale/README.md)）
+- [x] I2：ALFWorld 逐步真值抽取（`state_study/groundtruth/alfworld_facts.py`），6 种任务类型、0 违规；探针上的错误账本
+- [x] PoS 循环在云端装好，自带离线检查通过
+- [ ] 四个 idea 的正式实验：需要模型 API 密钥（各 idea 的验证状态见提案 §0.1）
 - [ ] W1：在选定模型上复现 PoS 在 ALFWorld 和 LOCA 8K 上的结果（检查点 G1）
 - [ ] W2：实现各对照组和真值抽取器
 
