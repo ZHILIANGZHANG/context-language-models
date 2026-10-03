@@ -1,0 +1,24 @@
+=== OBS=4000 T=80
+strategy   calls   meanL    maxL   PFLOPs    API$ CLMlocal$  naive$   ratios vs summary (FLOPs / API / local / naive)
+full          80  171850  341700    42.39   5.663     1.385  41.604   1.90 / 2.40 / 0.77 / 8.81
+summary       95   14117   27800    22.25   2.356     1.790   4.721   1.00 / 1.00 / 1.00 / 1.00
+clm_batch    111   12525   16400    22.59   2.496     1.908   4.939   1.02 / 1.06 / 1.07 / 1.05
+clm_eager     83   11869   17100    20.30   1.965     1.509   3.392   0.91 / 0.83 / 0.84 / 0.72
+=== OBS=8000 T=80
+strategy   calls   meanL    maxL   PFLOPs    API$ CLMlocal$  naive$   ratios vs summary (FLOPs / API / local / naive)
+full          80  329850  657700   121.36  10.545     2.333  79.524   2.91 / 2.74 / 0.77 / 13.37
+summary      106   15737   28400    41.66   3.849     3.035   5.949   1.00 / 1.00 / 1.00 / 1.00
+clm_batch    158   11719   11800    48.18   5.577     4.673   7.904   1.16 / 1.45 / 1.54 / 1.33
+clm_eager     98   12432   13150    38.89   3.578     2.900   4.474   0.93 / 0.93 / 0.96 / 0.75
+=== OBS=4000 T=200
+strategy   calls   meanL    maxL   PFLOPs    API$ CLMlocal$  naive$   ratios vs summary (FLOPs / API / local / naive)
+full         200  429850  857700   199.47  29.650     3.473 258.810   3.56 / 4.98 / 0.77 / 21.65
+summary      239   14197   27800    56.10   5.956     4.526  11.957   1.00 / 1.00 / 1.00 / 1.00
+clm_batch    279   12618   16400    57.13   6.351     4.864  12.553   1.02 / 1.07 / 1.07 / 1.05
+clm_eager    209   12277   17100    51.33   5.003     3.828   8.827   0.91 / 0.84 / 0.85 / 0.74
+=== OBS=1500 T=200
+strategy   calls   meanL    maxL   PFLOPs    API$ CLMlocal$  naive$   ratios vs summary (FLOPs / API / local / naive)
+full         200  181100  360200    50.25  13.009     1.981 109.560   1.98 / 3.69 / 0.83 / 10.05
+summary      215   14991   27200    25.37   3.525     2.386  10.907   1.00 / 1.00 / 1.00 / 1.00
+clm_batch    228   13847   19700    27.67   3.655     2.509  10.658   1.09 / 1.04 / 1.05 / 0.98
+clm_eager    205   12411   19700    24.74   3.159     2.217   8.660   0.98 / 0.90 / 0.93 / 0.79
