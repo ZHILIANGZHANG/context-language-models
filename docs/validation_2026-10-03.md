@@ -11,6 +11,7 @@
 - 代码：`state_study/validation/`
 - 记录：`state_study/pilots/2026-10-03_validation/`
 - 复现命令：`state_study/validation/README.md`
+- **后续（2026-10-04）**：本报告的结论放进"三种写入策略"框架后，推出了以 CLM 为中心的三个切入口，见 [clm_entry_points.md](clm_entry_points.md)
 
 ---
 

@@ -1,4 +1,4 @@
-# 相关工作全集（截至 2026-10-03）
+# 相关工作全集（截至 2026-10-04）
 
 本文档把这个课题调研过的所有工作汇总在一处：做法、代码和 license、关键数字、和我们的关系。要看简明版的谱系和趋势，读 [literature_map.md](literature_map.md)；要看"我们和谁最近、怎么区分"，读本文 §1 和 [research_line.md](research_line.md) §7。
 
@@ -12,6 +12,8 @@
 | **[N]** | 第三方基于论文全文写的读书笔记（GitHub 上的笔记） |
 | **[S]** | 只看过搜索引擎摘要，**引用前必须核对原文** |
 | **[T]** | 只看到标题 |
+
+§11 是 2026-10-03 CLM 切入口调研新增的工作，另加一列"复核"：✓ 表示 2026-10-04 用网络搜索重新确认过论文存在、关键数字与摘要一致；"存在"表示只确认了论文存在。复核过的仍然是 [S]，引用前照样要读原文。
 
 日期：搜索结果里有具体日期的写到日；否则按 arXiv 编号推算到月（例如 2608 = 2026 年 8 月）。
 
@@ -34,7 +36,7 @@
 | The Long-Horizon Task Mirage? 诊断 agent 系统在哪、为什么崩 | 2604.11978 | 长程任务的失败诊断 | 诊断框架的近邻，需要读原文确认是否涉及状态与历史 | [T] |
 | STALE：Can LLM Agents Know When Their Memories Are No Longer Valid? | 2605.06527 | 记忆失效的识别 | 跨会话记忆系统；我们在单回合上下文里做因果对照 | [S] |
 | Temporal Validity in Retrieval Memory | 2606.26511 | 一个确定性的"取代层"，消除检索记忆里的过时事实错误 | 检索记忆的工程方案；对应我们的作废标记，但不在上下文内 | [T] |
-| When Memory Updates but Behavior Does Not | 2608.01619 | 修复个性化回复里隐含的过时依赖 | 对应"用上失败" | [T] |
+| When Memory Updates but Behavior Does Not（StateAuditor） | 2608.01619 | 修复个性化回复里隐含的过时依赖；状态解析 91%、行为适应只有 32%（数字来自工作流的搜索，未复核） | 对应"用上失败"；也是 E2 的相邻工作（§11.2） | [S]（2026-10-04 确认存在） |
 | The Memory Trust Gap：持久记忆 agent 中依赖能力的失败 | 2609.01852 | 失败随模型能力变化 | 和 H5（规模的不对称）相关，需读原文 | [T] |
 
 ---
@@ -274,6 +276,8 @@ Qwen3.7-Plus：
 | Chroma Context Rot | 博客 | 性能在每个长度增量上都在下降，不只是快满时 | [S] |
 | Your LLM Agents are Temporally Blind | 2510.23853 | 工具使用决策与人类时间感知不一致 | [T] |
 
+2026-10-04 补充：*Feedback That Backfires*（2608.23651）、*The Self-Correction Illusion*（2606.05976）、*When Can Agents Forget Their Reasoning?*（2609.29875）、*Self-Cleaning and Captured Anyway*（2609.25052）见 §11.2；*Why Retrying Fails* 已复核，补充数字也在 §11.2。
+
 ---
 
 ## 7. 工业界与实践
@@ -378,5 +382,69 @@ GitHub 上的 Harbor adapter 列表里没有 MemoryAgentBench、LongMemEval-V2�
 - write error vs read error、encoding vs decoding error、reconstruction error agent
 - event count vs context length、state tracking scaling
 - tenure crossover、memory architecture ranking
+- （2026-10-04 加，CLM 切入口）cascade repair、provenance invalidation、revocation enforcement、derived conclusions stale plan
+- （同上）self-conditioning、failed attempt contamination、role relabeling、surface form of failed call、reasoning deletion
+- （同上）constraint survival under compaction、governance decay、constraint pinning、cue-anchored memory、self-editing context
 
-**重点盯的作者和项目**：CLM 作者（`research_ledger`、`ctx_archive` 这些被删掉的开关）、delayed-relevance（可能很快挂 arXiv）、Scroll 的评测仓库 AgentZero（开源后可直接比）、PoS、Supersede、Ground Truth First。
+**重点盯的作者和项目**：CLM 作者（`research_ledger`、`ctx_archive`、`ctx_metadata`、`shadow_progress_guard` 这些被删掉的开关）、delayed-relevance（可能很快挂 arXiv）、Scroll 的评测仓库 AgentZero（开源后可直接比）、PoS、Supersede、Ground Truth First。
+
+---
+
+## 11. CLM 切入口调研新增的工作（2026-10-03 工作流搜索，2026-10-04 复核）
+
+来源是调研工作流里撞车检索子 agent 的网络搜索（[clm_entry_points.md](clm_entry_points.md) §3）。全部只有搜索摘要。"复核"一列见本文开头的说明；没有标 ✓ 的数字都来自子 agent 的搜索结论，引用前要再核。
+
+### 11.1 和 E1（迟到的按属性更正）、原 C2（派生结论）相关
+
+| 工作 | 编号 | 要点 | 和切入口的关系 | 标记 | 复核 |
+|---|---|---|---|---|---|
+| MemoRepair: Barrier-First Cascade Repair in Agentic Memory | 2605.07242 | 提出"级联更新问题"：源被删除、更正或失效后，派生出的摘要、缓存、技能、工具流程仍然可见。先撤下受影响的派生物，再重建。ToolBench、MemoryArena 上，失效记忆暴露率从 69.8–94.3% 降到 0%，修复成本从 1.00 降到 0.57–0.76 | E1 在"有来源记录"时的上界 | [S] | ✓ |
+| From Faulty Memories to Corrected Actions: Dependency-Guided Rollback Repair | 2608.10502 | 由运行时来源建类型化的"记忆→动作"图，追踪被污染、过时或误归属记录的后代，保留有独立支撑的条目，停用其余并选择性重放；恢复率 85.3% vs 77.3% | E1 撞车：作废 + 重算 | [S] | 存在 |
+| Correct Is Not Governed: Provenance Integrity in Agentic Workflows（Matrix） | 2608.12761 | 确定性的因果状态层，记录权限和事实依赖，选择性作废后来的变更使之过时的工作 | E1 撞车：工程化来源层 | [S] | — |
+| Revoked but Still Authoritative: Revocation Enforcement in Agent-Memory Systems | 2609.08258 | 测 Graphiti/Zep、mem0、langmem、cognee：默认都不在检索时执行撤销，被撤销的事实排在替代它的事实前面，导致 agent 做不安全动作；提出检索时的守卫；代码 VulcanLab/Memory-Rebirth-Attack | 支持"记忆系统做不好撤销" | [S] | ✓（"43.1% 的试验做了不安全动作"未复核） |
+| MemSecBench（Write-Execute-Forget） | 2607.27080 | 记忆投毒持久性与选择性修复：310 个案例 × 24 种 harness × 记忆后端 × 模型配置，选择性修复成功 56.1% | E1 相邻（安全框架） | [S] | — |
+| Temporal Validity in Retrieval Memory on Real Software Histories | 2608.20685 | 2606.26511 的取代层用在真实软件历史上 | 只对应 E1-c 的值替换格 | [S] | — |
+| Slipstream: Trajectory-Grounded Compaction Validation | 2605.08580 | 用后续推理检验压缩摘要是否保住了需要的事实和约束；不考虑"更正到了才变得重要"的事实 | E1-h 相邻 | [S] | — |
+| In-Place Feedback | 2510.00777 | 专家原地修改模型上一版回答、剪掉依赖段，比追加式多轮反馈更可靠地把更正传播到后续推理，token 也更少 | E1、E2 相邻；人来改、单轮 | [S] | — |
+| TEPA: Revoking Stale Memories for Conflict-Robust Language Agents | 2608.07429 | 观察存为带键的先例，新证据在同一个键下冲突时撤销旧先例、保留审计历史。50 个种子的受控漂移里，完全反转时只追加和后写覆盖都是 0.210，不用记忆 0.309，TEPA 0.950；真实文件执行下同样模式（0.203 / 0.298 / 0.950） | E1、E3：只追加记忆在反转时比不用还差 | [S] | ✓ |
+| Fresh Memory, Stale Plans: Dependency-Scoped Validation（PlanFence） | 2609.03340 | 状态新鲜不等于授权这个动作的计划仍然有效。30 个带计划后修订的真实工作流里，只看新鲜度的执行者每次都执行了过时计划，PlanFence 全部完成且没有无效动作 | 原 C2 的核心现象已被占 | [S] | ✓ |
+| STALE + CUPMem | 2605.06527 | Type I（共指）与 Type II（传播）两类失效；CUPMem 在写入时构造修订候选集；最好的模型总体 55.2% | 原 C2 撞车 | [S] | — |
+| IMPACT-CYCLE、NeuSymMS | 2606.17591、2605.17596 | 声明带依赖图，更正只传播到结构上依赖的声明；NeuSymMS 明确把 Doyle 的 TMS 搬到 LLM 记忆 | 原 C2 的 TMS 说法已被占 | [S] | — |
+| 标注而不覆盖的工程实践（MutMem、Zep 的作废、ESAA 事件溯源） | 2608.02843 等 | 把旧事实标成无效而不是覆盖，让错误或被投毒的更新留有证据 | E1-g 的"标注 vs 覆盖" | [S] | — |
+| RippleEdits、MQuAKE 等 | 2307.12976 等 | 知识编辑的涟漪效应：派生的多跳事实没有随之更新 | 原 C2 的早期先例 | [S] | — |
+| 从业者 issue（例如 openclaw #149868） | GitHub | 压缩"保留结论、丢掉来源"，之后无法质疑或作废 | E1 的轶事证据 | [S] | — |
+
+### 11.2 和 E2（被拒之后的上下文手术）相关
+
+| 工作 | 编号 | 要点 | 和切入口的关系 | 标记 | 复核 |
+|---|---|---|---|---|---|
+| Feedback That Backfires: Why Small Language Model Agents Repeat the Call They Just Watched Fail | 2608.23651 | 6 个 135M–1.7B 的指令模型、4 个家族、两个环境（模拟工具调用、MBPP 修复）。看过失败之后，重复失败调用的概率从 0.06 升到 0.54；失败调用的原文造成 83% 的伤害，"标记为失败"的语义贡献小且符号不稳定；把原文换成运行时生成的描述，去掉 76% 的伤害 | E2 的"表面形式"成分；只有小模型 | [S] | ✓ |
+| The Self-Correction Illusion: Role Relabeling Gates Explicit Error Flagging | 2606.05976 | 错误内容逐字不变，只改它所在的角色（thought、user、tool、system memory）。从 thought 改成外部角色，明确纠错率提高 23–93 个百分点，12 个设置里 10 个显著 | E2 的"作者身份"成分；单轮 | [S] | ✓ |
+| Why Retrying Fails: Context Contamination in LLM Agent Pipelines | 2605.08563 | CCRM 模型：失败后在被污染的上下文里重试，单步错误率从 ε0 升到 ε1。SWE-bench Verified 上，IID 模型把 pass@3 高估 17.4 个百分点（98.6% vs 81.2%），CCRM 拟合误差 < 0.001，ε1/ε0 = 7.1 | E2 的"清空重来"一派；假设任务可重置 | [S] | ✓（§6.4 已收录） |
+| When Can Agents Forget Their Reasoning? ICLR for Long-Horizon Agent Context Compression | 2609.29875 | 2026-09-24 提交。不训练、在线删除历史推理块（按冻结代理模型的熵排序），保留动作、工具调用和观察。260 个 WorkBuddyBench 任务上平均奖励 0.699 → 0.718，输入、输出、缓存读取 token 分别减少 25.5%、14.4%、33.3%。结论：任务相关的派生状态可靠地外化到代码、文件、工具输出或环境反馈之后，历史推理才可替换 | E2 的新撞车（DELETE-SPAN），出发点是效率 | [S] | ✓ |
+| Self-Cleaning and Captured Anyway: One Measured Primitive for Error in a Store an Agent Writes to Itself | 2609.25052 | agent 把自己的结论写进存储再取回，形成污染闭环；只追加时可达状态有硬上界（(n−1)/n），结果是两个边界之一而不是逐渐衰减；一个无拟合参数的复制函数 γ(φ) | E2：自写存储不会自己变干净 | [S] | 存在（"前沿规模 capture 0.850、claude-sonnet-4.5 在 20/20 个种子上被捕获"未复核） |
+| PivoARL、SkillPivot、SymTrace | 2607.03702、2609.29154、2608.25920 | 定位关键轮或偏离轮，保留正确前缀，只重生成后缀；需要可重置或可重放的环境 | E2 的前缀复用替代方案 | [S] | — |
+
+### 11.3 和 E3（没有线索、会被撤销的前瞻约束）、原 C5/C6 相关
+
+| 工作 | 编号 | 要点 | 和切入口的关系 | 标记 | 复核 |
+|---|---|---|---|---|---|
+| Delivery, Not Storage: Cue-Anchored Working Memory as a Harness Property for Coding Agents | 2607.20972 | （§1 已收录，这里补充复核到的细节）作者 Swapnanil Saha，2026-07-23。情境绑定的操作性事实必须是 harness 的属性，不能交给 agent 选择；记忆带触发条件 {path, symbol, semantic, event, temporal}，由 harness 确定性求值。预先灌好记忆库时，114 轮里主动记忆操作为 0；确定性注入在每个配备注入的回合都送达，误触发为 0；39% 的会话内重读是在重取压缩前已经付过费的内容 | E3 最接近的工作，结论相反 | [S] | ✓ |
+| The Compaction Cliff in Long-Running AI Agent Memory | 2608.22752 | 安全规则和情节日志争同一份 token，超预算时被同样速度地摘要，但只有规则需要原文才能执行。Claude Code /compact（Sonnet 4.6）一轮后规则存活 53%，五轮后 10%。按类型处理的 TypeCompact 等，比最强的单次 LLM 压缩器多保留 2–4 倍，五轮 96% 召回 | E3 的存活曲线部分已被占；"Triage"命名已被占 | [S] | ✓ |
+| Lost in Compaction: Evaluating Side-Constraint Loss under Context Compaction | 2608.11242 | （§2.2 已收录）COMPINT 评测；压缩器平均只保留 17% 的会话约束，多数比不压缩还差；外挂约束抽取器 >90% | E1、E3 的基线失败机制 | [S] | ✓ |
+| Governance Decay: How Context Compaction Silently Erases Safety Constraints | 2606.22528 | 1,323 个回合：违规率从完整上下文的 0% 升到压缩后的 30%，部分模型 59%；约束在摘要里存活时违规仍为 0%，被删时 38%；软性组织策略的衰减是硬安全规范的 8.3 倍；Compaction-Eviction 攻击；Constraint Pinning（约 47 token 的钉住缓冲区）把违规率恢复到 0% | E3 的 PIN/SUMMARY 对比已发表 | [S] | ✓ |
+| AI Guardrail Survival under Single-Cycle Agentic Self-Summarization | 2608.11392 | "在场检查不是安全检查"：压缩没有整条删掉规则时，常留下看起来像规则、却不起作用的残留；残留的规则导致违禁动作多出 34 和 57 个百分点 | E3-a 功能性存活 | [S] | ✓ |
+| Just-in-Time Memory | 2609.27334 | 读取时整理不输写入时整理（WebShop 61.0 vs 41.0） | E3-f 的反面证据：只在"没有检索线索"的格子里才成立 | [S] | — |
+| When 'Must' Becomes 'Maybe': Constraint Weakening in LLM Agent Workflows | 2608.24569 | 交接时的压缩保留了约束的文字、去掉了约束力：100% 失效、54.2% 违禁动作；恢复四个显式状态字段可以修复 | E3：笔记形式没有约束力 | [S] | — |
+| Plan Pointers | 2609.03450 | 记忆指令的形式（指针 vs 内容）影响执行 | E3 相邻 | [S] | — |
+| ContextCov、Safety Chip | 2603.00822、2512.23738 | 把人写的自然语言约束编译成 AST 检查、shell shim、DFA/LTL 监视器；由 harness 或人编译，约束事先给出 | 原 C5 相邻 | [S] | — |
+| memnos issue #153 | GitHub | 6 条钉住的约束共 10,040 字符，超过 9,000 字符的渲染预算，召回事实被挤成 0 条 | E3-d：钉子会累积超预算 | [S] | — |
+| TACO: A Self-Evolving Framework for Efficient Terminal Agents | 2604.19572 | 由 LLM 从轨迹提出压缩规则、在线演化规则池；保守执行：规则只在匹配时生效，未覆盖的输出原样保留，错误输出不压 | 原 C6：已把"未知类型原样保留"作为设计原则 | [S] | — |
+| CoACT、Squeez、SWE-Pruner、Signal-Driven Observation | 2607.02911、2604.04979、2601.16746、2606.06708 | 学到的或任务条件化的观察压缩器，只优化"下一步相关"，不处理延迟相关和没见过的事件类型 | 原 C6 相邻 | [S] | — |
+
+**已在前文、本轮补充了信息的**：
+
+- Self-GC（2607.00692）：自己承认启发式"看不见未来的依赖"[S]；
+- *Learning What Not to Forget*（2606.20954）：在 CPU 上、不调 LLM 的打分器决定保留哪些历史单元，恢复完整历史 93% 的准确率 [S]；
+- PIS（2609.01272）：PM-Bench Set-F1 上 DeepSeek 82.9%，Gemma-E2B 从 4.2% 到 66.2% [S]；
+- VISTA（2606.30005）：摘要原话 "a fixed rule cannot know which evidence will matter later" [S]。

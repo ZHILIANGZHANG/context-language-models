@@ -3,6 +3,9 @@
 *Pay at Write or Pay at Read? A Predictive Account of When Long-Horizon Agents Should Keep State*
 
 - 状态：**当前主线**（2026-10-03 确定）。它取代了 [`proposal.md`](proposal.md) 里 I1–I4 并列的写法，把那四个 idea 合进同一条线。
+- **2026-10-04 更新**：两件事待用户决定。
+  - 第三轮验证（[validation_2026-10-03.md](validation_2026-10-03.md)）建议把本文的论点改写成"决定成败的是到达时的写入，不是表示方式"，H1–H5 改写成"写入时机 × 写到哪里"；
+  - 另提出了以 CLM 为中心的三个切入口（[clm_entry_points.md](clm_entry_points.md)）：把历史、显式状态、CLM 看成三种写入策略，测 CLM 相对"传统 harness 加一个工具"剩下的余量。和本文的关系见该文 §7.5。
 - 配套文档：
   - [算法与实验设计](algorithm_design.md)
   - [相关工作全集](related_work.md)

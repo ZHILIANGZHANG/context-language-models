@@ -108,6 +108,8 @@
 3. **状态的上限取决于两件事：schema 里有没有那个字段，以及值写得对不对。** 未来要用什么信息事先无法预测时，状态反而不如完整上下文。
 4. **成本要按缓存算，评测要按逐步真值算。** 可变状态会打断缓存；评测正在转向对照真值状态的逐步测量。
 5. **出现了两个主战场。** 状态派在 LOCA-bench 上比（PoS、Scroll、VISTA），上下文管理派在 BrowseComp-Plus 上比（CLM、VISTA、ACM、SelfCompact、ContextPilot）。VISTA 横跨两边。
+6. **（2026-10-04 补充）压缩会静默丢掉约束，而且只追加的记忆在反转时比不用还差。** 压缩器平均只保留 17% 的会话约束（Lost in Compaction）；压缩后违规率从 0% 升到 30%（Governance Decay）；Claude Code /compact 五轮后安全规则只剩 10%（Compaction Cliff）；完全反转时只追加的记忆 0.210、不用记忆 0.309（TEPA）。都是 [S]，已用搜索复核，见 [related_work.md](related_work.md) §11。
+7. **（2026-10-04 补充）自己的失败文本有毒，但单个成分已有人分别测过。** 失败调用的原文造成 83% 的伤害（Feedback That Backfires，小模型）；只改角色就能提高纠错率 23–93 个百分点（Self-Correction Illusion）；失败留在上下文里时重试错误率是 7.1 倍（Why Retrying Fails）。CLM 能做外科手术式的处置，见 [clm_entry_points.md](clm_entry_points.md) E2。
 
 ## 6. 基准可用性
 

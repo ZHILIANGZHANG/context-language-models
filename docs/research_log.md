@@ -46,6 +46,16 @@
 | 23 | 回到 CLM 本身：它在干什么、和之前的区别、经济效益、哪里有用 | 写进 [clm_notes.md](clm_notes.md) §13 和 `state_study/validation/clm_cost_model.py`。提交 `a760ff6` |
 | 24 | 云端测试默认调自己的子 agent | 约定写进 CLAUDE.md。重放题在 sonnet / opus 子 agent 上 13/13 被安全分类器拦截，没有改写绕开；改用自写的闭环环境 `wh_env.py`。Haiku 沙盒回合 1 个（§5.5） |
 | 25 | "你在干什么，我都不知道你在跑什么" | 停下来说明。约定：启动子 agent 前先列出跑什么、几个、预计用量，等用户确认。已建好的 21 个回合文件没有启动 |
+| 26 | 你给我的 idea 具体是什么 | 讲清"到达时绑定"：一条信息以后能不能用上，取决于它到达时有没有被写进 agent 之后做决定会看的地方。附证据强弱：[R] 硬、[P] 软、闭环和多模型还缺 |
+| 27 | 这和 states、CLM 的关系在哪？直觉上看不出关系 | 承认直觉对：验证里没有 CLM，"不在表示方式"的说法否掉了 states 这条轴，例子太窄。提出统一视角：历史、显式状态、CLM 是三种写入策略；推出 CLM 特有的"省算力 vs 保住以后才有用的信息"前沿。见 [clm_entry_points.md](clm_entry_points.md) §1 |
+| 28 | 有没有 CLM 能做好、传统记忆系统做不好的任务 | 从范式差别推出五类任务；活文档、逐字保真压缩、代码化整理、多 agent 共享已被 CLM 论文占了，空着的是"改写自己的过去"和"schema 事先不知道"。见 [clm_entry_points.md](clm_entry_points.md) §2 |
+| 29 | 给三个 CLM 有优势、传统 mem sys 或 harness 做不好、有 insight 有方向有资源的切入口 | 21 个子 agent 的只读调研工作流（读 3、提 4、合并 1、每个候选撞车检索 + 对抗批评、综合 1）。元结论：每项优势都能被"传统 harness 加一个设计好的工具"追平，但工具各不相同。选出 E1 迟到的按属性更正、E2 被拒之后的上下文手术、E3 没有线索且会被撤销的前瞻约束，可合成一篇。见 [clm_entry_points.md](clm_entry_points.md) |
+
+### 2026-10-04
+
+| 步骤 | 用户的问题 | 结论 |
+|---|---|---|
+| 30 | 把目前全部的论证、调研、验证整理到文档 | 新建 [clm_entry_points.md](clm_entry_points.md)；[related_work.md](related_work.md) 加 §11（本轮新增工作，带复核列）；[idea_bank.md](idea_bank.md) 加 F 组；更新本文、CLAUDE.md、validation、research_line、clm_notes 的指引。复核：§2.2 的 CLM 代码行号全部对上；轨迹文件数改为实测 2009 个（工作流写的约 2150 不准）；子 agent 用量实测中位 14.8 万缓存读取；14 篇论文用网络搜索确认存在、关键数字一致。工作流原始输出存进 `docs/records/` |
 
 ---
 
@@ -406,6 +416,8 @@ pip download harbor==0.16.1 --no-deps --python-version 3.12 --only-binary=:all: 
 - [ ] 读原文：*Delivery, Not Storage*（2607.20972，最接近）、PIS（2609.01272）、PM-Bench（2607.12385）、TriggerBench（2606.23459，回顾性记忆的定义）、2609.37125；确认是否已经讨论"显式状态 vs 历史"
 - [ ] SKILL.state 原文的"静默漂移"实验：是否也有 L2 那样的一致性问题
 - [ ] 人工复核 `dr_tables.py` 里"自由字段到达时写下"的启发式判断
+- [ ] CLM 切入口（[clm_entry_points.md](clm_entry_points.md) §8.2）动笔前必须读原文：*Delivery, Not Storage*（2607.20972）、MemoRepair（2605.07242）、TEPA（2608.07429）、*Compaction Cliff*（2608.22752）、*Feedback That Backfires*（2608.23651）、*When Can Agents Forget Their Reasoning?*（2609.29875）、Scroll（2608.21690）
+- [ ] 只有工作流子 agent 搜索结论、未复核的数字：*Revoked but Still Authoritative* 的 43.1%、*Self-Cleaning* 的 capture 0.850 和 sonnet-4.5 20/20、*Just-in-Time Memory* 的 61.0 vs 41.0、Constraint Weakening 的 100% / 54.2%、StateAuditor 的 91% / 32%、Rollback Repair 的 85.3% / 77.3%（[related_work.md](related_work.md) §11 里"复核"一列不是 ✓ 的条目）
 
 ---
 
@@ -418,6 +430,8 @@ pip download harbor==0.16.1 --no-deps --python-version 3.12 --only-binary=:all: 
 3. 在自写仓库环境上做闭环实验，因子为更正是否一致、通知是否过时、延迟约束 / 延迟事实；
 4. 第二个领域（ALFWorld 注入延迟约束）；
 5. 用户决定是否把主线改写成"到达时绑定"。
+
+**2026-10-04 更新**：另有以 CLM 为中心的三个切入口（[clm_entry_points.md](clm_entry_points.md)），建议顺序见该文 §8：第 0 周零成本准备 → E1 pilot（42 个子 agent）→ E3 两个探针（54 个）→ E2 pilot（60 个），合计约 2300 万缓存读取。**方向和规模都等用户选定、确认后再跑。**
 
 以下是第三轮之前的计划，保留备查：
 
