@@ -377,5 +377,39 @@ GitHub 上的 Harbor adapter 列表里没有 MemoryAgentBench、LongMemEval-V2�
 - write error vs read error、encoding vs decoding error、reconstruction error agent
 - event count vs context length、state tracking scaling
 - tenure crossover、memory architecture ranking
+- （遗忘方向）agent unlearning、execution-state unlearning、deletion is not forgetting、behavioral residual、provenance purge、selective replay、record omission linear attention、forgetting benchmark
 
 **重点盯的作者和项目**：CLM 作者（`research_ledger`、`ctx_archive` 这些被删掉的开关）、delayed-relevance（可能很快挂 arXiv）、Scroll 的评测仓库 AgentZero（开源后可直接比）、PoS、Supersede、Ground Truth First。
+
+---
+
+## 11. 记忆遗忘与删除（2026-10-06 检索）
+
+起因：用户提出"能不能用 CLM 做 memory unlearning"。检索结果是，这个方向在 2026 年 8–9 月已经非常拥挤，"现在的记忆系统只管记、不管删"这个前提已经不成立。讨论和结论见 [idea_bank.md](idea_bank.md) F1。以下全部只看过搜索摘要 [S]。
+
+| 工作 | 编号 / 日期 | 做了什么 | 和 CLM 遗忘的重叠 |
+|---|---|---|---|
+| **Forgetting Without Restarting：Execution-State Unlearning for Stateful LLM Agents**（Chao Yao 等） | 2609.04875，2026-09 | 形式化"执行状态遗忘"：收到遗忘请求后，agent 要表现得像从没见过目标。长程 agent 会积累压缩摘要、明文记忆、待执行的工具计划和 KV 缓存。用诱导式、随机采样、不依赖字符串的行为测试，覆盖 3 个 agent 套件、9 个基线、3 个模型家族。结论：删记忆条目对泄漏毫无改变；靠指令让模型忘记，在诱导下会失效；只删来源，80% 的回合里仍按被撤回的偏好行事。方法是溯源引导的选择性重放：用溯源图定位注入点，把 KV 缓存裁到检查点，再干净地重放反事实后缀。与完全重置无法区分，重算 token 最多少 9 倍 | **最接近**，基本覆盖"删除 + 按反事实重放"这条路 |
+| **Deletion Is Not Forgetting：Behavioral Residuals of Deleted Memories in Stateful LLM Agents**（Jiabei Liu、Mingyang Li） | SSRN 7428966，2026-09-07 | 提出"行为反事实遗忘"。原生删除让来源标记在所有情况下都找不回来，但 agent 的选择仍向被删的偏好偏移 +59 到 +100 个百分点。用 GPT-4o-mini 做合并模型时，100% 把来源偏好编码进派生物，同时 100% 洗掉审计标记，行为残留 +96 个百分点。按依赖关系清除后降到 0% | "派生产物把信息洗走"已被证实 |
+| **Exact Record Omission in Delta Attention：A Transport Criterion, Its Cost, and a Replay Certificate**（Vishwajith Ramesh） | 2609.06872，2026-09 | 线性注意力（delta rule）的记忆能否回到"从没存过这条记录"的状态。记下记录进入时的差量、跟着后续更新传递、删除时减掉：仍然不行，4096 个 token 之后还留着约 4.5% 状态范数的印记。只有检查点重放能精确删除，代价和重放的后缀长度成正比 | 覆盖了"线性注意力状态里有残留"的原理；SCR 的 fork 模式是它的一个具体实例 |
+| Agentic Unlearning：When LLM Agent Meets Machine Unlearning | 2602.17692，2026-02 | 信息回流：只从参数里删掉，检索机制仍能读到残留，又被写回记忆；参数里的残留也能再生成被删内容。必须同时处理参数和记忆 | 概念框架 |
+| MemLeak：Diagnosing Information Leaks in Multimodal Agent Memory | 2606.29788，2026-06 | 删掉文本条目后，事实仍能从保留的用户图片里恢复；提出按"可删除性"给记忆表示分类的信息溯源图（IPG） | 溯源图 |
+| Control-Plane Placement Shapes Forgetting（Dongxu Yang） | 2606.15903，2026-06 | 13 种系统配置；ForgetEval，1385 个用例，遗忘分 5 族（取代、衰减、失忆、清除、漂移），10 类攻击 | 遗忘基准已有 |
+| Can an AI Assistant Really Forget? Auditable Deletion from Addressable Memory | 2607.27539，2026-07 | 在冻结的 Gemma 3 里装一个支持向量门；删除后，逐条记录的攻击仍能区分"删过"和"从没存过" | 可审计删除 |
+| What a Deletion Certificate Covers, and Where It Expires | 2607.12204，2026-07 | 支持向量记忆的可审计删除 | 同上 |
+| Towards Reversible Forgetting | 2608.18177，2026-08-18 | 记忆分为 active、dormant、retired 三态，可以重新激活；区分暂时抑制和永久删除 | 和"作废 vs 遗忘"的区分相关 |
+| TEPA：Revoking Stale Memories for Conflict-Robust Language Agents | 2608.07429 | 撤销过时记忆 | [T] |
+| What Should an Agent Forget? Separating What Is Stored from What Is Used | 2609.10263 | 区分"存了什么"和"用了什么" | [T] |
+| GateMem | 2606.18829 | 多主体共享记忆的治理基准：效用、访问控制、主动遗忘 | 基准 |
+| Forgetful but Faithful | 2512.12856 | 隐私感知的认知记忆架构和基准 | 基准 |
+| FSFM | 2604.20300 | 受生物启发的选择性遗忘 | — |
+| Always-On Agents 综述 | 2606.30306 | 一条遗忘请求必须传到每一层派生数据，否则只是改了检索；还要防派生数据和删除模式本身造成的推断泄漏 | 综述 |
+| Leak@k；Do LLMs Really Forget? | 2511.04934；2609.36612 | 权重遗忘在随机采样下会重新泄漏；隐藏状态里仍有编码 | 权重侧 |
+
+产品侧：Mem0 的更新阶段有 ADD/UPDATE/DELETE/NOOP，遗忘时按语义检索后按 ID 删除；Letta 遗忘时由 LLM 从编号列表里挑出要删的条目。两者都只删文本条目，不处理派生产物。
+
+**CLM 代码里和遗忘直接相关的事实 [R]**（`suffix_cache_reuse/README.md`、`overlay.py:1178` 附近）：
+- SCR 默认 `KVREUSE_SSM_MODE=fork`：编辑后，线性注意力层（Qwen3.6-27B 64 层中的 48 层）从"上一轮 prompt 末尾保存的 recurrent state"继续算。这个状态是在包含被删内容的上下文上算出来的；编辑只在 16 个全注意力层里生效。
+- 被删段之后保留下来的 token，KV 也是在旧前缀下算的。README 原话是这种过时状态"有时反而有益，保留了更多过去的信息"。
+- 另外两种模式：`strict`（只在保存的状态恰好覆盖被复用的那一段时才搬）、`none`（不恢复状态）。
+- 论文验证的是准确率，没有验证遗忘。
