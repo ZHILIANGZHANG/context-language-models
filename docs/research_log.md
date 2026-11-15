@@ -57,6 +57,7 @@
 | 26 | 既然 Qwen3.5 是混合架构，改用 Qwen3-8B；怎么实现、怎么训练、数据怎么来、代码怎么写、怎么测评 | 换成 Qwen3-8B（dense）。实现了 `self_paging/` 的核心（页表、`PagedKV` 参考引擎、掩码），13 个等价性测试在 Qwen3 结构上通过；HF 的 flex_attention 直接接收我们的 BlockMask。重写 `experiment_plan.md`（v2）：全局位置超出 32K 要统一开 YaRN；新增 LongMemEval-S（问题最后给出）作为 T2-B；BCP 对 8B 可能太难，给出备选；vLLM 在 dense 上可行，作为备选。`data_and_training.md` 加"可实现性"过滤 |
 | 27 | Qwen3.5-9B 和 Qwen3-8B 推荐哪个 | 推荐 Qwen3-8B（换页真的让模型看不到，机制干净）；Qwen3.5-9B 的优势在可比性和 BCP 的 RL 信号。建议用 ACM 的 ReAct 模式在训练 680 题上测两个模型的 pass@8 再定 |
 | 28 | 准备数据、SFT、RL 的代码能全部写好吗 | 写完 T1 上的完整链路：`TokenLog`、协议渲染、T1 环境（规则读者、最小充分集）、oracle（Belady、笔记模式、可实现性标注）、特权提示老师、episode 循环、系统换页基线、SFT 数据构建、拒绝采样、打包和 log-prob、SFT、GRPO、T1 评测、BCP 环境适配器。34 个测试通过。发现并修了三个问题：oracle 给自己预留的空间不够；回执页头无限累积；最小充分集要迭代到不动点 |
+| 29 | 代码文档、要准备的数据和基准、实验顺序写清楚；之后的开发和训练交给用户自己的 agent | 写 `docs/runbook.md`（准备清单、阶段 0–9 的命令和验收标准、汇报格式、开发任务 D1–D9、超参、排错），重写 `self_paging/README.md`（逐文件说明、episode 记录格式、版本要求、已知限制）。顺手修了 GRPO 的注意力实现：rollout 用 sdpa、训练用 flex；加了 `--teacher`、`--save-every`、`--yarn` |
 
 ---
 

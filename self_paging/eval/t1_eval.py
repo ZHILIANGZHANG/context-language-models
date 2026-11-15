@@ -75,11 +75,12 @@ def main() -> None:
     ap.add_argument("--attn", default="sdpa")
     ap.add_argument("--temperature", type=float, default=0.6)
     ap.add_argument("--out", required=True)
+    ap.add_argument("--yarn", type=float, default=0.0)
     a = ap.parse_args()
     tok = load_tokenizer(a.tokenizer or (None if a.model == "tiny" else a.model))
     device = "cuda" if torch.cuda.is_available() else "cpu"
     base = tiny_qwen3(tok.vocab_size) if a.model == "tiny" else a.model
-    model = load_model(base, a.attn, device=device).eval()
+    model = load_model(base, a.attn, device=device, yarn_factor=a.yarn).eval()
     gen = torch.Generator(device=device).manual_seed(0)
     rows = []
     for seed in range(*a.seeds):

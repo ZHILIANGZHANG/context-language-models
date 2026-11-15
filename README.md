@@ -16,6 +16,8 @@
 | 文档 | 内容 |
 |---|---|
 | [`docs/research_line.md`](docs/research_line.md) | **当前主线**：形式化、P1–P4、空位表、K1–K5、测试床、基线、代价口径、分阶段计划、风险 |
+| [`docs/runbook.md`](docs/runbook.md) | **运行手册**（给执行实验的 agent）：硬件、软件、模型、数据和基准的准备；阶段 0–9 的实验顺序、命令和验收标准；汇报格式；剩下的开发任务 D1–D9；默认超参；排错 |
+| [`self_paging/README.md`](self_paging/README.md) | **代码文档**：核心概念、每个文件做什么、主要接口、episode 记录格式、测试状态、已知限制 |
 | [`docs/experiment_plan.md`](docs/experiment_plan.md) | **实验方案 v2（Qwen3-8B）**：模型的影响（全局位置和 YaRN）、tool call 接口、基准和测评协议（含 LongMemEval-S）、SFT、RL、SGLang overlay 与 vLLM、代码进度、实验矩阵、算力和时间线 |
 | [`docs/data_and_training.md`](docs/data_and_training.md) | **SFT 与 RL 的数据和训练设计**："需要"的定义、Belady 计划、特权提示生成、轨迹重标注与反事实验证、拒绝采样、RL 的 episode、奖励、代价、题库过滤、阶段、变体 |
 | [`docs/algorithm_design.md`](docs/algorithm_design.md) | **算法与实验设计**：协议、推理和训练实现、代价折算、基线实现、等价性测试、E0–E2 协议、SFT/RL、待实现清单 |

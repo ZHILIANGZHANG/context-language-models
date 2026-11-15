@@ -148,7 +148,15 @@ def summarize(groups) -> dict:
             "forced_evictions": m("forced_evictions")}
 
 
-def train_grpo(model, tok, cfg: GRPOConfig, log=None, out=None, rank=0, world=1, rollout_fn=None) -> list[dict]:
+def set_attn(model, name: str) -> None:
+    """Rollouts decode token by token with a dense mask (sdpa is the fast path); training uses the
+    BlockMask (flex_attention). Switching is a config flag, no weights move."""
+    base = model.get_base_model() if hasattr(model, "get_base_model") else model
+    base.set_attn_implementation(name)
+
+
+def train_grpo(model, tok, cfg: GRPOConfig, log=None, out=None, rank=0, world=1, rollout_fn=None,
+               rollout_attn: str = "sdpa", save_every: int = 0) -> list[dict]:
     rng = random.Random(cfg.seed + rank)
     gen = torch.Generator(device=next(model.parameters()).device).manual_seed(cfg.seed + rank)
     opt = torch.optim.AdamW([p for p in model.parameters() if p.requires_grad], lr=cfg.lr, betas=(0.9, 0.95))
@@ -157,15 +165,19 @@ def train_grpo(model, tok, cfg: GRPOConfig, log=None, out=None, rank=0, world=1,
     for step in range(cfg.steps):
         t0 = time.time()
         model.eval()
+        set_attn(model, rollout_attn)
         groups = []
         for _ in range(max(1, cfg.prompts // world)):
             seed, ratio = rng.randrange(*cfg.seed_range), rng.choice(cfg.ratios)
             groups.append(rollout_fn(model, tok, seed, ratio, cfg, gen))
+        set_attn(model, cfg.attn)
         row = {"step": step, **summarize(groups), **train_step(model, opt, groups, cfg, world),
                "sec": round(time.time() - t0, 1)}
         history.append(row)
         if log and rank == 0:
             append_jsonl(log, row)
+        if out and save_every and rank == 0 and (step + 1) % save_every == 0:
+            model.save_pretrained(f"{out}/step_{step + 1}")
     if out and rank == 0:
         model.save_pretrained(out)
     return history
@@ -190,18 +202,20 @@ def main() -> None:
     ap.add_argument("--no-notes", action="store_true")
     ap.add_argument("--n-decisions", type=int, default=4)
     ap.add_argument("--seed", type=int, default=0)
+    ap.add_argument("--save-every", type=int, default=0, help="also save OUT/step_K every K steps")
+    ap.add_argument("--yarn", type=float, default=0.0)
     a = ap.parse_args()
     rank, world, local = dist_info()
     tok = load_tokenizer(a.tokenizer or (None if a.model == "tiny" else a.model))
     device = f"cuda:{local}" if torch.cuda.is_available() else "cpu"
     base = tiny_qwen3(tok.vocab_size) if a.model == "tiny" else a.model
-    model = load_model(base, a.attn, device=device, lora_r=a.lora_r)
+    model = load_model(base, a.attn, device=device, lora_r=a.lora_r, yarn_factor=a.yarn)
     cfg = GRPOConfig(steps=a.steps, prompts=a.prompts, group=a.group, lr=a.lr, w_eff=a.w_eff, attn=a.attn,
                      max_new_tokens=a.max_new_tokens, max_turns=a.max_turns, reversible=not a.irreversible,
                      notes=not a.no_notes, seed=a.seed, t1=T1Config(n_decisions=a.n_decisions))
     if rank == 0 and a.log:
         append_jsonl(a.log, {"config": {k: str(v) for k, v in asdict(cfg).items()}})
-    train_grpo(model, tok, cfg, log=a.log, out=a.out, rank=rank, world=world)
+    train_grpo(model, tok, cfg, log=a.log, out=a.out, rank=rank, world=world, save_every=a.save_every)
 
 
 if __name__ == "__main__":

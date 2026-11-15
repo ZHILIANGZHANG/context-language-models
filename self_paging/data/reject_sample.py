@@ -39,10 +39,12 @@ def main() -> None:
     ap.add_argument("--temperature", type=float, default=0.7)
     ap.add_argument("--n-decisions", type=int, default=4)
     ap.add_argument("--attn", default="sdpa")
+    ap.add_argument("--yarn", type=float, default=0.0)
     a = ap.parse_args()
     tok = load_tokenizer(a.tokenizer or (None if a.model == "tiny" else a.model))
     device = "cuda" if torch.cuda.is_available() else "cpu"
-    model = load_model(tiny_qwen3(tok.vocab_size) if a.model == "tiny" else a.model, a.attn, device=device).eval()
+    model = load_model(tiny_qwen3(tok.vocab_size) if a.model == "tiny" else a.model, a.attn, device=device,
+                       yarn_factor=a.yarn).eval()
     gen = torch.Generator(device=device).manual_seed(0)
     total = kept = 0
     for seed in range(*a.seeds):

@@ -22,6 +22,7 @@ from collections import Counter
 from ..agent.episode import EpisodeConfig, ScriptedPolicy, run_episode
 from ..core.log import TokenLog
 from ..envs.t1_warehouse import T1Config, WarehouseEnv
+from ..oracle.hinted_teacher import HintedTeacher
 from ..oracle.t1_oracle import T1Oracle
 from ..train.common import load_tokenizer, write_jsonl
 
@@ -48,14 +49,16 @@ def passes(rec: dict, max_future_share: float) -> bool:
     return (obs + fut) == 0 or fut / (obs + fut) <= max_future_share
 
 
-def build(tok, seeds, ratios, modes, cfg: T1Config, max_turns: int, max_future_share: float):
+def build(tok, seeds, ratios, modes, cfg: T1Config, max_turns: int, max_future_share: float, teacher=None):
     kept, stats = [], Counter()
     for seed in seeds:
         for ratio in ratios:
             for mode in (["paging"] if ratio >= 1.0 else modes):
                 env = WarehouseEnv(seed, cfg)
                 budget = t1_budget(env, tok, ratio)
-                rec = run_episode(env, TokenLog(budget), ScriptedPolicy(tok, T1Oracle(mode, seed=seed)), tok,
+                oracle = T1Oracle(mode, seed=seed)
+                fn = oracle if teacher is None else HintedTeacher(teacher, tok, oracle)
+                rec = run_episode(env, TokenLog(budget), ScriptedPolicy(tok, fn), tok,
                                   EpisodeConfig(budget=budget, max_turns=max_turns))
                 stats[(ratio, mode, "total")] += 1
                 if passes(rec, max_future_share):
@@ -75,10 +78,17 @@ def main() -> None:
     ap.add_argument("--n-decisions", type=int, default=4)
     ap.add_argument("--max-turns", type=int, default=80)
     ap.add_argument("--max-future-share", type=float, default=1.0)
+    ap.add_argument("--teacher", help="HF model that writes the prose (Qwen3-8B or Qwen3.5-9B); default: templates")
     a = ap.parse_args()
     tok = load_tokenizer(a.tokenizer)
+    teacher = None
+    if a.teacher:
+        import torch
+
+        from ..train.common import load_model
+        teacher = load_model(a.teacher, "sdpa", device="cuda" if torch.cuda.is_available() else "cpu").eval()
     kept, stats = build(tok, range(*a.seeds), a.ratios, a.modes, T1Config(n_decisions=a.n_decisions),
-                        a.max_turns, a.max_future_share)
+                        a.max_turns, a.max_future_share, teacher=teacher)
     write_jsonl(a.out, kept)
     print(json.dumps({f"{r}/{m}/{k}": v for (r, m, k), v in sorted(stats.items())}, indent=1))
     print(f"kept {len(kept)} episodes -> {a.out}")

@@ -4,7 +4,9 @@
 
 ## 先读什么
 
-新会话开始时按这个顺序读，就能接上全部进度：
+**如果你是来执行实验或开发的 agent**：先读 `docs/runbook.md`（准备什么、实验顺序、验收标准、剩下的开发任务 D1–D9），再读 `self_paging/README.md`（代码文档：每个文件做什么、数据格式、测试状态）。
+
+做研究设计时，按这个顺序读，就能接上全部进度：
 
 1. `docs/research_line.md`：**当前主线**。形式化（只追加的 KV 日志 + 模型改驻留集）、P1–P4、空位表、K1–K5、测试床、基线、代价口径、分阶段计划
 2. `docs/experiment_plan.md`：**具体做法**。v2，Qwen3-8B。模型的影响（全局位置和 YaRN）、tool call 接口、基准和测评协议（T1/T1b、BrowseComp-Plus 680/150、LongMemEval-S）、数据采集、SFT、RL、SGLang overlay 和 vLLM 的取舍、代码结构、实验矩阵。和第 4 份冲突时以它为准
