@@ -16,6 +16,7 @@
 | 文档 | 内容 |
 |---|---|
 | [`docs/research_line.md`](docs/research_line.md) | **当前主线**：形式化、P1–P4、空位表、K1–K5、测试床、基线、代价口径、分阶段计划、风险 |
+| [`docs/experiment_plan.md`](docs/experiment_plan.md) | **实验方案**：模型（Qwen3.5 混合架构）、tool call 接口、基准与数据、SFT、RL、SGLang overlay 与 vLLM 的取舍、代码结构、实验矩阵、算力和时间线 |
 | [`docs/algorithm_design.md`](docs/algorithm_design.md) | **算法与实验设计**：协议、推理和训练实现、代价折算、基线实现、等价性测试、E0–E2 协议、SFT/RL、待实现清单 |
 | [`docs/related_work.md`](docs/related_work.md) | **相关工作全集**：§0 是新主线的撞车表；§1–§9 是旧主线阶段的调研；§10 撞车监控 |
 | [`docs/research_log.md`](docs/research_log.md) | **研究日志**：决策时间线、纠正过的错误、已验证事实、环境限制与搭建命令、待核实清单、下一步 |
@@ -70,6 +71,7 @@ python -m pytest state_study/tests
 
 - [x] 评估用户的视频 KV 换页 proposal（[`docs/idea_bank.md`](docs/idea_bank.md) F1）
 - [x] 确定主线"让模型自己管理 KV 缓存"，完成设计文档和撞车检索
+- [x] 具体实验方案（[`docs/experiment_plan.md`](docs/experiment_plan.md)）
 - [ ] 阶段 0：`self_paging/` 原型和等价性测试（云端 CPU）
 - [ ] 阶段 1：E0 提升空间、E1 零样本协议、E2 残留（用户 GPU，Qwen3-8B），做继续/止损判断
 - [ ] 阶段 2–3：SFT、RL，在 T1 和 BrowseComp-Plus 上和 CLM、SideQuest 式、Quest 式等基线比较

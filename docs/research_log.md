@@ -51,7 +51,8 @@
 |---|---|---|
 | 21 | 上传视频 KV 换页 proposal，问可行性 | 工程上能做，三处硬伤：缩略图超预算、效率论证反了、块间隔离改变了注意力拓扑。StreamScout 撞车，SimpleStream 是底线。建议先做 oracle 换页上界等三个只推理的实验。详见 [idea_bank.md](idea_bank.md) F1 |
 | 22 | 澄清核心 idea：像 CLM 那样，把 KV 调度管理直接交给模型；不必是长视频 | 提出 Self-Paging 形式化（只追加日志 + 驻留集）、P1–P4、受控对比表、K1–K4、E0–E2。新一轮检索发现 SideQuest（模型自己删 KV）、Leyline、KVEraser 等（[related_work.md](related_work.md) §0） |
-| 23 | "忘掉之前的主线，现在模型自己管 KV 就是我们的主线" | 旧主线文档归档到 `docs/archive/state_vs_history/`；重写 `research_line.md`、`algorithm_design.md`；更新 related_work §0、idea_bank F 组、本日志、README、CLAUDE.md |
+| 23 | "忘掉之前的主线，现在模型自己管 KV 就是我们的主线" | 旧主线文档归档到 `docs/archive/state_vs_history/`；重写 `research_line.md`、`algorithm_design.md`；更新 related_work §0、idea_bank F 组、本日志、README、CLAUDE.md。提交 `fd5e2dc` |
+| 24 | 具体实验怎么做：bench、数据、SFT、RL、模型（服务器上已有 Qwen3.5-2B/4B/9B）、代码、vLLM 怎么改 | 写 `docs/experiment_plan.md`。三处修正：① Qwen3.5 是混合架构，换页只作用在全注意力层，加 dense 对照；② 动作接口改成原生 tool call；③ 引擎选 SGLang monkeypatch（仿 SCR），vLLM 第一版不改。T2 用 ACM 的 BrowseComp-Plus 680/150 划分，复用 ACM 的检索、评判和公开轨迹 |
 
 ---
 
@@ -174,6 +175,18 @@
 - 1K token 的一页约 150 MB；PCIe 4.0 x16 按 20–25 GB/s 算，搬一页约 **6–7 ms**；
 - 8B 模型 bf16 权重约 16 GB；A6000 显存带宽约 768 GB/s，所以 batch = 1 时解码一个 token 至少约 21 ms，实际约 20–30 ms；
 - 权重读取折算成 KV token：batch = 1 时约 11 万 token，batch = 32 时约 3.4K token（[algorithm_design.md](algorithm_design.md) §5）。
+
+**Qwen3.5 和引擎**：
+- Qwen3.5-2B/4B/9B 是混合架构，Gated DeltaNet 和全注意力 3 : 1；原生多模态（early fusion）；原生上下文 262,144 [S]。层数和字段名待用 config 核对；
+- vLLM 跑混合模型时，前缀缓存用 `align` 模式，仍是实验特性；有 issue 报告 Qwen3.5 的 attention block 被放大到 528 token，短于一个 block 的前缀命中不了；有把匹配粒度和物理 block 解耦的 PR（`prefix_match_unit`）[S]；
+- SGLang 新版有 streaming session（`--enable-streaming-session`，会话槽不参与淘汰，来自 PR #21875）[S]；SGLang 的 KV 按 token 粒度管理（`req_to_token`），SCR 已在 0.5.16 上给混合模型做过会话级 KV 改动 [R]。
+
+**ACM 仓库（`third_party/methods/acm`，MIT）[R]**：
+- BrowseComp-Plus 划分：`bcp_train_680.json`、`bcp_eval_150.json`、`bcp_full.json`（830），每条只有 id、question、answer；
+- 语料、BM25 Lucene 索引和检索代码来自 HF `hltcoe/BrowseComp-Plus`，pyserini 需要 JDK；可选 Qwen3-Embedding-8B 稠密检索；
+- 工具：`search` 返回片段（新结果 512 token、看过的 128 token），`get_document` 最多 8192 token；
+- 评判：OpenAI SDK + 官方 simple-evals 模板，默认 GPT-5；可以把 base URL 换成本地服务；
+- HF 上公开了基座 Qwen3.5-9B 在训练 680 题上的 pass@4 轨迹（ReAct 和 memtool，约 4.4 GB），以及 OPD 三轮的 checkpoint。
 
 **检索到的关键数字** [S]：
 - SideQuest：215 条训练样本；峰值 token 降低最多 65%；
@@ -374,6 +387,11 @@ pip download harbor==0.16.1 --no-deps --python-version 3.12 --only-binary=:all: 
 - [ ] `clm.pdf`：对照原文核实 [clm_notes.md](clm_notes.md) 里标 [N] 的数字，尤其是 RL 配置和 SCR 结果
 - [ ] BrowseComp-Plus：语料、检索器、评判能否全部本地化
 - [ ] 用户的实际 GPU 硬件（原 proposal 写的是 4×RTX A6000）
+- [ ] Qwen3.5-2B/4B/9B 的 config：层数、`layer_types`、KV 头数、head_dim、partial rotary（命令见 [experiment_plan.md](experiment_plan.md) §12）
+- [ ] 用户服务器上 torch、transformers、SGLang、fla 的版本；transformers 里 Qwen3.5 的 cache 类名和 GDN 状态字段
+- [ ] SGLang streaming session（PR #21875）在用户的版本里是否可用，能不能直接当会话层
+- [ ] 本地评判模型和 GPT-5 评判的一致率（T2 的数字才能和 ACM 比）
+- [ ] 服务器能否访问 HF：BrowseComp-Plus 语料和索引、ACM 公开轨迹、Qwen3-8B
 - [ ] 原 proposal 里检索不到的名字：WRWS、MemStream、NGC、StreamingTOM、EgoProbe、MemInStream
 
 ### 7.2 旧主线（已归档，暂不处理）
@@ -396,16 +414,14 @@ pip download harbor==0.16.1 --no-deps --python-version 3.12 --only-binary=:all: 
 
 ## 8. 下一步
 
-按新主线阶段 0–1（[research_line.md](research_line.md) §9）：
+按 [experiment_plan.md](experiment_plan.md) §11：
 
 1. **云端现在就能做的（阶段 0，只需 CPU）**：
-   - 实现 `self_paging/`：页存储、协议状态机、HF 推理循环、掩码生成、代价统计、系统基线和 Belady（[algorithm_design.md](algorithm_design.md) §12）；
-   - 用随机初始化的小 Qwen3 配置跑 §7 的六组等价性测试；
-   - 把仓库探针改造成多轮环境 T1，配规则读者测试；
-   - 写好 E0、E1、E2 的驱动和打分脚本，让用户在自己的 GPU 上一条命令就能跑。
-2. **需要用户 GPU 的（阶段 1）**：用 Qwen3-8B 跑 E0、E1、E2，然后做继续/止损判断。
-3. **需要用户决定或提供的**：
-   - 实际 GPU 硬件；
-   - 是否需要在云环境的网络白名单里加上 arxiv.org（读 SideQuest 等论文全文）和 huggingface.co；
-   - T2 用 BrowseComp-Plus 是否合适。
+   - 按 experiment_plan §8 建 `self_paging/`：`core/`（页、协议、轨迹格式、代价）、`hf/`（LogStore、runner、掩码、Qwen3.5 全注意力层补丁）、`policies/`（含 Belady）、`envs/t1_warehouse.py`、`envs/t1b_lookup.py`、`data/oracle_sft.py`；
+   - 用随机初始化的小 Qwen3.5 配置跑等价性测试，包括 GDN 层（需要在 scratchpad 的虚拟环境里装 CPU 版 torch 和支持 Qwen3.5 的 transformers；fla 的 kernel 可能需要 GPU，CPU 上用 transformers 自带的 torch 实现）；
+   - 写好 E0、E1、E2 的驱动和打分脚本。
+2. **需要用户服务器的**：
+   - 回复 experiment_plan §12 的信息（config、GPU、软件版本、HF 访问、JDK、评判模型）；
+   - 在真实权重上跑等价性测试，然后跑 E0、E1、E2，做继续/止损判断。
+3. **之后**：SGLang overlay 和引擎一致性测试 → SFT 数据（四个来源）→ SFT → RL。
 4. **动笔前**：先读 SideQuest 全文（§7.1）。

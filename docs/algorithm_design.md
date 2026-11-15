@@ -2,6 +2,13 @@
 
 主线的"为什么"和"做什么"见 [research_line.md](research_line.md)；本文档写"怎么做"，包括形式化、协议、推理和训练的实现、代价口径、基线实现、E0–E2 的实验协议、SFT 和 RL 的细节，以及待实现清单。
 
+> **2026-11-15 更新**：具体做法以 [experiment_plan.md](experiment_plan.md) 为准，它修正了本文的三处：
+> - §2.2 的行内标签改成原生 tool call（experiment_plan §2）；
+> - §3.4 的"只用 dense 模型"改成以 Qwen3.5 混合架构为主，换页只作用在全注意力层，另加 dense 对照（experiment_plan §1）；
+> - §12 的待实现清单由 experiment_plan §8 的目录结构取代。
+>
+> 本文的形式化（§1）、掩码（§4）、代价口径（§5）、基线（§6）、等价性测试（§7）、E0–E2 协议（§9）仍然有效。
+
 旧主线的算法设计归档在 [`archive/state_vs_history/algorithm_design.md`](archive/state_vs_history/algorithm_design.md)。
 
 ---
