@@ -56,7 +56,7 @@
 
 | 文件 | 做什么 |
 |---|---|
-| `t1_oracle.py` | `T1Oracle(mode)`：T1 上的 oracle 策略，返回每一回合的完整文本（理由 + 工具调用）。<br>取下一页之前，用按页大小加权的在线 Belady 腾出空间：先换出以后再也用不到的页，再换出下次使用最远的页；assistant 回合排在环境页前面换出。决策前，把规则读者需要的页换回来。<br>三种模式：`paging`；`notes`（先写状态笔记再换出）；`mixed`。<br>每次换出都在 meta 里标注是"可观察"的（从已看到的内容就能判断）还是"依赖未来信息"的；答案在可见文本里找不到依据时记 `oracle_unsupported` |
+| `t1_oracle.py` | `T1Oracle(mode)`：T1 上的 oracle 策略，返回每一回合的完整文本（理由 + 工具调用）。作答前逐个货架列出状态；换出时按页的内容写明原因。实测质量见 `docs/data_and_training.md` §2.8。<br>取下一页之前，用按页大小加权的在线 Belady 腾出空间：先换出以后再也用不到的页，再换出下次使用最远的页；assistant 回合排在环境页前面换出。决策前，把规则读者需要的页换回来。<br>四种模式：`paging`；`notes`（先写状态笔记再换出）；`eager`（每回合都换出当前状态用不到的页，需要时再换回，专门产出 `kv_in` 样本）；`mixed`。换出时优先选不改变当前状态读数的页；决策时如果可见集合会误导，就收缩到最小充分集。<br>每次换出都在 meta 里标注是"可观察"的（从已看到的内容就能判断）还是"依赖未来信息"的；答案在可见文本里找不到依据时记 `oracle_unsupported` |
 | `hinted_teacher.py` | `HintedTeacher(model, tok, oracle)`：动作完全照抄 oracle，前面的理由由真实模型写。模型能看到驻留页的文本和一段它不该提到的提示；理由泄漏提示或为空时退回模板，记 `teacher_fallbacks` |
 
 ### 2.5 `agent/`：episode 循环
@@ -134,7 +134,7 @@ python -m pytest -q -p no:cacheprovider self_paging/tests
 QWEN3_TOKENIZER=/path/to/Qwen3-8B python -m pytest -q self_paging/tests/test_template_server.py
 ```
 
-2026-11-15 在云端（torch 2.15.0+cpu、transformers 5.23.0）：34 个通过、1 个跳过（模板比对）。
+2026-11-15 在云端（torch 2.15.0+cpu、transformers 5.23.0）：35 个通过、1 个跳过（模板比对）。
 
 **版本要求**：代码用了 transformers 5 的接口：`DynamicCache.layers[l].keys` / `.values`、`model.set_attn_implementation()`，以及前向不再传 `cache_position`。服务器上建议直接装 5.23；4.x 的旧版本大概率不兼容。FlexAttention 需要 torch ≥ 2.5。
 

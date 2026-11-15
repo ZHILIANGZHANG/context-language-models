@@ -72,7 +72,7 @@ uv pip install "transformers==5.23.0" peft numpy pytest
 
 | 步骤 | 命令 | 通过标准 |
 |---|---|---|
-| 0.1 单元测试 | `python -m pytest -q self_paging/tests` | 34 个通过，1 个跳过 |
+| 0.1 单元测试 | `python -m pytest -q self_paging/tests` | 35 个通过，1 个跳过 |
 | 0.2 **模板比对** | `QWEN3_TOKENIZER=$M python -m pytest -q self_paging/tests/test_template_server.py` | 通过。不通过就把 diff 发回来，按 diff 改 `core/protocol.py` 的渲染函数，**不能跳过** |
 | 0.3 oracle 健全性（真实分词器） | `python -m self_paging.eval.t1_eval --model $M --methods oracle --ratios 0.6 0.45 --seeds 100000 100020 --out eval/oracle.jsonl` | oracle 的 reward 全是 1.0 |
 | 0.4 真实模型能跑通 | `python -m self_paging.eval.t1_eval --model $M --methods model --ratios 0.6 --seeds 100000 100002 --out eval/smoke.jsonl` | 能跑完、不报错；`invalid` 不全是满值 |
@@ -108,10 +108,10 @@ python -c "import json,glob;from self_paging.eval.t1_eval import aggregate;rows=
 ```bash
 # 模板理由（快，只用 CPU）
 python -m self_paging.data.build_t1_sft --tokenizer $M --out data/t1_sft_template.jsonl \
-  --seeds 0 1000 --ratios 1.0 0.6 0.45 0.35 --modes paging notes
+  --seeds 0 1000 --ratios 1.0 0.6 0.45 0.35 --modes paging notes eager
 # 真实模型写理由（推荐作为主数据，需要 GPU）
 python -m self_paging.data.build_t1_sft --tokenizer $M --teacher $M --out data/t1_sft_teacher.jsonl \
-  --seeds 0 1000 --ratios 1.0 0.6 0.45 0.35 --modes paging notes
+  --seeds 0 1000 --ratios 1.0 0.6 0.45 0.35 --modes paging notes eager
 ```
 
 - 脚本会打印每个"预算 / 模式"的保留数；
@@ -126,7 +126,8 @@ python -m self_paging.data.build_t1_sft --tokenizer $M --out data/t1_sft_heldout
 - 保留的 episode ≥ 2000 条；
 - 不换页（ratio 1.0）的样本占 15–30%；
 - 统计 `meta.future_informed_evictions` 的占比。占比很高时，加 `--max-future-share 0.5` 再造一份做对照；
-- 用特权提示老师时，`teacher_fallbacks` 占回合数的比例应该 < 30%。
+- 用特权提示老师时，`teacher_fallbacks` 占回合数的比例应该 < 30%；
+- 按 `docs/data_and_training.md` §2.8 的表格重新统计一遍（用的是 Qwen3 分词器），重点看：各格的保留率、含 `kv_in` 的 episode 比例（eager 模式应该 > 50%）、依赖未来信息的换出占比。
 
 ### 阶段 3：SFT
 

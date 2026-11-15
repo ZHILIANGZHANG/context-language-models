@@ -212,3 +212,16 @@ def test_belady_pager_keeps_what_is_needed(seed):
     rec2 = run_episode(env2, TokenLog(b), ScriptedPolicy(TOK, _task_only), TOK,
                        EpisodeConfig(budget=b, kv_tools=False, max_turns=80), pager=RecentPager())
     assert rec2["reward"] <= rec["reward"]
+
+
+def test_oracle_quality_regressions():
+    """Two fixes of 2026-11-15: (1) evictions must not leave misleading records (a store line whose
+    dispatch is out), which used to drop ~40% of paging-mode episodes at 60% budget; (2) eager mode
+    must produce kv_in examples, which on-demand Belady almost never does."""
+    kept, stats = build(TOK, range(8), [0.6], ["paging", "eager"], MID, max_turns=80, max_future_share=1.0)
+    assert stats[(0.6, "paging", "kept")] >= 7, stats
+    eager = [r for r in kept if r["meta"]["mode"] == "eager"]
+    assert sum(r["meta"]["kv_in"] for r in eager) > 0
+    for r in eager:  # every store turn carries the explicit shelf-by-shelf check
+        text = TOK.decode(r["tokens"])
+        assert text.count("Lowest free shelf: S") >= text.count('{"name": "store", "arguments"') > 0

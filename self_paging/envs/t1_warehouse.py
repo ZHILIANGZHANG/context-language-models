@@ -82,8 +82,8 @@ def _resolved(e: Event) -> str:
 
 
 # -- rule reader -----------------------------------------------------------------------------
-def rule_read(texts: list[str]) -> int:
-    """Lowest shelf that is EMPTY and not quarantined, from page text only."""
+def read_state(texts: list[str]) -> tuple[set[int], set[int]]:
+    """(occupied, quarantined) shelves, replaying the page text in order with the warehouse rules."""
     occupied, quarantined = set(), set()
     for text in texts:
         for line in text.splitlines():
@@ -101,32 +101,45 @@ def rule_read(texts: list[str]) -> int:
             if (n := re.search(r"NOTE-STATE occupied=\[([\d,]*)\] quarantined=\[([\d,]*)\]", line)):
                 occupied = {int(x) for x in n.group(1).split(",") if x}
                 quarantined = {int(x) for x in n.group(2).split(",") if x}
+    return occupied, quarantined
+
+
+def rule_read(texts: list[str]) -> int:
+    """Lowest shelf that is EMPTY and not quarantined, from page text only."""
+    occupied, quarantined = read_state(texts)
     return next(i for i in range(1, 1000) if i not in occupied and i not in quarantined)
 
 
 def state_note(texts: list[str]) -> str:
     """A note that captures the full state the rule reader needs, in a form rule_read accepts."""
-    occupied, quarantined = set(), set()
-    joined = "\n".join(texts)
-    # replay with the same rules as rule_read
-    for line in joined.splitlines():
-        if (a := re.search(r"ACTION: STORE \S+ -> S(\d+)", line)):
-            occupied.add(int(a.group(1)))
-        if (d := re.search(r"S(\d+) is now EMPTY", line)):
-            occupied.discard(int(d.group(1)))
-        if (q := re.search(r"shelf S(\d+) QUARANTINED", line)):
-            quarantined.add(int(q.group(1)))
-        if (c := re.search(r"never completed;.*S(\d+) is EMPTY", line)):
-            occupied.discard(int(c.group(1)))
-        if "Inventory scan" in line:
-            for shelf, status in re.findall(r"S(\d+): (EMPTY|OCCUPIED)", line):
-                (occupied.discard if status == "EMPTY" else occupied.add)(int(shelf))
-        if (n := re.search(r"NOTE-STATE occupied=\[([\d,]*)\] quarantined=\[([\d,]*)\]", line)):
-            occupied = {int(x) for x in n.group(1).split(",") if x}
-            quarantined = {int(x) for x in n.group(2).split(",") if x}
+    occupied, quarantined = read_state(texts)
     occ = ",".join(str(i) for i in sorted(occupied))
     qua = ",".join(str(i) for i in sorted(quarantined))
     return f"NOTE-STATE occupied=[{occ}] quarantined=[{qua}]"
+
+
+def derivation(texts: list[str]) -> str:
+    """Explicit, checkable reasoning for a decision: the status of every shelf up to the answer."""
+    occupied, quarantined = read_state(texts)
+    a = rule_read(texts)
+    parts = []
+    for i in range(1, a):
+        parts.append(f"S{i} " + ("quarantined" if i in quarantined else "occupied"))
+    parts.append(f"S{a} empty and not quarantined")
+    return "Shelf check from the visible records: " + ", ".join(parts) + f". Lowest free shelf: S{a}."
+
+
+def page_role(text: str, current_answer: int | None) -> str:
+    """Why a page can go, judged from its own text (used for eviction prose)."""
+    lines = [ln for ln in text.splitlines() if ln.startswith("[step")]
+    if lines and all("Telemetry:" in ln for ln in lines):
+        return "telemetry only"
+    if "QUARANTINED" in text:
+        return "quarantine notice"
+    shelves = [int(x) for x in re.findall(r"S(\d+)", text)]
+    if current_answer is not None and shelves and min(shelves) > current_answer:
+        return f"only shelves above S{current_answer}"
+    return "not needed for the current shelf state"
 
 
 def minimal_sufficient(texts: list[str], answer: int, must: set[int]) -> set[int]:

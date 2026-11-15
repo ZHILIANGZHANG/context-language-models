@@ -10,7 +10,7 @@ Optionally drop episodes whose evictions were mostly future-informed (``--max-fu
 Budget ratio 1.0 means "no budget" (the no-paging examples, ~15% of the mix by default).
 
     python -m self_paging.data.build_t1_sft --tokenizer /path/Qwen3-8B --out data/t1_sft.jsonl \\
-        --seeds 0 1000 --ratios 1.0 0.6 0.45 --modes paging notes
+        --seeds 0 1000 --ratios 1.0 0.6 0.45 0.35 --modes paging notes eager
 """
 
 from __future__ import annotations
@@ -74,7 +74,7 @@ def main() -> None:
     ap.add_argument("--out", required=True)
     ap.add_argument("--seeds", type=int, nargs=2, default=[0, 100], metavar=("START", "END"))
     ap.add_argument("--ratios", type=float, nargs="+", default=[1.0, 0.6, 0.45])
-    ap.add_argument("--modes", nargs="+", default=["paging", "notes"])
+    ap.add_argument("--modes", nargs="+", default=["paging", "notes", "eager"])
     ap.add_argument("--n-decisions", type=int, default=4)
     ap.add_argument("--max-turns", type=int, default=80)
     ap.add_argument("--max-future-share", type=float, default=1.0)
