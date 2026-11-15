@@ -5,7 +5,7 @@
 本仓库最初 fork 自 [facebookresearch/context-language-models](https://github.com/facebookresearch/context-language-models)（CLM，arXiv 2609.37725），现在是一个研究工作区：
 
 - **CLM 原始实现**：保留在 [`clm/`](clm/) 和 [`suffix_cache_reuse/`](suffix_cache_reuse/)，是最主要的对照组（模型决定、作用在文本上）；论文原文在 [`clm.pdf`](clm.pdf)；
-- **新主线代码**：`self_paging/`（待建）：页存储、协议状态机、HF 推理循环、单次前向训练掩码、系统基线；
+- **新主线代码**：[`self_paging/`](self_paging/README.md)：已有页表、`PagedKV` 参考引擎、单次前向训练掩码和等价性测试；协议、环境、基线、训练还在写；
 - **旧主线代码**：[`state_study/`](state_study/) 的仓库探针，复用为新主线的测试床 T1 和残留实验 E2；
 - **研究文档**：在 [`docs/`](docs/)。新会话从 [`CLAUDE.md`](CLAUDE.md) 开始读。
 
@@ -16,7 +16,7 @@
 | 文档 | 内容 |
 |---|---|
 | [`docs/research_line.md`](docs/research_line.md) | **当前主线**：形式化、P1–P4、空位表、K1–K5、测试床、基线、代价口径、分阶段计划、风险 |
-| [`docs/experiment_plan.md`](docs/experiment_plan.md) | **实验方案**：模型（Qwen3.5 混合架构）、tool call 接口、基准与数据、SFT、RL、SGLang overlay 与 vLLM 的取舍、代码结构、实验矩阵、算力和时间线 |
+| [`docs/experiment_plan.md`](docs/experiment_plan.md) | **实验方案 v2（Qwen3-8B）**：模型的影响（全局位置和 YaRN）、tool call 接口、基准和测评协议（含 LongMemEval-S）、SFT、RL、SGLang overlay 与 vLLM、代码进度、实验矩阵、算力和时间线 |
 | [`docs/data_and_training.md`](docs/data_and_training.md) | **SFT 与 RL 的数据和训练设计**："需要"的定义、Belady 计划、特权提示生成、轨迹重标注与反事实验证、拒绝采样、RL 的 episode、奖励、代价、题库过滤、阶段、变体 |
 | [`docs/algorithm_design.md`](docs/algorithm_design.md) | **算法与实验设计**：协议、推理和训练实现、代价折算、基线实现、等价性测试、E0–E2 协议、SFT/RL、待实现清单 |
 | [`docs/related_work.md`](docs/related_work.md) | **相关工作全集**：§0 是新主线的撞车表；§1–§9 是旧主线阶段的调研；§10 撞车监控 |
@@ -43,7 +43,7 @@
 │   └── references/          delayed-relevance（只读的设计参考，没有 license）
 ├── scripts/
 │   └── setup_third_party.sh 按分组初始化 submodule
-├── self_paging/             新主线代码（待建）
+├── self_paging/             新主线代码：页表、PagedKV 参考引擎、掩码、等价性测试
 └── state_study/             旧主线代码：probes/（仓库探针，复用为 T1）、pilots/（冒烟测试记录）、tests/
 ```
 
@@ -73,7 +73,9 @@ python -m pytest state_study/tests
 - [x] 评估用户的视频 KV 换页 proposal（[`docs/idea_bank.md`](docs/idea_bank.md) F1）
 - [x] 确定主线"让模型自己管理 KV 缓存"，完成设计文档和撞车检索
 - [x] 具体实验方案（[`docs/experiment_plan.md`](docs/experiment_plan.md)）
-- [ ] 阶段 0：`self_paging/` 原型和等价性测试（云端 CPU）
+- [x] 改用 Qwen3-8B；实验方案 v2（实现、训练、数据、代码、测评）
+- [x] 阶段 0 的核心：`self_paging/` 的页表、`PagedKV` 参考引擎、掩码，13 个等价性测试在 Qwen3 结构上通过
+- [ ] 阶段 0 的其余部分：协议、T1 环境、基线和 Belady、HF 循环、E0–E2 脚本
 - [ ] 阶段 1：E0 提升空间、E1 零样本协议、E2 残留（用户 GPU，Qwen3-8B），做继续/止损判断
 - [ ] 阶段 2–3：SFT、RL，在 T1 和 BrowseComp-Plus 上和 CLM、SideQuest 式、Quest 式等基线比较
 - [ ] 阶段 4：视频扩展或接入服务框架，写作

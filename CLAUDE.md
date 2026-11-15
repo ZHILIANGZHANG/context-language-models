@@ -7,7 +7,7 @@
 新会话开始时按这个顺序读，就能接上全部进度：
 
 1. `docs/research_line.md`：**当前主线**。形式化（只追加的 KV 日志 + 模型改驻留集）、P1–P4、空位表、K1–K5、测试床、基线、代价口径、分阶段计划
-2. `docs/experiment_plan.md`：**具体做法**。模型（Qwen3.5 混合架构的影响）、tool call 接口、基准（T1/T1b/BrowseComp-Plus 680/150）、数据采集、SFT、RL、SGLang overlay 和 vLLM 的取舍、代码结构、实验矩阵。和第 4 份冲突时以它为准
+2. `docs/experiment_plan.md`：**具体做法**。v2，Qwen3-8B。模型的影响（全局位置和 YaRN）、tool call 接口、基准和测评协议（T1/T1b、BrowseComp-Plus 680/150、LongMemEval-S）、数据采集、SFT、RL、SGLang overlay 和 vLLM 的取舍、代码结构、实验矩阵。和第 4 份冲突时以它为准
 3. `docs/data_and_training.md`：**SFT 和 RL 的数据从哪来、怎么训练**。"需要"的定义（规则读者反事实、BCP 的 evidence/gold 文档、反事实 ΔNLL 验证）、Belady 计划、特权提示生成、重标注、拒绝采样、RL 的 episode、奖励、代价、题库过滤、阶段、变体
 4. `docs/algorithm_design.md`：形式化、单次前向训练掩码、代价折算、基线实现、等价性测试、E0–E2 实验协议
 5. `docs/research_log.md`：时间线（§1 的 2026-11-15 是换主线的经过）、已验证事实（§3.8 是新主线的数字）、环境限制（§6）、待核实清单（§7.1）、下一步（§8）
@@ -21,17 +21,17 @@
 
 - **主线已换**：用户明确说"忘掉之前的主线，现在模型自己管 KV 就是我们的主线"。旧主线（状态 vs 历史、I1–I4、H1–H5、自适应绑定）整体归档，**除非用户要求，不要再按旧主线推进**。
 - **可复用的旧代码**：`state_study/probes/` 的仓库探针，要改造成多轮测试床 T1，它的新旧矛盾场景用于残留实验 E2。
-- **新主线代码还没写**：计划放在根目录的 `self_paging/`（见 algorithm_design §12）。
-- **模型**：用户服务器上已有 Qwen3.5-2B/4B/9B（混合架构：GDN : 全注意力 = 3 : 1 [S]，待用 config 核对）。2B 调试；4B 是 T1 上的主力 RL；9B 做 BrowseComp-Plus 上的 RL 和终版（2B/4B 在 BCP 上大概率学不动）；dense 对照 Qwen3-8B 只用于残留实验。
+- **新主线代码**：`self_paging/` 的核心已实现：页表、参考引擎 `PagedKV`、单次前向掩码，13 个等价性测试在 Qwen3 结构上通过（见 `self_paging/README.md`）。接下来按 experiment_plan §8.2 写协议、T1 环境、基线、HF 循环、E0–E2 脚本。
+- **模型**：**Qwen3-8B**（纯 dense，2026-11-15 用户决定，因为 Qwen3.5 是混合架构）。用户服务器上已有的 Qwen3.5-9B 用作本地评判模型和备用老师。
 - **资源**：这条线不需要模型 API，但需要 GPU 和开源权重。云端没有 GPU，huggingface.co 被拦截，所以实验在用户自己的机器上跑；云端只写代码、在 CPU 上用随机初始化的小模型跑测试。
-- **下一步**：阶段 0，按 experiment_plan §8 实现 `self_paging/` 并通过等价性测试；然后把 E0–E2 的脚本交给用户在 GPU 上跑。等用户回复 experiment_plan §12 的服务器信息。详见 research_log §8。
+- **下一步**：写完 experiment_plan §8.2 的模块和 E0–E2 脚本，交给用户在 GPU 上跑；等用户回复 experiment_plan §12 的服务器信息。详见 research_log §8。
 
 ## 仓库地图
 
 ```
 clm/, suffix_cache_reuse/   CLM 上游代码（CC BY-NC 4.0），主要对照组；不要改动
 clm.pdf                     CLM 论文原文（用户上传）
-self_paging/                新主线代码（待建）
+self_paging/                新主线代码：core/（页表）、hf/（PagedKV、掩码）、tests/
 state_study/                旧主线代码，探针部分复用为 T1 / E2
   probes/                   warehouse.py（场景生成）、render.py（条件）、build_items.py（出题、打分、账本）
   groundtruth/              alfworld_facts.py
@@ -50,7 +50,11 @@ python -m state_study.probes.build_items build --out OUT --seeds 0 1 2 --gap 60 
 python -m state_study.probes.build_items score --out OUT       # 读 OUT/responses.jsonl
 ```
 
-`self_paging/` 建好后，在这里补上它的测试和实验命令。虚拟环境放在 scratchpad 里，不要放进仓库。
+```bash
+python -m pytest -q -p no:cacheprovider self_paging/tests          # 需要 torch + transformers；云端在 scratchpad 的 venv 里装 CPU 版（见 self_paging/README.md）
+```
+
+虚拟环境放在 scratchpad 里，不要放进仓库。
 
 ## 约定
 
@@ -59,9 +63,11 @@ python -m state_study.probes.build_items score --out OUT       # 读 OUT/respons
 - **没有 license 的仓库**：VISTA、belief-world-models、delayed-relevance 没有 license，只能运行或参考思路，**不能复制代码**进本仓库。ACM（`third_party/methods/acm`）是 MIT，可以复用它的 BrowseComp-Plus 数据加载、检索和评判代码，注明出处。
 - **凭证**：不要把本会话自己的登录凭证拿去调模型 API；不要让用户把密钥贴到聊天里。
 - **KV 实验**：
-  - Qwen3.5 是混合模型：换页只作用在全注意力层，GDN 层的循环状态始终看整条日志（推理和训练都这样，P3 才精确）；
+  - 策略模型是 dense 的 Qwen3-8B，换页作用在全部层。不要换成混合线性注意力模型（Qwen3.5/3.6），除非用户要求；
+  - 用全局位置号；日志超过 32K 的基准对所有方法统一开 YaRN factor 4，日志上限 120K；
   - 动作接口用原生 tool call（`kv_out`、`kv_in`、`note`、对照里的 `kv_drop`），驻留集只在回合之间改变；
-  - 推理引擎用 SGLang monkeypatch（仿 `suffix_cache_reuse/overlay.py`），不改 SGLang 源码；第一版不改 vLLM（理由见 experiment_plan §7.3）；
+  - 参考实现是 `self_paging/hf/logstore.py` 的 `PagedKV`；RL rollout 用 SGLang monkeypatch（仿 `suffix_cache_reuse/overlay.py`），不改 SGLang 源码；vLLM 是备选（experiment_plan §7.3）；
+  - 训练用 HF 的 `attn_implementation="flex_attention"`，把 `masks.make_mask_mod` 生成的 BlockMask 直接作为 `attention_mask` 传入；
   - 轨迹按 token id 记录（token 进、token 出），绝不重新分词；
   - 代价不能按搬运次数计价：PCIe 搬一页只要几毫秒，一个解码 token 就要几十毫秒。按 algorithm_design §5 的口径报告；
   - HF 原型只能报告解析成本；没接入服务框架之前，不要声称墙钟延迟更快。

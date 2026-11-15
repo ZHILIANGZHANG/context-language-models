@@ -54,6 +54,7 @@
 | 23 | "忘掉之前的主线，现在模型自己管 KV 就是我们的主线" | 旧主线文档归档到 `docs/archive/state_vs_history/`；重写 `research_line.md`、`algorithm_design.md`；更新 related_work §0、idea_bank F 组、本日志、README、CLAUDE.md。提交 `fd5e2dc` |
 | 24 | 具体实验怎么做：bench、数据、SFT、RL、模型（服务器上已有 Qwen3.5-2B/4B/9B）、代码、vLLM 怎么改 | 写 `docs/experiment_plan.md`。三处修正：① Qwen3.5 是混合架构，换页只作用在全注意力层，加 dense 对照；② 动作接口改成原生 tool call；③ 引擎选 SGLang monkeypatch（仿 SCR），vLLM 第一版不改。T2 用 ACM 的 BrowseComp-Plus 680/150 划分，复用 ACM 的检索、评判和公开轨迹 |
 | 25 | SFT 数据怎么来、RL 怎么设计、RL 的数据怎么来 | 写 `docs/data_and_training.md`：没有外部 API，老师只能是程序 oracle 或"同模型 + 特权信息"；T1 用规则读者的反事实最小充分集定义"需要"，T2 用 BCP 的 evidence/gold 文档 + 显式引用 + 注意力，再用反事实 ΔNLL 验证；超预算时截断而不是系统 LRU；T2 的 RL 以 9B 为主 |
+| 26 | 既然 Qwen3.5 是混合架构，改用 Qwen3-8B；怎么实现、怎么训练、数据怎么来、代码怎么写、怎么测评 | 换成 Qwen3-8B（dense）。实现了 `self_paging/` 的核心（页表、`PagedKV` 参考引擎、掩码），13 个等价性测试在 Qwen3 结构上通过；HF 的 flex_attention 直接接收我们的 BlockMask。重写 `experiment_plan.md`（v2）：全局位置超出 32K 要统一开 YaRN；新增 LongMemEval-S（问题最后给出）作为 T2-B；BCP 对 8B 可能太难，给出备选；vLLM 在 dense 上可行，作为备选。`data_and_training.md` 加"可实现性"过滤 |
 
 ---
 
@@ -192,6 +193,14 @@
 - 工具：`search` 返回片段（新结果 512 token、看过的 128 token），`get_document` 最多 8192 token；
 - 评判：OpenAI SDK + 官方 simple-evals 模板，默认 GPT-5；可以把 base URL 换成本地服务；
 - HF 上公开了基座 Qwen3.5-9B 在训练 680 题上的 pass@4 轨迹（ReAct 和 memtool，约 4.4 GB），以及 OPD 三轮的 checkpoint。
+
+**Qwen3-8B** [K]（要用 config 核对）：36 层、hidden 4096、32 个 Q 头、8 个 KV 头、head_dim 128；原生上下文 32,768（`max_position_embeddings` 40,960），YaRN factor 4 可到 131,072；rope_theta 1e6；同一个模型可以思考或不思考；Hermes 风格的工具调用。KV 约 144 KB/token，权重约 16.4 GB。
+
+**等价性测试结果**（2026-11-15，云端 CPU，torch 2.15.0+cpu、transformers 5.23.0，随机初始化的小 Qwen3 配置）[R]：
+- 逐步换页推理 = 整条日志加掩码的一次前向：sdpa、float64 下误差 < 1e-9；eager 下约 1e-7，因为 HF 的 eager 注意力在 float32 里算 softmax；
+- 物理换页和逻辑换页逐位相同；换出再换回的 KV 逐位相同；
+- FlexAttention 的 `mask_mod` 和稠密可见性矩阵一致；HF 的 `attn_implementation="flex_attention"` 直接接收 BlockMask，和稠密掩码的结果差 1.5e-7（float32）；
+- transformers 5 的接口变化：前向没有 `cache_position` 参数了；传入 4D 掩码会原样使用；`DynamicCache.layers[l].keys` / `.values` 取 KV。
 
 **检索到的关键数字** [S]：
 - SideQuest：215 条训练样本；峰值 token 降低最多 65%；
@@ -392,8 +401,11 @@ pip download harbor==0.16.1 --no-deps --python-version 3.12 --only-binary=:all: 
 - [ ] `clm.pdf`：对照原文核实 [clm_notes.md](clm_notes.md) 里标 [N] 的数字，尤其是 RL 配置和 SCR 结果
 - [ ] BrowseComp-Plus：语料、检索器、评判能否全部本地化
 - [ ] 用户的实际 GPU 硬件（原 proposal 写的是 4×RTX A6000）
-- [ ] Qwen3.5-2B/4B/9B 的 config：层数、`layer_types`、KV 头数、head_dim、partial rotary（命令见 [experiment_plan.md](experiment_plan.md) §12）
-- [ ] 用户服务器上 torch、transformers、SGLang、fla 的版本；transformers 里 Qwen3.5 的 cache 类名和 GDN 状态字段
+- [ ] Qwen3-8B 的 config（命令见 [experiment_plan.md](experiment_plan.md) §12）；Qwen3 chat template 在工具调用循环里是否保留思考内容
+- [ ] ~~Qwen3.5 的 config~~（已改用 Qwen3-8B，不再需要）
+- [ ] 用户服务器上 torch、transformers、SGLang、vLLM 的版本；在服务器上跑一遍 `self_paging/tests`
+- [ ] Qwen3-8B 在 BCP 训练 680 题上的 pass@8（决定 T2 的 RL 是否可行）
+- [ ] LongMemEval-S 能否下载；`answer_session_ids` 字段
 - [ ] SGLang streaming session（PR #21875）在用户的版本里是否可用，能不能直接当会话层
 - [ ] 本地评判模型和 GPT-5 评判的一致率（T2 的数字才能和 ACM 比）
 - [ ] 服务器能否访问 HF：BrowseComp-Plus 语料和索引、ACM 公开轨迹、Qwen3-8B
@@ -421,14 +433,13 @@ pip download harbor==0.16.1 --no-deps --python-version 3.12 --only-binary=:all: 
 
 ## 8. 下一步
 
-按 [experiment_plan.md](experiment_plan.md) §11：
+按 [experiment_plan.md](experiment_plan.md) v2 §11：
 
-1. **云端现在就能做的（阶段 0，只需 CPU）**：
-   - 按 experiment_plan §8 建 `self_paging/`：`core/`（页、协议、轨迹格式、代价）、`hf/`（LogStore、runner、掩码、Qwen3.5 全注意力层补丁）、`policies/`（含 Belady）、`envs/t1_warehouse.py`、`envs/t1b_lookup.py`、`data/oracle_sft.py`；
-   - 用随机初始化的小 Qwen3.5 配置跑等价性测试，包括 GDN 层（需要在 scratchpad 的虚拟环境里装 CPU 版 torch 和支持 Qwen3.5 的 transformers；fla 的 kernel 可能需要 GPU，CPU 上用 transformers 自带的 torch 实现）；
-   - 写好 E0、E1、E2 的驱动和打分脚本。
-2. **需要用户服务器的**：
-   - 回复 experiment_plan §12 的信息（config、GPU、软件版本、HF 访问、JDK、评判模型）；
-   - 在真实权重上跑等价性测试，然后跑 E0、E1、E2，做继续/止损判断。
-3. **之后**：SGLang overlay 和引擎一致性测试 → SFT 数据（四个来源）→ SFT → RL。
-4. **动笔前**：先读 SideQuest 全文（§7.1）。
+1. **已完成**：`self_paging/` 的核心（页表、`PagedKV`、掩码）和 13 个等价性测试。
+2. **云端接着做的**（experiment_plan §8.2 的顺序）：`core/protocol.py`（Qwen3 工具调用的渲染和解析）、`core/trajectory.py`、`core/costs.py`、`envs/t1_warehouse.py` 和 `envs/t1b_lookup.py`（含最小充分集和规则读者）、`policies/`（含 Belady）、`hf/runner.py`，以及 E0、E1、E2 的脚本。
+3. **需要用户服务器的**：
+   - 下载 Qwen3-8B，回复 experiment_plan §12 的信息；
+   - 跑模板逐 token 比对和 `self_paging/tests`；
+   - 跑 E0、E0b、E1、E2，做继续/止损判断。
+4. **之后**：SFT 数据 → SFT → SGLang overlay 和一致性测试 → RL。
+5. **动笔前**：先读 SideQuest 全文（§7.1）。
