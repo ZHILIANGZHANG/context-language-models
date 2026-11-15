@@ -5,15 +5,16 @@ Usage::
     kv = PagedKV(model)
     sys = kv.open("system", pinned=True); kv.feed(sys, system_ids)
     obs = kv.open("tool");                kv.feed(obs, tool_ids)
-    kv.page_out([obs])                    # model issued kv_out
+    kv.page_out([obs])                    # the model issued kv_out
     ans = kv.open("assistant");           logits = kv.feed(ans, [tok])   # decode token by token
 
 How a forward works (docs/algorithm_design.md §3.2):
-  1. gather the KV of resident pages (plus the page being written) in log order into a fresh
-     ``DynamicCache``; its length is L_res;
+  1. if the resident set changed since the last forward, gather the KV of the resident pages (plus
+     the page being written) in log order into a fresh ``DynamicCache``; otherwise keep appending to
+     the live cache;
   2. run the new tokens with ``position_ids`` = their *global* log positions, and an explicit
-     additive mask: every gathered token visible, causal among the new tokens;
-  3. cut the new tokens' KV off the end of the cache and append it to the page.
+     additive mask: every cached token visible, causal among the new tokens;
+  3. copy the new tokens' KV off the end of the cache into the page store.
 
 Keys in the cache are already rotated (Qwen3 applies RoPE before ``cache.update``), so a key's
 position travels with it; gaps in positions are harmless. The result equals one forward over the
@@ -29,73 +30,70 @@ from __future__ import annotations
 import torch
 from transformers import DynamicCache
 
-from ..core.pages import PageTable, PagingError
-from .masks import resident_matrix
+from ..core.log import TokenLog
 
 
-class PagedKV:
-    def __init__(self, model, budget: int | None = None) -> None:
+class PagedKV(TokenLog):
+    def __init__(self, model, budget: int | None = None, strict: bool = True) -> None:
+        super().__init__(budget=budget, strict=strict)
         self.model = model
         self.n_layers = model.config.num_hidden_layers
         self.device = next(model.parameters()).device
         self.dtype = next(model.parameters()).dtype
-        self.budget = budget
-        self.table = PageTable()
         self.kv: dict[int, list[tuple[torch.Tensor, torch.Tensor]]] = {}
-        self.log_len = 0
-        self.tokens: list[int] = []
-        self.page_of: list[int] = []
-        self.seg_of: list[int] = []
+        self._live: DynamicCache | None = None  # valid while the resident set is unchanged
 
     # -- pages -----------------------------------------------------------------------------
     def open(self, kind: str, pinned: bool = False) -> int:
-        pid = self.table.open(kind, self.log_len, pinned=pinned)
+        pid = super().open(kind, pinned=pinned)
         self.kv[pid] = []
         return pid
 
-    def page_out(self, pids, physical: bool = False) -> None:
-        pids = self.table.page_out(pids)
+    def page_out(self, pids, physical: bool = False) -> list[int]:
+        pids = super().page_out(pids)
+        self._live = None
         if physical:
             pin = self.device.type == "cuda"
             for p in pids:
-                self.kv[p] = [(k.to("cpu", non_blocking=pin).pin_memory() if pin else k.to("cpu"),
-                               v.to("cpu", non_blocking=pin).pin_memory() if pin else v.to("cpu"))
-                              for k, v in self.kv[p]]
+                self.kv[p] = [(self._to_host(k, pin), self._to_host(v, pin)) for k, v in self.kv[p]]
+        return pids
 
-    def page_in(self, pids) -> None:
-        pids = self.table.page_in(pids, budget=self.budget)
+    @staticmethod
+    def _to_host(t: torch.Tensor, pin: bool) -> torch.Tensor:
+        return t.to("cpu", non_blocking=pin).pin_memory() if pin else t.to("cpu")
+
+    def page_in(self, pids) -> list[int]:
+        pids = super().page_in(pids)
+        self._live = None
         for p in pids:
             self.kv[p] = [(k.to(self.device, non_blocking=True), v.to(self.device, non_blocking=True))
                           for k, v in self.kv[p]]
+        return pids
 
-    def drop(self, pids) -> None:
-        for p in self.table.drop(pids):
+    def drop(self, pids) -> list[int]:
+        pids = super().drop(pids)
+        self._live = None
+        for p in pids:
             self.kv[p] = []
+        return pids
 
     # -- forward ---------------------------------------------------------------------------
-    def _visible_pages(self, pid: int) -> list[int]:
-        return self.table.in_order(self.table.resident() | {pid})
-
-    def _gather(self, pid: int) -> tuple[DynamicCache, int]:
+    def _gather(self, pid: int) -> DynamicCache:
         cache = DynamicCache(config=self.model.config)
-        pages = [p for p in self._visible_pages(pid) if self.kv[p]]
-        if not pages:
-            return cache, 0
-        for layer in range(self.n_layers):
-            k = torch.cat([self.kv[p][layer][0] for p in pages], dim=-2)
-            v = torch.cat([self.kv[p][layer][1] for p in pages], dim=-2)
-            cache.update(k, v, layer)
-        return cache, cache.get_seq_length()
+        pages = [p for p in self.table.in_order(self.table.resident() | {pid}) if self.kv[p]]
+        if pages:
+            for layer in range(self.n_layers):
+                k = torch.cat([self.kv[p][layer][0] for p in pages], dim=-2)
+                v = torch.cat([self.kv[p][layer][1] for p in pages], dim=-2)
+                cache.update(k, v, layer)
+        return cache
 
     @torch.no_grad()
     def feed(self, pid: int, ids: list[int]) -> torch.Tensor:
         """Append ``ids`` to page ``pid`` (the page being written). Returns logits [n, vocab]."""
-        if not ids:
-            raise PagingError("nothing to feed")
-        if self.budget is not None and self.table.resident_tokens() + len(ids) > self.budget:
-            raise PagingError("resident set would exceed the budget")
         n = len(ids)
-        cache, l_res = self._gather(pid)
+        cache = self._live if self._live is not None else self._gather(pid)
+        l_res = cache.get_seq_length()
         mask = torch.zeros(1, 1, n, l_res + n, dtype=self.dtype, device=self.device)
         mask[0, 0, :, l_res:] = torch.triu(
             torch.full((n, n), torch.finfo(self.dtype).min, dtype=self.dtype, device=self.device), 1)
@@ -104,26 +102,12 @@ class PagedKV:
                          attention_mask=mask, past_key_values=cache, use_cache=True)
         for layer in range(self.n_layers):
             lay = cache.layers[layer]
-            k_new, v_new = lay.keys[:, :, l_res:], lay.values[:, :, l_res:]
+            k_new, v_new = lay.keys[:, :, l_res:].clone(), lay.values[:, :, l_res:].clone()
             if len(self.kv[pid]) < self.n_layers:
-                self.kv[pid].append((k_new.clone(), v_new.clone()))
+                self.kv[pid].append((k_new, v_new))
             else:
                 k_old, v_old = self.kv[pid][layer]
                 self.kv[pid][layer] = (torch.cat([k_old, k_new], -2), torch.cat([v_old, v_new], -2))
-        self.table.grow(pid, n)
-        self.tokens += list(ids)
-        self.page_of += [pid] * n
-        self.seg_of += [self.table.version] * n
-        self.log_len += n
+        self._live = cache
+        self._record(pid, ids)
         return out.logits[0]
-
-    # -- export ----------------------------------------------------------------------------
-    def trajectory(self) -> dict:
-        """Everything a trainer needs to rebuild the mask: token ids, page and version per token,
-        and the resident matrix."""
-        return {
-            "tokens": torch.tensor(self.tokens),
-            "page_of": torch.tensor(self.page_of),
-            "seg_of": torch.tensor(self.seg_of),
-            "resident": resident_matrix(self.table.snapshots, len(self.table.pages)),
-        }

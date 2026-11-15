@@ -215,7 +215,11 @@ v1 里最大的障碍（混合模型下 block 被放大到几百 token）在 Qwe
 | `self_paging/hf/logstore.py` | `PagedKV` 参考引擎 | 等价性、物理换页、换回逐位相同 |
 | `self_paging/hf/masks.py` | 可见性矩阵、加性掩码、FlexAttention `mask_mod` | mask_mod 和稠密矩阵一致；HF flex_attention 直接可用 |
 
-### 8.2 接下来（按顺序）
+### 8.1b 2026-11-15 第二批（已完成）
+
+T1 上"造数据 → SFT → GRPO → 评测"的完整链路，以及 BCP 环境适配器、特权提示老师、系统换页基线。文件清单、测试状态和服务器上的运行命令见 `self_paging/README.md`。下表里已经完成的：`core/protocol.py`、`core/costs.py`、轨迹记录（`core/log.py` 的 `record()`）、`envs/t1_warehouse.py`、`policies/`（改名为 `agent/pagers.py`，目前只有 Recent 和 Belady）、`hf/runner.py`（改名为 `agent/episode.py`）、`data/` 的 oracle 数据和拒绝采样、`train/` 的 SFT 和 GRPO、`envs/t2_bcp.py`。
+
+### 8.2 原计划（按顺序）
 
 | 文件 | 内容 | 能否在云端完成 |
 |---|---|---|

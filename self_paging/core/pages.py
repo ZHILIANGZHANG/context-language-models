@@ -10,7 +10,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
-KINDS = ("system", "task", "tool", "assistant", "think", "note", "gauge")
+KINDS = ("system", "task", "tool", "assistant", "think", "note", "gauge", "header", "ack")
 WHERE = ("gpu", "host", "dropped")
 
 

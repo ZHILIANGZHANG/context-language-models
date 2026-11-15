@@ -55,6 +55,8 @@
 | 24 | 具体实验怎么做：bench、数据、SFT、RL、模型（服务器上已有 Qwen3.5-2B/4B/9B）、代码、vLLM 怎么改 | 写 `docs/experiment_plan.md`。三处修正：① Qwen3.5 是混合架构，换页只作用在全注意力层，加 dense 对照；② 动作接口改成原生 tool call；③ 引擎选 SGLang monkeypatch（仿 SCR），vLLM 第一版不改。T2 用 ACM 的 BrowseComp-Plus 680/150 划分，复用 ACM 的检索、评判和公开轨迹 |
 | 25 | SFT 数据怎么来、RL 怎么设计、RL 的数据怎么来 | 写 `docs/data_and_training.md`：没有外部 API，老师只能是程序 oracle 或"同模型 + 特权信息"；T1 用规则读者的反事实最小充分集定义"需要"，T2 用 BCP 的 evidence/gold 文档 + 显式引用 + 注意力，再用反事实 ΔNLL 验证；超预算时截断而不是系统 LRU；T2 的 RL 以 9B 为主 |
 | 26 | 既然 Qwen3.5 是混合架构，改用 Qwen3-8B；怎么实现、怎么训练、数据怎么来、代码怎么写、怎么测评 | 换成 Qwen3-8B（dense）。实现了 `self_paging/` 的核心（页表、`PagedKV` 参考引擎、掩码），13 个等价性测试在 Qwen3 结构上通过；HF 的 flex_attention 直接接收我们的 BlockMask。重写 `experiment_plan.md`（v2）：全局位置超出 32K 要统一开 YaRN；新增 LongMemEval-S（问题最后给出）作为 T2-B；BCP 对 8B 可能太难，给出备选；vLLM 在 dense 上可行，作为备选。`data_and_training.md` 加"可实现性"过滤 |
+| 27 | Qwen3.5-9B 和 Qwen3-8B 推荐哪个 | 推荐 Qwen3-8B（换页真的让模型看不到，机制干净）；Qwen3.5-9B 的优势在可比性和 BCP 的 RL 信号。建议用 ACM 的 ReAct 模式在训练 680 题上测两个模型的 pass@8 再定 |
+| 28 | 准备数据、SFT、RL 的代码能全部写好吗 | 写完 T1 上的完整链路：`TokenLog`、协议渲染、T1 环境（规则读者、最小充分集）、oracle（Belady、笔记模式、可实现性标注）、特权提示老师、episode 循环、系统换页基线、SFT 数据构建、拒绝采样、打包和 log-prob、SFT、GRPO、T1 评测、BCP 环境适配器。34 个测试通过。发现并修了三个问题：oracle 给自己预留的空间不够；回执页头无限累积；最小充分集要迭代到不动点 |
 
 ---
 
@@ -433,13 +435,16 @@ pip download harbor==0.16.1 --no-deps --python-version 3.12 --only-binary=:all: 
 
 ## 8. 下一步
 
-按 [experiment_plan.md](experiment_plan.md) v2 §11：
-
-1. **已完成**：`self_paging/` 的核心（页表、`PagedKV`、掩码）和 13 个等价性测试。
-2. **云端接着做的**（experiment_plan §8.2 的顺序）：`core/protocol.py`（Qwen3 工具调用的渲染和解析）、`core/trajectory.py`、`core/costs.py`、`envs/t1_warehouse.py` 和 `envs/t1b_lookup.py`（含最小充分集和规则读者）、`policies/`（含 Belady）、`hf/runner.py`，以及 E0、E1、E2 的脚本。
-3. **需要用户服务器的**：
-   - 下载 Qwen3-8B，回复 experiment_plan §12 的信息；
-   - 跑模板逐 token 比对和 `self_paging/tests`；
-   - 跑 E0、E0b、E1、E2，做继续/止损判断。
-4. **之后**：SFT 数据 → SFT → SGLang overlay 和一致性测试 → RL。
-5. **动笔前**：先读 SideQuest 全文（§7.1）。
+1. **用户服务器**（`self_paging/README.md` 的命令）：
+   - 模板比对测试 `test_template_server.py`，必须先过；
+   - 用真实 Qwen3-8B 跑一遍 `self_paging/tests`（GPU、服务器上的 transformers 版本）；
+   - T1 零样本评测：full / recent / belady / model，这是 E0 和 E1 的 T1 部分；
+   - 造 T1 SFT 数据 → SFT → GRPO（先 2 卡少量步数试多卡路径）。
+2. **云端接着写**：
+   - E2 残留实验脚本（FULL / OUT-LATE / OUT-EARLY / REWRITE）；
+   - LongMemEval-S 环境（问题最后给出）；
+   - T2 轨迹重标注（来源 B）和反事实 ΔNLL 验证；
+   - QuestPage / AttnEvict 基线；
+   - 用特权提示老师重造 SFT 数据（需要真实模型，在服务器上跑）。
+3. **需要 GPU 才能做的**：SGLang overlay（rollout 加速）和引擎一致性测试。
+4. **动笔前**：先读 SideQuest 全文（§7.1）。
