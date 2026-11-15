@@ -1,3 +1,5 @@
+> **已归档（2026-11-15）**：这是旧主线"状态 vs 历史 / 写入时付代价还是读取时付代价"的文档，已被新主线"让模型自己管理 KV 缓存"取代，见 [`docs/research_line.md`](../../research_line.md)。保留在这里只作历史记录，不再更新。
+
 # 研究提案：长程 Agent 的真相存在哪里？
 ## —— 状态与历史的结构来源、错误归因与绑定时机
 
@@ -5,7 +7,7 @@
 
 - 版本：v0.1（2026-10-03）
 - **注意：本提案已被主线吸收。** 2026-10-03 确定的主线是 [research_line.md](research_line.md)（"写入时付代价，还是读取时付代价？"），I1–I4 都并入其中。本文仍是 I1–I4 各自实验设计的详细出处；新的技术设计以 [algorithm_design.md](algorithm_design.md) 为准。
-- 配套文档：[文献地图](literature_map.md)、[相关工作全集](related_work.md)、[研究日志](research_log.md)、[第三方代码与基准清单](../third_party/README.md)
+- 配套文档：[文献地图](literature_map.md)、[相关工作全集](../../related_work.md)、[研究日志](../../research_log.md)、[第三方代码与基准清单](../../../third_party/README.md)
 - 状态：提案阶段。下文所有"已有结果"都标了来源。其中标 [S] 的数字只核对到搜索摘要，正式写作前必须对照原文（见 §12）。
 
 ---
@@ -51,7 +53,7 @@
 
 ### 1.1 CLM 做了什么
 
-CLM 把 agent 的上下文镜像成一个文本文件，模型用 bash 或 python 任意改写，改完就是下一轮的上下文。实现见本仓库 [`clm/clm_harness`](../clm/clm_harness/README.md)。它的贡献：
+CLM 把 agent 的上下文镜像成一个文本文件，模型用 bash 或 python 任意改写，改完就是下一轮的上下文。实现见本仓库 [`clm/clm_harness`](../../../clm/clm_harness/README.md)。它的贡献：
 
 - **测量**：prefix-reuse FLOPs，一种把编辑导致的重新计算也算进去的成本口径；
 - **推理服务**：SCR（Suffix Cache Reuse），编辑后复用后缀的缓存；
@@ -112,7 +114,7 @@ CLM 把 agent 的上下文镜像成一个文本文件，模型用 bash 或 pytho
 
 ### 3.1 底座：PoS 的 agent 循环
 
-- **代码**：[`third_party/methods/pos`](../third_party/README.md)（MIT），固定版本 `d6acb43`。
+- **代码**：[`third_party/methods/pos`](../../../third_party/README.md)（MIT），固定版本 `d6acb43`。
 - **为什么选它**：
   - 已经接好了 ALFWorld、LOCA-Bench、RCA-100、ClinDiag；
   - 每个基准都自带原始轨迹和 PoS 两套配置，可以先复现它公布的数字，确认我们的设施没问题；
@@ -139,8 +141,8 @@ CLM 把 agent 的上下文镜像成一个文本文件，模型用 bash 或 pytho
 
 几个实现细节：
 
-- **A2（CLM）**：ALFWorld 和 LOCA 的循环里没有 bash 沙箱，所以提供一个 `edit_context(python_code)` 工具。渲染和解析直接复用 [`clm/clm_harness/context_utils/context_string.py`](../clm/clm_harness/context_utils/context_string.py)。
-- **A3（Schema-State）**：参考 [`skill-state-runtime`](../third_party/README.md)（MIT），按 SKILL.state 的设定实现：每步输入 = 规格 + 状态 + 最新观察。**修正上游一个已知问题**：先执行动作、看到结果，再提交状态补丁（读书笔记指出 SKILL.state 是先提交后执行，失败的动作会让状态显示"已成功"）。
+- **A2（CLM）**：ALFWorld 和 LOCA 的循环里没有 bash 沙箱，所以提供一个 `edit_context(python_code)` 工具。渲染和解析直接复用 [`clm/clm_harness/context_utils/context_string.py`](../../../clm/clm_harness/context_utils/context_string.py)。
+- **A3（Schema-State）**：参考 [`skill-state-runtime`](../../../third_party/README.md)（MIT），按 SKILL.state 的设定实现：每步输入 = 规格 + 状态 + 最新观察。**修正上游一个已知问题**：先执行动作、看到结果，再提交状态补丁（读书笔记指出 SKILL.state 是先提交后执行，失败的动作会让状态显示"已成功"）。
 - **A6（State+Log）**：状态块放在 prompt 末尾。这正是 delayed-relevance 复现里测出的、对缓存友好的那种顺序。
 
 ### 3.3 基准
@@ -171,7 +173,7 @@ CLM 把 agent 的上下文镜像成一个文本文件，模型用 bash 或 pytho
 2. **依赖步准确率**（探针环境）：只统计那些"正确动作取决于某条更早事实"的步骤。复现项目表明，这比按回合统计灵敏得多。
 3. **成本**，三个口径同时报告：
    - 厂商实际计费（区分命中缓存的 token 和没命中的 token）；
-   - 开源模型的 prefix-reuse FLOPs，复用 [`clm/clm_harness/flops_metrics`](../clm/clm_harness/flops_metrics/)；
+   - 开源模型的 prefix-reuse FLOPs，复用 [`clm/clm_harness/flops_metrics`](../../../clm/clm_harness/flops_metrics/)；
    - 原始 token 数，用来和已发表的论文对齐。
    - **排序以前两个口径为准。**
 4. **状态保真度**（I2）：每一步状态中的断言相对真值的准确率和覆盖率，以及"过时"的持续时长（真值已经变了，状态还没跟上的步数）。
@@ -402,7 +404,7 @@ delayed-relevance 复现里，事实被更正后，显式状态 93/93 次都用�
 **已经完成的部分：**
 - 探针环境、全部渲染条件和打分脚本已实现：`state_study/probes`；
 - 单元测试通过（目前 20 个）：确定性、每个决策都依赖关键事件、独立重新模拟得到的真值一致、规则读者只看文本就能答对；
-- 用 Haiku 子 agent 跑了 36 题的冒烟测试，详见 [`state_study/pilots/2026-10-03_haiku_smoke`](../state_study/pilots/2026-10-03_haiku_smoke/README.md)。
+- 用 Haiku 子 agent 跑了 36 题的冒烟测试，详见 [`state_study/pilots/2026-10-03_haiku_smoke`](../../../state_study/pilots/2026-10-03_haiku_smoke/README.md)。
 
 **观察到的现象（n=3，只说明方向）：**
 - `state_noq` 0/3，全部是"忽略关键事件"式的错误；
@@ -534,7 +536,7 @@ delayed-relevance 复现里，事实被更正后，显式状态 93/93 次都用�
 
 ### 10.1 代码与数据
 
-- **代码**：全部在 [`third_party/`](../third_party/README.md)，用 `scripts/setup_third_party.sh` 初始化。
+- **代码**：全部在 [`third_party/`](../../../third_party/README.md)，用 `scripts/setup_third_party.sh` 初始化。
 - **需要自己下载的数据**：
   - LongMemEval（Hugging Face 或 Google Drive）；
   - ALFWorld（GitHub release 上的压缩包，已验证可以下载）。

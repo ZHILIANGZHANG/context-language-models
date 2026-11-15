@@ -1,6 +1,6 @@
-# 相关工作全集（截至 2026-10-03）
+# 相关工作全集（截至 2026-11-15）
 
-本文档把这个课题调研过的所有工作汇总在一处：做法、代码和 license、关键数字、和我们的关系。要看简明版的谱系和趋势，读 [literature_map.md](literature_map.md)；要看"我们和谁最近、怎么区分"，读本文 §1 和 [research_line.md](research_line.md) §7。
+本文档把这个课题调研过的所有工作汇总在一处：做法、代码和 license、关键数字、和我们的关系。**当前主线（让模型自己管理 KV 缓存）的撞车表在 §0**，定位见 [research_line.md](research_line.md) §3。§1–§9 是旧主线"状态 vs 历史"阶段的调研，事实仍然有效，但组织方式是围绕旧主线的；旧主线的文献地图归档在 [`archive/state_vs_history/literature_map.md`](archive/state_vs_history/literature_map.md)。
 
 ## 核实程度标记
 
@@ -12,12 +12,97 @@
 | **[N]** | 第三方基于论文全文写的读书笔记（GitHub 上的笔记） |
 | **[S]** | 只看过搜索引擎摘要，**引用前必须核对原文** |
 | **[T]** | 只看到标题 |
+| **[K]** | 凭已有知识写的，本项目没有检索核实过（编号、数字都要核对） |
 
 日期：搜索结果里有具体日期的写到日；否则按 arXiv 编号推算到月（例如 2608 = 2026 年 8 月）。
 
 ---
 
-## 1. 和主线最接近的工作（必须正面区分）
+## 0. 当前主线：模型自己管理 KV 缓存（2026-11-15 检索）
+
+### 0.1 模型决定、作用在 KV 上（最近的撞车）
+
+| 工作 | 编号 / 日期 | 做了什么 | 我们的区别 | 标记 |
+|---|---|---|---|---|
+| **SideQuest**（NVIDIA，Kariyappa、Suh） | 2602.22603 | 模型自己决定清掉哪些 KV，相当于自己做垃圾回收；周期性地起辅助线程，和主线程共享 KV，分析哪些工具输出已经没用。只用 215 条样本训练。摘要报告峰值 token 降低最多 65%（另有 60% KV、53.9% 峰值 KV、吞吐 +83.9% 的说法，口径不一） | 只删、**不能换回**；只针对工具输出；没看到 RL。**动笔前必须读全文**，确认有没有换回和 RL | [S] |
+| Declarative Attention（KAIST、Google DeepMind） | 2609.02737 | 零样本，模型用 `<global>`、`<focus>`、`<local>` 标签声明注意力范围，状态机每个解码步改掩码；上下文按约 2K token 切块。15 个长上下文任务上，注意的 token 降 52.0%（Gemma-4-31B）、31.1%（Qwen-3.6-27B），准确率掉 1.27、2.75 个点。选区成功率从 Gemma-4-E4B 的 58% 到 31B 的 99%；只在全局注意力层上加掩码 | 不设容量上限，不换出，不训练；作用范围是单段推理里的跨度，不是整条 agent 轨迹上持续的驻留集 | [S] |
+| Leyline（Ma、Eitzinger、Koestler） | 2606.01065 | 服务端原语：agent 指定一段 KV 删掉、换成替换内容，不重新 prefill；有 RoPE 旋转校正；SGLang 上回放缓存命中 +11.2 个点，debug-gym 上一个十行截断策略让解决率 +14.3 个点 | 只是机制，策略是人写的；没有换出到内存再换回 | [S] |
+| KVP：Learning to Evict from Key-Value Cache | 2602.10238（ICML 2026） | 用 RL 训练**独立的**淘汰 agent，按未来效用排序，不改动 LLM；用预先算好的生成轨迹离线训练 | 决策者不是模型本身 | [S] |
+
+### 0.2 系统决定的 agent KV 管理（2026 年很密集）
+
+| 工作 | 编号 | 要点 | 标记 |
+|---|---|---|---|
+| Practical Online KV Cache Compaction for LLM Agents | 2608.00902 | BrowseComp-Plus 和 WideSearch 上：**立刻压缩会掉点，等后面的问题出现再压缩能找回大半**；代理 query 不准时，token 淘汰比注意力匹配稳；淘汰能保留大部分准确率，KV 减 80% | [S] |
+| AgentKV | 2609.14872 | 按阶段淘汰 | [T] |
+| StepKV | 2609.22158 | 按步压缩 | [T] |
+| IntentKV | 2606.09916 | 跨回合按意图剪枝 | [T] |
+| MemDecay | 2607.10582 | 按区域淘汰 | [T] |
+| Task-Aware KV Compression via Utility-Driven Step Pruning | NeurIPS 2026 | 按效用剪步 | [T] |
+| CliffCompaction | 2609.26779 | 编码 agent 的低成本压缩 | [T] |
+| TokenPilot | 2606.17016 | 缓存友好的上下文管理 | [T] |
+| TokenCake | 2510.18586 | 函数调用期间把停住的 agent 的 KV 卸载到 CPU，回来前搬回 | [S] |
+| Continuum / CacheTTL | 2511.02230 | 按预测的工具调用时长给 KV 设 TTL | [S] |
+| MORI | 2606.00866 | 利用工具调用的空闲窗口做卸载 | [S] |
+| vToken | 2608.13263 | token 级虚拟化：逻辑存活和物理位置分离，由策略说删哪些、运行时负责回收 | [S] |
+| UNISON | 2609.09643 | 近存调度会话 KV 的驻留 | [T] |
+| Cache Engineering for Agents | 2610.28577 | 可能是综述，待查 | [T] |
+
+### 0.3 编辑后恢复 KV、擦除残留（和 P4、K3 相关）
+
+| 工作 | 编号 | 要点 | 标记 |
+|---|---|---|---|
+| KVEraser | 2606.17034 | 学习用转向 KV 把一段从 cache 里擦掉，其余复用。说明"删除后的残留"确实存在，而且有人在修 | [S] |
+| PatchKV | 2609.26219 | 中间一段被改后，从 CPU 恢复共享后缀的 KV；首字延迟比完整重算快 2.51–3.85 倍。作者指出因果历史和位置变了，不能精确复用 | [S] |
+| CLM 的 SCR | 本仓库 | 编辑后搬运后缀 KV 并重新旋转位置，是"过时但搬了位置"的近似（[clm_notes.md](clm_notes.md) §6） | [R] |
+| KVShareArena | 2609.10266 | 跨上下文、跨 checkpoint 复用 KV 的基准 | [S] |
+
+### 0.4 经典的 KV 换页和淘汰（系统决定）
+
+| 工作 | 编号 | 要点 | 标记 |
+|---|---|---|---|
+| StreamingLLM | 2309.17453 | attention sink + 最近窗口 | [K] |
+| H2O | 2306.14048 | 按累计注意力保留重击 token | [K] |
+| SnapKV | 2404.14469 | 用 prompt 末尾的观察窗口选要保留的 KV | [K] |
+| InfLLM | 2402.04617 | 块级 KV 存在 CPU，每块用代表 token 检索 | [K] |
+| Quest | 2406.10774 | query 感知的页选择，每页存 key 的上下界 | [K] |
+| ArkVale | NeurIPS 2024 | 页级淘汰后可以召回 | [K] |
+| ShadowKV、MagicPIG、RetroInfer | — | 卸载 + 稀疏检索 | [K] |
+
+### 0.5 学出来的隐式压缩（模型在隐层里管，不是显式动作）
+
+| 工作 | 编号 | 要点 | 标记 |
+|---|---|---|---|
+| DMC：Dynamic Memory Compression | 2403.09636 | 改造模型，按头学习追加还是合并 KV | [K] |
+| DMS：Dynamic Memory Sparsification | 2025 | 学习带延迟的淘汰 | [K] |
+| Activation Beacon | 2401.03462 | 把上下文压进 beacon token 的 KV | [K] |
+| LightThinker | 2502.15589 | 用掩码训练把推理步压进少量 token，丢掉原 KV | [K] |
+| PENCIL | 2503.14337 | 按规约规则擦掉已用完的思考（见 §2.4） | [S] |
+
+### 0.6 模型决定、作用在文本上
+
+CLM（§2.1、[clm_notes.md](clm_notes.md)）；MemGPT / Letta（§7）；模型自己决定何时管理、但只能用给定工具的各种方法（§2.3）。
+
+### 0.7 视频侧（T3 扩展时要正面对上）
+
+| 工作 | 编号 | 要点 | 标记 |
+|---|---|---|---|
+| **StreamScout** | 2609.00291 | 上下文里只放文本时间线；提问时依次升级：看最近帧 → 均匀回看 → 按问题检索；"停还是升级"先蒸馏进 LoRA，再用 RL 优化。Qwen3-VL-8B 在 OVO-Bench 上 +14.65 分，token 少 59% | [S] |
+| SimpleStream | 2604.02317 | 只用最近 4 帧：OVO-Bench 67.7、StreamingBench 80.59；Qwen3-VL-8B 比 HERMES 高 8.5 分；加历史提升回忆但伤害实时感知 | [S] |
+| ReKV | 2503.00540 | 滑动窗口编码，窗口外 KV 卸载到内存，按问题检索换回 | [S] |
+| HERMES | 2601.14724 | KV 作为分层记忆，免训练 | [S] |
+| V-Rex | 2512.12284 | 卸载 → 选择 → 预取 | [S] |
+| LiveVLM | 2505.15269 | 按 query 注意力取回长期 KV | [S] |
+| DSCache（Decouple and Cache） | 2605.01858（ICML 2026） | 累积缓存和即时缓存分开；位置无关编码 | [S] |
+| ShallowStream | 2609.02780 | 用浅层建检索索引 | [S] |
+| KeyRec | 2609.32182 | 文本路由器在近期记忆和事件记忆之间分配读取预算 | [S] |
+| EGOSTREAM | 2605.31557 | 流式情景记忆基准，数据未公开 | [S] |
+
+用户原 proposal 里的 WRWS、MemStream、NGC、StreamingTOM、EgoProbe、MemInStream **都没有检索到**，名字待用户核对。
+
+---
+
+## 1. 和旧主线（状态 vs 历史，已归档）最接近的工作
 
 | 工作 | 编号 / 日期 | 做了什么 | 我们的区别 | 标记 |
 |---|---|---|---|---|
@@ -371,6 +456,17 @@ GitHub 上的 Harbor adapter 列表里没有 MemoryAgentBench、LongMemEval-V2�
 
 **每次动笔前一周重新检索**，关键词：
 
+当前主线（KV 自管理）：
+
+- model-driven KV cache management、self-managed KV cache、LLM evicts its own KV cache
+- KV cache paging / offload / recall、model-issued KV directives、virtual memory for attention
+- learned eviction RL、KV cache agent compaction、tool-output eviction
+- reversible context management、restore KV without re-prefill
+- KV erasure residue、stale KV after deletion、forgetting after eviction
+- 作者和项目：SideQuest（NVIDIA）、Declarative Attention、Leyline、KVEraser、CLM 作者
+
+旧主线（已归档，留作参考）：
+
 - state vs history、explicit state ablation、tombstone、supersession、superseded facts、stale memory
 - delayed relevance、retroactive invalidation、schema coverage
 - act-time retrieval、bind at act、recall before action
@@ -378,4 +474,4 @@ GitHub 上的 Harbor adapter 列表里没有 MemoryAgentBench、LongMemEval-V2�
 - event count vs context length、state tracking scaling
 - tenure crossover、memory architecture ranking
 
-**重点盯的作者和项目**：CLM 作者（`research_ledger`、`ctx_archive` 这些被删掉的开关）、delayed-relevance（可能很快挂 arXiv）、Scroll 的评测仓库 AgentZero（开源后可直接比）、PoS、Supersede、Ground Truth First。
+**旧主线重点盯的作者和项目**：CLM 作者（`research_ledger`、`ctx_archive` 这些被删掉的开关）、delayed-relevance（可能很快挂 arXiv）、Scroll 的评测仓库 AgentZero（开源后可直接比）、PoS、Supersede、Ground Truth First。

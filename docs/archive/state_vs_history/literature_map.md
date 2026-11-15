@@ -1,8 +1,10 @@
+> **已归档（2026-11-15）**：这是旧主线"状态 vs 历史 / 写入时付代价还是读取时付代价"的文档，已被新主线"让模型自己管理 KV 缓存"取代，见 [`docs/research_line.md`](../../research_line.md)。保留在这里只作历史记录，不再更新。
+
 # 文献地图：长程 Agent 的上下文管理与"状态派"（截至 2026-10-03）
 
 本文整理 CLM 以及 2026 年这一波"用状态取代历史"的相关工作：它们在研究什么、彼此有什么区别、代码和基准是否可用。
 
-> 这是简明版。完整的相关工作目录（全部论文、代码、license、关键数字、和主线的区别、基准全表、Harbor 注册表、撞车监控）见 [related_work.md](related_work.md)。当前主线见 [research_line.md](research_line.md)。
+> 这是简明版。完整的相关工作目录（全部论文、代码、license、关键数字、和主线的区别、基准全表、Harbor 注册表、撞车监控）见 [related_work.md](../../related_work.md)。当前主线见 [research_line.md](research_line.md)。
 
 **核实说明**：本环境的网络策略拦截了 arxiv.org 和 huggingface.co，所以论文正文都没有读到。下面每条信息都标了来源：
 
@@ -117,4 +119,4 @@
 | 备选 | BEAM 的 128K / 1M 档、STATE-Bench、InterCode CTF、τ-bench、AppWorld、RCA-100 |
 | 不用 | StateMemBench、WorldLines、BeliefShift、SkillExecBench（都未发布）；DreamBench-SWE（评分标准不公开）；MemoryAgentBench（数据只在 HF，且没有可对比的方法）；CooperBench（harness 固定，和本课题无关） |
 
-各代码仓库和基准的固定版本、license 和用途，见 [`third_party/README.md`](../third_party/README.md)。
+各代码仓库和基准的固定版本、license 和用途，见 [`third_party/README.md`](../../../third_party/README.md)。

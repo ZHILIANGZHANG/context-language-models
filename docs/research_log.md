@@ -2,8 +2,9 @@
 
 本文档按时间记录这个课题的决策过程，并汇总所有已验证的事实、纠正过的错误、代码和基准的可用性、冒烟测试结果和环境限制。目的是让新开的会话不用重新调研。
 
-- 主线：[research_line.md](research_line.md)
+- 主线（2026-11-15 起）：[research_line.md](research_line.md)，让模型自己管理 KV 缓存
 - 算法与实验设计：[algorithm_design.md](algorithm_design.md)
+- 旧主线"状态 vs 历史"已归档：[`archive/state_vs_history/`](archive/state_vs_history/README.md)。本文 §2–§5 和 §7.2 主要是旧主线阶段的记录，事实仍然有效
 - 相关工作全集：[related_work.md](related_work.md)
 - CLM 笔记：[clm_notes.md](clm_notes.md)
 - idea 库：[idea_bank.md](idea_bank.md)
@@ -41,6 +42,16 @@
 | 18 | I3 跑起来扎实吗？怎么撑满一篇论文 | 按现在的形态最多 workshop 短文；给出扩成完整论文的方案（三种机制、三领域、相图、真实基准、闭环、成本、机制分析） |
 | 19 | 需要扎实充实有 insight 的论文，找最 promising 的完整研究主线 | **确定主线**："写入时付代价，还是读取时付代价？"四个 idea 全部并入。写 `docs/research_line.md` |
 | 20 | 把全部算法设计、调研结果、related work 详细写进文档，方便下次新会话 | 本文档及配套的 algorithm_design、related_work、clm_notes、idea_bank、根目录 CLAUDE.md |
+
+（这之后用户把 CLM 论文原文上传到仓库根目录 `clm.pdf`，提交 `8540e6b`。[clm_notes.md](clm_notes.md) 里标 [N] 的论文细节，现在可以对照原文核实。）
+
+### 2026-11-15：换主线
+
+| 步骤 | 用户的问题 | 结论 |
+|---|---|---|
+| 21 | 上传视频 KV 换页 proposal，问可行性 | 工程上能做，三处硬伤：缩略图超预算、效率论证反了、块间隔离改变了注意力拓扑。StreamScout 撞车，SimpleStream 是底线。建议先做 oracle 换页上界等三个只推理的实验。详见 [idea_bank.md](idea_bank.md) F1 |
+| 22 | 澄清核心 idea：像 CLM 那样，把 KV 调度管理直接交给模型；不必是长视频 | 提出 Self-Paging 形式化（只追加日志 + 驻留集）、P1–P4、受控对比表、K1–K4、E0–E2。新一轮检索发现 SideQuest（模型自己删 KV）、Leyline、KVEraser 等（[related_work.md](related_work.md) §0） |
+| 23 | "忘掉之前的主线，现在模型自己管 KV 就是我们的主线" | 旧主线文档归档到 `docs/archive/state_vs_history/`；重写 `research_line.md`、`algorithm_design.md`；更新 related_work §0、idea_bank F 组、本日志、README、CLAUDE.md |
 
 ---
 
@@ -95,7 +106,7 @@
 
 标记同 [related_work.md](related_work.md)：[R] 读过仓库或文档；[N] 基于全文的读书笔记；[S] 只看过搜索摘要。
 
-### 3.1 支撑主线"统一解释"的三组证据
+### 3.1 支撑旧主线"统一解释"的三组证据
 
 | 现象 | 数字 | 主线的解释 | 来源 |
 |---|---|---|---|
@@ -155,6 +166,21 @@
 - `_REMOVED_KWARGS` 暴露了作者试过的方向（`research_ledger`、`ctx_archive`、`subagents`、`gauge_*`、`shadow_*`、`unlimited_ctx_turns` 等）。
 
 详见 [clm_notes.md](clm_notes.md) §2.4、§7。
+
+### 3.8 新主线用到的数字（2026-11-15）
+
+**估算**（按 Qwen3-4B/8B 公开配置：36 层、8 个 KV 头、head_dim 128、bf16；要对照实际 config 核对）：
+- KV 约 2 × 36 × 8 × 128 × 2 B = 147,456 B，约 **144 KB/token**；4B 和 8B 一样；
+- 1K token 的一页约 150 MB；PCIe 4.0 x16 按 20–25 GB/s 算，搬一页约 **6–7 ms**；
+- 8B 模型 bf16 权重约 16 GB；A6000 显存带宽约 768 GB/s，所以 batch = 1 时解码一个 token 至少约 21 ms，实际约 20–30 ms；
+- 权重读取折算成 KV token：batch = 1 时约 11 万 token，batch = 32 时约 3.4K token（[algorithm_design.md](algorithm_design.md) §5）。
+
+**检索到的关键数字** [S]：
+- SideQuest：215 条训练样本；峰值 token 降低最多 65%；
+- Declarative Attention：注意的 token 降 52.0% / 31.1%，准确率掉 1.27 / 2.75 个点；小模型选区成功率 58%；
+- Online KV Compaction（2608.00902）：立刻压缩会掉点，延后到问题可见时再压缩能找回大半；淘汰 80% 的 KV 仍保留大部分准确率；
+- SimpleStream：最近 4 帧，OVO-Bench 67.7、StreamingBench 80.59；
+- StreamScout：Qwen3-VL-8B 在 OVO-Bench 上 +14.65 分，token 少 59%。
 
 ---
 
@@ -285,6 +311,11 @@
 - 不会把本会话自己的登录凭证取出来调 API；
 - 不要求用户把密钥贴到聊天里。
 
+**2026-11-15 补充**：
+- WebSearch 能用，能拿到 arXiv 论文的搜索摘要，但论文正文仍然读不到；
+- 新主线不需要模型 API，但需要 GPU 和开源权重：云端没有 GPU，huggingface.co 被拦，所以实验在用户机器上跑；云端只写代码、在 CPU 上跑小模型测试；
+- PyPI 能用，所以可以在 scratchpad 的虚拟环境里装 CPU 版 torch 和 transformers。
+
 ### 6.2 解除阻碍需要用户做的事
 
 入口是会话标题栏的云环境菜单 → Edit：
@@ -333,7 +364,21 @@ pip download harbor==0.16.1 --no-deps --python-version 3.12 --only-binary=:all: 
 
 ## 7. 待核实清单
 
-写作前必须完成（来自 [proposal.md](proposal.md) §12，并补充）：
+### 7.1 新主线
+
+- [ ] **SideQuest 全文**：有没有换回（从内存恢复 KV）；训练是 SFT 还是有 RL；怎么定义"段"；评测任务和基线。这决定我们的贡献边界
+- [ ] Declarative Attention 全文：状态机实现、能不能接训练、有没有容量上限的实验
+- [ ] Leyline、KVEraser、PatchKV、KVP、2608.00902 全文：和 P4（残留）、K2（可逆性）相关的实验
+- [ ] Qwen3-4B/8B 的实际 config（层数、KV 头数、head_dim），核对 §3.8 的估算
+- [ ] HF transformers 里 Qwen3 写 cache 的 key 是否已经加过 RoPE（[algorithm_design.md](algorithm_design.md) §3.2 的精确性依赖这一点；阶段 0 的等价性测试会直接验证）
+- [ ] `clm.pdf`：对照原文核实 [clm_notes.md](clm_notes.md) 里标 [N] 的数字，尤其是 RL 配置和 SCR 结果
+- [ ] BrowseComp-Plus：语料、检索器、评判能否全部本地化
+- [ ] 用户的实际 GPU 硬件（原 proposal 写的是 4×RTX A6000）
+- [ ] 原 proposal 里检索不到的名字：WRWS、MemStream、NGC、StreamingTOM、EgoProbe、MemInStream
+
+### 7.2 旧主线（已归档，暂不处理）
+
+写作前必须完成（来自[归档的 proposal.md](archive/state_vs_history/proposal.md) §12，并补充）：
 
 - [ ] SKILL.state 原文：InterCode CTF 三个基线的确切定义和数字；SkillExecBench 的 accuracy 定义；"先提交后执行"的算法细节
 - [ ] Scroll 原文：BEAM-10M 的数字（73.1 还是 91.2）；LOCA-256K 的设置
@@ -351,13 +396,16 @@ pip download harbor==0.16.1 --no-deps --python-version 3.12 --only-binary=:all: 
 
 ## 8. 下一步
 
-按主线阶段 1（[research_line.md](research_line.md) §8）：
+按新主线阶段 0–1（[research_line.md](research_line.md) §9）：
 
-1. **不需要 API、现在就能做的**：
-   - H1 旋钮（`n_state_events`、`n_telemetry`、`n_voided`）和 `control` 场景，配测试（[algorithm_design.md](algorithm_design.md) §1.5、§1.6）；
-   - 新条件 `state_head`、`recall_raw`、`recall_all`、`ask_then_act`；
-   - API 调用器（温度 0、记录 token 和缓存命中、断点续跑）和噪声底脚本；
-   - 领域 2、领域 3 的生成器；
-   - 闭环驱动器。
-2. **需要 API 之后**：噪声底 → H1、H5（3 个以上规模）→ 止损判断。
-3. **需要用户决定的**：模型家族和 API 预算；是否联系 VISTA 和 delayed-relevance 的作者。
+1. **云端现在就能做的（阶段 0，只需 CPU）**：
+   - 实现 `self_paging/`：页存储、协议状态机、HF 推理循环、掩码生成、代价统计、系统基线和 Belady（[algorithm_design.md](algorithm_design.md) §12）；
+   - 用随机初始化的小 Qwen3 配置跑 §7 的六组等价性测试；
+   - 把仓库探针改造成多轮环境 T1，配规则读者测试；
+   - 写好 E0、E1、E2 的驱动和打分脚本，让用户在自己的 GPU 上一条命令就能跑。
+2. **需要用户 GPU 的（阶段 1）**：用 Qwen3-8B 跑 E0、E1、E2，然后做继续/止损判断。
+3. **需要用户决定或提供的**：
+   - 实际 GPU 硬件；
+   - 是否需要在云环境的网络白名单里加上 arxiv.org（读 SideQuest 等论文全文）和 huggingface.co；
+   - T2 用 BrowseComp-Plus 是否合适。
+4. **动笔前**：先读 SideQuest 全文（§7.1）。

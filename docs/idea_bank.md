@@ -10,8 +10,11 @@
 | **并入** | 已合进主线，作为其中一部分 |
 | **暂缓** | 有价值，但现在不做；写明了重启条件 |
 | **放弃** | 撞车、前提不成立或性价比太低；写明了原因 |
+| **归档** | 曾经是主线，用户决定换方向后整体归档；文档在 [`archive/`](archive/) |
 
-演进顺序：CLM 跟进（A 组）→ 用 CLM 做通用任务（B 组）→ 转向状态派（C 组）→ 四个确认的 idea（D 组）→ 主线（E）。
+演进顺序：CLM 跟进（A 组）→ 用 CLM 做通用任务（B 组）→ 转向状态派（C 组）→ 四个确认的 idea（D 组）→ 旧主线（E，已归档）→ **新主线：模型自己管理 KV（F 组）**。
+
+A–E 组的"主线""并入"指的都是旧主线"状态 vs 历史"。
 
 ---
 
@@ -53,7 +56,7 @@
 - **论点**：有前缀缓存时，在第 p 个位置改一处，后面 L−p 个 token 都要重算；末尾追加几乎免费。所以 `## STATE` 放在顶部原地更新，相当于 B-tree 原地更新；只在末尾追加增量、定期合并，相当于 LSM-tree。开了 SCR 后编辑代价与位置无关，最优策略应该改变。
 - **可证伪预测**：在无缓存、前缀缓存、SCR 三种部署下分别演化 skill，预期前缀缓存下收敛到"只追加、批量合并"，SCR 下收敛到"原地维护结构化状态"，交叉部署时性能下降。
 - **补充基线**：在已有轨迹上用动态规划求事后最优的压缩时间表，把差距拆成"忘得太早、存得太多、时机不对"。
-- **现状**：缓存成本分析已被 delayed-relevance 做了（7.54 倍 → 1.39 倍；顺序差 5.7 倍）。"状态放尾部"并入了自适应绑定的布局（[algorithm_design.md](algorithm_design.md) §5.2）。SCR 那条需要 GPU，暂不做。
+- **现状**：缓存成本分析已被 delayed-relevance 做了（7.54 倍 → 1.39 倍；顺序差 5.7 倍）。"状态放尾部"并入了自适应绑定的布局（[归档的 algorithm_design.md](archive/state_vs_history/algorithm_design.md) §5.2）。SCR 那条需要 GPU，暂不做。
 
 ### A5. 监督：agent 删了什么，就暴露了它想藏什么 —— 暂缓
 
@@ -175,12 +178,12 @@ Beyond Token Savings（2609.32961）约 3.5 万次运行已经做了。
 
 ## D 组：用户确认的四个 idea（2026-10-03）—— 全部并入主线
 
-完整设计见 [proposal.md](proposal.md) §4–§7；冒烟测试见 [research_log.md](research_log.md) §5。
+完整设计见[归档的 proposal.md](archive/state_vs_history/proposal.md) §4–§7；冒烟测试见 [research_log.md](research_log.md) §5。
 
 | 编号 | 问题 | 在主线里的位置 | 冒烟测试看到的 |
 |---|---|---|---|
 | **I1** | 状态的结构由人规定还是让模型自己长出来，随模型规模怎么变 | H5（规模对两类误差的作用不对称） | 单题探针对强模型太简单：Sonnet、Opus 三种条件都满分，测不出规模效应 |
-| **I2** | 状态错误账本：失败到底出在哪一步 | 测量写入误差和读取误差的工具（[algorithm_design.md](algorithm_design.md) §3） | ALFWorld 逐步真值 0 违规；探针上能自动区分 stale 和 occupied |
+| **I2** | 状态错误账本：失败到底出在哪一步 | 测量写入误差和读取误差的工具（[归档的 algorithm_design.md](archive/state_vs_history/algorithm_design.md) §3） | ALFWorld 逐步真值 0 违规；探针上能自动区分 stale 和 occupied |
 | **I3** | 历史在更正后失败，是新旧矛盾还是缺唯一真相来源 | 读取误差里的"干扰"项；拆成 M1 干扰和 M2 重建负担 | `raw` 6/9，错误以重建为主；作废标记、删除、状态在明确更正场景下都是 3/3 |
 | **I4** | 在动作发生的那一刻再取回需要的事实 | 自适应绑定的部件 ③ | 约束型漏项只召回候选就能修好（0/3 → 3/3）；机会型漏项必须同时召回被挤掉的选项（0/3 → 3/3） |
 
@@ -201,6 +204,34 @@ Beyond Token Savings（2609.32961）约 3.5 万次运行已经做了。
 
 ---
 
-## E. 主线：写入时付代价，还是读取时付代价？ —— 主线
+## E. 旧主线：写入时付代价，还是读取时付代价？ —— 归档（2026-11-15）
 
-见 [research_line.md](research_line.md)。四个 idea、早绑定/晚绑定、成本维度、尾部状态布局都并进了这条线。
+文档见 [`archive/state_vs_history/research_line.md`](archive/state_vs_history/research_line.md)。四个 idea、早绑定/晚绑定、成本维度、尾部状态布局都并进过这条线。
+
+- **为什么归档**：用户 2026-11-15 决定，主线改为"让模型自己管理 KV 缓存"（F 组），原话是"忘掉之前的主线，现在模型自己管 KV 就是我们的主线"；
+- **还在用的部分**：仓库探针（改造成新主线的测试床 T1）、新旧矛盾场景（用于残留实验 E2）、规则读者的约定、CLM 笔记；
+- **重启条件**：用户要求时。H1（事件数 vs token 数）等假设仍然没有被测过。
+
+---
+
+## F 组：模型自己管理 KV（2026-11-15）
+
+### F1. 视频流的"模型内生虚拟视觉 KV 换页" —— 并入（核心 idea 成为主线，具体做法降级为扩展 T3）
+
+用户上传的 proposal：[`archive/video_kv_paging_proposal_2026-11-15.pdf`](archive/video_kv_paging_proposal_2026-11-15.pdf)。
+
+- **内容**：
+  - 流式视频按 8 帧切块；GPU 常驻骨架、每块的低清缩略图、最近的高清窗口；溢出的高清块 KV 卸载到 CPU 锁页内存；
+  - 模型输出 `<stay>`、`<fetch>`、`<swap>` 标签决定是否换回、换回哪块；
+  - 用"一题两造"的反事实样本做 LoRA SFT，再做成功门控的效率 GRPO；
+  - Qwen3-VL-4B/8B，在 OVO-Bench 等基准上评测。
+- **评估结论**：工程上能做，但有三处硬伤：
+  1. 缩略图索引本身超预算。1 小时视频有 450–900 块，按每块 32–64 token 算是 1.4 万–5.8 万 token，而 B_GPU 只有 8K–16K；它还会造成 proposal 自己批评的注意力稀释；
+  2. 效率论证方向反了：搬一块约 150 MB 走 PCIe 只要 6–7 ms，一个解码 token 就要 20–30 ms。所以和 ReKV 比首字延迟大概率会输，按换入块数惩罚也是在优化一个几乎不花钱的量；
+  3. §3.2 的块间隔离改变了 prefill 的注意力拓扑，"不改拓扑"和"无损"两个说法都站不住，需要先量化掉点多少。
+- **撞车**：StreamScout（2609.00291）已经在 Qwen3-VL-8B、OVO-Bench 上用 LoRA 蒸馏加 RL 学"何时看得更深"；SimpleStream 只用最近 4 帧就有 67.7 分，是必须超过的底线。proposal 里引用的 WRWS、MemStream、NGC、StreamingTOM、EgoProbe、MemInStream 都没检索到。
+- **去向**：用户澄清核心 idea 是"像 CLM 那样，把 KV 调度管理直接交给模型"，不限于视频。这个核心 idea 成为主线 F2；视频作为 T3 扩展，等文本侧跑通再做。
+
+### F2. Self-Paging LM —— 主线
+
+见 [research_line.md](research_line.md) 和 [algorithm_design.md](algorithm_design.md)。KV 是只追加日志，模型只改驻留集；P1–P4；K1–K5；E0–E2 作为继续/止损检查点。

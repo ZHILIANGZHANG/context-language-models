@@ -122,7 +122,7 @@ ctx_prompts, ctx_metadata, ctx_archive, refresh_rollback_ledger
 - `flops_model_key` 只支持 `9b` 和 `27b`；API 模型用 `cost_metric=usd`（`estimate_usd`）。默认的 `auto` 需要提供 FLOPs 的模型规模；
 - 目的：让 CLM 不会因为上下文短就显得便宜。
 
-**本研究用法**：开源模型上的成本第二口径（[algorithm_design.md](algorithm_design.md) §10）。
+**本研究用法**：新主线里用来折算 CLM 对照组的重新 prefill 成本（[algorithm_design.md](algorithm_design.md) §5）。旧主线里它是开源模型上的成本第二口径（[归档的 algorithm_design.md](archive/state_vs_history/algorithm_design.md) §10）。
 
 ---
 
@@ -305,7 +305,7 @@ HARBOR_ENV=singularity clm/examples/run_harbor.sh path/to/task bcp --trial-name 
 ```
 
 - API 模型要传 `cost_metric=usd`；
-- 本云环境的 Docker 守护进程没开，Harbor 方式跑不了。本研究把 CLM 对照组放进 PoS 的循环里，用 `edit_context(python_code)` 工具代替 bash（[algorithm_design.md](algorithm_design.md) §6.2）；
+- 本云环境的 Docker 守护进程没开，Harbor 方式跑不了。本研究把 CLM 对照组放进 PoS 的循环里，用 `edit_context(python_code)` 工具代替 bash（旧主线的设计，见[归档的 algorithm_design.md](archive/state_vs_history/algorithm_design.md) §6.2）；
 - **仓库里没有、需要自己补的**：benchmark 数据和 Harbor 任务目录（BrowseComp-Plus、EdgeBench、SoftwareWorld）；多 agent / 集群代码；ContextBench（README 写 coming soon）；完整的 RL 训练脚本；
 - license：CC BY-NC 4.0，不能商用。
 
