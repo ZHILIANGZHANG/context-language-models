@@ -17,6 +17,7 @@
 |---|---|
 | [`docs/research_line.md`](docs/research_line.md) | **当前主线**：形式化、P1–P4、空位表、K1–K5、测试床、基线、代价口径、分阶段计划、风险 |
 | [`docs/experiment_plan.md`](docs/experiment_plan.md) | **实验方案**：模型（Qwen3.5 混合架构）、tool call 接口、基准与数据、SFT、RL、SGLang overlay 与 vLLM 的取舍、代码结构、实验矩阵、算力和时间线 |
+| [`docs/data_and_training.md`](docs/data_and_training.md) | **SFT 与 RL 的数据和训练设计**："需要"的定义、Belady 计划、特权提示生成、轨迹重标注与反事实验证、拒绝采样、RL 的 episode、奖励、代价、题库过滤、阶段、变体 |
 | [`docs/algorithm_design.md`](docs/algorithm_design.md) | **算法与实验设计**：协议、推理和训练实现、代价折算、基线实现、等价性测试、E0–E2 协议、SFT/RL、待实现清单 |
 | [`docs/related_work.md`](docs/related_work.md) | **相关工作全集**：§0 是新主线的撞车表；§1–§9 是旧主线阶段的调研；§10 撞车监控 |
 | [`docs/research_log.md`](docs/research_log.md) | **研究日志**：决策时间线、纠正过的错误、已验证事实、环境限制与搭建命令、待核实清单、下一步 |

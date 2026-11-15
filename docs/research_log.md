@@ -53,6 +53,7 @@
 | 22 | 澄清核心 idea：像 CLM 那样，把 KV 调度管理直接交给模型；不必是长视频 | 提出 Self-Paging 形式化（只追加日志 + 驻留集）、P1–P4、受控对比表、K1–K4、E0–E2。新一轮检索发现 SideQuest（模型自己删 KV）、Leyline、KVEraser 等（[related_work.md](related_work.md) §0） |
 | 23 | "忘掉之前的主线，现在模型自己管 KV 就是我们的主线" | 旧主线文档归档到 `docs/archive/state_vs_history/`；重写 `research_line.md`、`algorithm_design.md`；更新 related_work §0、idea_bank F 组、本日志、README、CLAUDE.md。提交 `fd5e2dc` |
 | 24 | 具体实验怎么做：bench、数据、SFT、RL、模型（服务器上已有 Qwen3.5-2B/4B/9B）、代码、vLLM 怎么改 | 写 `docs/experiment_plan.md`。三处修正：① Qwen3.5 是混合架构，换页只作用在全注意力层，加 dense 对照；② 动作接口改成原生 tool call；③ 引擎选 SGLang monkeypatch（仿 SCR），vLLM 第一版不改。T2 用 ACM 的 BrowseComp-Plus 680/150 划分，复用 ACM 的检索、评判和公开轨迹 |
+| 25 | SFT 数据怎么来、RL 怎么设计、RL 的数据怎么来 | 写 `docs/data_and_training.md`：没有外部 API，老师只能是程序 oracle 或"同模型 + 特权信息"；T1 用规则读者的反事实最小充分集定义"需要"，T2 用 BCP 的 evidence/gold 文档 + 显式引用 + 注意力，再用反事实 ΔNLL 验证；超预算时截断而不是系统 LRU；T2 的 RL 以 9B 为主 |
 
 ---
 
@@ -180,6 +181,10 @@
 - Qwen3.5-2B/4B/9B 是混合架构，Gated DeltaNet 和全注意力 3 : 1；原生多模态（early fusion）；原生上下文 262,144 [S]。层数和字段名待用 config 核对；
 - vLLM 跑混合模型时，前缀缓存用 `align` 模式，仍是实验特性；有 issue 报告 Qwen3.5 的 attention block 被放大到 528 token，短于一个 block 的前缀命中不了；有把匹配粒度和物理 block 解耦的 PR（`prefix_match_unit`）[S]；
 - SGLang 新版有 streaming session（`--enable-streaming-session`，会话槽不参与淘汰，来自 PR #21875）[S]；SGLang 的 KV 按 token 粒度管理（`req_to_token`），SCR 已在 0.5.16 上给混合模型做过会话级 KV 改动 [R]。
+
+**BrowseComp-Plus 数据集** [S]：语料 100,195 篇文档、830 题；每题平均 6.1 篇 evidence 文档（回答需要的）、2.9 篇 gold 文档（包含答案的）、76.28 篇负例。evidence 由 o3 从网上检索候选、再由人工核实和补充。HF 上是 `Tevatron/browsecomp-plus` 和 `Tevatron/browsecomp-plus-corpus`。
+
+**ACM 的训练数据流程** [R]：基座 9B 在训练集上 ReAct 采样 → GPT-5 标注失败轨迹 → 学生从标注处续写 4 次 → 老师给 top-K logprob → KD 训练（作者承认缓存 logprob 是 off-policy）。另有 `augment_replay.py`：在轨迹里检测三类触发点（重复搜索、连续死胡同、重复打开同一 URL），用 `tool_choice` 强制调用 `manage_context`，生成训练样本。
 
 **ACM 仓库（`third_party/methods/acm`，MIT）[R]**：
 - BrowseComp-Plus 划分：`bcp_train_680.json`、`bcp_eval_150.json`、`bcp_full.json`（830），每条只有 id、question、answer；
@@ -392,6 +397,8 @@ pip download harbor==0.16.1 --no-deps --python-version 3.12 --only-binary=:all: 
 - [ ] SGLang streaming session（PR #21875）在用户的版本里是否可用，能不能直接当会话层
 - [ ] 本地评判模型和 GPT-5 评判的一致率（T2 的数字才能和 ACM 比）
 - [ ] 服务器能否访问 HF：BrowseComp-Plus 语料和索引、ACM 公开轨迹、Qwen3-8B
+- [ ] BrowseComp-Plus 的 evidence / gold 文档字段在哪个文件、什么格式（HF `Tevatron/browsecomp-plus`，[data_and_training.md](data_and_training.md) §1.2 依赖它）
+- [ ] ACM 公开轨迹的格式：是否保存了完整的消息历史和工具输出（[data_and_training.md](data_and_training.md) §2.3 来源 B）
 - [ ] 原 proposal 里检索不到的名字：WRWS、MemStream、NGC、StreamingTOM、EgoProbe、MemInStream
 
 ### 7.2 旧主线（已归档，暂不处理）

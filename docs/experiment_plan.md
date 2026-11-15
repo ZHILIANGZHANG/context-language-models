@@ -12,7 +12,7 @@
 
 | 问题 | 决定 | 理由 |
 |---|---|---|
-| 模型 | 2B 调试；**4B 主力 RL**；**9B 终版**，并和 CLM、ACM 对比；另加一个纯 dense 对照（Qwen3-8B，服务器能下载的话），只用于残留实验 K3 | 用户已有；CLM 的 RL 和 ACM 用的都是 Qwen3.5-9B |
+| 模型 | 2B 调试；**4B 是 T1 上的主力 RL**；**9B 是 T2 上的 RL 和终版**，并和 CLM、ACM 对比（2B/4B 在 BrowseComp-Plus 上大概率学不动，见 [data_and_training.md](data_and_training.md) §3.5）；另加一个纯 dense 对照（Qwen3-8B，服务器能下载的话），只用于残留实验 K3 | 用户已有；CLM 的 RL 和 ACM 用的都是 Qwen3.5-9B |
 | 动作接口 | 原生 tool call：`kv_out`、`kv_in`、`note`；对照条件里加 `kv_drop` | 模型本来就会调工具，零样本遵守率高；动作只发生在回合之间，引擎只需支持回合间的会话操作 |
 | E0–E2、SFT 数据、小规模评测 | 自写的 HF 循环 | 不改任何引擎，最快拿到结论 |
 | RL rollout、大规模评测、系统评测 | **SGLang monkeypatch**（仿照本仓库的 `suffix_cache_reuse/overlay.py`） | KV 按 token 粒度管理，没有对齐问题；已支持混合模型的循环状态；SCR 已经在 SGLang 上给混合模型做过同类改动 |
@@ -119,6 +119,8 @@ Qwen 系列的 chat template 会删掉前面回合的思考内容。我们的做
 
 ## 4. 数据采集
 
+> 详细设计见 [data_and_training.md](data_and_training.md) §1–§2："需要"的定义、Belady 换页计划、特权提示生成、轨迹重标注和反事实验证、拒绝采样、混合比例。本节只保留概要，冲突时以那份为准。
+
 ### 4.1 轨迹记录格式（所有数据共用）
 
 **token 进、token 出**：直接记引擎生成的 token id，绝不重新分词。
@@ -198,6 +200,8 @@ block_mask = create_block_mask(make_mask_mod(doc, page, seg, resident),
 ---
 
 ## 6. RL
+
+> 详细设计见 [data_and_training.md](data_and_training.md) §3：episode 定义、超预算截断、奖励、代价、优势和损失、题库与过滤、阶段、变体、投机行为的防范、特权信息自蒸馏。本节只保留概要，冲突时以那份为准。
 
 ### 6.1 算法
 

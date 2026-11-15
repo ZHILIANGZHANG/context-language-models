@@ -7,11 +7,12 @@
 新会话开始时按这个顺序读，就能接上全部进度：
 
 1. `docs/research_line.md`：**当前主线**。形式化（只追加的 KV 日志 + 模型改驻留集）、P1–P4、空位表、K1–K5、测试床、基线、代价口径、分阶段计划
-2. `docs/experiment_plan.md`：**具体做法**。模型（Qwen3.5 混合架构的影响）、tool call 接口、基准（T1/T1b/BrowseComp-Plus 680/150）、数据采集、SFT、RL、SGLang overlay 和 vLLM 的取舍、代码结构、实验矩阵。和第 3 份冲突时以它为准
-3. `docs/algorithm_design.md`：形式化、单次前向训练掩码、代价折算、基线实现、等价性测试、E0–E2 实验协议
-4. `docs/research_log.md`：时间线（§1 的 2026-11-15 是换主线的经过）、已验证事实（§3.8 是新主线的数字）、环境限制（§6）、待核实清单（§7.1）、下一步（§8）
-5. `docs/related_work.md` §0：新主线的撞车表（SideQuest 最近）
-6. 需要时再查：
+2. `docs/experiment_plan.md`：**具体做法**。模型（Qwen3.5 混合架构的影响）、tool call 接口、基准（T1/T1b/BrowseComp-Plus 680/150）、数据采集、SFT、RL、SGLang overlay 和 vLLM 的取舍、代码结构、实验矩阵。和第 4 份冲突时以它为准
+3. `docs/data_and_training.md`：**SFT 和 RL 的数据从哪来、怎么训练**。"需要"的定义（规则读者反事实、BCP 的 evidence/gold 文档、反事实 ΔNLL 验证）、Belady 计划、特权提示生成、重标注、拒绝采样、RL 的 episode、奖励、代价、题库过滤、阶段、变体
+4. `docs/algorithm_design.md`：形式化、单次前向训练掩码、代价折算、基线实现、等价性测试、E0–E2 实验协议
+5. `docs/research_log.md`：时间线（§1 的 2026-11-15 是换主线的经过）、已验证事实（§3.8 是新主线的数字）、环境限制（§6）、待核实清单（§7.1）、下一步（§8）
+6. `docs/related_work.md` §0：新主线的撞车表（SideQuest 最近）
+7. 需要时再查：
    - `docs/clm_notes.md`：CLM 代码和论文细节（论文原文在根目录 `clm.pdf`）；
    - `docs/idea_bank.md`：所有考虑过的 idea；F1 是用户原始视频 proposal 的评估；
    - `docs/archive/`：旧主线"状态 vs 历史"的全部文档，以及用户的视频 proposal 原件。
@@ -21,7 +22,7 @@
 - **主线已换**：用户明确说"忘掉之前的主线，现在模型自己管 KV 就是我们的主线"。旧主线（状态 vs 历史、I1–I4、H1–H5、自适应绑定）整体归档，**除非用户要求，不要再按旧主线推进**。
 - **可复用的旧代码**：`state_study/probes/` 的仓库探针，要改造成多轮测试床 T1，它的新旧矛盾场景用于残留实验 E2。
 - **新主线代码还没写**：计划放在根目录的 `self_paging/`（见 algorithm_design §12）。
-- **模型**：用户服务器上已有 Qwen3.5-2B/4B/9B（混合架构：GDN : 全注意力 = 3 : 1 [S]，待用 config 核对）。2B 调试、4B 主力 RL、9B 终版；dense 对照 Qwen3-8B 只用于残留实验。
+- **模型**：用户服务器上已有 Qwen3.5-2B/4B/9B（混合架构：GDN : 全注意力 = 3 : 1 [S]，待用 config 核对）。2B 调试；4B 是 T1 上的主力 RL；9B 做 BrowseComp-Plus 上的 RL 和终版（2B/4B 在 BCP 上大概率学不动）；dense 对照 Qwen3-8B 只用于残留实验。
 - **资源**：这条线不需要模型 API，但需要 GPU 和开源权重。云端没有 GPU，huggingface.co 被拦截，所以实验在用户自己的机器上跑；云端只写代码、在 CPU 上用随机初始化的小模型跑测试。
 - **下一步**：阶段 0，按 experiment_plan §8 实现 `self_paging/` 并通过等价性测试；然后把 E0–E2 的脚本交给用户在 GPU 上跑。等用户回复 experiment_plan §12 的服务器信息。详见 research_log §8。
 
