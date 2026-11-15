@@ -20,7 +20,8 @@ from ..envs.t1_warehouse import derivation, minimal_sufficient, page_role, rule_
 
 
 class T1Oracle:
-    def __init__(self, mode: str = "paging", seed: int = 0, gen_reserve: int | None = None) -> None:
+    def __init__(self, mode: str = "paging", seed: int = 0, gen_reserve: int | None = None,
+                 error_rate: float = 0.0) -> None:
         # paging: evict on demand (Belady); notes: write a state note, then evict;
         # eager: also evict, every turn, the pages the current state does not need (reversible, so
         #        later decisions page them back in: this is what produces kv_in examples); mixed.
@@ -29,6 +30,13 @@ class T1Oracle:
         self.mode, self.rng, self.gen_reserve = mode, random.Random(seed), gen_reserve
         self._sizes: dict[int, int] = {}
         self._tries: dict[int, int] = {}
+        # mixed: per-episode propensities, so episodes differ in how much they note / evict early
+        self.p_note = self.rng.uniform(0.1, 0.7) if mode == "mixed" else 0.0
+        self.p_eager = self.rng.uniform(0.1, 0.9) if mode == "mixed" else 0.0
+        # recovery examples: with this probability per turn, evict a page the next decision needs
+        # (an unforced error). Those turns are listed in meta["error_pids"]; the data builder
+        # removes them from the loss, so the model learns the recovery (kv_in), not the mistake.
+        self.error_rate = error_rate
 
     def _reserve(self, st) -> int:
         """Room for this turn's text and the next one (measured on the longest templates)."""
@@ -154,11 +162,15 @@ class T1Oracle:
         parts = []
         if st.cfg.budget is not None:
             victims = self._victims(st, nxt, protect=set())
-            if self.mode == "eager":
+            if self.mode == "eager" or (self.mode == "mixed" and self.rng.random() < self.p_eager):
                 victims = sorted(set(victims) | set(self._eager(st)))
+            mistake = self._mistake(st) if self.error_rate and self.rng.random() < self.error_rate else None
+            if mistake is not None and mistake not in victims:
+                victims = sorted(victims + [mistake])
+                st.meta.setdefault("error_pids", []).append(t.current)
             env_victims = [p for p in victims if t.pages[p].kind == "tool"]
             use_note = st.cfg.notes and env_victims and (
-                self.mode == "notes" or (self.mode == "mixed" and self.rng.random() < 0.5))
+                self.mode == "notes" or (self.mode == "mixed" and self.rng.random() < self.p_note))
             if use_note:
                 note = state_note(self._visible_texts(st))
                 parts.append("Summarising the current shelf state in a note before freeing memory.")
@@ -169,6 +181,8 @@ class T1Oracle:
                 parts.append(("Freeing memory" if self.mode == "eager" else "Memory is tight")
                              + "; paging out " + self._reasons(st, victims) + ".")
                 parts.append(render_tool_call("kv_out", {"pages": ",".join(map(str, victims))}))
+                if self.mode == "mixed" and self.rng.random() < 0.3:
+                    return "\n".join(parts)  # memory housekeeping as its own turn (action diversity)
         parts.append(render_tool_call("next_events", {}))
         return "\n".join(parts)
 
@@ -186,6 +200,17 @@ class T1Oracle:
                 why = "my earlier turn"
             out.append(f"{p} ({why})")
         return ", ".join(out)
+
+    def _mistake(self, st) -> int | None:
+        """A resident page that the next decision needs (evicting it forces a later kv_in)."""
+        ep, t = st.env.ep, st.log.table
+        upcoming = [d for d in ep.decisions if d.page >= st.env.cursor]
+        if not upcoming:
+            return None
+        need = ep.need[upcoming[0].page]
+        cands = [pid for e, pid in st.env_page.items() if e in need and t.pages[pid].where == "gpu"
+                 and pid != t.current]
+        return self.rng.choice(cands) if cands else None
 
     def _eager(self, st) -> list[int]:
         """Resident environment pages the current state does not need and whose removal keeps the

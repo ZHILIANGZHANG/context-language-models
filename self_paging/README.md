@@ -70,7 +70,8 @@
 
 | 文件 | 做什么 |
 |---|---|
-| `build_t1_sft.py` | 用 oracle 造 T1 的 SFT 数据。每个种子在多个预算下各跑一次（1.0 表示不设预算，就是"不换页"样本），按换页、笔记两种模式。质量门槛：答对；没有非法调用、截断、强制换出、KV 报错；不超预算；答案有依据。可选 `--max-future-share` 过滤掉主要靠未来信息的 episode；`--teacher` 用真实模型写理由。`t1_budget(env, tok, ratio)` 定义预算 |
+| `build_t1_sft.py` | 用 oracle 造 T1 的 SFT 数据。默认：四种模式（paging、notes、eager、mixed）；每个种子随机难度（`--vary`）；以 15% 的概率加入失误后恢复的样本（`--recovery`，失误回合不算损失）。每个种子在多个预算下各跑一次（1.0 表示不设预算，就是"不换页"样本），按换页、笔记两种模式。质量门槛：答对；没有非法调用、截断、强制换出、KV 报错；不超预算；答案有依据。可选 `--max-future-share` 过滤掉主要靠未来信息的 episode；`--teacher` 用真实模型写理由。`t1_budget(env, tok, ratio)` 定义预算 |
+| `inspect_sft.py` | 数据质量和多样性报告：按预算 × 模式统计换出、换回、反复换回的页、换出多久后换回；动作组合种类；episode 形态；恢复样本数（`docs/data_and_training.md` §2.8–§2.9） |
 | `reject_sample.py` | 预算压力下的拒绝采样：用当前模型采样，只留成功且干净的，每个种子最多留几条。输出格式和 oracle 数据相同 |
 
 ### 2.7 `train/`：训练
@@ -134,7 +135,7 @@ python -m pytest -q -p no:cacheprovider self_paging/tests
 QWEN3_TOKENIZER=/path/to/Qwen3-8B python -m pytest -q self_paging/tests/test_template_server.py
 ```
 
-2026-11-15 在云端（torch 2.15.0+cpu、transformers 5.23.0）：35 个通过、1 个跳过（模板比对）。
+2026-11-15 在云端（torch 2.15.0+cpu、transformers 5.23.0）：36 个通过、1 个跳过（模板比对）。
 
 **版本要求**：代码用了 transformers 5 的接口：`DynamicCache.layers[l].keys` / `.values`、`model.set_attn_implementation()`，以及前向不再传 `cache_position`。服务器上建议直接装 5.23；4.x 的旧版本大概率不兼容。FlexAttention 需要 torch ≥ 2.5。
 

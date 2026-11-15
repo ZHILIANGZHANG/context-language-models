@@ -225,3 +225,23 @@ def test_oracle_quality_regressions():
     for r in eager:  # every store turn carries the explicit shelf-by-shelf check
         text = TOK.decode(r["tokens"])
         assert text.count("Lowest free shelf: S") >= text.count('{"name": "store", "arguments"') > 0
+
+
+def test_diversity_options_and_recovery_masking():
+    """Per-seed configs, mixed propensities and recovery examples (docs/data_and_training.md §2.9):
+    mistake turns carry no loss, and recovery produces page-ins, some pages more than once."""
+    from self_paging.data.inspect_sft import page_events, report
+
+    kept, _ = build(TOK, range(8), [0.6], ["paging", "mixed"], MID, max_turns=90, max_future_share=1.0,
+                    vary=True, error_rate=0.3)
+    assert kept
+    err = [r for r in kept if r["meta"].get("error_pids")]
+    assert err, "recovery examples expected"
+    for r in err:
+        bad = set(r["meta"]["error_pids"])
+        assert all(m == 0 for m, p in zip(r["loss_mask"], r["page_of"]) if p in bad)
+    assert len({r["meta"]["t1_config"]["n_decisions"] for r in kept}) > 1
+    ins = [e for r in kept for e in page_events(r) if e[1] == "in"]
+    assert ins and all(e[3] == "tool" for e in ins)
+    rep = report(kept, TOK)
+    assert rep["recovery"]["mistake_turns_no_loss"] > 0 and len(rep["per_turn_action_combos"]) >= 5

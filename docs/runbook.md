@@ -72,7 +72,7 @@ uv pip install "transformers==5.23.0" peft numpy pytest
 
 | 步骤 | 命令 | 通过标准 |
 |---|---|---|
-| 0.1 单元测试 | `python -m pytest -q self_paging/tests` | 35 个通过，1 个跳过 |
+| 0.1 单元测试 | `python -m pytest -q self_paging/tests` | 36 个通过，1 个跳过 |
 | 0.2 **模板比对** | `QWEN3_TOKENIZER=$M python -m pytest -q self_paging/tests/test_template_server.py` | 通过。不通过就把 diff 发回来，按 diff 改 `core/protocol.py` 的渲染函数，**不能跳过** |
 | 0.3 oracle 健全性（真实分词器） | `python -m self_paging.eval.t1_eval --model $M --methods oracle --ratios 0.6 0.45 --seeds 100000 100020 --out eval/oracle.jsonl` | oracle 的 reward 全是 1.0 |
 | 0.4 真实模型能跑通 | `python -m self_paging.eval.t1_eval --model $M --methods model --ratios 0.6 --seeds 100000 100002 --out eval/smoke.jsonl` | 能跑完、不报错；`invalid` 不全是满值 |
@@ -127,7 +127,13 @@ python -m self_paging.data.build_t1_sft --tokenizer $M --out data/t1_sft_heldout
 - 不换页（ratio 1.0）的样本占 15–30%；
 - 统计 `meta.future_informed_evictions` 的占比。占比很高时，加 `--max-future-share 0.5` 再造一份做对照；
 - 用特权提示老师时，`teacher_fallbacks` 占回合数的比例应该 < 30%；
-- 按 `docs/data_and_training.md` §2.8 的表格重新统计一遍（用的是 Qwen3 分词器），重点看：各格的保留率、含 `kv_in` 的 episode 比例（eager 模式应该 > 50%）、依赖未来信息的换出占比。
+- 用 `python -m self_paging.data.inspect_sft --data data/t1_sft_teacher.jsonl --tokenizer $M` 出质量和多样性报告，和 `docs/data_and_training.md` §2.8–§2.9 的数字对照（那里用的是字符级分词器）。重点看：
+  - 各格的保留率；
+  - 含换回的 episode 比例：paging、eager、mixed 应该 > 60%；
+  - 被换回 ≥ 2 次的页数；
+  - 动作组合种类 ≥ 8；
+  - 依赖未来信息的换出占比；
+  - 恢复样本数。
 
 ### 阶段 3：SFT
 
