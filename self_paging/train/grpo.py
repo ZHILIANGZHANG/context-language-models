@@ -18,7 +18,7 @@ from __future__ import annotations
 import argparse
 import random
 import time
-from dataclasses import asdict, dataclass, field
+from dataclasses import asdict, dataclass, field, replace
 
 import torch
 
@@ -27,9 +27,10 @@ from ..core.costs import episode_cost
 from ..data.build_t1_sft import t1_budget
 from ..envs.t1_warehouse import T1Config, WarehouseEnv
 from ..hf.logstore import PagedKV
-from .advantage import group_advantages, informative, token_advantages
+from .advantage import (advantages_v2, counterfactual_credit, group_advantages, has_signal, hygiene_penalty,
+                        informative, token_advantages)
 from .batch import pack, token_logprobs
-from .common import append_jsonl, dist_info, load_model, load_tokenizer, tiny_qwen3
+from .common import append_jsonl, dist_info, load_model, load_tokenizer, read_jsonl, tiny_qwen3
 
 
 @dataclass
@@ -59,6 +60,14 @@ class GRPOConfig:
     recompute_old: bool = True
     seed: int = 0
     t1: T1Config = field(default_factory=T1Config)
+    # reward v2 (docs/rl_design.md §4): task + hygiene + success-gated efficiency + counterfactual credit
+    reward: str = "v2"              # "v1" = task + efficiency only (the previous behaviour)
+    w_credit: float = 1.0
+    credit_scale: float = 0.5       # c = credit_scale / number of decisions
+    w_eff_warmup: int = 50          # w_eff = 0 for these steps, then a linear ramp ...
+    w_eff_ramp: int = 50            # ... over these steps up to w_eff
+    pool: list | None = None        # prompt rows with seed, ratio, t1_config (data/rl_preparation.py or
+                                    # data/build_rl_pool.py); sampled by their "weight" (default 1)
 
 
 def rollout_group(model, tok, seed, ratio, cfg: GRPOConfig, gen) -> list[dict]:
@@ -72,6 +81,7 @@ def rollout_group(model, tok, seed, ratio, cfg: GRPOConfig, gen) -> list[dict]:
                           ModelPolicy(tok, temperature=cfg.temperature, generator=gen), tok, ecfg)
         rec["meta"].update(seed=seed, ratio=ratio)
         rec["cost"] = episode_cost(rec, batch=cfg.kappa_batch)["cost"]
+        score_v2(rec, env, cfg)
         out.append(rec)
     return out
 
@@ -100,6 +110,7 @@ def batched_rollout_group(model, tok, seed, ratio, cfg: GRPOConfig, gen) -> list
             rec['meta'].update(seed=seed, ratio=ratio, member_seed=seeds[index],
                                rollout_backend='hf_private_batch')
             rec['cost'] = episode_cost(rec, batch=cfg.kappa_batch)['cost']
+            score_v2(rec, env, cfg)
             return rec
         return run
 
@@ -127,17 +138,61 @@ def policy_loss(model, recs, advs, cfg: GRPOConfig):
     return loss, {"logprob_mismatch": float(mismatch), "train_tokens": int(mask.sum())}
 
 
-def train_step(model, opt, groups: list[list[dict]], cfg: GRPOConfig, world: int = 1) -> dict:
+def score_v2(rec: dict, env, cfg: GRPOConfig) -> None:
+    """Attach hygiene penalty and counterfactual credit (needs the live environment)."""
+    rec["hygiene"] = hygiene_penalty(rec["meta"])
+    if cfg.reward == "v2" and cfg.w_credit:
+        rec["credit"], cs = counterfactual_credit(rec, env, cfg.credit_scale)
+        rec["meta"].update(cs)
+    else:
+        rec["credit"] = None
+
+
+def w_eff_at(cfg: GRPOConfig, step: int) -> float:
+    if step < cfg.w_eff_warmup:
+        return 0.0
+    if cfg.w_eff_ramp <= 0:
+        return cfg.w_eff
+    return cfg.w_eff * min(1.0, (step - cfg.w_eff_warmup + 1) / cfg.w_eff_ramp)
+
+
+def group_advs(g: list[dict], cfg: GRPOConfig, w_eff: float) -> list[list[float]] | None:
+    """Token advantages for one group, or None if the group carries no signal."""
+    if cfg.reward == "v2":
+        advs = advantages_v2(g, w_eff, cfg.w_credit, cfg.success_at)
+        return advs if has_signal(advs) else None
+    rewards = [r["reward"] for r in g]
+    if not informative(rewards):
+        return None
+    a_task, a_eff = group_advantages(rewards, [r["cost"] for r in g], cfg.success_at)
+    return [token_advantages(r, at, ae, w_eff) for r, at, ae in zip(g, a_task, a_eff)]
+
+
+def group_has_signal(g: list[dict], cfg: GRPOConfig) -> bool:
+    """Cheap pre-check used while sampling (no token lists needed): differing task+hygiene scores,
+    any counterfactual credit, or (with an efficiency weight) two clean successes with different cost."""
+    if cfg.reward != "v2":
+        return informative([r["reward"] for r in g])
+    R = [r["reward"] + r.get("hygiene", 0.0) for r in g]
+    if max(R) - min(R) > 1e-9:
+        return True
+    if any(any(c) for c in (r.get("credit") or [] for r in g)):
+        return True
+    clean = [r.get("cost", 0.0) for r in g if r["reward"] >= cfg.success_at and r.get("hygiene", 0.0) == 0.0]
+    return cfg.w_eff > 0 and len(clean) >= 2 and max(clean) - min(clean) > 1e-9
+
+
+def train_step(model, opt, groups: list[list[dict]], cfg: GRPOConfig, world: int = 1,
+               w_eff: float | None = None) -> dict:
+    w_eff = cfg.w_eff if w_eff is None else w_eff
     recs, advs, kept = [], [], 0
     for g in groups:
-        rewards = [r["reward"] for r in g]
-        if not informative(rewards):
+        ga = group_advs(g, cfg, w_eff)
+        if ga is None:
             continue
         kept += 1
-        a_task, a_eff = group_advantages(rewards, [r["cost"] for r in g], cfg.success_at)
-        for r, at, ae in zip(g, a_task, a_eff):
-            recs.append(r)
-            advs.append(token_advantages(r, at, ae, cfg.w_eff))
+        recs.extend(g)
+        advs.extend(ga)
     device = next(model.parameters()).device
     counts = torch.tensor([len(groups), kept, sum(sum(r["loss_mask"]) for r in recs)],
                           device=device, dtype=torch.float64)
@@ -230,15 +285,32 @@ def collect_groups(model, tok, cfg, rng, gen, rollout_fn, target):
     sampled, kept = [], []
     for _ in range(cfg.max_sampling_rounds):
         for _ in range(target - len(kept)):
-            g = rollout_fn(model, tok, sample_seed(rng, cfg), rng.choice(cfg.ratios), cfg, gen)
+            if cfg.pool:
+                row = rng.choices(cfg.pool, weights=[r.get("weight", 1.0) for r in cfg.pool], k=1)[0]
+                t1 = T1Config(**{k: tuple(v) if isinstance(v, list) else v for k, v in row["t1_config"].items()
+                                 if k in T1Config.__dataclass_fields__})
+                t1.digest = cfg.t1.digest  # the ablation flag wins over whatever the pool stored
+                g = rollout_fn(model, tok, row["seed"], row["ratio"], replace(cfg, t1=t1), gen)
+            else:
+                g = rollout_fn(model, tok, sample_seed(rng, cfg), rng.choice(cfg.ratios), cfg, gen)
             if len(g) != cfg.group:
                 raise ValueError("Rollout group size differs from configured G")
             sampled.append(g)
-            if informative([r["reward"] for r in g]):
+            if group_has_signal(g, cfg):
                 kept.append(g)
         if len(kept) == target:
             break
     return sampled, kept
+
+
+def credit_summary(groups) -> dict:
+    flat = [r for g in groups for r in g]
+    if not flat:
+        return {}
+    keys = ("blamed_kv_out", "credited_kv_in", "reasoning_errors")
+    out = {k: sum(r["meta"].get(k, 0) for r in flat) / len(flat) for k in keys}
+    out["hygiene"] = sum(r.get("hygiene", 0.0) for r in flat) / len(flat)
+    return out
 
 
 def global_summary(groups, world, device):
@@ -277,7 +349,8 @@ def train_grpo(model, tok, cfg: GRPOConfig, log=None, out=None, rank=0, world=1,
         if world > 1:
             torch.distributed.all_reduce(sampled_count)
         row = {"step": step, **global_summary(sampled, world, device),
-               **train_step(model, opt, groups, cfg, world), "groups_sampled": int(sampled_count),
+               **train_step(model, opt, groups, cfg, world, w_eff=w_eff_at(cfg, step)),
+               "w_eff": w_eff_at(cfg, step), **credit_summary(sampled), "groups_sampled": int(sampled_count),
                "sec": round(time.time() - t0, 1)}
         history.append(row)
         if log and rank == 0:
@@ -301,6 +374,12 @@ def main() -> None:
     ap.add_argument("--rollout-batch", type=int, default=1)
     ap.add_argument("--lr", type=float, default=1e-6)
     ap.add_argument("--w-eff", type=float, default=0.25)
+    ap.add_argument("--reward", choices=["v1", "v2"], default="v2", help="docs/rl_design.md §4")
+    ap.add_argument("--w-credit", type=float, default=1.0)
+    ap.add_argument("--w-eff-warmup", type=int, default=50)
+    ap.add_argument("--w-eff-ramp", type=int, default=50)
+    ap.add_argument("--no-digest", action="store_true", help="ablation: T1 page headers without digests")
+    ap.add_argument("--pool", help="prompt pool JSONL (rows with seed, ratio, t1_config[, weight])")
     ap.add_argument("--lora-r", type=int, default=0)
     ap.add_argument("--attn", default="flex_attention")
     ap.add_argument("--max-new-tokens", type=int, default=512)
@@ -322,12 +401,15 @@ def main() -> None:
     base = tiny_qwen3(tok.vocab_size) if a.model == "tiny" else a.model
     model = load_model(base, a.attn, device=device, lora_r=a.lora_r, yarn_factor=a.yarn,
                        grad_ckpt=a.grad_ckpt)
-    cfg = GRPOConfig(steps=a.steps, prompts=a.prompts, group=a.group, lr=a.lr, w_eff=a.w_eff, attn=a.attn,
+    cfg = GRPOConfig(reward=a.reward, w_credit=a.w_credit, w_eff_warmup=a.w_eff_warmup, w_eff_ramp=a.w_eff_ramp,
+                     steps=a.steps, prompts=a.prompts, group=a.group, lr=a.lr, w_eff=a.w_eff, attn=a.attn,
                      max_new_tokens=a.max_new_tokens, max_turns=a.max_turns, reversible=not a.irreversible,
-                     notes=not a.no_notes, seed=a.seed, t1=T1Config(n_decisions=a.n_decisions),
+                     notes=not a.no_notes, seed=a.seed, t1=T1Config(n_decisions=a.n_decisions, digest=not a.no_digest),
+                     pool=read_jsonl(a.pool) if a.pool else None,
                      rollout_batch=a.rollout_batch)
     if rank == 0 and a.log:
-        append_jsonl(a.log, {"config": {k: str(v) for k, v in asdict(cfg).items()}})
+        append_jsonl(a.log, {"config": {k: str(v) for k, v in asdict(cfg).items() if k != "pool"},
+                             "pool_size": len(cfg.pool) if cfg.pool else 0})
     train_grpo(model, tok, cfg, log=a.log, out=a.out, rank=rank, world=world, save_every=a.save_every)
 
 

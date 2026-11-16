@@ -49,7 +49,7 @@
 
 | 文件 | 做什么 |
 |---|---|
-| `t1_warehouse.py` | **T1 多轮仓库环境**。复用 `state_study/probes/warehouse.py` 的世界模拟器生成事件流，切成页，其中埋几个决策点。每个决策都依赖更早的一个关键事件：审计更正、盘点、或者后来才生效的隔离通知。工具有两个：`next_events()` 取下一页，`store(shelf)` 回答当前决策。环境总是按规则正确地存货，所以每一页的内容由种子唯一确定。<br>还包括：`rule_read(texts)` 是规则读者，只看文本算出答案；`minimal_sufficient(...)` 求最小充分集，反复删页直到删不动为止；`state_note(texts)` 生成规则读者能读懂的状态笔记；`generate(seed, cfg)` 生成 `Episode`（含 `pages`、`decisions`、`need`）；`T1Config` 是难度参数 |
+| `t1_warehouse.py` | **T1 多轮仓库环境**。页头摘要：`page_digest(text)` 生成 `steps a-b | quarantine S5 | store S9 …`，`T1Config.digest`（默认开）控制是否放进页头；`digest_shelves` 用于判断换回是否可实现（`docs/rl_design.md` §2）。复用 `state_study/probes/warehouse.py` 的世界模拟器生成事件流，切成页，其中埋几个决策点。每个决策都依赖更早的一个关键事件：审计更正、盘点、或者后来才生效的隔离通知。工具有两个：`next_events()` 取下一页，`store(shelf)` 回答当前决策。环境总是按规则正确地存货，所以每一页的内容由种子唯一确定。<br>还包括：`rule_read(texts)` 是规则读者，只看文本算出答案；`minimal_sufficient(...)` 求最小充分集，反复删页直到删不动为止；`state_note(texts)` 生成规则读者能读懂的状态笔记；`generate(seed, cfg)` 生成 `Episode`（含 `pages`、`decisions`、`need`）；`T1Config` 是难度参数 |
 | `t2_bcp.py` | **BrowseComp-Plus 环境**。工具 `search(query)`、`get_document(docid)`、`answer(answer)`；片段和文档长度沿用 ACM 的设置；列出多个候选答案直接判错。检索器和评判是注入的：`PyseriniSearcher(index_path)` 跑 BM25（需要 pyserini 和 JDK 21）；`OpenAIJudge(base_url, model)` 调本地 OpenAI 兼容服务，评判模板逐字取自 ACM（MIT）；`load_split(path)` 读 ACM 的划分文件 |
 
 ### 2.4 `oracle/`：生成监督信号
@@ -64,13 +64,15 @@
 | 文件 | 做什么 |
 |---|---|
 | `episode.py` | `run_episode(env, log, policy, tok, cfg, pager=None) -> record`：造数据、RL 采样、评测共用这一个循环。每回合依次是：系统换页器（如果有）→ 最小空间检查 → assistant 页（前缀 + 策略生成 + `<|im_end|>\n`）→ 解析工具调用并标出 KV 调用的 token → 先执行 KV 工具、再执行环境工具 → 写工具结果块（页头钉住、正文可换出、页尾钉住；回执和旧仪表盘由系统换出；正文超预算就截断）。<br>`EpisodeConfig`：预算、最大回合数、单回合最大生成长度、是否思考、可逆/不可逆、是否有笔记工具、是否提供 KV 工具、最多允许几次非法调用等。<br>`ModelPolicy`：逐 token 采样，记录行为 log-prob。`ScriptedPolicy(fn)`：强制输出 `fn(state)` 返回的文本；日志带模型时，也记录这些 token 的 log-prob |
-| `pagers.py` | 系统换页基线，运行时不提供 KV 工具，模型只做任务。`RecentPager`：只留最近的页。`BeladyPager`：用未来信息换页，是 T1 上的上界 |
+| `pagers.py` | 系统换页基线，运行时不提供 KV 工具，模型只做任务。`RecentPager`：只留最近的页。`BeladyPager`：用未来信息换页，是 T1 上的上界；和 oracle 一样不会拆散成对的记录。`rule_task_policy`：用规则读者作答、从不碰 KV，和换页器配合，可以在不用模型的情况下判断题目可不可行、换页敏不敏感 |
 
 ### 2.6 `data/`：造训练数据
 
 | 文件 | 做什么 |
 |---|---|
-| `build_t1_sft.py` | 用 oracle 造 T1 的 SFT 数据。每个种子在多个预算下各跑一次（1.0 表示不设预算，就是"不换页"样本），按换页、笔记两种模式。质量门槛：答对；没有非法调用、截断、强制换出、KV 报错；不超预算；答案有依据。可选 `--max-future-share` 过滤掉主要靠未来信息的 episode；`--teacher` 用真实模型写理由。`t1_budget(env, tok, ratio)` 定义预算 |
+| `build_t1_sft.py` | 用 oracle 造 T1 的 SFT 数据。默认：四种模式（paging、notes、eager、mixed）；每个种子随机难度（`--vary`）；以 15% 的概率加入失误后恢复的样本（`--recovery`，失误回合不算损失）。每个种子在多个预算下各跑一次（1.0 表示不设预算，就是"不换页"样本），按换页、笔记两种模式。质量门槛：答对；没有非法调用、截断、强制换出、KV 报错；不超预算；答案有依据。可选 `--max-future-share` 过滤掉主要靠未来信息的 episode；`--teacher` 用真实模型写理由。`t1_budget(env, tok, ratio)` 定义预算 |
+| `build_rl_pool.py` | RL 题库。`build`：不需要模型，丢掉预算不可行的题，换页敏感的题加权；`profile`：用策略模型测通过率，只留 0.1–0.9 之间的；`eval`：固定的分布内、分布外评测题库。格式：每行 `{env, seed, ratio, t1_config, budget, n_pages, n_decisions, rule_belady, rule_recent, sensitivity, oracle_ok, pass_rate, weight}` |
+| `inspect_sft.py` | 数据质量和多样性报告：按预算 × 模式统计换出、换回、反复换回的页、换出多久后换回；动作组合种类；episode 形态；恢复样本数（`docs/data_and_training.md` §2.8–§2.9） |
 | `reject_sample.py` | 预算压力下的拒绝采样：用当前模型采样，只留成功且干净的，每个种子最多留几条。输出格式和 oracle 数据相同 |
 
 ### 2.7 `train/`：训练
@@ -80,14 +82,14 @@
 | `batch.py` | `pack(records, advantages)`：多条轨迹拼成一条序列，页号和版本号改成全局编号，驻留矩阵按块对角拼接，用 `doc_of` 隔开轨迹，位置号每条轨迹从 0 开始。`attention_mask(...)`：CPU 上用稠密加性掩码，GPU 上用 FlexAttention 的 BlockMask。`token_logprobs(model, packed, attn)`：一次前向算出每个 token 的 log-prob；LM head 和 log-softmax 分块并做 checkpoint，显存随序列长度线性增长 |
 | `common.py` | 加载模型（指定注意力实现；可选 LoRA、gradient checkpointing、YaRN；可以直接读 LoRA 目录）、FSDP2 切分、读写 JSONL、cosine 学习率、加载分词器（`toy` 表示测试分词器）、`tiny_qwen3()` 随机小模型 |
 | `sft.py` | SFT：按 token 数切 micro-batch，只对 assistant 生成的 token 算损失。单卡直接跑；torchrun 下全参数用 FSDP2，LoRA 每卡一份副本、对 adapter 梯度做 all-reduce。保存为 HF 格式 |
-| `advantage.py` | 组内优势 `r − mean`（不除以标准差）；CLM 的效率项只在组内成功的轨迹之间按代价比较，只加在 KV 工具调用的 token 上；`informative()` 用于动态采样，奖励全相同的组丢弃 |
-| `grpo.py` | GRPO 主循环：采题（种子 + 预算比例）→ 每题 G 次 rollout（`PagedKV` + `ModelPolicy`，rollout 时切到 sdpa）→ 算奖励和代价 → 算优势 → 丢掉无信息的组 → 切回 flex，算 token 级裁剪损失，乘截断重要性权重 → 更新。torchrun 下每卡一份副本（8B 用 LoRA），梯度 all-reduce。`--save-every K` 保存中间 checkpoint。`rollout_fn` 参数留给以后接 SGLang |
+| `advantage.py` | **reward v2**：`hygiene_penalty`（强制换出、截断页、非法调用、KV 错误的小额惩罚，总上限 −0.25）、`counterfactual_credit`（用规则读者找出导致答错的那次 `kv_out` 和起作用的 `kv_in`，把 ±c 加在那一回合的控制 token 上）、`advantages_v2`、`has_signal`（`docs/rl_design.md` §4）。旧的： `r − mean`（不除以标准差）；CLM 的效率项只在组内成功的轨迹之间按代价比较，只加在 KV 工具调用的 token 上；`informative()` 用于动态采样，奖励全相同的组丢弃 |
+| `grpo.py` | GRPO 主循环：采题（种子 + 预算比例）→ 每题 G 次 rollout（`PagedKV` + `ModelPolicy`，rollout 时切到 sdpa）→ 算奖励和代价 → 算优势 → 丢掉无信息的组 → 切回 flex，算 token 级裁剪损失，乘截断重要性权重 → 更新。torchrun 下每卡一份副本（8B 用 LoRA），梯度 all-reduce。`--save-every K` 保存中间 checkpoint。`--pool` 从题库按权重抽题；`PromptSampler` 按（预算比例, 决策点数）分桶，自动降权一直全对或一直全错的桶。`rollout_fn` 参数留给以后接 SGLang。reward v2 相关参数：`--reward v2`（默认）、`--w-credit`、`--w-eff-warmup`、`--w-eff-ramp`；另有 `--pool`（每行含 seed、ratio、t1_config）、`--no-digest` |
 
 ### 2.8 `eval/`
 
 | 文件 | 做什么 |
 |---|---|
-| `t1_eval.py` | T1 评测，五种方法：`model`（模型自己管 KV）、`full`（不设预算）、`recent`、`belady`（系统换页）、`oracle`（健全性检查，应该是 1.0）。每个 episode 一行 JSONL（奖励、代价、峰值驻留、各种计数），结束时打印按"方法 @ 预算"汇总的结果 |
+| `t1_eval.py` | T1 评测，五种方法：`model`（模型自己管 KV）、`full`（不设预算）、`recent`、`belady`（系统换页）、`oracle`（健全性检查，应该是 1.0）。每个 episode 一行 JSONL（奖励、代价、峰值驻留、各种计数），结束时打印按"方法 @ 预算"汇总的结果。`--pool` 直接读评测题库 |
 
 ### 2.9 `testing/` 和 `tests/`
 
@@ -134,7 +136,7 @@ python -m pytest -q -p no:cacheprovider self_paging/tests
 QWEN3_TOKENIZER=/path/to/Qwen3-8B python -m pytest -q self_paging/tests/test_template_server.py
 ```
 
-2026-11-15 在云端（torch 2.15.0+cpu、transformers 5.23.0）：35 个通过、1 个跳过（模板比对）。
+2026-11-16 在云端（torch 2.15.0+cpu、transformers 5.23.0）：38 个通过、1 个跳过（模板比对）。
 
 **版本要求**：代码用了 transformers 5 的接口：`DynamicCache.layers[l].keys` / `.values`、`model.set_attn_implementation()`，以及前向不再传 `cache_position`。服务器上建议直接装 5.23；4.x 的旧版本大概率不兼容。FlexAttention 需要 torch ≥ 2.5。
 

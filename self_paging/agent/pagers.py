@@ -10,6 +10,16 @@ model internals (per-page key summaries, attention) and come with the SGLang/HF 
 from __future__ import annotations
 
 
+def _overhead(st) -> int:
+    """Structural tokens of the next tool block (headers, gauge listing every page, open/close).
+    A constant reserve is not enough: the gauge grows with the directory (docs/rl_design.md §7.1)."""
+    from .episode import block_overhead
+
+    if getattr(st, "tok", None) is None or getattr(st, "log", None) is None:
+        return st.cfg.struct_reserve  # minimal stand-in states (tests): constant reserve
+    return max(st.cfg.struct_reserve, block_overhead(st))
+
+
 class RecentPager:
     """Keep pinned pages and the most recent pages that fit (StreamingLLM at page level)."""
 
@@ -17,7 +27,7 @@ class RecentPager:
         log, cfg = st.log, st.cfg
         if cfg.budget is None:
             return
-        while cfg.budget - log.resident_tokens() < incoming + cfg.struct_reserve + cfg.min_gen_room:
+        while cfg.budget - log.resident_tokens() < incoming + _overhead(st) + cfg.min_gen_room:
             victims = [p for p in log.table.in_order(log.table.resident())
                        if not log.table.pages[p].pinned and p != log.table.current]
             if not victims:
@@ -78,7 +88,7 @@ class BeladyPager:
             nu = ep.next_use(env_of[p], after)
             return (1, breaks, -(10**9) if nu is None else -nu, -t.pages[p].length)
 
-        while cfg.budget - log.resident_tokens() < need + cfg.struct_reserve + cfg.min_gen_room:
+        while cfg.budget - log.resident_tokens() < need + _overhead(st) + cfg.min_gen_room:
             cands = [p for p in t.resident() if not t.pages[p].pinned and p != t.current and p not in protect]
             if not cands:
                 return
@@ -114,7 +124,7 @@ class QuestPagePager:
         log,table=st.log,st.log.table
         scores=log.keymean_scores()
         fixed={p for p in table.resident() if table.pages[p].pinned or p==table.current}
-        room=st.cfg.budget-sum(table.pages[p].length for p in fixed)-incoming-st.cfg.struct_reserve-st.cfg.min_gen_room
+        room=st.cfg.budget-sum(table.pages[p].length for p in fixed)-incoming-_overhead(st)-st.cfg.min_gen_room
         selected=set(fixed)
         candidates=[p for p in scores if p not in fixed and table.pages[p].where!='dropped']
         for p in sorted(candidates,key=lambda p:(-scores[p],table.pages[p].start)):
@@ -133,7 +143,7 @@ class AttnEvictPager:
             return
         log,table=st.log,st.log.table
         scores=log.attention_scores()
-        while log.resident_tokens()+incoming+st.cfg.struct_reserve+st.cfg.min_gen_room>st.cfg.budget:
+        while log.resident_tokens()+incoming+_overhead(st)+st.cfg.min_gen_room>st.cfg.budget:
             candidates=[p for p in table.resident() if not table.pages[p].pinned and p!=table.current]
             if not candidates:break
             victim=min(candidates,key=lambda p:(scores.get(p,0.0),table.pages[p].start))

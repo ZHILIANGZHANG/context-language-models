@@ -113,7 +113,10 @@ def run_episode(env, log, policy, tok: Tok, cfg: EpisodeConfig, pager=None) -> d
                     break
                 log.page_out([victims[0]])
                 st.meta["forced_evictions"] += 1
+                st.meta.setdefault("kv_log", []).append(
+                    {"turn": turn, "turn_pid": None, "op": "forced_out", "pages": [victims[0]], "ok": True})
                 last = None
+        turn_version = log.table.version
         a = log.open("assistant")
         prefix = feed(a, assistant_prefix(cfg.thinking))
         last = prefix if prefix is not None else last
@@ -146,7 +149,13 @@ def run_episode(env, log, policy, tok: Tok, cfg: EpisodeConfig, pager=None) -> d
 
         responses = []  # (label, body, kind, env_page)
         for c in [c for c in calls if c["name"] in KV_TOOLS]:
-            responses.append(_kv_call(c, st))
+            if not cfg.kv_tools:
+                # tools that were not offered are not executed (strict system-paging baselines)
+                responses.append(("tool=" + c["name"], f"ERROR: unknown tool {c['name']}.", "ack", None))
+                st.meta["invalid"] += 1
+                st.meta["unoffered_kv_calls"] = st.meta.get("unoffered_kv_calls", 0) + 1
+                continue
+            responses.append(_kv_call(c, st, turn_pid=a, turn=turn))
         for c in [c for c in calls if c["name"] not in KV_TOOLS]:
             if final_turn and c["name"] != "answer":
                 st.meta["invalid"] += 1
@@ -155,10 +164,15 @@ def run_episode(env, log, policy, tok: Tok, cfg: EpisodeConfig, pager=None) -> d
                 responses.append(("tool=" + c["name"], f"ERROR: unknown tool {c['name']}.", "ack", None))
                 st.meta["invalid"] += 1
                 continue
+            pending = getattr(env, "pending", None)
             body, meta, d = env.step(c["name"], c["arguments"])
+            st.meta.setdefault("env_calls", []).append(
+                {"turn": turn, "turn_pid": a, "version": turn_version, "name": c["name"],
+                 "args": c["arguments"], "decision_page": getattr(pending, "page", None)})
             done = done or d
             kind = "tool" if "env_page" in meta else "ack"
-            responses.append(("tool=" + c["name"], body, kind, meta.get("env_page")))
+            label = "tool=" + c["name"] + (f" | {meta['digest']}" if meta.get("digest") else "")
+            responses.append((label, body, kind, meta.get("env_page")))
         if not responses:
             responses.append(("kv", "ERROR: no valid tool call. Call a tool.", "ack", None))
 
@@ -179,26 +193,33 @@ def run_episode(env, log, policy, tok: Tok, cfg: EpisodeConfig, pager=None) -> d
     return rec
 
 
-def _kv_call(c, st: EpisodeState):
+def _kv_call(c, st: EpisodeState, turn_pid=None, turn=None):
     log, name, args = st.log, c["name"], c["arguments"]
+    entry = {"turn": turn, "turn_pid": turn_pid, "op": name, "pages": [], "ok": False}
+    st.meta.setdefault("kv_log", []).append(entry)  # used for counterfactual credit (train/advantage.py)
     if name == "note":
         text = str(args.get("text", ""))[:2000]
         st.meta["notes"] += 1
+        entry["ok"] = True
         return ("note", escape(text) or "(empty note)", "note", None)
     try:
         pids = parse_pages(args.get("pages", ""))
+        entry["pages"] = pids
         if name == "kv_out":
             log.page_out(pids)
+            entry["ok"] = True
             st.meta["kv_out"] += 1
             return ("kv", f"paged out: {','.join(map(str, pids))}", "ack", None)
         if name == "kv_in":
             log.page_in(pids)
+            entry["ok"] = True
             for pid in pids:
                 st.last_access[pid] = log.log_len
             st.meta["kv_in"] += 1
             return ("kv", f"paged in: {','.join(map(str, pids))}", "ack", None)
         if name == "kv_drop":
             log.drop(pids)
+            entry["ok"] = True
             return ("kv", f"dropped: {','.join(map(str, pids))}", "ack", None)
     except (PagingError, ValueError) as e:
         st.meta["kv_errors"] += 1
@@ -308,8 +329,25 @@ def _write_block(st: EpisodeState, responses, feed, pinned):
                 if x != y: break
                 prefix += 1
             st.meta["truncated_tokens"] += len(originals[i]) - prefix
+            st.meta["truncated_pages"] = st.meta.get("truncated_pages", 0) + 1
     feed(log.open("gauge"), gauge_ids)
     return pinned("header", close_ids)
+
+
+def block_overhead(st, n_responses: int = 1, label: str = "tool=next_events") -> int:
+    """Tokens a tool-response block costs besides its bodies: open/close, per-response header and
+    trailer, and the gauge, which lists every page and therefore grows with the directory. Pagers
+    and the oracle must reserve this, not a constant (docs/rl_design.md §7.1)."""
+    tok, log = st.tok, st.log
+    t = log.table
+    gpu = [(p, t.pages[p].kind) for p in t.in_order(t.resident()) if not t.pages[p].pinned
+           and t.pages[p].kind not in ("gauge", "ack")]
+    host = [(p, t.pages[p].kind) for p in t.in_order(p for p, pg in t.pages.items() if pg.where == "host")
+            if t.pages[p].kind not in ("gauge", "ack")]
+    gpu += [(log.next_pid + i, "tool") for i in range(n_responses)]
+    per = len(tok.encode(response_header(log.next_pid + 1, label + " | " + "x" * 80))) + len(tok.encode(response_trailer()))
+    return (len(tok.encode(block_open())) + len(tok.encode(block_close())) + n_responses * per
+            + len(tok.encode(gauge(st.cfg.budget or 0, st.cfg.budget, gpu, host))) + 16)
 
 
 def _lru_room(st, incoming):

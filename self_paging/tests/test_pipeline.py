@@ -225,3 +225,52 @@ def test_oracle_quality_regressions():
     for r in eager:  # every store turn carries the explicit shelf-by-shelf check
         text = TOK.decode(r["tokens"])
         assert text.count("Lowest free shelf: S") >= text.count('{"name": "store", "arguments"') > 0
+
+
+def test_diversity_options_and_recovery_masking():
+    """Per-seed configs, mixed propensities and recovery examples (docs/data_and_training.md §2.9):
+    mistake turns carry no loss, and recovery produces page-ins, some pages more than once."""
+    from self_paging.data.inspect_sft import page_events, report
+
+    kept, _ = build(TOK, range(8), [0.6], ["paging", "mixed"], MID, max_turns=90, max_future_share=1.0,
+                    vary=True, error_rate=0.3)
+    assert kept
+    err = [r for r in kept if r["meta"].get("error_pids")]
+    assert err, "recovery examples expected"
+    for r in err:
+        bad = set(r["meta"]["error_pids"])
+        assert all(m == 0 for m, p in zip(r["loss_mask"], r["page_of"]) if p in bad)
+    assert len({r["meta"]["t1_config"]["n_decisions"] for r in kept}) > 1
+    ins = [e for r in kept for e in page_events(r) if e[1] == "in"]
+    assert ins and all(e[3] == "tool" for e in ins)
+    rep = report(kept, TOK)
+    assert rep["recovery"]["mistake_turns_no_loss"] > 0 and len(rep["per_turn_action_combos"]) >= 5
+
+
+def test_rl_pool_sampler_and_eval_pool():
+    """Prompt pool (docs/data_and_training.md §3.5): infeasible budgets are dropped, sensitivity is
+    Belady − Recent with the rule reader. (The weighted/adaptive PromptSampler is specified in
+    docs/rl_design.md §5 for the deployed grpo.py; it is not part of main's grpo.py.)"""
+    from self_paging.data.build_rl_pool import build_pool, dict_to_config, ood_config
+
+    pool, stats = build_pool(TOK, range(10), [0.4, 0.8], vary=True)
+    assert pool and stats["total"] == 20
+    for e in pool:
+        assert e["rule_belady"] == 1.0 and -1.0 <= e["sensitivity"] <= 1.0
+        assert e["weight"] == (2.0 if e["sensitivity"] >= 0.25 else 1.0)
+        env = WarehouseEnv(e["seed"], dict_to_config(e["t1_config"]))
+        assert t1_budget(env, TOK, e["ratio"]) == e["budget"]
+    assert ood_config(1).n_decisions >= 7
+
+
+def test_belady_pager_matches_oracle_feasibility():
+    """BeladyPager used to strand store lines without their dispatch (misleading the reader) and
+    failed prompts the KV oracle solved; it must now solve whatever the oracle solves."""
+    from self_paging.data.build_rl_pool import profile_prompt
+    from self_paging.data.build_t1_sft import varied_config
+
+    for seed in range(8):
+        for ratio in (0.4, 0.6):
+            e = profile_prompt(seed, ratio, varied_config(seed, T1Config()), TOK)
+            if e["oracle_ok"]:
+                assert e["rule_belady"] == 1.0, (seed, ratio)
