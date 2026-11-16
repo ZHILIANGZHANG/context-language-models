@@ -27,13 +27,13 @@ from ..data.build_t1_sft import t1_budget
 from ..envs.t1_warehouse import T1Config, WarehouseEnv
 from ..hf.logstore import PagedKV
 from ..oracle.t1_oracle import T1Oracle
-from ..train.common import append_jsonl, load_model, load_tokenizer, read_jsonl, tiny_qwen3
+from ..train.common import append_jsonl, load_model, load_tokenizer, tiny_qwen3
 
 METHODS = ("model", "full", "recent", "belady", "oracle")
 
 
 def run_one(method, model, tok, seed, ratio, t1cfg, temperature=0.6, top_p=0.95, top_k=20,
-            max_turns=60, max_new_tokens=1024, gen=None) -> dict:
+            max_turns=60, max_new_tokens=1024, gen=None, record_sink=None) -> dict:
     env = WarehouseEnv(seed, t1cfg)
     budget = None if method == "full" else t1_budget(env, tok, ratio)
     pager = {"recent": RecentPager(), "belady": BeladyPager()}.get(method)
@@ -45,8 +45,12 @@ def run_one(method, model, tok, seed, ratio, t1cfg, temperature=0.6, top_p=0.95,
         policy = ModelPolicy(tok, temperature=temperature, top_p=top_p, top_k=top_k, generator=gen)
         rec = run_episode(env, PagedKV(model, budget=budget, strict=False), policy, tok, cfg, pager=pager)
     c = episode_cost(rec)
+    if record_sink is not None:
+        record_sink({"method": method, "seed": seed, "ratio": ratio, **rec,
+                     "decisions": [{"page": d.page, "kind": d.kind, "gold": d.answer,
+                                    "predicted": env.answers[d.page]} for d in env.ep.decisions],
+                     "environment_pages": env.ep.pages})
     return {"method": method, "seed": seed, "ratio": ratio, "budget": budget, "reward": rec["reward"],
-            "n_decisions": t1cfg.n_decisions,
             "peak_resident": rec["peak_resident"], "tokens": len(rec["tokens"]), **c, **rec["meta"]}
 
 
@@ -77,29 +81,26 @@ def main() -> None:
     ap.add_argument("--temperature", type=float, default=0.6)
     ap.add_argument("--out", required=True)
     ap.add_argument("--yarn", type=float, default=0.0)
-    ap.add_argument("--pool", help="evaluation pool from data/build_rl_pool.py eval (overrides --seeds/--ratios)")
+    ap.add_argument("--records-out", help="Full token/page/answer trajectories for auditing")
+    ap.add_argument("--sample-seed", type=int, default=0)
     a = ap.parse_args()
     tok = load_tokenizer(a.tokenizer or (None if a.model == "tiny" else a.model))
     device = "cuda" if torch.cuda.is_available() else "cpu"
     base = tiny_qwen3(tok.vocab_size) if a.model == "tiny" else a.model
-    model = load_model(base, a.attn, device=device, yarn_factor=a.yarn).eval()
-    gen = torch.Generator(device=device).manual_seed(0)
-    if a.pool:
-        from ..data.build_rl_pool import dict_to_config
-        prompts = [(e["seed"], e["ratio"], dict_to_config(e["t1_config"])) for e in read_jsonl(a.pool)]
-    else:
-        prompts = [(s, r, T1Config(n_decisions=a.n_decisions)) for s in range(*a.seeds) for r in a.ratios]
-    rows, full_done = [], set()
-    for seed, ratio, t1cfg in prompts:
+    model = None if a.methods == ["oracle"] else load_model(base, a.attn, device=device, yarn_factor=a.yarn).eval()
+    rows = []
+    for seed in range(*a.seeds):
         for method in a.methods:
-            if method == "full":  # one unbudgeted run per seed
-                if seed in full_done:
-                    continue
-                full_done.add(seed)
-            row = run_one(method, model, tok, seed, 1.0 if method == "full" else ratio, t1cfg,
-                          temperature=a.temperature, gen=gen)
-            append_jsonl(a.out, row)
-            rows.append(row)
+            for ratio in ([1.0] if method == "full" else a.ratios):
+                # Independent, paired streams: results never depend on GPU count
+                # or what jobs ran before this episode.
+                gen = torch.Generator(device=device).manual_seed(a.sample_seed * 1000000 + seed)
+                row = run_one(method, model, tok, seed, ratio, T1Config(n_decisions=a.n_decisions),
+                              temperature=a.temperature, gen=gen,
+                              record_sink=(lambda r: append_jsonl(a.records_out, r)) if a.records_out else None)
+                row["sample_seed"] = a.sample_seed
+                append_jsonl(a.out, row)
+                rows.append(row)
     print(json.dumps(aggregate(rows), indent=1))
 
 

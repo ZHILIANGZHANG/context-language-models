@@ -12,6 +12,7 @@ implementation accepts the BlockMask directly as ``attention_mask`` (tested).
 from __future__ import annotations
 
 from dataclasses import dataclass
+from functools import lru_cache
 
 import torch
 from torch.utils.checkpoint import checkpoint
@@ -65,6 +66,16 @@ def pack(records: list[dict], advantages: list[list[float]] | None = None) -> Pa
                   t(olp, torch.float32), t(adv, torch.float32), len(records))
 
 
+@lru_cache(maxsize=1)
+def _compiled_block_mask_builder():
+    from torch.nn.attention.flex_attention import create_block_mask
+
+    # Eager vmap indexing materializes int64 [L,L] temporaries (~8 GiB
+    # at 32K). Fuse the identical predicate and block reductions instead.
+    # Fullgraph prevents a silent fallback to the memory-heavy eager path.
+    return torch.compile(create_block_mask, fullgraph=True, dynamic=True)
+
+
 def attention_mask(p: Packed, attn: str, dtype: torch.dtype, device):
     if attn == "flex_attention":
         from torch.nn.attention.flex_attention import create_block_mask
@@ -72,7 +83,8 @@ def attention_mask(p: Packed, attn: str, dtype: torch.dtype, device):
         mod = make_mask_mod(p.page_of.to(device), p.seg_of.to(device), p.resident.to(device),
                             p.doc_of.to(device))
         t = p.input_ids.shape[1]
-        return create_block_mask(mod, None, None, t, t, device=device)
+        builder = (_compiled_block_mask_builder() if torch.device(device).type == 'cuda' else create_block_mask)
+        return builder(mod, None, None, t, t, device=device)
     vis = visibility(p.page_of, p.seg_of, p.resident) & (p.doc_of[:, None] == p.doc_of[None, :])
     return additive_mask(vis, dtype).to(device)
 
@@ -85,8 +97,16 @@ def token_logprobs(model, p: Packed, attn: str = "sdpa", chunk: int = 2048) -> t
     mask = attention_mask(p, attn, dtype, device)
     ids = p.input_ids.to(device)
     base = model.get_base_model() if hasattr(model, "get_base_model") else model  # PEFT
+    # Torch 2.11 AUTO has no eligible custom-mask kernel for short sequences
+    # on SM86. The tested Triton backend supports both short and long blocks;
+    # this chooses a kernel, without changing visibility or attention math.
+    # SM86 has 99 KiB shared memory per block. Default head_dim=128 kernels
+    # request 114 KiB; use verified 32x32 tiles in forward and backward.
+    kernel = {"kernel_options": {"BACKEND": "TRITON", "BLOCK_M": 32, "BLOCK_N": 32,
+                                  "BLOCK_M1": 32, "BLOCK_N1": 32,
+                                  "BLOCK_M2": 32, "BLOCK_N2": 32}} if attn == "flex_attention" else {}
     hidden = base.model(input_ids=ids, position_ids=p.position_ids.to(device),
-                        attention_mask=mask, use_cache=False).last_hidden_state[0]
+                        attention_mask=mask, use_cache=False, **kernel).last_hidden_state[0]
     targets = ids[0, 1:]
     head = base.lm_head
 

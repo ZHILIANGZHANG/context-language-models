@@ -167,6 +167,27 @@ class Tok:
     def encode(self, text: str) -> list[int]:
         return self.tok.encode(text, add_special_tokens=False)
 
+    def encode_wrapped(self, header: str, body: str, trailer: str) -> tuple[list[int], list[int], list[int]]:
+        """Tokenize a NEW tool result once, then split only at token boundaries.
+
+        BPE can merge body punctuation with the trailer newline. Any token
+        overlapping body text belongs to the evictable body, never a pinned
+        wrapper. Previously written/generated tokens are never re-tokenized.
+        """
+        text = header + body + trailer
+        if getattr(self.tok, "is_fast", False):
+            encoded = self.tok(text, add_special_tokens=False, return_offsets_mapping=True)
+            ids, offsets = encoded["input_ids"], encoded["offset_mapping"]
+            lo, hi = len(header), len(header) + len(body)
+            first = next((i for i, (_, b) in enumerate(offsets) if b > lo), len(ids))
+            last = next((i for i, (a, _) in enumerate(offsets) if a >= hi), len(ids))
+            return ids[:first], ids[first:last], ids[last:]
+        # The test tokenizer is character-based and has no BPE merges.
+        parts = [self.encode(x) for x in (header, body, trailer)]
+        if sum(parts, []) != self.encode(text):
+            raise ValueError("A fast tokenizer with offsets is required for BPE page boundaries")
+        return tuple(parts)
+
     def decode(self, ids: list[int]) -> str:
         return self.tok.decode(ids, skip_special_tokens=False)
 

@@ -1,0 +1,6 @@
+{
+  "time": 1794835926.6744182,
+  "status": "SFT_AND_PAIRED_EVAL_COMPLETE_PENDING_SCIENTIFIC_REVIEW",
+  "episodes": 200,
+  "next": "Assess invalid actions, successful paging, reward and timing before GRPO; E2/BCP/LongMemEval remain separate gates"
+}

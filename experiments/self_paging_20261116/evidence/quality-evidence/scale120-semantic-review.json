@@ -1,0 +1,15 @@
+{
+  "generated": 120,
+  "accepted_zero_fallback": 80,
+  "explicit_semantic_failures": [],
+  "coverage": {
+    "(0.6, 'eager')": 17,
+    "(0.45, 'eager')": 10,
+    "(0.45, 'paging')": 7,
+    "(0.35, 'paging')": 9,
+    "(0.35, 'eager')": 8,
+    "(1.0, 'paging')": 24,
+    "(0.6, 'paging')": 5
+  },
+  "scope": "bounded120_not_final_training_corpus"
+}

@@ -1,0 +1,9 @@
+{
+  "base": "CPython3.12.12; readonly sites /data/zhangcheng/cross-model-cache-3293b39/.venv/lib/python3.12/site-packages then /home/zhangcheng/My-OPD/.venv-cu129/lib/python3.12/site-packages",
+  "pins": {"torch":"2.11.0+cu129", "transformers":"5.23.0", "peft":"0.19.1", "numpy":"2.3.5", "triton":"3.6.0", "pytest":"8.4.2"},
+  "venv":"/data/zhangcheng/self-paging-20261116/venv",
+  "model":"/nas/Public/zhangcheng/models/Qwen3-8B",
+  "source":"aa97b7839998cbc3262bf1f498aa69f8ebd51be0",
+  "env":{"OMP_NUM_THREADS":"4", "MKL_NUM_THREADS":"4", "TOKENIZERS_PARALLELISM":"false"},
+  "validation":["CPU suite with real tokenizer", "seeded CUDA paging and FlexAttention", "real oracle and smoke", "fresh-agent documented invocation"]
+}

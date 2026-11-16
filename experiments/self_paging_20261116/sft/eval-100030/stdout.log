@@ -1,0 +1,37 @@
+Loading weights:   0%|          | 0/399 [00:00<?, ?it/s]Loading weights:   4%|▎         | 14/399 [00:00<00:06, 61.09it/s]Loading weights:   5%|▌         | 21/399 [00:00<00:10, 36.12it/s]Loading weights:   7%|▋         | 28/399 [00:00<00:09, 39.21it/s]Loading weights:   8%|▊         | 33/399 [00:01<00:14, 25.39it/s]Loading weights:  10%|▉         | 38/399 [00:01<00:13, 27.20it/s]Loading weights:  11%|█         | 42/399 [00:01<00:21, 16.65it/s]Loading weights:  13%|█▎        | 53/399 [00:02<00:18, 18.78it/s]Loading weights:  15%|█▌        | 61/399 [00:02<00:14, 23.93it/s]Loading weights:  16%|█▋        | 65/399 [00:02<00:15, 21.03it/s]Loading weights:  17%|█▋        | 68/399 [00:02<00:15, 21.11it/s]Loading weights:  18%|█▊        | 71/399 [00:03<00:25, 12.82it/s]Loading weights:  18%|█▊        | 73/399 [00:03<00:24, 13.12it/s]Loading weights:  19%|█▉        | 75/399 [00:03<00:23, 13.57it/s]Loading weights:  19%|█▉        | 77/399 [00:03<00:23, 13.80it/s]Loading weights:  21%|██        | 83/399 [00:04<00:17, 17.85it/s]Loading weights:  22%|██▏       | 87/399 [00:04<00:15, 19.88it/s]Loading weights:  23%|██▎       | 90/399 [00:04<00:15, 19.91it/s]Loading weights:  23%|██▎       | 93/399 [00:04<00:23, 13.07it/s]Loading weights:  25%|██▌       | 101/399 [00:05<00:19, 15.14it/s]Loading weights:  27%|██▋       | 107/399 [00:05<00:15, 19.33it/s]Loading weights:  28%|██▊       | 110/399 [00:05<00:14, 19.44it/s]Loading weights:  29%|██▊       | 114/399 [00:05<00:13, 21.00it/s]Loading weights:  29%|██▉       | 117/399 [00:05<00:13, 20.76it/s]Loading weights:  31%|███▏      | 125/399 [00:06<00:09, 28.96it/s]Loading weights:  32%|███▏      | 129/399 [00:06<00:09, 28.34it/s]Loading weights:  33%|███▎      | 133/399 [00:06<00:12, 21.85it/s]Loading weights:  35%|███▍      | 139/399 [00:06<00:15, 17.20it/s]Loading weights:  36%|███▌      | 142/399 [00:07<00:14, 17.95it/s]Loading weights:  36%|███▋      | 145/399 [00:08<00:28,  8.85it/s]Loading weights:  38%|███▊      | 152/399 [00:08<00:18, 13.53it/s]Loading weights:  39%|███▉      | 155/399 [00:08<00:16, 14.47it/s]Loading weights:  42%|████▏     | 166/399 [00:08<00:09, 24.76it/s]Loading weights:  43%|████▎     | 171/399 [00:08<00:11, 19.82it/s]Loading weights:  44%|████▍     | 175/399 [00:09<00:12, 17.81it/s]Loading weights:  45%|████▍     | 178/399 [00:09<00:12, 17.38it/s]Loading weights:  47%|████▋     | 187/399 [00:09<00:10, 19.28it/s]Loading weights:  48%|████▊     | 193/399 [00:10<00:11, 18.13it/s]Loading weights:  49%|████▉     | 196/399 [00:10<00:11, 18.41it/s]Loading weights:  50%|████▉     | 199/399 [00:10<00:10, 18.67it/s]Loading weights:  52%|█████▏    | 209/399 [00:11<00:12, 15.59it/s]Loading weights:  56%|█████▋    | 225/399 [00:11<00:06, 24.92it/s]Loading weights:  58%|█████▊    | 231/399 [00:11<00:07, 22.19it/s]Loading weights:  60%|██████    | 240/399 [00:12<00:06, 25.89it/s]Loading weights:  61%|██████    | 243/399 [00:12<00:07, 21.61it/s]Loading weights:  62%|██████▏   | 246/399 [00:12<00:08, 18.15it/s]Loading weights:  62%|██████▏   | 248/399 [00:12<00:08, 16.78it/s]Loading weights:  63%|██████▎   | 250/399 [00:13<00:09, 16.51it/s]Loading weights:  63%|██████▎   | 252/399 [00:13<00:16,  8.85it/s]Loading weights:  64%|██████▍   | 256/399 [00:14<00:16,  8.72it/s]Loading weights:  65%|██████▍   | 258/399 [00:14<00:17,  8.15it/s]Loading weights:  66%|██████▌   | 263/399 [00:15<00:15,  8.55it/s]Loading weights:  66%|██████▌   | 264/399 [00:15<00:20,  6.60it/s]Loading weights:  66%|██████▋   | 265/399 [00:15<00:25,  5.25it/s]Loading weights:  67%|██████▋   | 266/399 [00:16<00:27,  4.86it/s]Loading weights:  67%|██████▋   | 267/399 [00:16<00:29,  4.54it/s]Loading weights:  67%|██████▋   | 268/399 [00:16<00:26,  4.90it/s]Loading weights:  71%|███████   | 283/399 [00:17<00:08, 13.11it/s]Loading weights:  71%|███████▏  | 285/399 [00:17<00:09, 11.73it/s]Loading weights:  72%|███████▏  | 286/399 [00:17<00:11, 10.03it/s]Loading weights:  72%|███████▏  | 287/399 [00:18<00:17,  6.41it/s]Loading weights:  72%|███████▏  | 288/399 [00:18<00:21,  5.17it/s]Loading weights:  77%|███████▋  | 307/399 [00:19<00:04, 18.87it/s]Loading weights:  78%|███████▊  | 310/399 [00:19<00:04, 19.12it/s]Loading weights:  78%|███████▊  | 313/399 [00:19<00:05, 16.62it/s]Loading weights:  79%|███████▉  | 316/399 [00:20<00:07, 11.51it/s]Loading weights:  80%|███████▉  | 318/399 [00:20<00:06, 11.85it/s]Loading weights:  80%|████████  | 320/399 [00:20<00:07, 10.49it/s]Loading weights:  81%|████████  | 322/399 [00:20<00:06, 11.08it/s]Loading weights:  81%|████████  | 324/399 [00:21<00:07,  9.76it/s]Loading weights:  82%|████████▏ | 326/399 [00:21<00:08,  8.89it/s]Loading weights:  82%|████████▏ | 327/399 [00:21<00:11,  6.22it/s]Loading weights:  84%|████████▍ | 337/399 [00:21<00:03, 16.45it/s]Loading weights:  85%|████████▌ | 340/399 [00:22<00:04, 12.55it/s]Loading weights:  86%|████████▌ | 344/399 [00:22<00:04, 12.96it/s]Loading weights:  87%|████████▋ | 346/399 [00:22<00:04, 11.25it/s]Loading weights:  87%|████████▋ | 348/399 [00:23<00:06,  7.78it/s]Loading weights:  88%|████████▊ | 350/399 [00:23<00:06,  7.59it/s]Loading weights:  91%|█████████ | 362/399 [00:24<00:02, 14.58it/s]Loading weights:  92%|█████████▏| 366/399 [00:24<00:02, 16.46it/s]Loading weights:  92%|█████████▏| 368/399 [00:24<00:02, 10.70it/s]Loading weights:  93%|█████████▎| 370/399 [00:25<00:03,  8.75it/s]Loading weights:  93%|█████████▎| 372/399 [00:25<00:03,  6.75it/s]Loading weights:  95%|█████████▌| 380/399 [00:26<00:01, 10.21it/s]Loading weights:  97%|█████████▋| 387/399 [00:26<00:00, 13.30it/s]Loading weights:  98%|█████████▊| 392/399 [00:26<00:00, 14.73it/s]Loading weights: 100%|██████████| 399/399 [00:26<00:00, 14.83it/s]
+/data/zhangcheng/self-paging-20261116/venv/lib/python3.12/site-packages/transformers/modeling_utils.py:3303: FutureWarning: `is_gradient_checkpointing` is deprecated and will be removed in v6. Use `is_activation_checkpointing` instead.
+  warnings.warn(
+{
+ "full@1.0": {
+  "n": 5,
+  "reward": 0.95,
+  "cost": 84637384.55998264,
+  "peak_resident": 5459.6,
+  "invalid": 0.0,
+  "truncated": 0.0
+ },
+ "model@0.25": {
+  "n": 5,
+  "reward": 0.7,
+  "cost": 76906078.38841146,
+  "peak_resident": 3565.8,
+  "invalid": 0.2,
+  "truncated": 101.6
+ },
+ "model@0.4": {
+  "n": 5,
+  "reward": 0.85,
+  "cost": 82925478.71679688,
+  "peak_resident": 4179.2,
+  "invalid": 0.4,
+  "truncated": 0.0
+ },
+ "model@0.6": {
+  "n": 5,
+  "reward": 0.85,
+  "cost": 81599154.1248264,
+  "peak_resident": 4260.4,
+  "invalid": 0.0,
+  "truncated": 0.0
+ }
+}

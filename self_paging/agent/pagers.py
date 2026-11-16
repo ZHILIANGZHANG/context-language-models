@@ -100,3 +100,41 @@ def rule_task_policy(st) -> str:
         visible = [by_pid[p] for p in t.in_order(t.resident()) if p in by_pid]
         return render_tool_call("store", {"shelf": rule_read(visible)})
     return render_tool_call("next_events", {})
+
+
+class QuestPagePager:
+    """Reversible key-mean page retrieval as specified by the local runbook.
+
+    This is an approximate system control, not the upstream token-level Quest
+    implementation. It uses no task answer, evidence ID or future observation.
+    """
+    def __call__(self, st, incoming):
+        if st.cfg.budget is None:
+            return
+        log,table=st.log,st.log.table
+        scores=log.keymean_scores()
+        fixed={p for p in table.resident() if table.pages[p].pinned or p==table.current}
+        room=st.cfg.budget-sum(table.pages[p].length for p in fixed)-incoming-st.cfg.struct_reserve-st.cfg.min_gen_room
+        selected=set(fixed)
+        candidates=[p for p in scores if p not in fixed and table.pages[p].where!='dropped']
+        for p in sorted(candidates,key=lambda p:(-scores[p],table.pages[p].start)):
+            if table.pages[p].length<=room:
+                selected.add(p);room-=table.pages[p].length
+        victims=table.resident()-selected
+        if victims:log.page_out(sorted(victims))
+        restore=[p for p in selected if table.pages[p].where=='host']
+        if restore:log.page_in(sorted(restore))
+
+
+class AttnEvictPager:
+    """Irreversibly evict pages with least actual recent attention mass."""
+    def __call__(self, st, incoming):
+        if st.cfg.budget is None:
+            return
+        log,table=st.log,st.log.table
+        scores=log.attention_scores()
+        while log.resident_tokens()+incoming+st.cfg.struct_reserve+st.cfg.min_gen_room>st.cfg.budget:
+            candidates=[p for p in table.resident() if not table.pages[p].pinned and p!=table.current]
+            if not candidates:break
+            victim=min(candidates,key=lambda p:(scores.get(p,0.0),table.pages[p].start))
+            log.drop([victim])

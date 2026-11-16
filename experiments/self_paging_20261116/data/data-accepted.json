@@ -1,0 +1,116 @@
+{
+  "status": "DATA_ACCEPTED_TRAINING_SMOKE_STILL_REQUIRED",
+  "counts": {
+    "train": {
+      "quotas": {
+        "(1.0, 'none')": 480,
+        "(0.6, 'out')": 320,
+        "(0.6, 'both')": 320,
+        "(0.45, 'out')": 320,
+        "(0.45, 'both')": 320,
+        "(0.35, 'out')": 320,
+        "(0.35, 'both')": 320
+      },
+      "selected": 2400,
+      "distinct_seeds": 999,
+      "max_variants": 4,
+      "modes": {
+        "((0.35, 'both'), 'eager')": 157,
+        "((0.35, 'both'), 'paging')": 156,
+        "((0.35, 'both'), 'notes')": 7,
+        "((0.45, 'out'), 'paging')": 74,
+        "((0.45, 'out'), 'notes')": 176,
+        "((0.45, 'out'), 'eager')": 70,
+        "((0.35, 'out'), 'notes')": 107,
+        "((0.35, 'out'), 'paging')": 108,
+        "((0.35, 'out'), 'eager')": 105,
+        "((0.6, 'out'), 'notes')": 107,
+        "((0.6, 'out'), 'paging')": 107,
+        "((0.6, 'out'), 'eager')": 106,
+        "((1.0, 'none'), 'paging')": 480,
+        "((0.6, 'both'), 'eager')": 311,
+        "((0.6, 'both'), 'paging')": 9,
+        "((0.45, 'both'), 'paging')": 67,
+        "((0.45, 'both'), 'eager')": 250,
+        "((0.45, 'both'), 'notes')": 3
+      },
+      "deficits": {}
+    },
+    "heldout": {
+      "quotas": {
+        "(1.0, 'none')": 48,
+        "(0.6, 'out')": 32,
+        "(0.6, 'both')": 32,
+        "(0.45, 'out')": 32,
+        "(0.45, 'both')": 32,
+        "(0.35, 'out')": 32,
+        "(0.35, 'both')": 32
+      },
+      "selected": 240,
+      "distinct_seeds": 99,
+      "max_variants": 3,
+      "modes": {
+        "((1.0, 'none'), 'paging')": 48,
+        "((0.6, 'out'), 'eager')": 10,
+        "((0.6, 'out'), 'paging')": 11,
+        "((0.6, 'out'), 'notes')": 11,
+        "((0.6, 'both'), 'eager')": 32,
+        "((0.45, 'out'), 'eager')": 6,
+        "((0.45, 'out'), 'paging')": 7,
+        "((0.45, 'out'), 'notes')": 19,
+        "((0.35, 'out'), 'notes')": 11,
+        "((0.35, 'out'), 'paging')": 11,
+        "((0.35, 'out'), 'eager')": 10,
+        "((0.35, 'both'), 'paging')": 16,
+        "((0.35, 'both'), 'eager')": 16,
+        "((0.45, 'both'), 'eager')": 27,
+        "((0.45, 'both'), 'paging')": 5
+      },
+      "deficits": {}
+    }
+  },
+  "sha256": {
+    "train": "13a002dc93ae0f7c0cf3c90267b3f75321260ca5f1f284fc0c072c73f03b6b6b",
+    "heldout": "07f49e8782a9caee4685cb80a0a80372928153ff1da759447da6367c3c714d71"
+  },
+  "coverage": {
+    "(0.35, 'in_only')": 37,
+    "(0.35, 'out_only')": 640,
+    "(0.35, 'both')": 296,
+    "(0.45, 'in_only')": 156,
+    "(0.45, 'out_only')": 640,
+    "(0.45, 'both')": 203,
+    "(0.6, 'in_only')": 277,
+    "(0.6, 'out_only')": 640,
+    "(0.6, 'both')": 67,
+    "(1.0, 'in_only')": 0,
+    "(1.0, 'out_only')": 0,
+    "(1.0, 'both')": 0
+  },
+  "event_kinds": {
+    "(0.35, 'implicit')": 982,
+    "(0.35, 'delayed')": 594,
+    "(0.35, 'explicit')": 984,
+    "(0.45, 'implicit')": 791,
+    "(0.45, 'explicit')": 852,
+    "(0.45, 'delayed')": 917,
+    "(0.6, 'delayed')": 856,
+    "(0.6, 'implicit')": 813,
+    "(0.6, 'explicit')": 891,
+    "(1.0, 'implicit')": 621,
+    "(1.0, 'explicit')": 668,
+    "(1.0, 'delayed')": 631
+  },
+  "loss_targets": {
+    "train/before": 3015238,
+    "train/after": 2696102,
+    "heldout/before": 298299,
+    "heldout/after": 298299
+  },
+  "zero_fallback": true,
+  "multi_budget_seeds": 915,
+  "full_vs_budget_pairs": 471,
+  "rejections": {
+    "producer_rejected": 66
+  }
+}

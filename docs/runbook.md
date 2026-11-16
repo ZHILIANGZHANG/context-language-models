@@ -166,6 +166,8 @@ python -m self_paging.data.reject_sample --model ckpt/sft --tokenizer $M --out d
 
 ### 阶段 5：GRPO（RL-1，只用 T1）
 
+> **2026-11-16 更新**：开始 RL 前先读 [`rl_design.md`](rl_design.md)。SFT 结果显示，错误几乎都是"信息不在"，并且集中在延迟生效的隔离通知上；RL 之前要先修页头摘要、换回的可实现性和执行器的工具权限。奖励改为四部分，其中新增反事实信用。
+
 **5.0 准备题库**（RL 的"数据"就是题库，轨迹是训练时在线采样的；设计见 `docs/data_and_training.md` §3.5）：
 
 ```bash

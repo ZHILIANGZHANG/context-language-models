@@ -1,0 +1,28 @@
+{
+  "identity": {
+    "pid": 543001,
+    "uid": 1037,
+    "start_ticks": 1261886967,
+    "cwd": "/data/zhangcheng/context-language-models-797680f-val50"
+  },
+  "gpu": 0,
+  "cmd": [
+    "/data/zhangcheng/self-paging-20261116/venv/bin/python",
+    "-m",
+    "self_paging.eval.t1_eval",
+    "--model",
+    "/nas/Public/zhangcheng/self-paging-20261116/checkpoints/sft-quality-val50-r64",
+    "--tokenizer",
+    "/nas/Public/zhangcheng/models/Qwen3-8B",
+    "--methods",
+    "full",
+    "model",
+    "--seeds",
+    "100000",
+    "100005",
+    "--out",
+    "/home/zhangcheng/self-paging-20261116/quality-training-val50/eval-100000/summary.jsonl",
+    "--records-out",
+    "/nas/Public/zhangcheng/self-paging-20261116/sft-quality-val50-eval-100000.jsonl"
+  ]
+}

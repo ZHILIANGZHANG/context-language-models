@@ -92,14 +92,23 @@ class OpenAIJudge:
         from openai import OpenAI
 
         self.client, self.model = OpenAI(base_url=base_url, api_key=api_key), model
+        self.audit = []
 
     def __call__(self, question: str, response: str, correct: str) -> bool:
         msg = GRADER_TEMPLATE.format(question=question, response=response, correct_answer=correct)
         out = self.client.chat.completions.create(model=self.model, temperature=0.0,
                                                   messages=[{"role": "user", "content": msg}])
         text = out.choices[0].message.content or ""
-        m = re.search(r"correct:\s*\**\s*(yes|no)", text, re.I)
-        return bool(m and m.group(1).lower() == "yes")
+        self.audit.append(dict(question=question, response=response, correct_answer=correct, judge_raw=text))
+        return parse_judgement(text)
+
+
+def parse_judgement(text):
+    text = re.sub(r"<think>.*?</think>", "", text, flags=re.S)
+    matches = re.findall(r"^\s*\**correct\**:\s*\**(yes|no)\b", text, re.I | re.M)
+    if len(matches) != 1:
+        raise ValueError("Judge did not return exactly one unambiguous correct: yes/no field")
+    return matches[0].lower() == "yes"
 
 
 class BCPEnv:
@@ -116,12 +125,15 @@ class BCPEnv:
         self.final: str | None = None
         self.done = False
         self.n_pages = 0
+        self._score = None
 
     def _cut(self, text: str, n: int) -> str:
         ids = self.tok.encode(text)
         return text if len(ids) <= n else self.tok.decode(ids[:n]) + " …"
 
     def step(self, name: str, args: dict) -> tuple[str, dict, bool]:
+        if self.done:
+            return "ERROR: episode already finished.", {}, True
         if name == "search":
             q = str(args.get("query", "")).strip()
             if not q:
@@ -142,7 +154,10 @@ class BCPEnv:
             self.n_pages += 1
             return f"docid={docid}\n{self._cut(text, self.doc_max)}", {"env_page": self.n_pages - 1}, False
         if name == "answer":
-            self.final = str(args.get("answer", ""))
+            answer = args.get("answer")
+            if not isinstance(answer, str) or not answer.strip():
+                return "ERROR: answer must be a nonempty string.", {}, False
+            self.final = answer.strip()
             self.done = True
             return "Answer recorded.", {}, True
         return f"ERROR: unknown tool {name}.", {}, False
@@ -153,7 +168,9 @@ class BCPEnv:
         # one candidate only: lists of guesses are judged wrong (docs/data_and_training.md §3.2)
         if self.max_candidates == 1 and len(re.split(r"\s+or\s+|;|\n", self.final.strip())) > 1:
             return 0.0
-        return float(self.judge(self.item["question"], self.final, self.item["answer"]))
+        if self._score is None:
+            self._score = float(self.judge(self.item["question"], self.final, self.item["answer"]))
+        return self._score
 
 
 def load_split(path: str) -> list[dict]:

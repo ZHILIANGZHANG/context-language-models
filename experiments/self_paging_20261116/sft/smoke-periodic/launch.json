@@ -1,0 +1,31 @@
+{
+  "identity": {
+    "pid": 70233,
+    "uid": 1037,
+    "start_ticks": 1259482104,
+    "cwd": "/data/zhangcheng/context-language-models-797680f-val50"
+  },
+  "gpus": [
+    0,
+    1,
+    2
+  ],
+  "cmd": [
+    "/data/zhangcheng/self-paging-20261116/venv/bin/python",
+    "-m",
+    "torch.distributed.run",
+    "--standalone",
+    "--nproc_per_node",
+    "3",
+    "/home/zhangcheng/self-paging-20261116/val50_training_witness.py",
+    "--data",
+    "/home/zhangcheng/self-paging-20261116/quality-training-val50/periodic-witness.jsonl",
+    "--eval-data",
+    "/home/zhangcheng/self-paging-20261116/quality-training-val50/periodic-eval-witness.jsonl",
+    "--checkpoint-root",
+    "/nas/Public/zhangcheng/self-paging-20261116/checkpoints/val50-witness-discarded",
+    "--out",
+    "/home/zhangcheng/self-paging-20261116/quality-training-val50/periodic-accepted.json"
+  ],
+  "time": 1794803224.8009574
+}

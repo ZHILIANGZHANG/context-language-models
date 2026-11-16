@@ -1,0 +1,46 @@
+{
+  "splits": {
+    "train": [
+      10000,
+      13000
+    ],
+    "dev": [
+      92000,
+      92200
+    ],
+    "test": [
+      110000,
+      110200
+    ],
+    "ood": [
+      210000,
+      210100
+    ]
+  },
+  "excluded_historical_seed_ranges": [
+    [
+      0,
+      1000
+    ],
+    [
+      2000,
+      3000
+    ],
+    [
+      90000,
+      90100
+    ],
+    [
+      91000,
+      91100
+    ],
+    [
+      100000,
+      100050
+    ]
+  ],
+  "seed_overlap": 0,
+  "historical_scope": "Recorded T1 SFT, heldout and pilot seed manifests",
+  "unique_worlds": 3500,
+  "cross_split_world_hash_overlap": 0
+}

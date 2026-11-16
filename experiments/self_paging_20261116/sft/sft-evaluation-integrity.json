@@ -1,0 +1,24 @@
+{
+  "time": 1794836465.653226,
+  "episodes": 200,
+  "raw_sha256": {
+    "sft-quality-val50-eval-100000.jsonl": "53ddcccdb6d313ff23de23f77f4b847f9a93f63d5718dae656330e943e41d458",
+    "sft-quality-val50-eval-100005.jsonl": "185628410ca8a6714fed552ac2a2d063d0391968acd072ff7eb732cb3d1b1924",
+    "sft-quality-val50-eval-100010.jsonl": "d60c531bef07f34a613049dbf5893e15a90838bca3a93683475c976589737446",
+    "sft-quality-val50-eval-100015.jsonl": "eef2b93f37487c08075e559a923873820e635a3cb14c8bb9e108021631de90b4",
+    "sft-quality-val50-eval-100020.jsonl": "1c3d9c20818c1d557a6ed5483115982537bd3a53c6e9f00fe44bb50db392f940",
+    "sft-quality-val50-eval-100025.jsonl": "8df33342e0ff7896a22ef2bda89aaae719066bbb3d1af9507f86828a7fd57e26",
+    "sft-quality-val50-eval-100030.jsonl": "e54c8808a831fc8adc587981b16a6a02a1e3d948536361a912886f1dbbefb20b",
+    "sft-quality-val50-eval-100035.jsonl": "d7fe2a603ddef319e47103370c58b002a9a13eb715ac5def168b28691bfdb8bb",
+    "sft-quality-val50-eval-100040.jsonl": "063d876561f915c69d7f17d9534c429febea7b6f3c5552d24f2c19f443427f64",
+    "sft-quality-val50-eval-100045.jsonl": "2ef10b6755ca77277e5bcb20a32e83ef8486038dee27cadcaaf202dc4fc49465"
+  },
+  "environment_error_rates": {
+    "('full', 1.0)": 0.0007880220646178094,
+    "('model', 0.25)": 0.011755485893416929,
+    "('model', 0.4)": 0.003927729772191673,
+    "('model', 0.6)": 0.0015748031496062992
+  },
+  "protocol_under_five_percent": true,
+  "scope": "SFT results integrity accepted; profile permitted for diagnosis, NOT permission to train RL"
+}

@@ -1,0 +1,8002 @@
+[
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100000,
+    "page": 9,
+    "kind": "explicit",
+    "gold": 6,
+    "predicted": 6,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100000,
+    "page": 13,
+    "kind": "explicit",
+    "gold": 7,
+    "predicted": 7,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100000,
+    "page": 17,
+    "kind": "delayed",
+    "gold": 8,
+    "predicted": 6,
+    "correct": false
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100000,
+    "page": 21,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100000,
+    "page": 9,
+    "kind": "explicit",
+    "gold": 6,
+    "predicted": 6,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100000,
+    "page": 13,
+    "kind": "explicit",
+    "gold": 7,
+    "predicted": 7,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100000,
+    "page": 17,
+    "kind": "delayed",
+    "gold": 8,
+    "predicted": 8,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100000,
+    "page": 21,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100000,
+    "page": 9,
+    "kind": "explicit",
+    "gold": 6,
+    "predicted": 6,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100000,
+    "page": 13,
+    "kind": "explicit",
+    "gold": 7,
+    "predicted": 7,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100000,
+    "page": 17,
+    "kind": "delayed",
+    "gold": 8,
+    "predicted": 8,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100000,
+    "page": 21,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100000,
+    "page": 9,
+    "kind": "explicit",
+    "gold": 6,
+    "predicted": 6,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100000,
+    "page": 13,
+    "kind": "explicit",
+    "gold": 7,
+    "predicted": 7,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100000,
+    "page": 17,
+    "kind": "delayed",
+    "gold": 8,
+    "predicted": 8,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100000,
+    "page": 21,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100001,
+    "page": 6,
+    "kind": "delayed",
+    "gold": 13,
+    "predicted": 13,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100001,
+    "page": 11,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100001,
+    "page": 15,
+    "kind": "delayed",
+    "gold": 9,
+    "predicted": 9,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100001,
+    "page": 20,
+    "kind": "delayed",
+    "gold": 21,
+    "predicted": 21,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100001,
+    "page": 6,
+    "kind": "delayed",
+    "gold": 13,
+    "predicted": 13,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100001,
+    "page": 11,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100001,
+    "page": 15,
+    "kind": "delayed",
+    "gold": 9,
+    "predicted": 9,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100001,
+    "page": 20,
+    "kind": "delayed",
+    "gold": 21,
+    "predicted": 21,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100001,
+    "page": 6,
+    "kind": "delayed",
+    "gold": 13,
+    "predicted": 13,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100001,
+    "page": 11,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100001,
+    "page": 15,
+    "kind": "delayed",
+    "gold": 9,
+    "predicted": 9,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100001,
+    "page": 20,
+    "kind": "delayed",
+    "gold": 21,
+    "predicted": 21,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100001,
+    "page": 6,
+    "kind": "delayed",
+    "gold": 13,
+    "predicted": 13,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100001,
+    "page": 11,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100001,
+    "page": 15,
+    "kind": "delayed",
+    "gold": 9,
+    "predicted": 9,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100001,
+    "page": 20,
+    "kind": "delayed",
+    "gold": 21,
+    "predicted": 12,
+    "correct": false
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100002,
+    "page": 7,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100002,
+    "page": 12,
+    "kind": "explicit",
+    "gold": 6,
+    "predicted": 6,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100002,
+    "page": 16,
+    "kind": "explicit",
+    "gold": 5,
+    "predicted": 5,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100002,
+    "page": 21,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100002,
+    "page": 7,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100002,
+    "page": 12,
+    "kind": "explicit",
+    "gold": 6,
+    "predicted": 6,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100002,
+    "page": 16,
+    "kind": "explicit",
+    "gold": 5,
+    "predicted": 6,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100002,
+    "page": 21,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100002,
+    "page": 7,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100002,
+    "page": 12,
+    "kind": "explicit",
+    "gold": 6,
+    "predicted": 6,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100002,
+    "page": 16,
+    "kind": "explicit",
+    "gold": 5,
+    "predicted": 5,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100002,
+    "page": 21,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100002,
+    "page": 7,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100002,
+    "page": 12,
+    "kind": "explicit",
+    "gold": 6,
+    "predicted": 6,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100002,
+    "page": 16,
+    "kind": "explicit",
+    "gold": 5,
+    "predicted": 5,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100002,
+    "page": 21,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100003,
+    "page": 7,
+    "kind": "explicit",
+    "gold": 7,
+    "predicted": 7,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100003,
+    "page": 10,
+    "kind": "delayed",
+    "gold": 10,
+    "predicted": 10,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100003,
+    "page": 15,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100003,
+    "page": 19,
+    "kind": "delayed",
+    "gold": 7,
+    "predicted": 4,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100003,
+    "page": 7,
+    "kind": "explicit",
+    "gold": 7,
+    "predicted": 7,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100003,
+    "page": 10,
+    "kind": "delayed",
+    "gold": 10,
+    "predicted": 10,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100003,
+    "page": 15,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100003,
+    "page": 19,
+    "kind": "delayed",
+    "gold": 7,
+    "predicted": 7,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100003,
+    "page": 7,
+    "kind": "explicit",
+    "gold": 7,
+    "predicted": 7,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100003,
+    "page": 10,
+    "kind": "delayed",
+    "gold": 10,
+    "predicted": 10,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100003,
+    "page": 15,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100003,
+    "page": 19,
+    "kind": "delayed",
+    "gold": 7,
+    "predicted": 7,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100003,
+    "page": 7,
+    "kind": "explicit",
+    "gold": 7,
+    "predicted": 7,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100003,
+    "page": 10,
+    "kind": "delayed",
+    "gold": 10,
+    "predicted": 10,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100003,
+    "page": 15,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100003,
+    "page": 19,
+    "kind": "delayed",
+    "gold": 7,
+    "predicted": 7,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100004,
+    "page": 9,
+    "kind": "implicit",
+    "gold": 8,
+    "predicted": 8,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100004,
+    "page": 14,
+    "kind": "delayed",
+    "gold": 15,
+    "predicted": 15,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100004,
+    "page": 19,
+    "kind": "implicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100004,
+    "page": 22,
+    "kind": "delayed",
+    "gold": 14,
+    "predicted": 14,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100004,
+    "page": 9,
+    "kind": "implicit",
+    "gold": 8,
+    "predicted": 8,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100004,
+    "page": 14,
+    "kind": "delayed",
+    "gold": 15,
+    "predicted": 14,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100004,
+    "page": 19,
+    "kind": "implicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100004,
+    "page": 22,
+    "kind": "delayed",
+    "gold": 14,
+    "predicted": 14,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100004,
+    "page": 9,
+    "kind": "implicit",
+    "gold": 8,
+    "predicted": 8,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100004,
+    "page": 14,
+    "kind": "delayed",
+    "gold": 15,
+    "predicted": 10,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100004,
+    "page": 19,
+    "kind": "implicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100004,
+    "page": 22,
+    "kind": "delayed",
+    "gold": 14,
+    "predicted": 14,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100004,
+    "page": 9,
+    "kind": "implicit",
+    "gold": 8,
+    "predicted": 8,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100004,
+    "page": 14,
+    "kind": "delayed",
+    "gold": 15,
+    "predicted": 10,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100004,
+    "page": 19,
+    "kind": "implicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100004,
+    "page": 22,
+    "kind": "delayed",
+    "gold": 14,
+    "predicted": 14,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100005,
+    "page": 7,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100005,
+    "page": 12,
+    "kind": "explicit",
+    "gold": 7,
+    "predicted": 7,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100005,
+    "page": 15,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": 4,
+    "correct": false
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100005,
+    "page": 20,
+    "kind": "implicit",
+    "gold": 5,
+    "predicted": 5,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100005,
+    "page": 7,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100005,
+    "page": 12,
+    "kind": "explicit",
+    "gold": 7,
+    "predicted": 4,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100005,
+    "page": 15,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": 9,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100005,
+    "page": 20,
+    "kind": "implicit",
+    "gold": 5,
+    "predicted": 5,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100005,
+    "page": 7,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 4,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100005,
+    "page": 12,
+    "kind": "explicit",
+    "gold": 7,
+    "predicted": 7,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100005,
+    "page": 15,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": 4,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100005,
+    "page": 20,
+    "kind": "implicit",
+    "gold": 5,
+    "predicted": 5,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100005,
+    "page": 7,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 4,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100005,
+    "page": 12,
+    "kind": "explicit",
+    "gold": 7,
+    "predicted": 7,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100005,
+    "page": 15,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": 4,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100005,
+    "page": 20,
+    "kind": "implicit",
+    "gold": 5,
+    "predicted": 5,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100006,
+    "page": 9,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100006,
+    "page": 14,
+    "kind": "delayed",
+    "gold": 10,
+    "predicted": 10,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100006,
+    "page": 19,
+    "kind": "explicit",
+    "gold": 6,
+    "predicted": 6,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100006,
+    "page": 24,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 6,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100006,
+    "page": 9,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100006,
+    "page": 14,
+    "kind": "delayed",
+    "gold": 10,
+    "predicted": 10,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100006,
+    "page": 19,
+    "kind": "explicit",
+    "gold": 6,
+    "predicted": 7,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100006,
+    "page": 24,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 6,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100006,
+    "page": 9,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100006,
+    "page": 14,
+    "kind": "delayed",
+    "gold": 10,
+    "predicted": 10,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100006,
+    "page": 19,
+    "kind": "explicit",
+    "gold": 6,
+    "predicted": 7,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100006,
+    "page": 24,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 6,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100006,
+    "page": 9,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100006,
+    "page": 14,
+    "kind": "delayed",
+    "gold": 10,
+    "predicted": 10,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100006,
+    "page": 19,
+    "kind": "explicit",
+    "gold": 6,
+    "predicted": 7,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100006,
+    "page": 24,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 6,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100007,
+    "page": 8,
+    "kind": "explicit",
+    "gold": 8,
+    "predicted": 8,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100007,
+    "page": 12,
+    "kind": "implicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100007,
+    "page": 16,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 6,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100007,
+    "page": 19,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100007,
+    "page": 8,
+    "kind": "explicit",
+    "gold": 8,
+    "predicted": 7,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100007,
+    "page": 12,
+    "kind": "implicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100007,
+    "page": 16,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 6,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100007,
+    "page": 19,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100007,
+    "page": 8,
+    "kind": "explicit",
+    "gold": 8,
+    "predicted": 8,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100007,
+    "page": 12,
+    "kind": "implicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100007,
+    "page": 16,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 6,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100007,
+    "page": 19,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100007,
+    "page": 8,
+    "kind": "explicit",
+    "gold": 8,
+    "predicted": 8,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100007,
+    "page": 12,
+    "kind": "implicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100007,
+    "page": 16,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 6,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100007,
+    "page": 19,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100008,
+    "page": 5,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100008,
+    "page": 11,
+    "kind": "explicit",
+    "gold": 5,
+    "predicted": 5,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100008,
+    "page": 17,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 6,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100008,
+    "page": 20,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100008,
+    "page": 5,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100008,
+    "page": 11,
+    "kind": "explicit",
+    "gold": 5,
+    "predicted": 5,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100008,
+    "page": 17,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 6,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100008,
+    "page": 20,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": null,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100008,
+    "page": 5,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100008,
+    "page": 11,
+    "kind": "explicit",
+    "gold": 5,
+    "predicted": 5,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100008,
+    "page": 17,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 6,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100008,
+    "page": 20,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100008,
+    "page": 5,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100008,
+    "page": 11,
+    "kind": "explicit",
+    "gold": 5,
+    "predicted": 5,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100008,
+    "page": 17,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 6,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100008,
+    "page": 20,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100009,
+    "page": 7,
+    "kind": "explicit",
+    "gold": 6,
+    "predicted": 6,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100009,
+    "page": 13,
+    "kind": "delayed",
+    "gold": 16,
+    "predicted": 16,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100009,
+    "page": 17,
+    "kind": "delayed",
+    "gold": 18,
+    "predicted": 20,
+    "correct": false
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100009,
+    "page": 21,
+    "kind": "implicit",
+    "gold": 7,
+    "predicted": 7,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100009,
+    "page": 7,
+    "kind": "explicit",
+    "gold": 6,
+    "predicted": 5,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100009,
+    "page": 13,
+    "kind": "delayed",
+    "gold": 16,
+    "predicted": 16,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100009,
+    "page": 17,
+    "kind": "delayed",
+    "gold": 18,
+    "predicted": 18,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100009,
+    "page": 21,
+    "kind": "implicit",
+    "gold": 7,
+    "predicted": 7,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100009,
+    "page": 7,
+    "kind": "explicit",
+    "gold": 6,
+    "predicted": 5,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100009,
+    "page": 13,
+    "kind": "delayed",
+    "gold": 16,
+    "predicted": 16,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100009,
+    "page": 17,
+    "kind": "delayed",
+    "gold": 18,
+    "predicted": 18,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100009,
+    "page": 21,
+    "kind": "implicit",
+    "gold": 7,
+    "predicted": 7,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100009,
+    "page": 7,
+    "kind": "explicit",
+    "gold": 6,
+    "predicted": 5,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100009,
+    "page": 13,
+    "kind": "delayed",
+    "gold": 16,
+    "predicted": 16,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100009,
+    "page": 17,
+    "kind": "delayed",
+    "gold": 18,
+    "predicted": 18,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100009,
+    "page": 21,
+    "kind": "implicit",
+    "gold": 7,
+    "predicted": 7,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100010,
+    "page": 5,
+    "kind": "delayed",
+    "gold": 19,
+    "predicted": 19,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100010,
+    "page": 11,
+    "kind": "explicit",
+    "gold": 5,
+    "predicted": 5,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100010,
+    "page": 15,
+    "kind": "explicit",
+    "gold": 7,
+    "predicted": 7,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100010,
+    "page": 20,
+    "kind": "implicit",
+    "gold": 5,
+    "predicted": 5,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100010,
+    "page": 5,
+    "kind": "delayed",
+    "gold": 19,
+    "predicted": 19,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100010,
+    "page": 11,
+    "kind": "explicit",
+    "gold": 5,
+    "predicted": 7,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100010,
+    "page": 15,
+    "kind": "explicit",
+    "gold": 7,
+    "predicted": 7,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100010,
+    "page": 20,
+    "kind": "implicit",
+    "gold": 5,
+    "predicted": 5,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100010,
+    "page": 5,
+    "kind": "delayed",
+    "gold": 19,
+    "predicted": 19,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100010,
+    "page": 11,
+    "kind": "explicit",
+    "gold": 5,
+    "predicted": 5,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100010,
+    "page": 15,
+    "kind": "explicit",
+    "gold": 7,
+    "predicted": 7,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100010,
+    "page": 20,
+    "kind": "implicit",
+    "gold": 5,
+    "predicted": 5,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100010,
+    "page": 5,
+    "kind": "delayed",
+    "gold": 19,
+    "predicted": 19,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100010,
+    "page": 11,
+    "kind": "explicit",
+    "gold": 5,
+    "predicted": 7,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100010,
+    "page": 15,
+    "kind": "explicit",
+    "gold": 7,
+    "predicted": 7,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100010,
+    "page": 20,
+    "kind": "implicit",
+    "gold": 5,
+    "predicted": 5,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100011,
+    "page": 6,
+    "kind": "implicit",
+    "gold": 7,
+    "predicted": 8,
+    "correct": false
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100011,
+    "page": 9,
+    "kind": "delayed",
+    "gold": 9,
+    "predicted": 9,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100011,
+    "page": 13,
+    "kind": "delayed",
+    "gold": 9,
+    "predicted": 9,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100011,
+    "page": 17,
+    "kind": "delayed",
+    "gold": 15,
+    "predicted": 12,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100011,
+    "page": 6,
+    "kind": "implicit",
+    "gold": 7,
+    "predicted": 7,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100011,
+    "page": 9,
+    "kind": "delayed",
+    "gold": 9,
+    "predicted": 9,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100011,
+    "page": 13,
+    "kind": "delayed",
+    "gold": 9,
+    "predicted": 8,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100011,
+    "page": 17,
+    "kind": "delayed",
+    "gold": 15,
+    "predicted": 15,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100011,
+    "page": 6,
+    "kind": "implicit",
+    "gold": 7,
+    "predicted": 7,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100011,
+    "page": 9,
+    "kind": "delayed",
+    "gold": 9,
+    "predicted": 9,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100011,
+    "page": 13,
+    "kind": "delayed",
+    "gold": 9,
+    "predicted": 9,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100011,
+    "page": 17,
+    "kind": "delayed",
+    "gold": 15,
+    "predicted": 10,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100011,
+    "page": 6,
+    "kind": "implicit",
+    "gold": 7,
+    "predicted": 7,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100011,
+    "page": 9,
+    "kind": "delayed",
+    "gold": 9,
+    "predicted": 9,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100011,
+    "page": 13,
+    "kind": "delayed",
+    "gold": 9,
+    "predicted": 8,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100011,
+    "page": 17,
+    "kind": "delayed",
+    "gold": 15,
+    "predicted": 12,
+    "correct": false
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100012,
+    "page": 8,
+    "kind": "implicit",
+    "gold": 5,
+    "predicted": 5,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100012,
+    "page": 13,
+    "kind": "implicit",
+    "gold": 7,
+    "predicted": 7,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100012,
+    "page": 18,
+    "kind": "explicit",
+    "gold": 7,
+    "predicted": 7,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100012,
+    "page": 22,
+    "kind": "implicit",
+    "gold": 8,
+    "predicted": 8,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100012,
+    "page": 8,
+    "kind": "implicit",
+    "gold": 5,
+    "predicted": 5,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100012,
+    "page": 13,
+    "kind": "implicit",
+    "gold": 7,
+    "predicted": 8,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100012,
+    "page": 18,
+    "kind": "explicit",
+    "gold": 7,
+    "predicted": 7,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100012,
+    "page": 22,
+    "kind": "implicit",
+    "gold": 8,
+    "predicted": 8,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100012,
+    "page": 8,
+    "kind": "implicit",
+    "gold": 5,
+    "predicted": 5,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100012,
+    "page": 13,
+    "kind": "implicit",
+    "gold": 7,
+    "predicted": 8,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100012,
+    "page": 18,
+    "kind": "explicit",
+    "gold": 7,
+    "predicted": 7,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100012,
+    "page": 22,
+    "kind": "implicit",
+    "gold": 8,
+    "predicted": 8,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100012,
+    "page": 8,
+    "kind": "implicit",
+    "gold": 5,
+    "predicted": 5,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100012,
+    "page": 13,
+    "kind": "implicit",
+    "gold": 7,
+    "predicted": 7,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100012,
+    "page": 18,
+    "kind": "explicit",
+    "gold": 7,
+    "predicted": 7,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100012,
+    "page": 22,
+    "kind": "implicit",
+    "gold": 8,
+    "predicted": 9,
+    "correct": false
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100013,
+    "page": 9,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 5,
+    "correct": false
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100013,
+    "page": 14,
+    "kind": "explicit",
+    "gold": 5,
+    "predicted": 5,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100013,
+    "page": 18,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": 7,
+    "correct": false
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100013,
+    "page": 23,
+    "kind": "implicit",
+    "gold": 8,
+    "predicted": 8,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100013,
+    "page": 9,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100013,
+    "page": 14,
+    "kind": "explicit",
+    "gold": 5,
+    "predicted": 5,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100013,
+    "page": 18,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": 8,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100013,
+    "page": 23,
+    "kind": "implicit",
+    "gold": 8,
+    "predicted": 8,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100013,
+    "page": 9,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100013,
+    "page": 14,
+    "kind": "explicit",
+    "gold": 5,
+    "predicted": 5,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100013,
+    "page": 18,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": 10,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100013,
+    "page": 23,
+    "kind": "implicit",
+    "gold": 8,
+    "predicted": 8,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100013,
+    "page": 9,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100013,
+    "page": 14,
+    "kind": "explicit",
+    "gold": 5,
+    "predicted": 5,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100013,
+    "page": 18,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": 12,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100013,
+    "page": 23,
+    "kind": "implicit",
+    "gold": 8,
+    "predicted": 8,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100014,
+    "page": 7,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 6,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100014,
+    "page": 10,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": 12,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100014,
+    "page": 14,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100014,
+    "page": 20,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100014,
+    "page": 7,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 6,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100014,
+    "page": 10,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": 12,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100014,
+    "page": 14,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100014,
+    "page": 20,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100014,
+    "page": 7,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 6,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100014,
+    "page": 10,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": 12,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100014,
+    "page": 14,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100014,
+    "page": 20,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100014,
+    "page": 7,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 6,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100014,
+    "page": 10,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": 12,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100014,
+    "page": 14,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100014,
+    "page": 20,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100015,
+    "page": 5,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100015,
+    "page": 10,
+    "kind": "delayed",
+    "gold": 10,
+    "predicted": 10,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100015,
+    "page": 15,
+    "kind": "delayed",
+    "gold": 9,
+    "predicted": 9,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100015,
+    "page": 18,
+    "kind": "delayed",
+    "gold": 10,
+    "predicted": 10,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100015,
+    "page": 5,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100015,
+    "page": 10,
+    "kind": "delayed",
+    "gold": 10,
+    "predicted": 9,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100015,
+    "page": 15,
+    "kind": "delayed",
+    "gold": 9,
+    "predicted": 9,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100015,
+    "page": 18,
+    "kind": "delayed",
+    "gold": 10,
+    "predicted": 5,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100015,
+    "page": 5,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100015,
+    "page": 10,
+    "kind": "delayed",
+    "gold": 10,
+    "predicted": 9,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100015,
+    "page": 15,
+    "kind": "delayed",
+    "gold": 9,
+    "predicted": 9,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100015,
+    "page": 18,
+    "kind": "delayed",
+    "gold": 10,
+    "predicted": 5,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100015,
+    "page": 5,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100015,
+    "page": 10,
+    "kind": "delayed",
+    "gold": 10,
+    "predicted": 9,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100015,
+    "page": 15,
+    "kind": "delayed",
+    "gold": 9,
+    "predicted": 9,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100015,
+    "page": 18,
+    "kind": "delayed",
+    "gold": 10,
+    "predicted": 5,
+    "correct": false
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100016,
+    "page": 6,
+    "kind": "delayed",
+    "gold": 7,
+    "predicted": 7,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100016,
+    "page": 10,
+    "kind": "delayed",
+    "gold": 11,
+    "predicted": 11,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100016,
+    "page": 14,
+    "kind": "explicit",
+    "gold": 5,
+    "predicted": 5,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100016,
+    "page": 17,
+    "kind": "implicit",
+    "gold": 5,
+    "predicted": 5,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100016,
+    "page": 6,
+    "kind": "delayed",
+    "gold": 7,
+    "predicted": 7,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100016,
+    "page": 10,
+    "kind": "delayed",
+    "gold": 11,
+    "predicted": 11,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100016,
+    "page": 14,
+    "kind": "explicit",
+    "gold": 5,
+    "predicted": 5,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100016,
+    "page": 17,
+    "kind": "implicit",
+    "gold": 5,
+    "predicted": 5,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100016,
+    "page": 6,
+    "kind": "delayed",
+    "gold": 7,
+    "predicted": 7,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100016,
+    "page": 10,
+    "kind": "delayed",
+    "gold": 11,
+    "predicted": 8,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100016,
+    "page": 14,
+    "kind": "explicit",
+    "gold": 5,
+    "predicted": 5,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100016,
+    "page": 17,
+    "kind": "implicit",
+    "gold": 5,
+    "predicted": 5,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100016,
+    "page": 6,
+    "kind": "delayed",
+    "gold": 7,
+    "predicted": 7,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100016,
+    "page": 10,
+    "kind": "delayed",
+    "gold": 11,
+    "predicted": 9,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100016,
+    "page": 14,
+    "kind": "explicit",
+    "gold": 5,
+    "predicted": 5,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100016,
+    "page": 17,
+    "kind": "implicit",
+    "gold": 5,
+    "predicted": 5,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100017,
+    "page": 6,
+    "kind": "explicit",
+    "gold": 6,
+    "predicted": 6,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100017,
+    "page": 12,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100017,
+    "page": 16,
+    "kind": "delayed",
+    "gold": 11,
+    "predicted": 11,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100017,
+    "page": 19,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": 11,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100017,
+    "page": 6,
+    "kind": "explicit",
+    "gold": 6,
+    "predicted": 6,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100017,
+    "page": 12,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100017,
+    "page": 16,
+    "kind": "delayed",
+    "gold": 11,
+    "predicted": 4,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100017,
+    "page": 19,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": 11,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100017,
+    "page": 6,
+    "kind": "explicit",
+    "gold": 6,
+    "predicted": 6,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100017,
+    "page": 12,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100017,
+    "page": 16,
+    "kind": "delayed",
+    "gold": 11,
+    "predicted": 4,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100017,
+    "page": 19,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": 12,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100017,
+    "page": 6,
+    "kind": "explicit",
+    "gold": 6,
+    "predicted": 6,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100017,
+    "page": 12,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100017,
+    "page": 16,
+    "kind": "delayed",
+    "gold": 11,
+    "predicted": 4,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100017,
+    "page": 19,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": 12,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100018,
+    "page": 8,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100018,
+    "page": 12,
+    "kind": "delayed",
+    "gold": 15,
+    "predicted": 15,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100018,
+    "page": 16,
+    "kind": "explicit",
+    "gold": 7,
+    "predicted": 7,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100018,
+    "page": 20,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100018,
+    "page": 8,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100018,
+    "page": 12,
+    "kind": "delayed",
+    "gold": 15,
+    "predicted": 15,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100018,
+    "page": 16,
+    "kind": "explicit",
+    "gold": 7,
+    "predicted": 7,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100018,
+    "page": 20,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100018,
+    "page": 8,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100018,
+    "page": 12,
+    "kind": "delayed",
+    "gold": 15,
+    "predicted": 15,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100018,
+    "page": 16,
+    "kind": "explicit",
+    "gold": 7,
+    "predicted": 7,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100018,
+    "page": 20,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100018,
+    "page": 8,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100018,
+    "page": 12,
+    "kind": "delayed",
+    "gold": 15,
+    "predicted": 15,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100018,
+    "page": 16,
+    "kind": "explicit",
+    "gold": 7,
+    "predicted": 7,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100018,
+    "page": 20,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100019,
+    "page": 6,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100019,
+    "page": 12,
+    "kind": "explicit",
+    "gold": 8,
+    "predicted": 8,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100019,
+    "page": 16,
+    "kind": "implicit",
+    "gold": 5,
+    "predicted": 5,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100019,
+    "page": 23,
+    "kind": "delayed",
+    "gold": 14,
+    "predicted": 14,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100019,
+    "page": 6,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100019,
+    "page": 12,
+    "kind": "explicit",
+    "gold": 8,
+    "predicted": 8,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100019,
+    "page": 16,
+    "kind": "implicit",
+    "gold": 5,
+    "predicted": 5,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100019,
+    "page": 23,
+    "kind": "delayed",
+    "gold": 14,
+    "predicted": 11,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100019,
+    "page": 6,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100019,
+    "page": 12,
+    "kind": "explicit",
+    "gold": 8,
+    "predicted": 8,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100019,
+    "page": 16,
+    "kind": "implicit",
+    "gold": 5,
+    "predicted": 5,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100019,
+    "page": 23,
+    "kind": "delayed",
+    "gold": 14,
+    "predicted": 14,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100019,
+    "page": 6,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100019,
+    "page": 12,
+    "kind": "explicit",
+    "gold": 8,
+    "predicted": 8,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100019,
+    "page": 16,
+    "kind": "implicit",
+    "gold": 5,
+    "predicted": 5,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100019,
+    "page": 23,
+    "kind": "delayed",
+    "gold": 14,
+    "predicted": 6,
+    "correct": false
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100020,
+    "page": 6,
+    "kind": "explicit",
+    "gold": 6,
+    "predicted": 6,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100020,
+    "page": 10,
+    "kind": "delayed",
+    "gold": 14,
+    "predicted": 4,
+    "correct": false
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100020,
+    "page": 13,
+    "kind": "implicit",
+    "gold": 7,
+    "predicted": 7,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100020,
+    "page": 15,
+    "kind": "delayed",
+    "gold": 11,
+    "predicted": 11,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100020,
+    "page": 6,
+    "kind": "explicit",
+    "gold": 6,
+    "predicted": 6,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100020,
+    "page": 10,
+    "kind": "delayed",
+    "gold": 14,
+    "predicted": 14,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100020,
+    "page": 13,
+    "kind": "implicit",
+    "gold": 7,
+    "predicted": 7,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100020,
+    "page": 15,
+    "kind": "delayed",
+    "gold": 11,
+    "predicted": 10,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100020,
+    "page": 6,
+    "kind": "explicit",
+    "gold": 6,
+    "predicted": 6,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100020,
+    "page": 10,
+    "kind": "delayed",
+    "gold": 14,
+    "predicted": 14,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100020,
+    "page": 13,
+    "kind": "implicit",
+    "gold": 7,
+    "predicted": 7,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100020,
+    "page": 15,
+    "kind": "delayed",
+    "gold": 11,
+    "predicted": 11,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100020,
+    "page": 6,
+    "kind": "explicit",
+    "gold": 6,
+    "predicted": 6,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100020,
+    "page": 10,
+    "kind": "delayed",
+    "gold": 14,
+    "predicted": 14,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100020,
+    "page": 13,
+    "kind": "implicit",
+    "gold": 7,
+    "predicted": 7,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100020,
+    "page": 15,
+    "kind": "delayed",
+    "gold": 11,
+    "predicted": 11,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100021,
+    "page": 7,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100021,
+    "page": 14,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100021,
+    "page": 19,
+    "kind": "implicit",
+    "gold": 8,
+    "predicted": 8,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100021,
+    "page": 23,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": 8,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100021,
+    "page": 7,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100021,
+    "page": 14,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100021,
+    "page": 19,
+    "kind": "implicit",
+    "gold": 8,
+    "predicted": 8,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100021,
+    "page": 23,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": 12,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100021,
+    "page": 7,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100021,
+    "page": 14,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100021,
+    "page": 19,
+    "kind": "implicit",
+    "gold": 8,
+    "predicted": 8,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100021,
+    "page": 23,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": 8,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100021,
+    "page": 7,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100021,
+    "page": 14,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100021,
+    "page": 19,
+    "kind": "implicit",
+    "gold": 8,
+    "predicted": 8,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100021,
+    "page": 23,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": 12,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100022,
+    "page": 5,
+    "kind": "explicit",
+    "gold": 7,
+    "predicted": 7,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100022,
+    "page": 9,
+    "kind": "implicit",
+    "gold": 7,
+    "predicted": 7,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100022,
+    "page": 15,
+    "kind": "implicit",
+    "gold": 5,
+    "predicted": 5,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100022,
+    "page": 18,
+    "kind": "delayed",
+    "gold": 13,
+    "predicted": 13,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100022,
+    "page": 5,
+    "kind": "explicit",
+    "gold": 7,
+    "predicted": 7,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100022,
+    "page": 9,
+    "kind": "implicit",
+    "gold": 7,
+    "predicted": 7,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100022,
+    "page": 15,
+    "kind": "implicit",
+    "gold": 5,
+    "predicted": 5,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100022,
+    "page": 18,
+    "kind": "delayed",
+    "gold": 13,
+    "predicted": 13,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100022,
+    "page": 5,
+    "kind": "explicit",
+    "gold": 7,
+    "predicted": 7,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100022,
+    "page": 9,
+    "kind": "implicit",
+    "gold": 7,
+    "predicted": 7,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100022,
+    "page": 15,
+    "kind": "implicit",
+    "gold": 5,
+    "predicted": 5,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100022,
+    "page": 18,
+    "kind": "delayed",
+    "gold": 13,
+    "predicted": 13,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100022,
+    "page": 5,
+    "kind": "explicit",
+    "gold": 7,
+    "predicted": 7,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100022,
+    "page": 9,
+    "kind": "implicit",
+    "gold": 7,
+    "predicted": 7,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100022,
+    "page": 15,
+    "kind": "implicit",
+    "gold": 5,
+    "predicted": 5,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100022,
+    "page": 18,
+    "kind": "delayed",
+    "gold": 13,
+    "predicted": 13,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100023,
+    "page": 7,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100023,
+    "page": 13,
+    "kind": "delayed",
+    "gold": 14,
+    "predicted": 14,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100023,
+    "page": 17,
+    "kind": "implicit",
+    "gold": 7,
+    "predicted": 7,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100023,
+    "page": 20,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": 13,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100023,
+    "page": 7,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100023,
+    "page": 13,
+    "kind": "delayed",
+    "gold": 14,
+    "predicted": 14,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100023,
+    "page": 17,
+    "kind": "implicit",
+    "gold": 7,
+    "predicted": 6,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100023,
+    "page": 20,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": 12,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100023,
+    "page": 7,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100023,
+    "page": 13,
+    "kind": "delayed",
+    "gold": 14,
+    "predicted": 14,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100023,
+    "page": 17,
+    "kind": "implicit",
+    "gold": 7,
+    "predicted": 7,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100023,
+    "page": 20,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": 18,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100023,
+    "page": 7,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100023,
+    "page": 13,
+    "kind": "delayed",
+    "gold": 14,
+    "predicted": 14,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100023,
+    "page": 17,
+    "kind": "implicit",
+    "gold": 7,
+    "predicted": 7,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100023,
+    "page": 20,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": 12,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100024,
+    "page": 8,
+    "kind": "delayed",
+    "gold": 9,
+    "predicted": 9,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100024,
+    "page": 11,
+    "kind": "implicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100024,
+    "page": 15,
+    "kind": "delayed",
+    "gold": 16,
+    "predicted": 16,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100024,
+    "page": 19,
+    "kind": "delayed",
+    "gold": 18,
+    "predicted": 18,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100024,
+    "page": 8,
+    "kind": "delayed",
+    "gold": 9,
+    "predicted": 9,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100024,
+    "page": 11,
+    "kind": "implicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100024,
+    "page": 15,
+    "kind": "delayed",
+    "gold": 16,
+    "predicted": 14,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100024,
+    "page": 19,
+    "kind": "delayed",
+    "gold": 18,
+    "predicted": 20,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100024,
+    "page": 8,
+    "kind": "delayed",
+    "gold": 9,
+    "predicted": 9,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100024,
+    "page": 11,
+    "kind": "implicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100024,
+    "page": 15,
+    "kind": "delayed",
+    "gold": 16,
+    "predicted": 16,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100024,
+    "page": 19,
+    "kind": "delayed",
+    "gold": 18,
+    "predicted": 13,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100024,
+    "page": 8,
+    "kind": "delayed",
+    "gold": 9,
+    "predicted": 9,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100024,
+    "page": 11,
+    "kind": "implicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100024,
+    "page": 15,
+    "kind": "delayed",
+    "gold": 16,
+    "predicted": 16,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100024,
+    "page": 19,
+    "kind": "delayed",
+    "gold": 18,
+    "predicted": 18,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100025,
+    "page": 6,
+    "kind": "delayed",
+    "gold": 9,
+    "predicted": 9,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100025,
+    "page": 11,
+    "kind": "delayed",
+    "gold": 25,
+    "predicted": 25,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100025,
+    "page": 15,
+    "kind": "explicit",
+    "gold": 5,
+    "predicted": 5,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100025,
+    "page": 20,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100025,
+    "page": 6,
+    "kind": "delayed",
+    "gold": 9,
+    "predicted": 9,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100025,
+    "page": 11,
+    "kind": "delayed",
+    "gold": 25,
+    "predicted": 25,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100025,
+    "page": 15,
+    "kind": "explicit",
+    "gold": 5,
+    "predicted": 5,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100025,
+    "page": 20,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100025,
+    "page": 6,
+    "kind": "delayed",
+    "gold": 9,
+    "predicted": 21,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100025,
+    "page": 11,
+    "kind": "delayed",
+    "gold": 25,
+    "predicted": 25,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100025,
+    "page": 15,
+    "kind": "explicit",
+    "gold": 5,
+    "predicted": 5,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100025,
+    "page": 20,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100025,
+    "page": 6,
+    "kind": "delayed",
+    "gold": 9,
+    "predicted": 9,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100025,
+    "page": 11,
+    "kind": "delayed",
+    "gold": 25,
+    "predicted": 25,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100025,
+    "page": 15,
+    "kind": "explicit",
+    "gold": 5,
+    "predicted": 19,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100025,
+    "page": 20,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 4,
+    "correct": false
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100026,
+    "page": 5,
+    "kind": "explicit",
+    "gold": 8,
+    "predicted": 8,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100026,
+    "page": 10,
+    "kind": "implicit",
+    "gold": 8,
+    "predicted": 8,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100026,
+    "page": 15,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100026,
+    "page": 18,
+    "kind": "implicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100026,
+    "page": 5,
+    "kind": "explicit",
+    "gold": 8,
+    "predicted": 8,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100026,
+    "page": 10,
+    "kind": "implicit",
+    "gold": 8,
+    "predicted": 8,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100026,
+    "page": 15,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100026,
+    "page": 18,
+    "kind": "implicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100026,
+    "page": 5,
+    "kind": "explicit",
+    "gold": 8,
+    "predicted": 8,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100026,
+    "page": 10,
+    "kind": "implicit",
+    "gold": 8,
+    "predicted": 8,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100026,
+    "page": 15,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100026,
+    "page": 18,
+    "kind": "implicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100026,
+    "page": 5,
+    "kind": "explicit",
+    "gold": 8,
+    "predicted": 8,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100026,
+    "page": 10,
+    "kind": "implicit",
+    "gold": 8,
+    "predicted": 8,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100026,
+    "page": 15,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100026,
+    "page": 18,
+    "kind": "implicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100027,
+    "page": 6,
+    "kind": "implicit",
+    "gold": 8,
+    "predicted": 8,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100027,
+    "page": 12,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100027,
+    "page": 17,
+    "kind": "explicit",
+    "gold": 8,
+    "predicted": 8,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100027,
+    "page": 20,
+    "kind": "delayed",
+    "gold": 8,
+    "predicted": 9,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100027,
+    "page": 6,
+    "kind": "implicit",
+    "gold": 8,
+    "predicted": 8,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100027,
+    "page": 12,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100027,
+    "page": 17,
+    "kind": "explicit",
+    "gold": 8,
+    "predicted": 8,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100027,
+    "page": 20,
+    "kind": "delayed",
+    "gold": 8,
+    "predicted": 9,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100027,
+    "page": 6,
+    "kind": "implicit",
+    "gold": 8,
+    "predicted": 8,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100027,
+    "page": 12,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100027,
+    "page": 17,
+    "kind": "explicit",
+    "gold": 8,
+    "predicted": 8,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100027,
+    "page": 20,
+    "kind": "delayed",
+    "gold": 8,
+    "predicted": 8,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100027,
+    "page": 6,
+    "kind": "implicit",
+    "gold": 8,
+    "predicted": 8,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100027,
+    "page": 12,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100027,
+    "page": 17,
+    "kind": "explicit",
+    "gold": 8,
+    "predicted": 8,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100027,
+    "page": 20,
+    "kind": "delayed",
+    "gold": 8,
+    "predicted": 8,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100028,
+    "page": 6,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100028,
+    "page": 10,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 6,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100028,
+    "page": 14,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100028,
+    "page": 19,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": 12,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100028,
+    "page": 6,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100028,
+    "page": 10,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 6,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100028,
+    "page": 14,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100028,
+    "page": 19,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": null,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100028,
+    "page": 6,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100028,
+    "page": 10,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 6,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100028,
+    "page": 14,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100028,
+    "page": 19,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": 12,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100028,
+    "page": 6,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100028,
+    "page": 10,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 6,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100028,
+    "page": 14,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100028,
+    "page": 19,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": 12,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100029,
+    "page": 7,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 6,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100029,
+    "page": 12,
+    "kind": "delayed",
+    "gold": 8,
+    "predicted": 8,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100029,
+    "page": 17,
+    "kind": "delayed",
+    "gold": 14,
+    "predicted": 14,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100029,
+    "page": 21,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100029,
+    "page": 7,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 6,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100029,
+    "page": 12,
+    "kind": "delayed",
+    "gold": 8,
+    "predicted": 5,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100029,
+    "page": 17,
+    "kind": "delayed",
+    "gold": 14,
+    "predicted": 4,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100029,
+    "page": 21,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100029,
+    "page": 7,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 6,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100029,
+    "page": 12,
+    "kind": "delayed",
+    "gold": 8,
+    "predicted": 6,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100029,
+    "page": 17,
+    "kind": "delayed",
+    "gold": 14,
+    "predicted": 4,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100029,
+    "page": 21,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100029,
+    "page": 7,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 6,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100029,
+    "page": 12,
+    "kind": "delayed",
+    "gold": 8,
+    "predicted": 5,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100029,
+    "page": 17,
+    "kind": "delayed",
+    "gold": 14,
+    "predicted": 4,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100029,
+    "page": 21,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100030,
+    "page": 4,
+    "kind": "implicit",
+    "gold": 8,
+    "predicted": 8,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100030,
+    "page": 7,
+    "kind": "delayed",
+    "gold": 8,
+    "predicted": 8,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100030,
+    "page": 9,
+    "kind": "delayed",
+    "gold": 9,
+    "predicted": 9,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100030,
+    "page": 11,
+    "kind": "delayed",
+    "gold": 14,
+    "predicted": 14,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100030,
+    "page": 4,
+    "kind": "implicit",
+    "gold": 8,
+    "predicted": 8,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100030,
+    "page": 7,
+    "kind": "delayed",
+    "gold": 8,
+    "predicted": 8,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100030,
+    "page": 9,
+    "kind": "delayed",
+    "gold": 9,
+    "predicted": 8,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100030,
+    "page": 11,
+    "kind": "delayed",
+    "gold": 14,
+    "predicted": 8,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100030,
+    "page": 4,
+    "kind": "implicit",
+    "gold": 8,
+    "predicted": 8,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100030,
+    "page": 7,
+    "kind": "delayed",
+    "gold": 8,
+    "predicted": 8,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100030,
+    "page": 9,
+    "kind": "delayed",
+    "gold": 9,
+    "predicted": 8,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100030,
+    "page": 11,
+    "kind": "delayed",
+    "gold": 14,
+    "predicted": 14,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100030,
+    "page": 4,
+    "kind": "implicit",
+    "gold": 8,
+    "predicted": 8,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100030,
+    "page": 7,
+    "kind": "delayed",
+    "gold": 8,
+    "predicted": 8,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100030,
+    "page": 9,
+    "kind": "delayed",
+    "gold": 9,
+    "predicted": 8,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100030,
+    "page": 11,
+    "kind": "delayed",
+    "gold": 14,
+    "predicted": 14,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100031,
+    "page": 7,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100031,
+    "page": 12,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100031,
+    "page": 18,
+    "kind": "delayed",
+    "gold": 6,
+    "predicted": 6,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100031,
+    "page": 21,
+    "kind": "delayed",
+    "gold": 11,
+    "predicted": 11,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100031,
+    "page": 7,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100031,
+    "page": 12,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100031,
+    "page": 18,
+    "kind": "delayed",
+    "gold": 6,
+    "predicted": 10,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100031,
+    "page": 21,
+    "kind": "delayed",
+    "gold": 11,
+    "predicted": 11,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100031,
+    "page": 7,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100031,
+    "page": 12,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100031,
+    "page": 18,
+    "kind": "delayed",
+    "gold": 6,
+    "predicted": 10,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100031,
+    "page": 21,
+    "kind": "delayed",
+    "gold": 11,
+    "predicted": 11,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100031,
+    "page": 7,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100031,
+    "page": 12,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100031,
+    "page": 18,
+    "kind": "delayed",
+    "gold": 6,
+    "predicted": 3,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100031,
+    "page": 21,
+    "kind": "delayed",
+    "gold": 11,
+    "predicted": 11,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100032,
+    "page": 5,
+    "kind": "delayed",
+    "gold": 14,
+    "predicted": 14,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100032,
+    "page": 9,
+    "kind": "delayed",
+    "gold": 13,
+    "predicted": 13,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100032,
+    "page": 15,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100032,
+    "page": 18,
+    "kind": "delayed",
+    "gold": 13,
+    "predicted": 13,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100032,
+    "page": 5,
+    "kind": "delayed",
+    "gold": 14,
+    "predicted": 14,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100032,
+    "page": 9,
+    "kind": "delayed",
+    "gold": 13,
+    "predicted": 13,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100032,
+    "page": 15,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100032,
+    "page": 18,
+    "kind": "delayed",
+    "gold": 13,
+    "predicted": null,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100032,
+    "page": 5,
+    "kind": "delayed",
+    "gold": 14,
+    "predicted": 14,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100032,
+    "page": 9,
+    "kind": "delayed",
+    "gold": 13,
+    "predicted": 13,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100032,
+    "page": 15,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100032,
+    "page": 18,
+    "kind": "delayed",
+    "gold": 13,
+    "predicted": 13,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100032,
+    "page": 5,
+    "kind": "delayed",
+    "gold": 14,
+    "predicted": 14,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100032,
+    "page": 9,
+    "kind": "delayed",
+    "gold": 13,
+    "predicted": 13,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100032,
+    "page": 15,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100032,
+    "page": 18,
+    "kind": "delayed",
+    "gold": 13,
+    "predicted": 13,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100033,
+    "page": 4,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": 12,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100033,
+    "page": 7,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100033,
+    "page": 12,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100033,
+    "page": 18,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 6,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100033,
+    "page": 4,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": 12,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100033,
+    "page": 7,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100033,
+    "page": 12,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100033,
+    "page": 18,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 9,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100033,
+    "page": 4,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": 12,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100033,
+    "page": 7,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100033,
+    "page": 12,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100033,
+    "page": 18,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 6,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100033,
+    "page": 4,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": 12,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100033,
+    "page": 7,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100033,
+    "page": 12,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100033,
+    "page": 18,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 6,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100034,
+    "page": 5,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100034,
+    "page": 8,
+    "kind": "delayed",
+    "gold": 7,
+    "predicted": 8,
+    "correct": false
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100034,
+    "page": 11,
+    "kind": "delayed",
+    "gold": 10,
+    "predicted": 10,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100034,
+    "page": 17,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 6,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100034,
+    "page": 5,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100034,
+    "page": 8,
+    "kind": "delayed",
+    "gold": 7,
+    "predicted": 8,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100034,
+    "page": 11,
+    "kind": "delayed",
+    "gold": 10,
+    "predicted": 10,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100034,
+    "page": 17,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 6,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100034,
+    "page": 5,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100034,
+    "page": 8,
+    "kind": "delayed",
+    "gold": 7,
+    "predicted": 8,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100034,
+    "page": 11,
+    "kind": "delayed",
+    "gold": 10,
+    "predicted": 10,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100034,
+    "page": 17,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 6,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100034,
+    "page": 5,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100034,
+    "page": 8,
+    "kind": "delayed",
+    "gold": 7,
+    "predicted": 8,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100034,
+    "page": 11,
+    "kind": "delayed",
+    "gold": 10,
+    "predicted": 10,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100034,
+    "page": 17,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 6,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100035,
+    "page": 5,
+    "kind": "explicit",
+    "gold": 6,
+    "predicted": 6,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100035,
+    "page": 8,
+    "kind": "delayed",
+    "gold": 7,
+    "predicted": 7,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100035,
+    "page": 11,
+    "kind": "delayed",
+    "gold": 10,
+    "predicted": 10,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100035,
+    "page": 14,
+    "kind": "delayed",
+    "gold": 11,
+    "predicted": 11,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100035,
+    "page": 5,
+    "kind": "explicit",
+    "gold": 6,
+    "predicted": 6,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100035,
+    "page": 8,
+    "kind": "delayed",
+    "gold": 7,
+    "predicted": 6,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100035,
+    "page": 11,
+    "kind": "delayed",
+    "gold": 10,
+    "predicted": 10,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100035,
+    "page": 14,
+    "kind": "delayed",
+    "gold": 11,
+    "predicted": 6,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100035,
+    "page": 5,
+    "kind": "explicit",
+    "gold": 6,
+    "predicted": 6,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100035,
+    "page": 8,
+    "kind": "delayed",
+    "gold": 7,
+    "predicted": 5,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100035,
+    "page": 11,
+    "kind": "delayed",
+    "gold": 10,
+    "predicted": 10,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100035,
+    "page": 14,
+    "kind": "delayed",
+    "gold": 11,
+    "predicted": 11,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100035,
+    "page": 5,
+    "kind": "explicit",
+    "gold": 6,
+    "predicted": 6,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100035,
+    "page": 8,
+    "kind": "delayed",
+    "gold": 7,
+    "predicted": 9,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100035,
+    "page": 11,
+    "kind": "delayed",
+    "gold": 10,
+    "predicted": 10,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100035,
+    "page": 14,
+    "kind": "delayed",
+    "gold": 11,
+    "predicted": 12,
+    "correct": false
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100036,
+    "page": 9,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 6,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100036,
+    "page": 15,
+    "kind": "explicit",
+    "gold": 7,
+    "predicted": 7,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100036,
+    "page": 17,
+    "kind": "delayed",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100036,
+    "page": 23,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": 12,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100036,
+    "page": 9,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 6,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100036,
+    "page": 15,
+    "kind": "explicit",
+    "gold": 7,
+    "predicted": 7,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100036,
+    "page": 17,
+    "kind": "delayed",
+    "gold": 4,
+    "predicted": 3,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100036,
+    "page": 23,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": 12,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100036,
+    "page": 9,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 6,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100036,
+    "page": 15,
+    "kind": "explicit",
+    "gold": 7,
+    "predicted": 7,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100036,
+    "page": 17,
+    "kind": "delayed",
+    "gold": 4,
+    "predicted": 3,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100036,
+    "page": 23,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": 10,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100036,
+    "page": 9,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 6,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100036,
+    "page": 15,
+    "kind": "explicit",
+    "gold": 7,
+    "predicted": 7,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100036,
+    "page": 17,
+    "kind": "delayed",
+    "gold": 4,
+    "predicted": 3,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100036,
+    "page": 23,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": 10,
+    "correct": false
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100037,
+    "page": 9,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100037,
+    "page": 14,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100037,
+    "page": 19,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100037,
+    "page": 23,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100037,
+    "page": 9,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100037,
+    "page": 14,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100037,
+    "page": 19,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100037,
+    "page": 23,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100037,
+    "page": 9,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100037,
+    "page": 14,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100037,
+    "page": 19,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100037,
+    "page": 23,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100037,
+    "page": 9,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100037,
+    "page": 14,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100037,
+    "page": 19,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100037,
+    "page": 23,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100038,
+    "page": 7,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100038,
+    "page": 12,
+    "kind": "explicit",
+    "gold": 6,
+    "predicted": 6,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100038,
+    "page": 15,
+    "kind": "delayed",
+    "gold": 7,
+    "predicted": 7,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100038,
+    "page": 20,
+    "kind": "implicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100038,
+    "page": 7,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100038,
+    "page": 12,
+    "kind": "explicit",
+    "gold": 6,
+    "predicted": 6,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100038,
+    "page": 15,
+    "kind": "delayed",
+    "gold": 7,
+    "predicted": 6,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100038,
+    "page": 20,
+    "kind": "implicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100038,
+    "page": 7,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100038,
+    "page": 12,
+    "kind": "explicit",
+    "gold": 6,
+    "predicted": 3,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100038,
+    "page": 15,
+    "kind": "delayed",
+    "gold": 7,
+    "predicted": 7,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100038,
+    "page": 20,
+    "kind": "implicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100038,
+    "page": 7,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100038,
+    "page": 12,
+    "kind": "explicit",
+    "gold": 6,
+    "predicted": 6,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100038,
+    "page": 15,
+    "kind": "delayed",
+    "gold": 7,
+    "predicted": 7,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100038,
+    "page": 20,
+    "kind": "implicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100039,
+    "page": 6,
+    "kind": "explicit",
+    "gold": 5,
+    "predicted": 5,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100039,
+    "page": 9,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100039,
+    "page": 15,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100039,
+    "page": 20,
+    "kind": "delayed",
+    "gold": 10,
+    "predicted": 8,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100039,
+    "page": 6,
+    "kind": "explicit",
+    "gold": 5,
+    "predicted": 5,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100039,
+    "page": 9,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100039,
+    "page": 15,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100039,
+    "page": 20,
+    "kind": "delayed",
+    "gold": 10,
+    "predicted": 8,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100039,
+    "page": 6,
+    "kind": "explicit",
+    "gold": 5,
+    "predicted": 5,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100039,
+    "page": 9,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100039,
+    "page": 15,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100039,
+    "page": 20,
+    "kind": "delayed",
+    "gold": 10,
+    "predicted": 10,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100039,
+    "page": 6,
+    "kind": "explicit",
+    "gold": 5,
+    "predicted": 5,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100039,
+    "page": 9,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100039,
+    "page": 15,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100039,
+    "page": 20,
+    "kind": "delayed",
+    "gold": 10,
+    "predicted": 10,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100040,
+    "page": 6,
+    "kind": "explicit",
+    "gold": 5,
+    "predicted": 5,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100040,
+    "page": 11,
+    "kind": "implicit",
+    "gold": 8,
+    "predicted": 8,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100040,
+    "page": 15,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 6,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100040,
+    "page": 20,
+    "kind": "explicit",
+    "gold": 6,
+    "predicted": 6,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100040,
+    "page": 6,
+    "kind": "explicit",
+    "gold": 5,
+    "predicted": 5,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100040,
+    "page": 11,
+    "kind": "implicit",
+    "gold": 8,
+    "predicted": 8,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100040,
+    "page": 15,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 6,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100040,
+    "page": 20,
+    "kind": "explicit",
+    "gold": 6,
+    "predicted": 6,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100040,
+    "page": 6,
+    "kind": "explicit",
+    "gold": 5,
+    "predicted": 5,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100040,
+    "page": 11,
+    "kind": "implicit",
+    "gold": 8,
+    "predicted": 8,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100040,
+    "page": 15,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 6,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100040,
+    "page": 20,
+    "kind": "explicit",
+    "gold": 6,
+    "predicted": 6,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100040,
+    "page": 6,
+    "kind": "explicit",
+    "gold": 5,
+    "predicted": 5,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100040,
+    "page": 11,
+    "kind": "implicit",
+    "gold": 8,
+    "predicted": 8,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100040,
+    "page": 15,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 6,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100040,
+    "page": 20,
+    "kind": "explicit",
+    "gold": 6,
+    "predicted": 6,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100041,
+    "page": 4,
+    "kind": "delayed",
+    "gold": 6,
+    "predicted": 6,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100041,
+    "page": 7,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 6,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100041,
+    "page": 12,
+    "kind": "implicit",
+    "gold": 7,
+    "predicted": 7,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100041,
+    "page": 15,
+    "kind": "delayed",
+    "gold": 9,
+    "predicted": 6,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100041,
+    "page": 4,
+    "kind": "delayed",
+    "gold": 6,
+    "predicted": 5,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100041,
+    "page": 7,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 6,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100041,
+    "page": 12,
+    "kind": "implicit",
+    "gold": 7,
+    "predicted": 7,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100041,
+    "page": 15,
+    "kind": "delayed",
+    "gold": 9,
+    "predicted": 9,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100041,
+    "page": 4,
+    "kind": "delayed",
+    "gold": 6,
+    "predicted": 5,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100041,
+    "page": 7,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 6,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100041,
+    "page": 12,
+    "kind": "implicit",
+    "gold": 7,
+    "predicted": 7,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100041,
+    "page": 15,
+    "kind": "delayed",
+    "gold": 9,
+    "predicted": 9,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100041,
+    "page": 4,
+    "kind": "delayed",
+    "gold": 6,
+    "predicted": 5,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100041,
+    "page": 7,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 5,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100041,
+    "page": 12,
+    "kind": "implicit",
+    "gold": 7,
+    "predicted": 7,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100041,
+    "page": 15,
+    "kind": "delayed",
+    "gold": 9,
+    "predicted": 10,
+    "correct": false
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100042,
+    "page": 4,
+    "kind": "delayed",
+    "gold": 8,
+    "predicted": 8,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100042,
+    "page": 10,
+    "kind": "implicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100042,
+    "page": 14,
+    "kind": "implicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100042,
+    "page": 18,
+    "kind": "explicit",
+    "gold": 8,
+    "predicted": 8,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100042,
+    "page": 4,
+    "kind": "delayed",
+    "gold": 8,
+    "predicted": 8,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100042,
+    "page": 10,
+    "kind": "implicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100042,
+    "page": 14,
+    "kind": "implicit",
+    "gold": 4,
+    "predicted": 8,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100042,
+    "page": 18,
+    "kind": "explicit",
+    "gold": 8,
+    "predicted": 8,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100042,
+    "page": 4,
+    "kind": "delayed",
+    "gold": 8,
+    "predicted": 8,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100042,
+    "page": 10,
+    "kind": "implicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100042,
+    "page": 14,
+    "kind": "implicit",
+    "gold": 4,
+    "predicted": 3,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100042,
+    "page": 18,
+    "kind": "explicit",
+    "gold": 8,
+    "predicted": 8,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100042,
+    "page": 4,
+    "kind": "delayed",
+    "gold": 8,
+    "predicted": 8,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100042,
+    "page": 10,
+    "kind": "implicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100042,
+    "page": 14,
+    "kind": "implicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100042,
+    "page": 18,
+    "kind": "explicit",
+    "gold": 8,
+    "predicted": 8,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100043,
+    "page": 5,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100043,
+    "page": 13,
+    "kind": "implicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100043,
+    "page": 17,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100043,
+    "page": 20,
+    "kind": "delayed",
+    "gold": 11,
+    "predicted": 11,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100043,
+    "page": 5,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100043,
+    "page": 13,
+    "kind": "implicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100043,
+    "page": 17,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100043,
+    "page": 20,
+    "kind": "delayed",
+    "gold": 11,
+    "predicted": 11,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100043,
+    "page": 5,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100043,
+    "page": 13,
+    "kind": "implicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100043,
+    "page": 17,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100043,
+    "page": 20,
+    "kind": "delayed",
+    "gold": 11,
+    "predicted": 11,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100043,
+    "page": 5,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100043,
+    "page": 13,
+    "kind": "implicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100043,
+    "page": 17,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100043,
+    "page": 20,
+    "kind": "delayed",
+    "gold": 11,
+    "predicted": 11,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100044,
+    "page": 5,
+    "kind": "delayed",
+    "gold": 7,
+    "predicted": 7,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100044,
+    "page": 9,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": 12,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100044,
+    "page": 13,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100044,
+    "page": 16,
+    "kind": "delayed",
+    "gold": 9,
+    "predicted": 7,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100044,
+    "page": 5,
+    "kind": "delayed",
+    "gold": 7,
+    "predicted": 7,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100044,
+    "page": 9,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": 12,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100044,
+    "page": 13,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100044,
+    "page": 16,
+    "kind": "delayed",
+    "gold": 9,
+    "predicted": 10,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100044,
+    "page": 5,
+    "kind": "delayed",
+    "gold": 7,
+    "predicted": 7,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100044,
+    "page": 9,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": 12,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100044,
+    "page": 13,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100044,
+    "page": 16,
+    "kind": "delayed",
+    "gold": 9,
+    "predicted": 9,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100044,
+    "page": 5,
+    "kind": "delayed",
+    "gold": 7,
+    "predicted": 7,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100044,
+    "page": 9,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": 12,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100044,
+    "page": 13,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100044,
+    "page": 16,
+    "kind": "delayed",
+    "gold": 9,
+    "predicted": 9,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100045,
+    "page": 6,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100045,
+    "page": 11,
+    "kind": "explicit",
+    "gold": 8,
+    "predicted": 8,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100045,
+    "page": 14,
+    "kind": "delayed",
+    "gold": 11,
+    "predicted": 11,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100045,
+    "page": 19,
+    "kind": "delayed",
+    "gold": 8,
+    "predicted": 8,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100045,
+    "page": 6,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100045,
+    "page": 11,
+    "kind": "explicit",
+    "gold": 8,
+    "predicted": 8,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100045,
+    "page": 14,
+    "kind": "delayed",
+    "gold": 11,
+    "predicted": 7,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100045,
+    "page": 19,
+    "kind": "delayed",
+    "gold": 8,
+    "predicted": 6,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100045,
+    "page": 6,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100045,
+    "page": 11,
+    "kind": "explicit",
+    "gold": 8,
+    "predicted": 7,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100045,
+    "page": 14,
+    "kind": "delayed",
+    "gold": 11,
+    "predicted": 7,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100045,
+    "page": 19,
+    "kind": "delayed",
+    "gold": 8,
+    "predicted": 8,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100045,
+    "page": 6,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100045,
+    "page": 11,
+    "kind": "explicit",
+    "gold": 8,
+    "predicted": 7,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100045,
+    "page": 14,
+    "kind": "delayed",
+    "gold": 11,
+    "predicted": 7,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100045,
+    "page": 19,
+    "kind": "delayed",
+    "gold": 8,
+    "predicted": 8,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100046,
+    "page": 7,
+    "kind": "explicit",
+    "gold": 8,
+    "predicted": 8,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100046,
+    "page": 10,
+    "kind": "implicit",
+    "gold": 5,
+    "predicted": 5,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100046,
+    "page": 15,
+    "kind": "explicit",
+    "gold": 6,
+    "predicted": 6,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100046,
+    "page": 18,
+    "kind": "delayed",
+    "gold": 11,
+    "predicted": 11,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100046,
+    "page": 7,
+    "kind": "explicit",
+    "gold": 8,
+    "predicted": 8,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100046,
+    "page": 10,
+    "kind": "implicit",
+    "gold": 5,
+    "predicted": 5,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100046,
+    "page": 15,
+    "kind": "explicit",
+    "gold": 6,
+    "predicted": 6,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100046,
+    "page": 18,
+    "kind": "delayed",
+    "gold": 11,
+    "predicted": 11,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100046,
+    "page": 7,
+    "kind": "explicit",
+    "gold": 8,
+    "predicted": 8,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100046,
+    "page": 10,
+    "kind": "implicit",
+    "gold": 5,
+    "predicted": 5,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100046,
+    "page": 15,
+    "kind": "explicit",
+    "gold": 6,
+    "predicted": 6,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100046,
+    "page": 18,
+    "kind": "delayed",
+    "gold": 11,
+    "predicted": 11,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100046,
+    "page": 7,
+    "kind": "explicit",
+    "gold": 8,
+    "predicted": 8,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100046,
+    "page": 10,
+    "kind": "implicit",
+    "gold": 5,
+    "predicted": 5,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100046,
+    "page": 15,
+    "kind": "explicit",
+    "gold": 6,
+    "predicted": 6,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100046,
+    "page": 18,
+    "kind": "delayed",
+    "gold": 11,
+    "predicted": 11,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100047,
+    "page": 7,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100047,
+    "page": 13,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100047,
+    "page": 20,
+    "kind": "implicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100047,
+    "page": 24,
+    "kind": "explicit",
+    "gold": 8,
+    "predicted": 8,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100047,
+    "page": 7,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100047,
+    "page": 13,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100047,
+    "page": 20,
+    "kind": "implicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100047,
+    "page": 24,
+    "kind": "explicit",
+    "gold": 8,
+    "predicted": 8,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100047,
+    "page": 7,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100047,
+    "page": 13,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100047,
+    "page": 20,
+    "kind": "implicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100047,
+    "page": 24,
+    "kind": "explicit",
+    "gold": 8,
+    "predicted": 8,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100047,
+    "page": 7,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100047,
+    "page": 13,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100047,
+    "page": 20,
+    "kind": "implicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100047,
+    "page": 24,
+    "kind": "explicit",
+    "gold": 8,
+    "predicted": 8,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100048,
+    "page": 5,
+    "kind": "implicit",
+    "gold": 7,
+    "predicted": 7,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100048,
+    "page": 9,
+    "kind": "delayed",
+    "gold": 14,
+    "predicted": 10,
+    "correct": false
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100048,
+    "page": 15,
+    "kind": "explicit",
+    "gold": 8,
+    "predicted": 8,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100048,
+    "page": 18,
+    "kind": "implicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100048,
+    "page": 5,
+    "kind": "implicit",
+    "gold": 7,
+    "predicted": 7,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100048,
+    "page": 9,
+    "kind": "delayed",
+    "gold": 14,
+    "predicted": 14,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100048,
+    "page": 15,
+    "kind": "explicit",
+    "gold": 8,
+    "predicted": 8,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100048,
+    "page": 18,
+    "kind": "implicit",
+    "gold": 4,
+    "predicted": 10,
+    "correct": false
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100048,
+    "page": 5,
+    "kind": "implicit",
+    "gold": 7,
+    "predicted": 7,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100048,
+    "page": 9,
+    "kind": "delayed",
+    "gold": 14,
+    "predicted": 14,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100048,
+    "page": 15,
+    "kind": "explicit",
+    "gold": 8,
+    "predicted": 8,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100048,
+    "page": 18,
+    "kind": "implicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100048,
+    "page": 5,
+    "kind": "implicit",
+    "gold": 7,
+    "predicted": 7,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100048,
+    "page": 9,
+    "kind": "delayed",
+    "gold": 14,
+    "predicted": 14,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100048,
+    "page": 15,
+    "kind": "explicit",
+    "gold": 8,
+    "predicted": 8,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100048,
+    "page": 18,
+    "kind": "implicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100049,
+    "page": 4,
+    "kind": "explicit",
+    "gold": 5,
+    "predicted": 5,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100049,
+    "page": 7,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": 12,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100049,
+    "page": 10,
+    "kind": "implicit",
+    "gold": 8,
+    "predicted": 8,
+    "correct": true
+  },
+  {
+    "method": "full",
+    "ratio": 1.0,
+    "seed": 100049,
+    "page": 16,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100049,
+    "page": 4,
+    "kind": "explicit",
+    "gold": 5,
+    "predicted": 5,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100049,
+    "page": 7,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": 12,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100049,
+    "page": 10,
+    "kind": "implicit",
+    "gold": 8,
+    "predicted": 8,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.25,
+    "seed": 100049,
+    "page": 16,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100049,
+    "page": 4,
+    "kind": "explicit",
+    "gold": 5,
+    "predicted": 5,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100049,
+    "page": 7,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": 12,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100049,
+    "page": 10,
+    "kind": "implicit",
+    "gold": 8,
+    "predicted": 8,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.4,
+    "seed": 100049,
+    "page": 16,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100049,
+    "page": 4,
+    "kind": "explicit",
+    "gold": 5,
+    "predicted": 5,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100049,
+    "page": 7,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": 12,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100049,
+    "page": 10,
+    "kind": "implicit",
+    "gold": 8,
+    "predicted": 8,
+    "correct": true
+  },
+  {
+    "method": "model",
+    "ratio": 0.6,
+    "seed": 100049,
+    "page": 16,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  }
+]
