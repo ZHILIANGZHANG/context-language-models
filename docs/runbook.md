@@ -339,6 +339,15 @@ torchrun --nproc_per_node 8 -m self_paging.train.grpo --model ckpt/sft --tokeniz
 
 ---
 
+**和基线公平对比要补的任务**（规格见 [`baseline_protocol.md`](baseline_protocol.md) §7）：
+
+| 编号 | 任务 | 要点 |
+|---|---|---|
+| D10 | token 级驻留 + 注意力钩子 | `PagedKV` 加每个 token 的保留掩码；做等价性测试 |
+| D11 | token 级基线 | StreamingLLM、H2O、TOVA、SnapKV（可选 PyramidKV），以及按原文用 key 上下界打分的 Quest；在单轮长文 QA 上复现原论文的趋势 |
+| D12 | 训练对齐的系统对照 | 同样的 SFT 数据和 RL 步数，由系统换页，`kv_tools=False` |
+| D13 | 统一评测 | 预算扫描、"问题先给出 / 最后给出"两种设定、曲线数据、按世界配对 |
+
 ## 5. 默认超参
 
 | 项 | 默认 | 在哪改 |

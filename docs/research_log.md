@@ -63,6 +63,7 @@
 | 32 | RL 数据怎么准备 | RL 的数据是题库，不是固定轨迹。写 `data/build_rl_pool.py`：`build` 不需要模型，用规则读者加系统换页，丢掉不可行的题、给换页敏感的题加权；`profile` 用模型测通过率；`eval` 生成分布内和分布外的评测题库。GRPO 加 `PromptSampler`（按权重抽题、自动降权已饱和的桶），评测加 `--pool`。顺带发现并修了 `BeladyPager` 拆散成对记录的缺陷（它是 E0 的上界），可行题从 54/180 升到 147/180 |
 | 33 | 看新推送（agent 的 SFT 结果 `cbdf9fc`），研究 RL 的数据和奖励该怎么做 | 写 `eval/error_analysis.py` 分析 50 个世界的评测：120 个错误里 115 个是作答时信息不在，75% 集中在 delayed 题，缺的大多是隔离通知；`kv_in` 每种配置只有 20–25 次。根因：Belady oracle 先换出"最晚才用"的隔离通知，靠未来信息换回，而 T1 页头没有内容线索，换回不可实现。写 `docs/rl_design.md`：RL 前先修页头摘要、换回的可实现性、执行器工具权限；奖励 = 任务分 + 卫生惩罚 + 成功门控效率 + 反事实信用。合并 main，冲突文件以 main 为准；发现 main 上 `BeladyPager` 空间估算没算新的目录开销（两条测试标 xfail） |
 | 34 | 按新要求组织 SFT 数据、再训一版 SFT，然后 RL | 实现 `rl_design.md` 的 §2 和 §4：T1 页头摘要；换回的可实现性门槛；执行器拒绝没提供的 KV 工具；换页器和 oracle 按真实目录开销预留空间（修好 main 上的 Belady）；`t1_budget` 计入摘要；reward v2（卫生惩罚、反事实信用、效率预热、按 token 优势保留组）；GRPO 可读题库。实测：有摘要时 216 次换回全部可推断，没有摘要时 541 次不可推断。新数据 403 条。runbook 加"SFT v2 → RL v2"的步骤和上 RL 的条件 |
+| 35 | 怎么和 KV 剪枝基线公平对比 | 写 `docs/baseline_protocol.md`：四组对照（底座 + 基线、我们的权重 + 基线、训练对齐的系统对照、本文），把"学会任务"和"学会管 KV"分开；预算统一按实际驻留 KV 计量、画曲线；信息、打分时机、调参对齐；加入基线主场的基准；现有 QuestPage / AttnEvict 是页级近似，token 级的 H2O、SnapKV、TOVA、StreamingLLM、Quest 列为开发任务 D10–D13 |
 
 ---
 
