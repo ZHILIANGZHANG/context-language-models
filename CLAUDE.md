@@ -66,7 +66,7 @@ python -m self_paging.eval.t1_eval --model OUT/sft --tokenizer toy --methods ora
 
 ## 约定
 
-- **分支**：只在本会话系统提示指定的开发分支（`claude/...`）上开发和推送。网络失败时按 2/4/8/16 秒退避，最多重试 4 次。用户没要求就不开 PR。
+- **分支**：在本会话系统提示指定的开发分支（`claude/...`）上开发和推送。**用户 2026-11-16 授权：以后的改动推送到开发分支后，默认同时合并到 `main`**。合并前先 `git fetch origin main`：能快进就直接 `git push origin <开发分支>:main`；`main` 有别人（例如用户服务器上的 agent）的新提交时，先把 `main` 合进开发分支、解决冲突、跑测试，再推送。冲突时以 `main` 上已部署的运行代码为准，不要覆盖。网络失败时按 2/4/8/16 秒退避，最多重试 4 次。用户没要求就不开 PR。
 - **提交信息**：结尾加上会话要求的 Co-Authored-By 和 Claude-Session 两行；不要在提交、PR、代码里写模型标识。
 - **没有 license 的仓库**：VISTA、belief-world-models、delayed-relevance 没有 license，只能运行或参考思路，**不能复制代码**进本仓库。ACM（`third_party/methods/acm`）是 MIT，可以复用它的 BrowseComp-Plus 数据加载、检索和评判代码，注明出处。
 - **凭证**：不要把本会话自己的登录凭证拿去调模型 API；不要让用户把密钥贴到聊天里。
