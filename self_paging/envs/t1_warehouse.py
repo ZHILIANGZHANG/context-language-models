@@ -40,6 +40,9 @@ class T1Config:
     p_arrival: float = 0.3
     p_dispatch: float = 0.15
     n_shelves: int = 60
+    # page-header digest (docs/rl_design.md §2.1): lets the model tell which page holds which facts,
+    # so paging a page back in is realizable. False = the no-digest ablation.
+    digest: bool = True
 
 
 @dataclass
@@ -140,6 +143,44 @@ def page_role(text: str, current_answer: int | None) -> str:
     if current_answer is not None and shelves and min(shelves) > current_answer:
         return f"only shelves above S{current_answer}"
     return "not needed for the current shelf state"
+
+
+def page_digest(text: str) -> str:
+    """One-line summary of a page for its header: step range and the shelves each kind of key event
+    touches. Telemetry is not listed. Example: ``steps 12-19 | quarantine S5 | store S9,S10``."""
+    steps = [int(x) for x in re.findall(r"^\[step (\d+)\]", text, re.M)]
+    found: dict[str, list[int]] = {}
+
+    def add(kind, shelves):
+        for s in shelves:
+            lst = found.setdefault(kind, [])
+            if s not in lst:
+                lst.append(s)
+
+    for line in text.splitlines():
+        if (a := re.search(r"ACTION: STORE \S+ -> S(\d+)", line)):
+            add("store", [int(a.group(1))])
+        if (d := re.search(r"S(\d+) is now EMPTY", line)):
+            add("dispatch", [int(d.group(1))])
+        if (q := re.search(r"shelf S(\d+) QUARANTINED", line)):
+            add("quarantine", [int(q.group(1))])
+        if (c := re.search(r"never completed;.*S(\d+) is EMPTY", line)):
+            add("correction", [int(c.group(1))])
+        if "Inventory scan" in line:
+            add("scan", [int(s) for s, st in re.findall(r"S(\d+): (EMPTY|OCCUPIED)", line) if st == "EMPTY"])
+    parts = [f"steps {min(steps)}-{max(steps)}" if steps else "steps -"]
+    for kind in ("quarantine", "correction", "scan", "store", "dispatch"):
+        if kind in found:
+            parts.append(kind + " " + ",".join(f"S{s}" for s in sorted(found[kind])))
+    if "DECISION REQUIRED" in text:
+        parts.append("decision")
+    if len(parts) == 1:
+        parts.append("telemetry only")
+    return " | ".join(parts)
+
+
+def digest_shelves(digest: str) -> set[int]:
+    return {int(x) for x in re.findall(r"S(\d+)", digest)}
 
 
 def minimal_sufficient(texts: list[str], answer: int, must: set[int]) -> set[int]:
@@ -256,7 +297,8 @@ class WarehouseEnv:
     """
 
     def __init__(self, seed: int, cfg: T1Config | None = None) -> None:
-        self.ep = generate(seed, cfg)
+        self.cfg = cfg or T1Config()
+        self.ep = generate(seed, self.cfg)
         self.system, self.task, self.tools = SYSTEM, TASK, TOOLS
         self.cursor = 0  # next page to deliver
         self.pending: Decision | None = None
@@ -276,7 +318,10 @@ class WarehouseEnv:
             idx = self.cursor
             self.cursor += 1
             self.pending = self.ep.decision_at(idx)
-            return self.ep.pages[idx], {"env_page": idx}, False
+            meta = {"env_page": idx}
+            if self.cfg.digest:
+                meta["digest"] = page_digest(self.ep.pages[idx])
+            return self.ep.pages[idx], meta, False
         if name == "store":
             if self.pending is None:
                 return "ERROR: no decision is pending.", {}, False

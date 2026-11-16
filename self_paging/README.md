@@ -49,7 +49,7 @@
 
 | 文件 | 做什么 |
 |---|---|
-| `t1_warehouse.py` | **T1 多轮仓库环境**。复用 `state_study/probes/warehouse.py` 的世界模拟器生成事件流，切成页，其中埋几个决策点。每个决策都依赖更早的一个关键事件：审计更正、盘点、或者后来才生效的隔离通知。工具有两个：`next_events()` 取下一页，`store(shelf)` 回答当前决策。环境总是按规则正确地存货，所以每一页的内容由种子唯一确定。<br>还包括：`rule_read(texts)` 是规则读者，只看文本算出答案；`minimal_sufficient(...)` 求最小充分集，反复删页直到删不动为止；`state_note(texts)` 生成规则读者能读懂的状态笔记；`generate(seed, cfg)` 生成 `Episode`（含 `pages`、`decisions`、`need`）；`T1Config` 是难度参数 |
+| `t1_warehouse.py` | **T1 多轮仓库环境**。页头摘要：`page_digest(text)` 生成 `steps a-b | quarantine S5 | store S9 …`，`T1Config.digest`（默认开）控制是否放进页头；`digest_shelves` 用于判断换回是否可实现（`docs/rl_design.md` §2）。复用 `state_study/probes/warehouse.py` 的世界模拟器生成事件流，切成页，其中埋几个决策点。每个决策都依赖更早的一个关键事件：审计更正、盘点、或者后来才生效的隔离通知。工具有两个：`next_events()` 取下一页，`store(shelf)` 回答当前决策。环境总是按规则正确地存货，所以每一页的内容由种子唯一确定。<br>还包括：`rule_read(texts)` 是规则读者，只看文本算出答案；`minimal_sufficient(...)` 求最小充分集，反复删页直到删不动为止；`state_note(texts)` 生成规则读者能读懂的状态笔记；`generate(seed, cfg)` 生成 `Episode`（含 `pages`、`decisions`、`need`）；`T1Config` 是难度参数 |
 | `t2_bcp.py` | **BrowseComp-Plus 环境**。工具 `search(query)`、`get_document(docid)`、`answer(answer)`；片段和文档长度沿用 ACM 的设置；列出多个候选答案直接判错。检索器和评判是注入的：`PyseriniSearcher(index_path)` 跑 BM25（需要 pyserini 和 JDK 21）；`OpenAIJudge(base_url, model)` 调本地 OpenAI 兼容服务，评判模板逐字取自 ACM（MIT）；`load_split(path)` 读 ACM 的划分文件 |
 
 ### 2.4 `oracle/`：生成监督信号
@@ -82,8 +82,8 @@
 | `batch.py` | `pack(records, advantages)`：多条轨迹拼成一条序列，页号和版本号改成全局编号，驻留矩阵按块对角拼接，用 `doc_of` 隔开轨迹，位置号每条轨迹从 0 开始。`attention_mask(...)`：CPU 上用稠密加性掩码，GPU 上用 FlexAttention 的 BlockMask。`token_logprobs(model, packed, attn)`：一次前向算出每个 token 的 log-prob；LM head 和 log-softmax 分块并做 checkpoint，显存随序列长度线性增长 |
 | `common.py` | 加载模型（指定注意力实现；可选 LoRA、gradient checkpointing、YaRN；可以直接读 LoRA 目录）、FSDP2 切分、读写 JSONL、cosine 学习率、加载分词器（`toy` 表示测试分词器）、`tiny_qwen3()` 随机小模型 |
 | `sft.py` | SFT：按 token 数切 micro-batch，只对 assistant 生成的 token 算损失。单卡直接跑；torchrun 下全参数用 FSDP2，LoRA 每卡一份副本、对 adapter 梯度做 all-reduce。保存为 HF 格式 |
-| `advantage.py` | 组内优势 `r − mean`（不除以标准差）；CLM 的效率项只在组内成功的轨迹之间按代价比较，只加在 KV 工具调用的 token 上；`informative()` 用于动态采样，奖励全相同的组丢弃 |
-| `grpo.py` | GRPO 主循环：采题（种子 + 预算比例）→ 每题 G 次 rollout（`PagedKV` + `ModelPolicy`，rollout 时切到 sdpa）→ 算奖励和代价 → 算优势 → 丢掉无信息的组 → 切回 flex，算 token 级裁剪损失，乘截断重要性权重 → 更新。torchrun 下每卡一份副本（8B 用 LoRA），梯度 all-reduce。`--save-every K` 保存中间 checkpoint。`--pool` 从题库按权重抽题；`PromptSampler` 按（预算比例, 决策点数）分桶，自动降权一直全对或一直全错的桶。`rollout_fn` 参数留给以后接 SGLang |
+| `advantage.py` | **reward v2**：`hygiene_penalty`（强制换出、截断页、非法调用、KV 错误的小额惩罚，总上限 −0.25）、`counterfactual_credit`（用规则读者找出导致答错的那次 `kv_out` 和起作用的 `kv_in`，把 ±c 加在那一回合的控制 token 上）、`advantages_v2`、`has_signal`（`docs/rl_design.md` §4）。旧的： `r − mean`（不除以标准差）；CLM 的效率项只在组内成功的轨迹之间按代价比较，只加在 KV 工具调用的 token 上；`informative()` 用于动态采样，奖励全相同的组丢弃 |
+| `grpo.py` | GRPO 主循环：采题（种子 + 预算比例）→ 每题 G 次 rollout（`PagedKV` + `ModelPolicy`，rollout 时切到 sdpa）→ 算奖励和代价 → 算优势 → 丢掉无信息的组 → 切回 flex，算 token 级裁剪损失，乘截断重要性权重 → 更新。torchrun 下每卡一份副本（8B 用 LoRA），梯度 all-reduce。`--save-every K` 保存中间 checkpoint。`--pool` 从题库按权重抽题；`PromptSampler` 按（预算比例, 决策点数）分桶，自动降权一直全对或一直全错的桶。`rollout_fn` 参数留给以后接 SGLang。reward v2 相关参数：`--reward v2`（默认）、`--w-credit`、`--w-eff-warmup`、`--w-eff-ramp`；另有 `--pool`（每行含 seed、ratio、t1_config）、`--no-digest` |
 
 ### 2.8 `eval/`
 

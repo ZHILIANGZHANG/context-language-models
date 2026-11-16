@@ -38,6 +38,8 @@
 
 ## 2. RL 之前必须先修的三件事
 
+> **实现状态（2026-11-16，提交在 `claude/bold-lamport-xki29h`）**：§2.1、§2.2、§2.3、§4（reward v2）、§7.1 都已实现并有测试（`tests/test_rl_v2.py`）。执行顺序见 runbook 的"当前要做的：SFT v2 → RL v2"。用新规则造的数据（字符级分词器，40 个种子）：403 条，所有保留的换回都能从页头推断；paging、eager、mixed 模式里含换回的 episode 占 68–100%。
+
 ### 2.1 页头加内容摘要（让"换回"变得可实现）
 
 T1 的页头改成由系统生成一行摘要，只列关键事件、不列遥测：
@@ -188,6 +190,8 @@ A[i, t] = A_task(组内) + w_eff · a_eff_i · ctrl_mask[t] + w_credit · credit
 ---
 
 ## 7. 在 main（`cbdf9fc`）上发现的问题
+
+> 第 1、3 条已修好：换页器和 oracle 改用 `episode.block_overhead` 预留空间；`kv_tools=False` 时拒绝 KV 调用。
 
 1. **`BeladyPager` 在新的 episode 循环下又不是完美上界了**：`tests/test_pipeline.py::test_belady_pager_keeps_what_is_needed[0]` 在干净的 main 上也失败。复现：种子 0、`T1Config(n_decisions=3, warmup=10, gap=(3,8), events_per_page=(3,6))`、预算 0.6、字符级分词器。现象：截断了 146 个 token，最后一个决策没有作答。原因：main 改了目录（页头）的计费方式，pager 用 `incoming + struct_reserve + min_gen_room` 估算要腾的空间，没把新增的目录开销算进去，导致决策页被截断。修好之前，E0 的 Belady 上界会偏低。已在本分支把两条相关测试标成 `xfail` 并注明原因；
 2. **`test_rl_preparation.py`** 需要真实的 Qwen3 分词器，云端下载不了，所以报错。这是环境限制，不是代码问题；

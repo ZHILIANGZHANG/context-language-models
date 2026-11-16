@@ -60,6 +60,77 @@ uv pip install "transformers==5.23.0" peft numpy pytest
 
 ## 2. 实验顺序
 
+> ### 当前要做的（2026-11-16 起）：SFT v2 → RL v2
+>
+> 第一版 SFT（`experiments/self_paging_20261116/`）的错误几乎都是"作答时信息不在"，集中在延迟生效的隔离通知上。根因和设计见 [`rl_design.md`](rl_design.md)。代码已经按那份设计改好（§2.1–§2.3、§4、§7.1 都已实现），**下面这个顺序取代原来的阶段 2–5**，其余阶段不变。
+>
+> **v2.0 拉代码、跑测试**
+> - 拉最新代码，跑 `python -m pytest -q self_paging/tests`；
+> - 跑 `QWEN3_TOKENIZER=$M python -m pytest -q self_paging/tests/test_template_server.py`。
+>
+> **v2.1 有哪些变化**（服务器上的数据脚本 `server_helpers/` 调用的是 `WarehouseEnv`、`T1Config()`、`T1Oracle`、`passes()`，会自动用上前三项）：
+> - **页头摘要**：T1 的页头变成 `[[PAGE 12 tool=next_events | steps 812-830 | quarantine S5 | store S9]]`。`T1Config.digest` 默认是 True；设成 False 就是无摘要的消融；
+> - **预算**：`t1_budget` 按每页的实际页头（含摘要）计算固定开销，所以预算比例的含义不变；
+> - **新的质量门槛**：`unrealizable_kv_in`（换回的页在页头摘要里找不到线索）和 `unoffered_kv_calls`。云端用字符级分词器测过：有摘要时，216 次换回全部可推断；没有摘要时，541 次不可推断，80 个 episode 只能保留 5 个；
+> - **执行器**：`kv_tools=False` 时拒绝 KV 调用，并计为非法调用，所以 Full、Recent、QuestPage 现在是严格的系统基线；
+> - **换页器**：Belady、Recent、QuestPage、AttnEvict 和 oracle 都按真实的目录开销（`episode.block_overhead`）预留空间，不再用固定的 64 token。main 上 Belady 截断决策页的问题已经修好。
+>
+> **v2.2 造 SFT v2 数据**
+> - 用原来的质量流程（老师改写理由 + 过滤），或者用 `build_t1_sft --teacher $M`；
+> - 世界种子和第一版相同（训练 0–1000、held-out 90000–90100），**RL 和评测的种子范围不碰**；
+> - 验收（`python -m self_paging.data.inspect_sft --data … --tokenizer $M`）：
+>   - 保留的 episode 里 `unrealizable_kv_in` 全为 0；
+>   - paging、eager、mixed 模式里，含换回的 episode > 60%；
+>   - 有带隔离通知的页被换回；
+>   - 不换页的样本占 15–30%。
+>
+> **v2.3 训练 SFT v2**
+> - **建议从原始 Qwen3-8B 重新训**，不要从 431 步的权重继续：页头格式变了，旧权重学到了"换出后不换回"的习惯；
+> - 配方和第一版相同：LoRA r=64、1 个 epoch、每 50 步验证；
+> - 如果算力紧张，也可以从 431 步继续训 1 个 epoch，学习率减半，但要在报告里注明。
+>
+> **v2.4 评测并决定能否上 RL**
+> - 和第一版同一批世界（100000–100049），四种配置：
+>   - 严格 Full（`--methods full`，执行器已修好）；
+>   - 模型自己换页，0.6 / 0.4 / 0.25 三档预算；
+>   - 再加 Recent 和 Belady。
+> - 然后跑 `python -m self_paging.eval.error_analysis --records '<records>'`。
+>
+> **可以开始 RL 的条件**：
+> - 错误里"信息不在"的占比，以及 delayed 题的错误数，都明显低于第一版。第一版是 115/120 和 90/120；
+> - delayed 决策之前出现了 `kv_in`；
+> - 0.6 / 0.4 预算下，非法调用 ≤ 5%；
+> - 严格 Full 的准确率不低于第一版的名义 full（91%）。
+>
+> 不满足就先查数据，不要上 RL。
+>
+> **v2.5 重新准备 RL 题库**
+> - 页头和预算都变了，所以要用 `self_paging/data/rl_preparation.py` 把 CPU 准备重跑一遍：可行性、预算、Belady/Recent 的分数都会变；划分不变；
+> - OOD 按 `rl_design.md` §3 重新生成在 32K 以内的版本；
+> - 64 × 4 试画像。
+>
+> **v2.6 RL v2**
+>
+> ```bash
+> torchrun --nproc_per_node 8 -m self_paging.train.grpo --model ckpt/sft_v2 --tokenizer $M --out ckpt/rl_v2 \
+>   --log logs/rl_v2.jsonl --save-every 20 --pool pools/t1_train.jsonl --reward v2 \
+>   --w-credit 1.0 --w-eff 0.25 --w-eff-warmup 50 --w-eff-ramp 50 \
+>   --steps 200 --prompts 16 --group 8 --lora-r 64 --lr 1e-5 --attn flex_attention
+> ```
+>
+> - 先 `--group 4 --steps 10` 冒烟：测吞吐，看 `logprob_mismatch`；再 G = 8 跑 20 步做开发检查；最后才是 200 步；
+> - 题库里每行要有 `seed`、`ratio`、`t1_config`，可选 `weight`；
+> - 课程：前 20–50 步只用 0.6 和 0.4 两档预算的题，可以先从题库里筛掉 0.25 的行。
+> - **日志里要看的新字段**：
+>   - `blamed_kv_out`：每条轨迹被反事实信用追责的换出次数，应该下降；
+>   - `credited_kv_in`：起作用的换回次数，应该上升；
+>   - `reasoning_errors`；
+>   - `hygiene`：卫生惩罚，应该向 0 靠拢；
+>   - `w_eff`：前 50 步应为 0；
+>   - `groups_kept`。
+>
+> **v2.7 消融**：`--w-credit 0`（纯结果奖励）、`--reward v1`（旧奖励）、`--no-digest`（无页头摘要）、`--irreversible`、`--w-eff 0`。
+
 下面统一设 `M=/models/Qwen3-8B`。产物放在：
 - `runs/<日期>/data/`：数据；
 - `runs/<日期>/ckpt/`：checkpoint；

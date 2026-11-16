@@ -201,8 +201,6 @@ def _task_only(st):
     return render_tool_call("next_events", {})
 
 
-@pytest.mark.xfail(strict=False, reason="BeladyPager is not a perfect upper bound under main's episode runner "
-                   "(cbdf9fc); fails on clean main too. See docs/rl_design.md §7.")
 @pytest.mark.parametrize("seed", range(3))
 def test_belady_pager_keeps_what_is_needed(seed):
     env = WarehouseEnv(seed, MID)
@@ -265,8 +263,6 @@ def test_rl_pool_sampler_and_eval_pool():
     assert ood_config(1).n_decisions >= 7
 
 
-@pytest.mark.xfail(strict=False, reason="BeladyPager is not a perfect upper bound under main's episode runner "
-                   "(cbdf9fc); fails on clean main too. See docs/rl_design.md §7.")
 def test_belady_pager_matches_oracle_feasibility():
     """BeladyPager used to strand store lines without their dispatch (misleading the reader) and
     failed prompts the KV oracle solved; it must now solve whatever the oracle solves."""

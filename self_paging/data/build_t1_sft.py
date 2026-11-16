@@ -27,7 +27,8 @@ from ..oracle.hinted_teacher import HintedTeacher
 from ..oracle.t1_oracle import T1Oracle
 from ..train.common import load_tokenizer, write_jsonl
 
-GATES = ("invalid", "truncated_tokens", "forced_evictions", "kv_errors", "over_budget", "oracle_unsupported", "structural_exhausted")
+GATES = ("invalid", "truncated_tokens", "forced_evictions", "kv_errors", "over_budget", "oracle_unsupported", "structural_exhausted",
+         "unrealizable_kv_in", "unoffered_kv_calls")
 
 
 def t1_budget(env: WarehouseEnv, tok, ratio: float, overhead: int | None = None) -> int | None:
@@ -37,8 +38,14 @@ def t1_budget(env: WarehouseEnv, tok, ratio: float, overhead: int | None = None)
         return None
     pages = [len(tok.encode(p)) for p in env.ep.pages]
     if overhead is None:
-        per_page = len(tok.encode("\n<tool_response>\n[[PAGE 999 tool=next_events]]\n\n</tool_response>")) + 8
-        overhead = len(tok.encode(env.system)) * 2 + 900 + per_page * len(pages)
+        # per-page directory cost: the actual header (with its digest, docs/rl_design.md §2.1) + trailer
+        from ..envs.t1_warehouse import page_digest
+
+        use_digest = getattr(getattr(env, "cfg", None), "digest", False)
+        overhead = len(tok.encode(env.system)) * 2 + 900
+        for text in env.ep.pages:
+            label = "tool=next_events" + (f" | {page_digest(text)}" if use_digest else "")
+            overhead += len(tok.encode(f"\n<tool_response>\n[[PAGE 999 {label}]]\n\n</tool_response>")) + 8
     return int(overhead + ratio * sum(pages))
 
 
