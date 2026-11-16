@@ -1,0 +1,8962 @@
+[
+  {
+    "seed": 100000,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 9,
+    "kind": "explicit",
+    "gold": 6,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100000,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 13,
+    "kind": "explicit",
+    "gold": 7,
+    "predicted": 7,
+    "correct": true
+  },
+  {
+    "seed": 100000,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 17,
+    "kind": "delayed",
+    "gold": 8,
+    "predicted": 7,
+    "correct": false
+  },
+  {
+    "seed": 100000,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 21,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 7,
+    "correct": false
+  },
+  {
+    "seed": 100000,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 9,
+    "kind": "explicit",
+    "gold": 6,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100000,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 13,
+    "kind": "explicit",
+    "gold": 7,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100000,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 17,
+    "kind": "delayed",
+    "gold": 8,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100000,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 21,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100000,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 9,
+    "kind": "explicit",
+    "gold": 6,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100000,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 13,
+    "kind": "explicit",
+    "gold": 7,
+    "predicted": 7,
+    "correct": true
+  },
+  {
+    "seed": 100000,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 17,
+    "kind": "delayed",
+    "gold": 8,
+    "predicted": 7,
+    "correct": false
+  },
+  {
+    "seed": 100000,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 21,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 7,
+    "correct": false
+  },
+  {
+    "seed": 100000,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 9,
+    "kind": "explicit",
+    "gold": 6,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100000,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 13,
+    "kind": "explicit",
+    "gold": 7,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100000,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 17,
+    "kind": "delayed",
+    "gold": 8,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100000,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 21,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100000,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 9,
+    "kind": "explicit",
+    "gold": 6,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100000,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 13,
+    "kind": "explicit",
+    "gold": 7,
+    "predicted": 7,
+    "correct": true
+  },
+  {
+    "seed": 100000,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 17,
+    "kind": "delayed",
+    "gold": 8,
+    "predicted": 7,
+    "correct": false
+  },
+  {
+    "seed": 100000,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 21,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 7,
+    "correct": false
+  },
+  {
+    "seed": 100000,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 9,
+    "kind": "explicit",
+    "gold": 6,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100000,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 13,
+    "kind": "explicit",
+    "gold": 7,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100000,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 17,
+    "kind": "delayed",
+    "gold": 8,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100000,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 21,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100001,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 6,
+    "kind": "delayed",
+    "gold": 13,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100001,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 11,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100001,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 15,
+    "kind": "delayed",
+    "gold": 9,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100001,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 20,
+    "kind": "delayed",
+    "gold": 21,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100001,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 6,
+    "kind": "delayed",
+    "gold": 13,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100001,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 11,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100001,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 15,
+    "kind": "delayed",
+    "gold": 9,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100001,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 20,
+    "kind": "delayed",
+    "gold": 21,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100001,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 6,
+    "kind": "delayed",
+    "gold": 13,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100001,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 11,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100001,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 15,
+    "kind": "delayed",
+    "gold": 9,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100001,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 20,
+    "kind": "delayed",
+    "gold": 21,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100001,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 6,
+    "kind": "delayed",
+    "gold": 13,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100001,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 11,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100001,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 15,
+    "kind": "delayed",
+    "gold": 9,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100001,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 20,
+    "kind": "delayed",
+    "gold": 21,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100001,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 6,
+    "kind": "delayed",
+    "gold": 13,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100001,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 11,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100001,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 15,
+    "kind": "delayed",
+    "gold": 9,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100001,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 20,
+    "kind": "delayed",
+    "gold": 21,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100001,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 6,
+    "kind": "delayed",
+    "gold": 13,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100001,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 11,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100001,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 15,
+    "kind": "delayed",
+    "gold": 9,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100001,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 20,
+    "kind": "delayed",
+    "gold": 21,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100002,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 7,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 4,
+    "correct": false
+  },
+  {
+    "seed": 100002,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 12,
+    "kind": "explicit",
+    "gold": 6,
+    "predicted": 4,
+    "correct": false
+  },
+  {
+    "seed": 100002,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 16,
+    "kind": "explicit",
+    "gold": 5,
+    "predicted": 4,
+    "correct": false
+  },
+  {
+    "seed": 100002,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 21,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "seed": 100002,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 7,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 4,
+    "correct": false
+  },
+  {
+    "seed": 100002,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 12,
+    "kind": "explicit",
+    "gold": 6,
+    "predicted": 4,
+    "correct": false
+  },
+  {
+    "seed": 100002,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 16,
+    "kind": "explicit",
+    "gold": 5,
+    "predicted": 4,
+    "correct": false
+  },
+  {
+    "seed": 100002,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 21,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "seed": 100002,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 7,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 4,
+    "correct": false
+  },
+  {
+    "seed": 100002,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 12,
+    "kind": "explicit",
+    "gold": 6,
+    "predicted": 4,
+    "correct": false
+  },
+  {
+    "seed": 100002,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 16,
+    "kind": "explicit",
+    "gold": 5,
+    "predicted": 4,
+    "correct": false
+  },
+  {
+    "seed": 100002,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 21,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "seed": 100002,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 7,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 4,
+    "correct": false
+  },
+  {
+    "seed": 100002,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 12,
+    "kind": "explicit",
+    "gold": 6,
+    "predicted": 4,
+    "correct": false
+  },
+  {
+    "seed": 100002,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 16,
+    "kind": "explicit",
+    "gold": 5,
+    "predicted": 4,
+    "correct": false
+  },
+  {
+    "seed": 100002,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 21,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "seed": 100002,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 7,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 4,
+    "correct": false
+  },
+  {
+    "seed": 100002,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 12,
+    "kind": "explicit",
+    "gold": 6,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100002,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 16,
+    "kind": "explicit",
+    "gold": 5,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100002,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 21,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100002,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 7,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 4,
+    "correct": false
+  },
+  {
+    "seed": 100002,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 12,
+    "kind": "explicit",
+    "gold": 6,
+    "predicted": 4,
+    "correct": false
+  },
+  {
+    "seed": 100002,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 16,
+    "kind": "explicit",
+    "gold": 5,
+    "predicted": 4,
+    "correct": false
+  },
+  {
+    "seed": 100002,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 21,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "seed": 100003,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 7,
+    "kind": "explicit",
+    "gold": 7,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100003,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 10,
+    "kind": "delayed",
+    "gold": 10,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100003,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 15,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100003,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 19,
+    "kind": "delayed",
+    "gold": 7,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100003,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 7,
+    "kind": "explicit",
+    "gold": 7,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100003,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 10,
+    "kind": "delayed",
+    "gold": 10,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100003,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 15,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100003,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 19,
+    "kind": "delayed",
+    "gold": 7,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100003,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 7,
+    "kind": "explicit",
+    "gold": 7,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100003,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 10,
+    "kind": "delayed",
+    "gold": 10,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100003,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 15,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100003,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 19,
+    "kind": "delayed",
+    "gold": 7,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100003,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 7,
+    "kind": "explicit",
+    "gold": 7,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100003,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 10,
+    "kind": "delayed",
+    "gold": 10,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100003,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 15,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100003,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 19,
+    "kind": "delayed",
+    "gold": 7,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100003,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 7,
+    "kind": "explicit",
+    "gold": 7,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100003,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 10,
+    "kind": "delayed",
+    "gold": 10,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100003,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 15,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100003,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 19,
+    "kind": "delayed",
+    "gold": 7,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100003,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 7,
+    "kind": "explicit",
+    "gold": 7,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100003,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 10,
+    "kind": "delayed",
+    "gold": 10,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100003,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 15,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100003,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 19,
+    "kind": "delayed",
+    "gold": 7,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100004,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 9,
+    "kind": "implicit",
+    "gold": 8,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100004,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 14,
+    "kind": "delayed",
+    "gold": 15,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100004,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 19,
+    "kind": "implicit",
+    "gold": 4,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100004,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 22,
+    "kind": "delayed",
+    "gold": 14,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100004,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 9,
+    "kind": "implicit",
+    "gold": 8,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100004,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 14,
+    "kind": "delayed",
+    "gold": 15,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100004,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 19,
+    "kind": "implicit",
+    "gold": 4,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100004,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 22,
+    "kind": "delayed",
+    "gold": 14,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100004,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 9,
+    "kind": "implicit",
+    "gold": 8,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100004,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 14,
+    "kind": "delayed",
+    "gold": 15,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100004,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 19,
+    "kind": "implicit",
+    "gold": 4,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100004,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 22,
+    "kind": "delayed",
+    "gold": 14,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100004,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 9,
+    "kind": "implicit",
+    "gold": 8,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100004,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 14,
+    "kind": "delayed",
+    "gold": 15,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100004,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 19,
+    "kind": "implicit",
+    "gold": 4,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100004,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 22,
+    "kind": "delayed",
+    "gold": 14,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100004,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 9,
+    "kind": "implicit",
+    "gold": 8,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100004,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 14,
+    "kind": "delayed",
+    "gold": 15,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100004,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 19,
+    "kind": "implicit",
+    "gold": 4,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100004,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 22,
+    "kind": "delayed",
+    "gold": 14,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100004,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 9,
+    "kind": "implicit",
+    "gold": 8,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100004,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 14,
+    "kind": "delayed",
+    "gold": 15,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100004,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 19,
+    "kind": "implicit",
+    "gold": 4,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100004,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 22,
+    "kind": "delayed",
+    "gold": 14,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100005,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 7,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 8,
+    "correct": false
+  },
+  {
+    "seed": 100005,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 12,
+    "kind": "explicit",
+    "gold": 7,
+    "predicted": 12,
+    "correct": false
+  },
+  {
+    "seed": 100005,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 15,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": 13,
+    "correct": false
+  },
+  {
+    "seed": 100005,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 20,
+    "kind": "implicit",
+    "gold": 5,
+    "predicted": 14,
+    "correct": false
+  },
+  {
+    "seed": 100005,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 7,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 8,
+    "correct": false
+  },
+  {
+    "seed": 100005,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 12,
+    "kind": "explicit",
+    "gold": 7,
+    "predicted": 13,
+    "correct": false
+  },
+  {
+    "seed": 100005,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 15,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": 16,
+    "correct": false
+  },
+  {
+    "seed": 100005,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 20,
+    "kind": "implicit",
+    "gold": 5,
+    "predicted": 21,
+    "correct": false
+  },
+  {
+    "seed": 100005,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 7,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 8,
+    "correct": false
+  },
+  {
+    "seed": 100005,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 12,
+    "kind": "explicit",
+    "gold": 7,
+    "predicted": 11,
+    "correct": false
+  },
+  {
+    "seed": 100005,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 15,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": 13,
+    "correct": false
+  },
+  {
+    "seed": 100005,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 20,
+    "kind": "implicit",
+    "gold": 5,
+    "predicted": 18,
+    "correct": false
+  },
+  {
+    "seed": 100005,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 7,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100005,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 12,
+    "kind": "explicit",
+    "gold": 7,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100005,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 15,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100005,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 20,
+    "kind": "implicit",
+    "gold": 5,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100005,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 7,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 6,
+    "correct": false
+  },
+  {
+    "seed": 100005,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 12,
+    "kind": "explicit",
+    "gold": 7,
+    "predicted": 9,
+    "correct": false
+  },
+  {
+    "seed": 100005,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 15,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": 12,
+    "correct": true
+  },
+  {
+    "seed": 100005,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 20,
+    "kind": "implicit",
+    "gold": 5,
+    "predicted": 14,
+    "correct": false
+  },
+  {
+    "seed": 100005,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 7,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 6,
+    "correct": false
+  },
+  {
+    "seed": 100005,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 12,
+    "kind": "explicit",
+    "gold": 7,
+    "predicted": 7,
+    "correct": true
+  },
+  {
+    "seed": 100005,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 15,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": 8,
+    "correct": false
+  },
+  {
+    "seed": 100005,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 20,
+    "kind": "implicit",
+    "gold": 5,
+    "predicted": 9,
+    "correct": false
+  },
+  {
+    "seed": 100006,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 9,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "seed": 100006,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 14,
+    "kind": "delayed",
+    "gold": 10,
+    "predicted": 4,
+    "correct": false
+  },
+  {
+    "seed": 100006,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 19,
+    "kind": "explicit",
+    "gold": 6,
+    "predicted": 4,
+    "correct": false
+  },
+  {
+    "seed": 100006,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 24,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 4,
+    "correct": false
+  },
+  {
+    "seed": 100006,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 9,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100006,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 14,
+    "kind": "delayed",
+    "gold": 10,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100006,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 19,
+    "kind": "explicit",
+    "gold": 6,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100006,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 24,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100006,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 9,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100006,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 14,
+    "kind": "delayed",
+    "gold": 10,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100006,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 19,
+    "kind": "explicit",
+    "gold": 6,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100006,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 24,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100006,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 9,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "seed": 100006,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 14,
+    "kind": "delayed",
+    "gold": 10,
+    "predicted": 4,
+    "correct": false
+  },
+  {
+    "seed": 100006,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 19,
+    "kind": "explicit",
+    "gold": 6,
+    "predicted": 4,
+    "correct": false
+  },
+  {
+    "seed": 100006,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 24,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 4,
+    "correct": false
+  },
+  {
+    "seed": 100006,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 9,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "seed": 100006,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 14,
+    "kind": "delayed",
+    "gold": 10,
+    "predicted": 4,
+    "correct": false
+  },
+  {
+    "seed": 100006,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 19,
+    "kind": "explicit",
+    "gold": 6,
+    "predicted": 4,
+    "correct": false
+  },
+  {
+    "seed": 100006,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 24,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 4,
+    "correct": false
+  },
+  {
+    "seed": 100006,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 9,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "seed": 100006,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 14,
+    "kind": "delayed",
+    "gold": 10,
+    "predicted": 5,
+    "correct": false
+  },
+  {
+    "seed": 100006,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 19,
+    "kind": "explicit",
+    "gold": 6,
+    "predicted": 10,
+    "correct": false
+  },
+  {
+    "seed": 100006,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 24,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 6,
+    "correct": true
+  },
+  {
+    "seed": 100007,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 8,
+    "kind": "explicit",
+    "gold": 8,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100007,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 12,
+    "kind": "implicit",
+    "gold": 4,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100007,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 16,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100007,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 19,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100007,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 8,
+    "kind": "explicit",
+    "gold": 8,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100007,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 12,
+    "kind": "implicit",
+    "gold": 4,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100007,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 16,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100007,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 19,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100007,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 8,
+    "kind": "explicit",
+    "gold": 8,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100007,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 12,
+    "kind": "implicit",
+    "gold": 4,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100007,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 16,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100007,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 19,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100007,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 8,
+    "kind": "explicit",
+    "gold": 8,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100007,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 12,
+    "kind": "implicit",
+    "gold": 4,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100007,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 16,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100007,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 19,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100007,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 8,
+    "kind": "explicit",
+    "gold": 8,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100007,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 12,
+    "kind": "implicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "seed": 100007,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 16,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 4,
+    "correct": false
+  },
+  {
+    "seed": 100007,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 19,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "seed": 100007,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 8,
+    "kind": "explicit",
+    "gold": 8,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100007,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 12,
+    "kind": "implicit",
+    "gold": 4,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100007,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 16,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100007,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 19,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100008,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 5,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100008,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 11,
+    "kind": "explicit",
+    "gold": 5,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100008,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 17,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100008,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 20,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100008,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 5,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100008,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 11,
+    "kind": "explicit",
+    "gold": 5,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100008,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 17,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100008,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 20,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100008,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 5,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100008,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 11,
+    "kind": "explicit",
+    "gold": 5,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100008,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 17,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100008,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 20,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100008,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 5,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100008,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 11,
+    "kind": "explicit",
+    "gold": 5,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100008,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 17,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100008,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 20,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100008,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 5,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100008,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 11,
+    "kind": "explicit",
+    "gold": 5,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100008,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 17,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100008,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 20,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100008,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 5,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100008,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 11,
+    "kind": "explicit",
+    "gold": 5,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100008,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 17,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100008,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 20,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100009,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 7,
+    "kind": "explicit",
+    "gold": 6,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100009,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 13,
+    "kind": "delayed",
+    "gold": 16,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100009,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 17,
+    "kind": "delayed",
+    "gold": 18,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100009,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 21,
+    "kind": "implicit",
+    "gold": 7,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100009,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 7,
+    "kind": "explicit",
+    "gold": 6,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100009,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 13,
+    "kind": "delayed",
+    "gold": 16,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100009,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 17,
+    "kind": "delayed",
+    "gold": 18,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100009,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 21,
+    "kind": "implicit",
+    "gold": 7,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100009,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 7,
+    "kind": "explicit",
+    "gold": 6,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100009,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 13,
+    "kind": "delayed",
+    "gold": 16,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100009,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 17,
+    "kind": "delayed",
+    "gold": 18,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100009,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 21,
+    "kind": "implicit",
+    "gold": 7,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100009,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 7,
+    "kind": "explicit",
+    "gold": 6,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100009,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 13,
+    "kind": "delayed",
+    "gold": 16,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100009,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 17,
+    "kind": "delayed",
+    "gold": 18,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100009,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 21,
+    "kind": "implicit",
+    "gold": 7,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100009,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 7,
+    "kind": "explicit",
+    "gold": 6,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100009,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 13,
+    "kind": "delayed",
+    "gold": 16,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100009,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 17,
+    "kind": "delayed",
+    "gold": 18,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100009,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 21,
+    "kind": "implicit",
+    "gold": 7,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100009,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 7,
+    "kind": "explicit",
+    "gold": 6,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100009,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 13,
+    "kind": "delayed",
+    "gold": 16,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100009,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 17,
+    "kind": "delayed",
+    "gold": 18,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100009,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 21,
+    "kind": "implicit",
+    "gold": 7,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100010,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 5,
+    "kind": "delayed",
+    "gold": 19,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100010,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 11,
+    "kind": "explicit",
+    "gold": 5,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100010,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 15,
+    "kind": "explicit",
+    "gold": 7,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100010,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 20,
+    "kind": "implicit",
+    "gold": 5,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100010,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 5,
+    "kind": "delayed",
+    "gold": 19,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100010,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 11,
+    "kind": "explicit",
+    "gold": 5,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100010,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 15,
+    "kind": "explicit",
+    "gold": 7,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100010,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 20,
+    "kind": "implicit",
+    "gold": 5,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100010,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 5,
+    "kind": "delayed",
+    "gold": 19,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100010,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 11,
+    "kind": "explicit",
+    "gold": 5,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100010,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 15,
+    "kind": "explicit",
+    "gold": 7,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100010,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 20,
+    "kind": "implicit",
+    "gold": 5,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100010,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 5,
+    "kind": "delayed",
+    "gold": 19,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100010,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 11,
+    "kind": "explicit",
+    "gold": 5,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100010,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 15,
+    "kind": "explicit",
+    "gold": 7,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100010,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 20,
+    "kind": "implicit",
+    "gold": 5,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100010,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 5,
+    "kind": "delayed",
+    "gold": 19,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100010,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 11,
+    "kind": "explicit",
+    "gold": 5,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100010,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 15,
+    "kind": "explicit",
+    "gold": 7,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100010,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 20,
+    "kind": "implicit",
+    "gold": 5,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100010,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 5,
+    "kind": "delayed",
+    "gold": 19,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100010,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 11,
+    "kind": "explicit",
+    "gold": 5,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100010,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 15,
+    "kind": "explicit",
+    "gold": 7,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100010,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 20,
+    "kind": "implicit",
+    "gold": 5,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100011,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 6,
+    "kind": "implicit",
+    "gold": 7,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100011,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 9,
+    "kind": "delayed",
+    "gold": 9,
+    "predicted": 8,
+    "correct": false
+  },
+  {
+    "seed": 100011,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 13,
+    "kind": "delayed",
+    "gold": 9,
+    "predicted": 8,
+    "correct": false
+  },
+  {
+    "seed": 100011,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 17,
+    "kind": "delayed",
+    "gold": 15,
+    "predicted": 8,
+    "correct": false
+  },
+  {
+    "seed": 100011,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 6,
+    "kind": "implicit",
+    "gold": 7,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100011,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 9,
+    "kind": "delayed",
+    "gold": 9,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100011,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 13,
+    "kind": "delayed",
+    "gold": 9,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100011,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 17,
+    "kind": "delayed",
+    "gold": 15,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100011,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 6,
+    "kind": "implicit",
+    "gold": 7,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100011,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 9,
+    "kind": "delayed",
+    "gold": 9,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100011,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 13,
+    "kind": "delayed",
+    "gold": 9,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100011,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 17,
+    "kind": "delayed",
+    "gold": 15,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100011,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 6,
+    "kind": "implicit",
+    "gold": 7,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100011,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 9,
+    "kind": "delayed",
+    "gold": 9,
+    "predicted": 8,
+    "correct": false
+  },
+  {
+    "seed": 100011,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 13,
+    "kind": "delayed",
+    "gold": 9,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100011,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 17,
+    "kind": "delayed",
+    "gold": 15,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100011,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 6,
+    "kind": "implicit",
+    "gold": 7,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100011,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 9,
+    "kind": "delayed",
+    "gold": 9,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100011,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 13,
+    "kind": "delayed",
+    "gold": 9,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100011,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 17,
+    "kind": "delayed",
+    "gold": 15,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100011,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 6,
+    "kind": "implicit",
+    "gold": 7,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100011,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 9,
+    "kind": "delayed",
+    "gold": 9,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100011,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 13,
+    "kind": "delayed",
+    "gold": 9,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100011,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 17,
+    "kind": "delayed",
+    "gold": 15,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100012,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 8,
+    "kind": "implicit",
+    "gold": 5,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100012,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 13,
+    "kind": "implicit",
+    "gold": 7,
+    "predicted": 5,
+    "correct": false
+  },
+  {
+    "seed": 100012,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 18,
+    "kind": "explicit",
+    "gold": 7,
+    "predicted": 5,
+    "correct": false
+  },
+  {
+    "seed": 100012,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 22,
+    "kind": "implicit",
+    "gold": 8,
+    "predicted": 5,
+    "correct": false
+  },
+  {
+    "seed": 100012,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 8,
+    "kind": "implicit",
+    "gold": 5,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100012,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 13,
+    "kind": "implicit",
+    "gold": 7,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100012,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 18,
+    "kind": "explicit",
+    "gold": 7,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100012,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 22,
+    "kind": "implicit",
+    "gold": 8,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100012,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 8,
+    "kind": "implicit",
+    "gold": 5,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100012,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 13,
+    "kind": "implicit",
+    "gold": 7,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100012,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 18,
+    "kind": "explicit",
+    "gold": 7,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100012,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 22,
+    "kind": "implicit",
+    "gold": 8,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100012,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 8,
+    "kind": "implicit",
+    "gold": 5,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100012,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 13,
+    "kind": "implicit",
+    "gold": 7,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100012,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 18,
+    "kind": "explicit",
+    "gold": 7,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100012,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 22,
+    "kind": "implicit",
+    "gold": 8,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100012,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 8,
+    "kind": "implicit",
+    "gold": 5,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100012,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 13,
+    "kind": "implicit",
+    "gold": 7,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100012,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 18,
+    "kind": "explicit",
+    "gold": 7,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100012,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 22,
+    "kind": "implicit",
+    "gold": 8,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100012,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 8,
+    "kind": "implicit",
+    "gold": 5,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100012,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 13,
+    "kind": "implicit",
+    "gold": 7,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100012,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 18,
+    "kind": "explicit",
+    "gold": 7,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100012,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 22,
+    "kind": "implicit",
+    "gold": 8,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100013,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 9,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100013,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 14,
+    "kind": "explicit",
+    "gold": 5,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100013,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 18,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100013,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 23,
+    "kind": "implicit",
+    "gold": 8,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100013,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 9,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100013,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 14,
+    "kind": "explicit",
+    "gold": 5,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100013,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 18,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100013,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 23,
+    "kind": "implicit",
+    "gold": 8,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100013,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 9,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100013,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 14,
+    "kind": "explicit",
+    "gold": 5,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100013,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 18,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100013,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 23,
+    "kind": "implicit",
+    "gold": 8,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100013,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 9,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100013,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 14,
+    "kind": "explicit",
+    "gold": 5,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100013,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 18,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100013,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 23,
+    "kind": "implicit",
+    "gold": 8,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100013,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 9,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100013,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 14,
+    "kind": "explicit",
+    "gold": 5,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100013,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 18,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100013,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 23,
+    "kind": "implicit",
+    "gold": 8,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100013,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 9,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100013,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 14,
+    "kind": "explicit",
+    "gold": 5,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100013,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 18,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100013,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 23,
+    "kind": "implicit",
+    "gold": 8,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100014,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 7,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100014,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 10,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100014,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 14,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100014,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 20,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100014,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 7,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100014,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 10,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100014,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 14,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100014,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 20,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100014,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 7,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100014,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 10,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100014,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 14,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100014,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 20,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100014,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 7,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100014,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 10,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100014,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 14,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100014,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 20,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 2,
+    "correct": false
+  },
+  {
+    "seed": 100014,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 7,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100014,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 10,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100014,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 14,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100014,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 20,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100014,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 7,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100014,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 10,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100014,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 14,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100014,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 20,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100015,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 5,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100015,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 10,
+    "kind": "delayed",
+    "gold": 10,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100015,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 15,
+    "kind": "delayed",
+    "gold": 9,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100015,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 18,
+    "kind": "delayed",
+    "gold": 10,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100015,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 5,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100015,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 10,
+    "kind": "delayed",
+    "gold": 10,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100015,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 15,
+    "kind": "delayed",
+    "gold": 9,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100015,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 18,
+    "kind": "delayed",
+    "gold": 10,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100015,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 5,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100015,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 10,
+    "kind": "delayed",
+    "gold": 10,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100015,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 15,
+    "kind": "delayed",
+    "gold": 9,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100015,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 18,
+    "kind": "delayed",
+    "gold": 10,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100015,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 5,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100015,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 10,
+    "kind": "delayed",
+    "gold": 10,
+    "predicted": 3,
+    "correct": false
+  },
+  {
+    "seed": 100015,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 15,
+    "kind": "delayed",
+    "gold": 9,
+    "predicted": 8,
+    "correct": false
+  },
+  {
+    "seed": 100015,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 18,
+    "kind": "delayed",
+    "gold": 10,
+    "predicted": 5,
+    "correct": false
+  },
+  {
+    "seed": 100015,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 5,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100015,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 10,
+    "kind": "delayed",
+    "gold": 10,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100015,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 15,
+    "kind": "delayed",
+    "gold": 9,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100015,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 18,
+    "kind": "delayed",
+    "gold": 10,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100015,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 5,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100015,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 10,
+    "kind": "delayed",
+    "gold": 10,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100015,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 15,
+    "kind": "delayed",
+    "gold": 9,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100015,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 18,
+    "kind": "delayed",
+    "gold": 10,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100016,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 6,
+    "kind": "delayed",
+    "gold": 7,
+    "predicted": 6,
+    "correct": false
+  },
+  {
+    "seed": 100016,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 10,
+    "kind": "delayed",
+    "gold": 11,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100016,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 14,
+    "kind": "explicit",
+    "gold": 5,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100016,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 17,
+    "kind": "implicit",
+    "gold": 5,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100016,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 6,
+    "kind": "delayed",
+    "gold": 7,
+    "predicted": 6,
+    "correct": false
+  },
+  {
+    "seed": 100016,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 10,
+    "kind": "delayed",
+    "gold": 11,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100016,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 14,
+    "kind": "explicit",
+    "gold": 5,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100016,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 17,
+    "kind": "implicit",
+    "gold": 5,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100016,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 6,
+    "kind": "delayed",
+    "gold": 7,
+    "predicted": 6,
+    "correct": false
+  },
+  {
+    "seed": 100016,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 10,
+    "kind": "delayed",
+    "gold": 11,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100016,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 14,
+    "kind": "explicit",
+    "gold": 5,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100016,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 17,
+    "kind": "implicit",
+    "gold": 5,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100016,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 6,
+    "kind": "delayed",
+    "gold": 7,
+    "predicted": 6,
+    "correct": false
+  },
+  {
+    "seed": 100016,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 10,
+    "kind": "delayed",
+    "gold": 11,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100016,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 14,
+    "kind": "explicit",
+    "gold": 5,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100016,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 17,
+    "kind": "implicit",
+    "gold": 5,
+    "predicted": 2,
+    "correct": false
+  },
+  {
+    "seed": 100016,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 6,
+    "kind": "delayed",
+    "gold": 7,
+    "predicted": 6,
+    "correct": false
+  },
+  {
+    "seed": 100016,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 10,
+    "kind": "delayed",
+    "gold": 11,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100016,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 14,
+    "kind": "explicit",
+    "gold": 5,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100016,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 17,
+    "kind": "implicit",
+    "gold": 5,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100016,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 6,
+    "kind": "delayed",
+    "gold": 7,
+    "predicted": 6,
+    "correct": false
+  },
+  {
+    "seed": 100016,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 10,
+    "kind": "delayed",
+    "gold": 11,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100016,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 14,
+    "kind": "explicit",
+    "gold": 5,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100016,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 17,
+    "kind": "implicit",
+    "gold": 5,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100017,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 6,
+    "kind": "explicit",
+    "gold": 6,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100017,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 12,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100017,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 16,
+    "kind": "delayed",
+    "gold": 11,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100017,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 19,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100017,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 6,
+    "kind": "explicit",
+    "gold": 6,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100017,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 12,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100017,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 16,
+    "kind": "delayed",
+    "gold": 11,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100017,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 19,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100017,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 6,
+    "kind": "explicit",
+    "gold": 6,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100017,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 12,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100017,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 16,
+    "kind": "delayed",
+    "gold": 11,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100017,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 19,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100017,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 6,
+    "kind": "explicit",
+    "gold": 6,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100017,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 12,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100017,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 16,
+    "kind": "delayed",
+    "gold": 11,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100017,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 19,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100017,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 6,
+    "kind": "explicit",
+    "gold": 6,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100017,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 12,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100017,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 16,
+    "kind": "delayed",
+    "gold": 11,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100017,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 19,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100017,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 6,
+    "kind": "explicit",
+    "gold": 6,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100017,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 12,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100017,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 16,
+    "kind": "delayed",
+    "gold": 11,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100017,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 19,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100018,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 8,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "seed": 100018,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 12,
+    "kind": "delayed",
+    "gold": 15,
+    "predicted": 4,
+    "correct": false
+  },
+  {
+    "seed": 100018,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 16,
+    "kind": "explicit",
+    "gold": 7,
+    "predicted": 4,
+    "correct": false
+  },
+  {
+    "seed": 100018,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 20,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 4,
+    "correct": false
+  },
+  {
+    "seed": 100018,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 8,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100018,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 12,
+    "kind": "delayed",
+    "gold": 15,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100018,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 16,
+    "kind": "explicit",
+    "gold": 7,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100018,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 20,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100018,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 8,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100018,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 12,
+    "kind": "delayed",
+    "gold": 15,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100018,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 16,
+    "kind": "explicit",
+    "gold": 7,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100018,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 20,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100018,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 8,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100018,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 12,
+    "kind": "delayed",
+    "gold": 15,
+    "predicted": 6,
+    "correct": false
+  },
+  {
+    "seed": 100018,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 16,
+    "kind": "explicit",
+    "gold": 7,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100018,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 20,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100018,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 8,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100018,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 12,
+    "kind": "delayed",
+    "gold": 15,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100018,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 16,
+    "kind": "explicit",
+    "gold": 7,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100018,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 20,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100018,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 8,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100018,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 12,
+    "kind": "delayed",
+    "gold": 15,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100018,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 16,
+    "kind": "explicit",
+    "gold": 7,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100018,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 20,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100019,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 6,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100019,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 12,
+    "kind": "explicit",
+    "gold": 8,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100019,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 16,
+    "kind": "implicit",
+    "gold": 5,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100019,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 23,
+    "kind": "delayed",
+    "gold": 14,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100019,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 6,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100019,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 12,
+    "kind": "explicit",
+    "gold": 8,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100019,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 16,
+    "kind": "implicit",
+    "gold": 5,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100019,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 23,
+    "kind": "delayed",
+    "gold": 14,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100019,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 6,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 2,
+    "correct": false
+  },
+  {
+    "seed": 100019,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 12,
+    "kind": "explicit",
+    "gold": 8,
+    "predicted": 2,
+    "correct": false
+  },
+  {
+    "seed": 100019,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 16,
+    "kind": "implicit",
+    "gold": 5,
+    "predicted": 2,
+    "correct": false
+  },
+  {
+    "seed": 100019,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 23,
+    "kind": "delayed",
+    "gold": 14,
+    "predicted": 2,
+    "correct": false
+  },
+  {
+    "seed": 100019,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 6,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100019,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 12,
+    "kind": "explicit",
+    "gold": 8,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100019,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 16,
+    "kind": "implicit",
+    "gold": 5,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100019,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 23,
+    "kind": "delayed",
+    "gold": 14,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100019,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 6,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100019,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 12,
+    "kind": "explicit",
+    "gold": 8,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100019,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 16,
+    "kind": "implicit",
+    "gold": 5,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100019,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 23,
+    "kind": "delayed",
+    "gold": 14,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100019,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 6,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100019,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 12,
+    "kind": "explicit",
+    "gold": 8,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100019,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 16,
+    "kind": "implicit",
+    "gold": 5,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100019,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 23,
+    "kind": "delayed",
+    "gold": 14,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100020,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 6,
+    "kind": "explicit",
+    "gold": 6,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100020,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 10,
+    "kind": "delayed",
+    "gold": 14,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100020,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 13,
+    "kind": "implicit",
+    "gold": 7,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100020,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 15,
+    "kind": "delayed",
+    "gold": 11,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100020,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 6,
+    "kind": "explicit",
+    "gold": 6,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100020,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 10,
+    "kind": "delayed",
+    "gold": 14,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100020,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 13,
+    "kind": "implicit",
+    "gold": 7,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100020,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 15,
+    "kind": "delayed",
+    "gold": 11,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100020,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 6,
+    "kind": "explicit",
+    "gold": 6,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100020,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 10,
+    "kind": "delayed",
+    "gold": 14,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100020,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 13,
+    "kind": "implicit",
+    "gold": 7,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100020,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 15,
+    "kind": "delayed",
+    "gold": 11,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100020,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 6,
+    "kind": "explicit",
+    "gold": 6,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100020,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 10,
+    "kind": "delayed",
+    "gold": 14,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100020,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 13,
+    "kind": "implicit",
+    "gold": 7,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100020,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 15,
+    "kind": "delayed",
+    "gold": 11,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100020,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 6,
+    "kind": "explicit",
+    "gold": 6,
+    "predicted": 7,
+    "correct": false
+  },
+  {
+    "seed": 100020,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 10,
+    "kind": "delayed",
+    "gold": 14,
+    "predicted": 7,
+    "correct": false
+  },
+  {
+    "seed": 100020,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 13,
+    "kind": "implicit",
+    "gold": 7,
+    "predicted": 7,
+    "correct": true
+  },
+  {
+    "seed": 100020,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 15,
+    "kind": "delayed",
+    "gold": 11,
+    "predicted": 7,
+    "correct": false
+  },
+  {
+    "seed": 100020,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 6,
+    "kind": "explicit",
+    "gold": 6,
+    "predicted": 7,
+    "correct": false
+  },
+  {
+    "seed": 100020,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 10,
+    "kind": "delayed",
+    "gold": 14,
+    "predicted": 5,
+    "correct": false
+  },
+  {
+    "seed": 100020,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 13,
+    "kind": "implicit",
+    "gold": 7,
+    "predicted": 7,
+    "correct": true
+  },
+  {
+    "seed": 100020,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 15,
+    "kind": "delayed",
+    "gold": 11,
+    "predicted": 7,
+    "correct": false
+  },
+  {
+    "seed": 100021,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 7,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 7,
+    "correct": false
+  },
+  {
+    "seed": 100021,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 14,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "seed": 100021,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 19,
+    "kind": "implicit",
+    "gold": 8,
+    "predicted": 4,
+    "correct": false
+  },
+  {
+    "seed": 100021,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 23,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": 4,
+    "correct": false
+  },
+  {
+    "seed": 100021,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 7,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 7,
+    "correct": false
+  },
+  {
+    "seed": 100021,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 14,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "seed": 100021,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 19,
+    "kind": "implicit",
+    "gold": 8,
+    "predicted": 4,
+    "correct": false
+  },
+  {
+    "seed": 100021,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 23,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": 4,
+    "correct": false
+  },
+  {
+    "seed": 100021,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 7,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 7,
+    "correct": false
+  },
+  {
+    "seed": 100021,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 14,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 7,
+    "correct": false
+  },
+  {
+    "seed": 100021,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 19,
+    "kind": "implicit",
+    "gold": 8,
+    "predicted": 7,
+    "correct": false
+  },
+  {
+    "seed": 100021,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 23,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": 7,
+    "correct": false
+  },
+  {
+    "seed": 100021,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 7,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100021,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 14,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100021,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 19,
+    "kind": "implicit",
+    "gold": 8,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100021,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 23,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100021,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 7,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100021,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 14,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100021,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 19,
+    "kind": "implicit",
+    "gold": 8,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100021,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 23,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100021,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 7,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100021,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 14,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100021,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 19,
+    "kind": "implicit",
+    "gold": 8,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100021,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 23,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100022,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 5,
+    "kind": "explicit",
+    "gold": 7,
+    "predicted": 6,
+    "correct": false
+  },
+  {
+    "seed": 100022,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 9,
+    "kind": "implicit",
+    "gold": 7,
+    "predicted": 7,
+    "correct": true
+  },
+  {
+    "seed": 100022,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 15,
+    "kind": "implicit",
+    "gold": 5,
+    "predicted": 7,
+    "correct": false
+  },
+  {
+    "seed": 100022,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 18,
+    "kind": "delayed",
+    "gold": 13,
+    "predicted": 7,
+    "correct": false
+  },
+  {
+    "seed": 100022,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 5,
+    "kind": "explicit",
+    "gold": 7,
+    "predicted": 6,
+    "correct": false
+  },
+  {
+    "seed": 100022,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 9,
+    "kind": "implicit",
+    "gold": 7,
+    "predicted": 8,
+    "correct": false
+  },
+  {
+    "seed": 100022,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 15,
+    "kind": "implicit",
+    "gold": 5,
+    "predicted": 11,
+    "correct": false
+  },
+  {
+    "seed": 100022,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 18,
+    "kind": "delayed",
+    "gold": 13,
+    "predicted": 13,
+    "correct": true
+  },
+  {
+    "seed": 100022,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 5,
+    "kind": "explicit",
+    "gold": 7,
+    "predicted": 6,
+    "correct": false
+  },
+  {
+    "seed": 100022,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 9,
+    "kind": "implicit",
+    "gold": 7,
+    "predicted": 8,
+    "correct": false
+  },
+  {
+    "seed": 100022,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 15,
+    "kind": "implicit",
+    "gold": 5,
+    "predicted": 9,
+    "correct": false
+  },
+  {
+    "seed": 100022,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 18,
+    "kind": "delayed",
+    "gold": 13,
+    "predicted": 12,
+    "correct": false
+  },
+  {
+    "seed": 100022,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 5,
+    "kind": "explicit",
+    "gold": 7,
+    "predicted": 5,
+    "correct": false
+  },
+  {
+    "seed": 100022,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 9,
+    "kind": "implicit",
+    "gold": 7,
+    "predicted": 7,
+    "correct": true
+  },
+  {
+    "seed": 100022,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 15,
+    "kind": "implicit",
+    "gold": 5,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100022,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 18,
+    "kind": "delayed",
+    "gold": 13,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100022,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 5,
+    "kind": "explicit",
+    "gold": 7,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100022,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 9,
+    "kind": "implicit",
+    "gold": 7,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100022,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 15,
+    "kind": "implicit",
+    "gold": 5,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100022,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 18,
+    "kind": "delayed",
+    "gold": 13,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100022,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 5,
+    "kind": "explicit",
+    "gold": 7,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100022,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 9,
+    "kind": "implicit",
+    "gold": 7,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100022,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 15,
+    "kind": "implicit",
+    "gold": 5,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100022,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 18,
+    "kind": "delayed",
+    "gold": 13,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100023,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 7,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100023,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 13,
+    "kind": "delayed",
+    "gold": 14,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100023,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 17,
+    "kind": "implicit",
+    "gold": 7,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100023,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 20,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100023,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 7,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100023,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 13,
+    "kind": "delayed",
+    "gold": 14,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100023,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 17,
+    "kind": "implicit",
+    "gold": 7,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100023,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 20,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100023,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 7,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100023,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 13,
+    "kind": "delayed",
+    "gold": 14,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100023,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 17,
+    "kind": "implicit",
+    "gold": 7,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100023,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 20,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100023,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 7,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100023,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 13,
+    "kind": "delayed",
+    "gold": 14,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100023,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 17,
+    "kind": "implicit",
+    "gold": 7,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100023,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 20,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100023,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 7,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100023,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 13,
+    "kind": "delayed",
+    "gold": 14,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100023,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 17,
+    "kind": "implicit",
+    "gold": 7,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100023,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 20,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100023,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 7,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100023,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 13,
+    "kind": "delayed",
+    "gold": 14,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100023,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 17,
+    "kind": "implicit",
+    "gold": 7,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100023,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 20,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100024,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 8,
+    "kind": "delayed",
+    "gold": 9,
+    "predicted": 8,
+    "correct": false
+  },
+  {
+    "seed": 100024,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 11,
+    "kind": "implicit",
+    "gold": 4,
+    "predicted": 5,
+    "correct": false
+  },
+  {
+    "seed": 100024,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 15,
+    "kind": "delayed",
+    "gold": 16,
+    "predicted": 4,
+    "correct": false
+  },
+  {
+    "seed": 100024,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 19,
+    "kind": "delayed",
+    "gold": 18,
+    "predicted": 6,
+    "correct": false
+  },
+  {
+    "seed": 100024,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 8,
+    "kind": "delayed",
+    "gold": 9,
+    "predicted": 8,
+    "correct": false
+  },
+  {
+    "seed": 100024,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 11,
+    "kind": "implicit",
+    "gold": 4,
+    "predicted": 5,
+    "correct": false
+  },
+  {
+    "seed": 100024,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 15,
+    "kind": "delayed",
+    "gold": 16,
+    "predicted": 14,
+    "correct": false
+  },
+  {
+    "seed": 100024,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 19,
+    "kind": "delayed",
+    "gold": 18,
+    "predicted": 17,
+    "correct": false
+  },
+  {
+    "seed": 100024,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 8,
+    "kind": "delayed",
+    "gold": 9,
+    "predicted": 8,
+    "correct": false
+  },
+  {
+    "seed": 100024,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 11,
+    "kind": "implicit",
+    "gold": 4,
+    "predicted": 5,
+    "correct": false
+  },
+  {
+    "seed": 100024,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 15,
+    "kind": "delayed",
+    "gold": 16,
+    "predicted": 14,
+    "correct": false
+  },
+  {
+    "seed": 100024,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 19,
+    "kind": "delayed",
+    "gold": 18,
+    "predicted": 17,
+    "correct": false
+  },
+  {
+    "seed": 100024,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 8,
+    "kind": "delayed",
+    "gold": 9,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100024,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 11,
+    "kind": "implicit",
+    "gold": 4,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100024,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 15,
+    "kind": "delayed",
+    "gold": 16,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100024,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 19,
+    "kind": "delayed",
+    "gold": 18,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100024,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 8,
+    "kind": "delayed",
+    "gold": 9,
+    "predicted": 8,
+    "correct": false
+  },
+  {
+    "seed": 100024,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 11,
+    "kind": "implicit",
+    "gold": 4,
+    "predicted": 5,
+    "correct": false
+  },
+  {
+    "seed": 100024,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 15,
+    "kind": "delayed",
+    "gold": 16,
+    "predicted": 7,
+    "correct": false
+  },
+  {
+    "seed": 100024,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 19,
+    "kind": "delayed",
+    "gold": 18,
+    "predicted": 4,
+    "correct": false
+  },
+  {
+    "seed": 100024,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 8,
+    "kind": "delayed",
+    "gold": 9,
+    "predicted": 8,
+    "correct": false
+  },
+  {
+    "seed": 100024,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 11,
+    "kind": "implicit",
+    "gold": 4,
+    "predicted": 5,
+    "correct": false
+  },
+  {
+    "seed": 100024,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 15,
+    "kind": "delayed",
+    "gold": 16,
+    "predicted": 7,
+    "correct": false
+  },
+  {
+    "seed": 100024,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 19,
+    "kind": "delayed",
+    "gold": 18,
+    "predicted": 17,
+    "correct": false
+  },
+  {
+    "seed": 100025,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 6,
+    "kind": "delayed",
+    "gold": 9,
+    "predicted": 8,
+    "correct": false
+  },
+  {
+    "seed": 100025,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 11,
+    "kind": "delayed",
+    "gold": 25,
+    "predicted": 13,
+    "correct": false
+  },
+  {
+    "seed": 100025,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 15,
+    "kind": "explicit",
+    "gold": 5,
+    "predicted": 17,
+    "correct": false
+  },
+  {
+    "seed": 100025,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 20,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 22,
+    "correct": false
+  },
+  {
+    "seed": 100025,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 6,
+    "kind": "delayed",
+    "gold": 9,
+    "predicted": 8,
+    "correct": false
+  },
+  {
+    "seed": 100025,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 11,
+    "kind": "delayed",
+    "gold": 25,
+    "predicted": 13,
+    "correct": false
+  },
+  {
+    "seed": 100025,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 15,
+    "kind": "explicit",
+    "gold": 5,
+    "predicted": 17,
+    "correct": false
+  },
+  {
+    "seed": 100025,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 20,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 22,
+    "correct": false
+  },
+  {
+    "seed": 100025,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 6,
+    "kind": "delayed",
+    "gold": 9,
+    "predicted": 8,
+    "correct": false
+  },
+  {
+    "seed": 100025,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 11,
+    "kind": "delayed",
+    "gold": 25,
+    "predicted": 13,
+    "correct": false
+  },
+  {
+    "seed": 100025,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 15,
+    "kind": "explicit",
+    "gold": 5,
+    "predicted": 17,
+    "correct": false
+  },
+  {
+    "seed": 100025,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 20,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 22,
+    "correct": false
+  },
+  {
+    "seed": 100025,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 6,
+    "kind": "delayed",
+    "gold": 9,
+    "predicted": 6,
+    "correct": false
+  },
+  {
+    "seed": 100025,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 11,
+    "kind": "delayed",
+    "gold": 25,
+    "predicted": 8,
+    "correct": false
+  },
+  {
+    "seed": 100025,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 15,
+    "kind": "explicit",
+    "gold": 5,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100025,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 20,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 2,
+    "correct": false
+  },
+  {
+    "seed": 100025,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 6,
+    "kind": "delayed",
+    "gold": 9,
+    "predicted": 6,
+    "correct": false
+  },
+  {
+    "seed": 100025,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 11,
+    "kind": "delayed",
+    "gold": 25,
+    "predicted": 8,
+    "correct": false
+  },
+  {
+    "seed": 100025,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 15,
+    "kind": "explicit",
+    "gold": 5,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100025,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 20,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 2,
+    "correct": false
+  },
+  {
+    "seed": 100025,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 6,
+    "kind": "delayed",
+    "gold": 9,
+    "predicted": 2,
+    "correct": false
+  },
+  {
+    "seed": 100025,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 11,
+    "kind": "delayed",
+    "gold": 25,
+    "predicted": 12,
+    "correct": false
+  },
+  {
+    "seed": 100025,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 15,
+    "kind": "explicit",
+    "gold": 5,
+    "predicted": 15,
+    "correct": false
+  },
+  {
+    "seed": 100025,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 20,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 16,
+    "correct": false
+  },
+  {
+    "seed": 100026,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 5,
+    "kind": "explicit",
+    "gold": 8,
+    "predicted": 10,
+    "correct": false
+  },
+  {
+    "seed": 100026,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 10,
+    "kind": "implicit",
+    "gold": 8,
+    "predicted": 15,
+    "correct": false
+  },
+  {
+    "seed": 100026,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 15,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 20,
+    "correct": false
+  },
+  {
+    "seed": 100026,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 18,
+    "kind": "implicit",
+    "gold": 4,
+    "predicted": 23,
+    "correct": false
+  },
+  {
+    "seed": 100026,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 5,
+    "kind": "explicit",
+    "gold": 8,
+    "predicted": 10,
+    "correct": false
+  },
+  {
+    "seed": 100026,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 10,
+    "kind": "implicit",
+    "gold": 8,
+    "predicted": 15,
+    "correct": false
+  },
+  {
+    "seed": 100026,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 15,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 20,
+    "correct": false
+  },
+  {
+    "seed": 100026,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 18,
+    "kind": "implicit",
+    "gold": 4,
+    "predicted": 23,
+    "correct": false
+  },
+  {
+    "seed": 100026,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 5,
+    "kind": "explicit",
+    "gold": 8,
+    "predicted": 10,
+    "correct": false
+  },
+  {
+    "seed": 100026,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 10,
+    "kind": "implicit",
+    "gold": 8,
+    "predicted": 15,
+    "correct": false
+  },
+  {
+    "seed": 100026,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 15,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 20,
+    "correct": false
+  },
+  {
+    "seed": 100026,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 18,
+    "kind": "implicit",
+    "gold": 4,
+    "predicted": 23,
+    "correct": false
+  },
+  {
+    "seed": 100026,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 5,
+    "kind": "explicit",
+    "gold": 8,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100026,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 10,
+    "kind": "implicit",
+    "gold": 8,
+    "predicted": 8,
+    "correct": true
+  },
+  {
+    "seed": 100026,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 15,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 8,
+    "correct": false
+  },
+  {
+    "seed": 100026,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 18,
+    "kind": "implicit",
+    "gold": 4,
+    "predicted": 8,
+    "correct": false
+  },
+  {
+    "seed": 100026,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 5,
+    "kind": "explicit",
+    "gold": 8,
+    "predicted": 9,
+    "correct": false
+  },
+  {
+    "seed": 100026,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 10,
+    "kind": "implicit",
+    "gold": 8,
+    "predicted": 8,
+    "correct": true
+  },
+  {
+    "seed": 100026,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 15,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "seed": 100026,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 18,
+    "kind": "implicit",
+    "gold": 4,
+    "predicted": 4,
+    "correct": true
+  },
+  {
+    "seed": 100026,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 5,
+    "kind": "explicit",
+    "gold": 8,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100026,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 10,
+    "kind": "implicit",
+    "gold": 8,
+    "predicted": 8,
+    "correct": true
+  },
+  {
+    "seed": 100026,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 15,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 8,
+    "correct": false
+  },
+  {
+    "seed": 100026,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 18,
+    "kind": "implicit",
+    "gold": 4,
+    "predicted": 8,
+    "correct": false
+  },
+  {
+    "seed": 100027,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 6,
+    "kind": "implicit",
+    "gold": 8,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100027,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 12,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100027,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 17,
+    "kind": "explicit",
+    "gold": 8,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100027,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 20,
+    "kind": "delayed",
+    "gold": 8,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100027,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 6,
+    "kind": "implicit",
+    "gold": 8,
+    "predicted": 5,
+    "correct": false
+  },
+  {
+    "seed": 100027,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 12,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 10,
+    "correct": false
+  },
+  {
+    "seed": 100027,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 17,
+    "kind": "explicit",
+    "gold": 8,
+    "predicted": 11,
+    "correct": false
+  },
+  {
+    "seed": 100027,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 20,
+    "kind": "delayed",
+    "gold": 8,
+    "predicted": 12,
+    "correct": false
+  },
+  {
+    "seed": 100027,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 6,
+    "kind": "implicit",
+    "gold": 8,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100027,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 12,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100027,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 17,
+    "kind": "explicit",
+    "gold": 8,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100027,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 20,
+    "kind": "delayed",
+    "gold": 8,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100027,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 6,
+    "kind": "implicit",
+    "gold": 8,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100027,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 12,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100027,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 17,
+    "kind": "explicit",
+    "gold": 8,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100027,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 20,
+    "kind": "delayed",
+    "gold": 8,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100027,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 6,
+    "kind": "implicit",
+    "gold": 8,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100027,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 12,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100027,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 17,
+    "kind": "explicit",
+    "gold": 8,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100027,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 20,
+    "kind": "delayed",
+    "gold": 8,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100027,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 6,
+    "kind": "implicit",
+    "gold": 8,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100027,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 12,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100027,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 17,
+    "kind": "explicit",
+    "gold": 8,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100027,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 20,
+    "kind": "delayed",
+    "gold": 8,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100028,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 6,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100028,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 10,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100028,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 14,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100028,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 19,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100028,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 6,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100028,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 10,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100028,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 14,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100028,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 19,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100028,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 6,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100028,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 10,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100028,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 14,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100028,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 19,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100028,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 6,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 3,
+    "correct": true
+  },
+  {
+    "seed": 100028,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 10,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 8,
+    "correct": false
+  },
+  {
+    "seed": 100028,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 14,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100028,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 19,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": 12,
+    "correct": true
+  },
+  {
+    "seed": 100028,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 6,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100028,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 10,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100028,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 14,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100028,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 19,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": 5,
+    "correct": false
+  },
+  {
+    "seed": 100028,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 6,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100028,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 10,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100028,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 14,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100028,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 19,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100029,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 7,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100029,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 12,
+    "kind": "delayed",
+    "gold": 8,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100029,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 17,
+    "kind": "delayed",
+    "gold": 14,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100029,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 21,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100029,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 7,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100029,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 12,
+    "kind": "delayed",
+    "gold": 8,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100029,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 17,
+    "kind": "delayed",
+    "gold": 14,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100029,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 21,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100029,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 7,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100029,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 12,
+    "kind": "delayed",
+    "gold": 8,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100029,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 17,
+    "kind": "delayed",
+    "gold": 14,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100029,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 21,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100029,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 7,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100029,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 12,
+    "kind": "delayed",
+    "gold": 8,
+    "predicted": 5,
+    "correct": false
+  },
+  {
+    "seed": 100029,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 17,
+    "kind": "delayed",
+    "gold": 14,
+    "predicted": 14,
+    "correct": true
+  },
+  {
+    "seed": 100029,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 21,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 13,
+    "correct": false
+  },
+  {
+    "seed": 100029,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 7,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100029,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 12,
+    "kind": "delayed",
+    "gold": 8,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100029,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 17,
+    "kind": "delayed",
+    "gold": 14,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100029,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 21,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100029,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 7,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100029,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 12,
+    "kind": "delayed",
+    "gold": 8,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100029,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 17,
+    "kind": "delayed",
+    "gold": 14,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100029,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 21,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100030,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 4,
+    "kind": "implicit",
+    "gold": 8,
+    "predicted": 10,
+    "correct": false
+  },
+  {
+    "seed": 100030,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 7,
+    "kind": "delayed",
+    "gold": 8,
+    "predicted": 13,
+    "correct": false
+  },
+  {
+    "seed": 100030,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 9,
+    "kind": "delayed",
+    "gold": 9,
+    "predicted": 14,
+    "correct": false
+  },
+  {
+    "seed": 100030,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 11,
+    "kind": "delayed",
+    "gold": 14,
+    "predicted": 15,
+    "correct": false
+  },
+  {
+    "seed": 100030,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 4,
+    "kind": "implicit",
+    "gold": 8,
+    "predicted": 10,
+    "correct": false
+  },
+  {
+    "seed": 100030,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 7,
+    "kind": "delayed",
+    "gold": 8,
+    "predicted": 13,
+    "correct": false
+  },
+  {
+    "seed": 100030,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 9,
+    "kind": "delayed",
+    "gold": 9,
+    "predicted": 14,
+    "correct": false
+  },
+  {
+    "seed": 100030,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 11,
+    "kind": "delayed",
+    "gold": 14,
+    "predicted": 15,
+    "correct": false
+  },
+  {
+    "seed": 100030,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 4,
+    "kind": "implicit",
+    "gold": 8,
+    "predicted": 10,
+    "correct": false
+  },
+  {
+    "seed": 100030,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 7,
+    "kind": "delayed",
+    "gold": 8,
+    "predicted": 13,
+    "correct": false
+  },
+  {
+    "seed": 100030,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 9,
+    "kind": "delayed",
+    "gold": 9,
+    "predicted": 14,
+    "correct": false
+  },
+  {
+    "seed": 100030,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 11,
+    "kind": "delayed",
+    "gold": 14,
+    "predicted": 15,
+    "correct": false
+  },
+  {
+    "seed": 100030,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 4,
+    "kind": "implicit",
+    "gold": 8,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100030,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 7,
+    "kind": "delayed",
+    "gold": 8,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100030,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 9,
+    "kind": "delayed",
+    "gold": 9,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100030,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 11,
+    "kind": "delayed",
+    "gold": 14,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100030,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 4,
+    "kind": "implicit",
+    "gold": 8,
+    "predicted": 10,
+    "correct": false
+  },
+  {
+    "seed": 100030,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 7,
+    "kind": "delayed",
+    "gold": 8,
+    "predicted": 13,
+    "correct": false
+  },
+  {
+    "seed": 100030,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 9,
+    "kind": "delayed",
+    "gold": 9,
+    "predicted": 14,
+    "correct": false
+  },
+  {
+    "seed": 100030,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 11,
+    "kind": "delayed",
+    "gold": 14,
+    "predicted": 15,
+    "correct": false
+  },
+  {
+    "seed": 100030,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 4,
+    "kind": "implicit",
+    "gold": 8,
+    "predicted": 10,
+    "correct": false
+  },
+  {
+    "seed": 100030,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 7,
+    "kind": "delayed",
+    "gold": 8,
+    "predicted": 13,
+    "correct": false
+  },
+  {
+    "seed": 100030,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 9,
+    "kind": "delayed",
+    "gold": 9,
+    "predicted": 14,
+    "correct": false
+  },
+  {
+    "seed": 100030,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 11,
+    "kind": "delayed",
+    "gold": 14,
+    "predicted": 15,
+    "correct": false
+  },
+  {
+    "seed": 100031,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 7,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100031,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 12,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100031,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 18,
+    "kind": "delayed",
+    "gold": 6,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100031,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 21,
+    "kind": "delayed",
+    "gold": 11,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100031,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 7,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100031,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 12,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100031,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 18,
+    "kind": "delayed",
+    "gold": 6,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100031,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 21,
+    "kind": "delayed",
+    "gold": 11,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100031,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 7,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100031,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 12,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100031,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 18,
+    "kind": "delayed",
+    "gold": 6,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100031,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 21,
+    "kind": "delayed",
+    "gold": 11,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100031,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 7,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100031,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 12,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100031,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 18,
+    "kind": "delayed",
+    "gold": 6,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100031,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 21,
+    "kind": "delayed",
+    "gold": 11,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100031,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 7,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100031,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 12,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100031,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 18,
+    "kind": "delayed",
+    "gold": 6,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100031,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 21,
+    "kind": "delayed",
+    "gold": 11,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100031,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 7,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100031,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 12,
+    "kind": "implicit",
+    "gold": 3,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100031,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 18,
+    "kind": "delayed",
+    "gold": 6,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100031,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 21,
+    "kind": "delayed",
+    "gold": 11,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100032,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 5,
+    "kind": "delayed",
+    "gold": 14,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100032,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 9,
+    "kind": "delayed",
+    "gold": 13,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100032,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 15,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100032,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 18,
+    "kind": "delayed",
+    "gold": 13,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100032,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 5,
+    "kind": "delayed",
+    "gold": 14,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100032,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 9,
+    "kind": "delayed",
+    "gold": 13,
+    "predicted": 21,
+    "correct": false
+  },
+  {
+    "seed": 100032,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 15,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 22,
+    "correct": false
+  },
+  {
+    "seed": 100032,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 18,
+    "kind": "delayed",
+    "gold": 13,
+    "predicted": 13,
+    "correct": true
+  },
+  {
+    "seed": 100032,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 5,
+    "kind": "delayed",
+    "gold": 14,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100032,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 9,
+    "kind": "delayed",
+    "gold": 13,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100032,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 15,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100032,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 18,
+    "kind": "delayed",
+    "gold": 13,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100032,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 5,
+    "kind": "delayed",
+    "gold": 14,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100032,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 9,
+    "kind": "delayed",
+    "gold": 13,
+    "predicted": 21,
+    "correct": false
+  },
+  {
+    "seed": 100032,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 15,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 22,
+    "correct": false
+  },
+  {
+    "seed": 100032,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 18,
+    "kind": "delayed",
+    "gold": 13,
+    "predicted": 13,
+    "correct": true
+  },
+  {
+    "seed": 100032,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 5,
+    "kind": "delayed",
+    "gold": 14,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100032,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 9,
+    "kind": "delayed",
+    "gold": 13,
+    "predicted": 21,
+    "correct": false
+  },
+  {
+    "seed": 100032,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 15,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 22,
+    "correct": false
+  },
+  {
+    "seed": 100032,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 18,
+    "kind": "delayed",
+    "gold": 13,
+    "predicted": 13,
+    "correct": true
+  },
+  {
+    "seed": 100032,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 5,
+    "kind": "delayed",
+    "gold": 14,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100032,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 9,
+    "kind": "delayed",
+    "gold": 13,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100032,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 15,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100032,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 18,
+    "kind": "delayed",
+    "gold": 13,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100035,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 5,
+    "kind": "explicit",
+    "gold": 6,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100035,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 8,
+    "kind": "delayed",
+    "gold": 7,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100035,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 11,
+    "kind": "delayed",
+    "gold": 10,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100035,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 14,
+    "kind": "delayed",
+    "gold": 11,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100035,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 5,
+    "kind": "explicit",
+    "gold": 6,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100035,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 8,
+    "kind": "delayed",
+    "gold": 7,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100035,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 11,
+    "kind": "delayed",
+    "gold": 10,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100035,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 14,
+    "kind": "delayed",
+    "gold": 11,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100035,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 5,
+    "kind": "explicit",
+    "gold": 6,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100035,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 8,
+    "kind": "delayed",
+    "gold": 7,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100035,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 11,
+    "kind": "delayed",
+    "gold": 10,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100035,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 14,
+    "kind": "delayed",
+    "gold": 11,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100035,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 5,
+    "kind": "explicit",
+    "gold": 6,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100035,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 8,
+    "kind": "delayed",
+    "gold": 7,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100035,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 11,
+    "kind": "delayed",
+    "gold": 10,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100035,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 14,
+    "kind": "delayed",
+    "gold": 11,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100035,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 5,
+    "kind": "explicit",
+    "gold": 6,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100035,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 8,
+    "kind": "delayed",
+    "gold": 7,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100035,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 11,
+    "kind": "delayed",
+    "gold": 10,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100035,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 14,
+    "kind": "delayed",
+    "gold": 11,
+    "predicted": null,
+    "correct": false
+  },
+  {
+    "seed": 100035,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 5,
+    "kind": "explicit",
+    "gold": 6,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100035,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 8,
+    "kind": "delayed",
+    "gold": 7,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100035,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 11,
+    "kind": "delayed",
+    "gold": 10,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100035,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 14,
+    "kind": "delayed",
+    "gold": 11,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100036,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 9,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100036,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 15,
+    "kind": "explicit",
+    "gold": 7,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100036,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 17,
+    "kind": "delayed",
+    "gold": 4,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100036,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 23,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100036,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 9,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 2,
+    "correct": false
+  },
+  {
+    "seed": 100036,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 15,
+    "kind": "explicit",
+    "gold": 7,
+    "predicted": 2,
+    "correct": false
+  },
+  {
+    "seed": 100036,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 17,
+    "kind": "delayed",
+    "gold": 4,
+    "predicted": 2,
+    "correct": false
+  },
+  {
+    "seed": 100036,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 23,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": 2,
+    "correct": false
+  },
+  {
+    "seed": 100036,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 9,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 2,
+    "correct": false
+  },
+  {
+    "seed": 100036,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 15,
+    "kind": "explicit",
+    "gold": 7,
+    "predicted": 2,
+    "correct": false
+  },
+  {
+    "seed": 100036,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 17,
+    "kind": "delayed",
+    "gold": 4,
+    "predicted": 2,
+    "correct": false
+  },
+  {
+    "seed": 100036,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 23,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": 2,
+    "correct": false
+  },
+  {
+    "seed": 100036,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 9,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100036,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 15,
+    "kind": "explicit",
+    "gold": 7,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100036,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 17,
+    "kind": "delayed",
+    "gold": 4,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100036,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 23,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100036,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 9,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 2,
+    "correct": false
+  },
+  {
+    "seed": 100036,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 15,
+    "kind": "explicit",
+    "gold": 7,
+    "predicted": 2,
+    "correct": false
+  },
+  {
+    "seed": 100036,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 17,
+    "kind": "delayed",
+    "gold": 4,
+    "predicted": 2,
+    "correct": false
+  },
+  {
+    "seed": 100036,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 23,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": 2,
+    "correct": false
+  },
+  {
+    "seed": 100036,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 9,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 2,
+    "correct": false
+  },
+  {
+    "seed": 100036,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 15,
+    "kind": "explicit",
+    "gold": 7,
+    "predicted": 2,
+    "correct": false
+  },
+  {
+    "seed": 100036,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 17,
+    "kind": "delayed",
+    "gold": 4,
+    "predicted": 2,
+    "correct": false
+  },
+  {
+    "seed": 100036,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 23,
+    "kind": "delayed",
+    "gold": 12,
+    "predicted": 2,
+    "correct": false
+  },
+  {
+    "seed": 100037,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 9,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100037,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 14,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100037,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 19,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100037,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 23,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100037,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 9,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100037,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 14,
+    "kind": "explicit",
+    "gold": 4,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100037,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 19,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100037,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 23,
+    "kind": "explicit",
+    "gold": 3,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100040,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 6,
+    "kind": "explicit",
+    "gold": 5,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100040,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 11,
+    "kind": "implicit",
+    "gold": 8,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100040,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 15,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100040,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 20,
+    "kind": "explicit",
+    "gold": 6,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100040,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 6,
+    "kind": "explicit",
+    "gold": 5,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100040,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 11,
+    "kind": "implicit",
+    "gold": 8,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100040,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 15,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100040,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 20,
+    "kind": "explicit",
+    "gold": 6,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100040,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 6,
+    "kind": "explicit",
+    "gold": 5,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100040,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 11,
+    "kind": "implicit",
+    "gold": 8,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100040,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 15,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100040,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 20,
+    "kind": "explicit",
+    "gold": 6,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100040,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 6,
+    "kind": "explicit",
+    "gold": 5,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100040,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 11,
+    "kind": "implicit",
+    "gold": 8,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100040,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 15,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100040,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 20,
+    "kind": "explicit",
+    "gold": 6,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100040,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 6,
+    "kind": "explicit",
+    "gold": 5,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100040,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 11,
+    "kind": "implicit",
+    "gold": 8,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100040,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 15,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100040,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 20,
+    "kind": "explicit",
+    "gold": 6,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100040,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 6,
+    "kind": "explicit",
+    "gold": 5,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100040,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 11,
+    "kind": "implicit",
+    "gold": 8,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100040,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 15,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100040,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 20,
+    "kind": "explicit",
+    "gold": 6,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100041,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 4,
+    "kind": "delayed",
+    "gold": 6,
+    "predicted": 6,
+    "correct": true
+  },
+  {
+    "seed": 100041,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 7,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 6,
+    "correct": true
+  },
+  {
+    "seed": 100041,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 12,
+    "kind": "implicit",
+    "gold": 7,
+    "predicted": 6,
+    "correct": false
+  },
+  {
+    "seed": 100041,
+    "method": "recent",
+    "ratio": 0.25,
+    "page": 15,
+    "kind": "delayed",
+    "gold": 9,
+    "predicted": 7,
+    "correct": false
+  },
+  {
+    "seed": 100041,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 4,
+    "kind": "delayed",
+    "gold": 6,
+    "predicted": 6,
+    "correct": true
+  },
+  {
+    "seed": 100041,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 7,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 6,
+    "correct": true
+  },
+  {
+    "seed": 100041,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 12,
+    "kind": "implicit",
+    "gold": 7,
+    "predicted": 6,
+    "correct": false
+  },
+  {
+    "seed": 100041,
+    "method": "recent",
+    "ratio": 0.4,
+    "page": 15,
+    "kind": "delayed",
+    "gold": 9,
+    "predicted": 6,
+    "correct": false
+  },
+  {
+    "seed": 100041,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 4,
+    "kind": "delayed",
+    "gold": 6,
+    "predicted": 6,
+    "correct": true
+  },
+  {
+    "seed": 100041,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 7,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 6,
+    "correct": true
+  },
+  {
+    "seed": 100041,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 12,
+    "kind": "implicit",
+    "gold": 7,
+    "predicted": 6,
+    "correct": false
+  },
+  {
+    "seed": 100041,
+    "method": "recent",
+    "ratio": 0.6,
+    "page": 15,
+    "kind": "delayed",
+    "gold": 9,
+    "predicted": 6,
+    "correct": false
+  },
+  {
+    "seed": 100041,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 4,
+    "kind": "delayed",
+    "gold": 6,
+    "predicted": 6,
+    "correct": true
+  },
+  {
+    "seed": 100041,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 7,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 6,
+    "correct": true
+  },
+  {
+    "seed": 100041,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 12,
+    "kind": "implicit",
+    "gold": 7,
+    "predicted": 2,
+    "correct": false
+  },
+  {
+    "seed": 100041,
+    "method": "quest",
+    "ratio": 0.25,
+    "page": 15,
+    "kind": "delayed",
+    "gold": 9,
+    "predicted": 1,
+    "correct": false
+  },
+  {
+    "seed": 100041,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 4,
+    "kind": "delayed",
+    "gold": 6,
+    "predicted": 6,
+    "correct": true
+  },
+  {
+    "seed": 100041,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 7,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 6,
+    "correct": true
+  },
+  {
+    "seed": 100041,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 12,
+    "kind": "implicit",
+    "gold": 7,
+    "predicted": 6,
+    "correct": false
+  },
+  {
+    "seed": 100041,
+    "method": "quest",
+    "ratio": 0.4,
+    "page": 15,
+    "kind": "delayed",
+    "gold": 9,
+    "predicted": 6,
+    "correct": false
+  },
+  {
+    "seed": 100041,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 4,
+    "kind": "delayed",
+    "gold": 6,
+    "predicted": 6,
+    "correct": true
+  },
+  {
+    "seed": 100041,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 7,
+    "kind": "implicit",
+    "gold": 6,
+    "predicted": 6,
+    "correct": true
+  },
+  {
+    "seed": 100041,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 12,
+    "kind": "implicit",
+    "gold": 7,
+    "predicted": 6,
+    "correct": false
+  },
+  {
+    "seed": 100041,
+    "method": "quest",
+    "ratio": 0.6,
+    "page": 15,
+    "kind": "delayed",
+    "gold": 9,
+    "predicted": 6,
+    "correct": false
+  }
+]

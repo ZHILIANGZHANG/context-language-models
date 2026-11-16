@@ -1,0 +1,1381 @@
+{
+  "status": "PARTIAL_COMPLETED_EPISODES_NOT_FINAL_CAMPAIGN",
+  "capture_start": 1794840646.6476746,
+  "capture_end": 1794840646.9430766,
+  "capture_time_shanghai": "2026-11-16T22:50:46.943099+08:00",
+  "completed_episodes": 224,
+  "target_episodes": 300,
+  "partial_lines_excluded": [],
+  "identities": {
+    "controller": {
+      "exists": true,
+      "matches": true,
+      "actual": {
+        "pid": 3985352,
+        "uid": 1037,
+        "start_ticks": 1262844157,
+        "cwd": "/data/zhangcheng/context-language-models-223cc65-rlprep"
+      }
+    },
+    "workers": {
+      "0": {
+        "exists": true,
+        "matches": true,
+        "actual": {
+          "pid": 865179,
+          "uid": 1037,
+          "start_ticks": 1263138861,
+          "cwd": "/data/zhangcheng/context-language-models-223cc65-rlprep"
+        }
+      },
+      "2": {
+        "exists": true,
+        "matches": true,
+        "actual": {
+          "pid": 896292,
+          "uid": 1037,
+          "start_ticks": 1263146831,
+          "cwd": "/data/zhangcheng/context-language-models-223cc65-rlprep"
+        }
+      },
+      "1": {
+        "exists": true,
+        "matches": true,
+        "actual": {
+          "pid": 971752,
+          "uid": 1037,
+          "start_ticks": 1263168044,
+          "cwd": "/data/zhangcheng/context-language-models-223cc65-rlprep"
+        }
+      }
+    }
+  },
+  "source_sha_verified": true,
+  "files": {
+    "jobs/job-100000/summary.jsonl": {
+      "sha256": "95db6310baf2a13f7feaeee0411625a160eece82d5cb20347f040f3935c86b44",
+      "bytes": 5510,
+      "source": "/home/zhangcheng/self-paging-20261116/base-controls-two/job-100000/summary.jsonl (completed-line prefix)"
+    },
+    "jobs/job-100000/launch.json": {
+      "sha256": "57af5a1cba3517f2ae0057c4e4a699b4156c289ee20127ba7425477b2b80fc0b",
+      "bytes": 424,
+      "source": "/home/zhangcheng/self-paging-20261116/base-controls-two/job-100000/launch.json"
+    },
+    "jobs/job-100000/accepted.json": {
+      "sha256": "8fa99a6aa01464c348a223c39fedd918d5a5027ae4c617f08bf6b25bd0ac5117",
+      "bytes": 43,
+      "source": "/home/zhangcheng/self-paging-20261116/base-controls-two/job-100000/accepted.json"
+    },
+    "jobs/job-100001/summary.jsonl": {
+      "sha256": "80da9c362afa7e638bc6d1d65d14b4d2438676f12a42fc031e14528fd35a3a36",
+      "bytes": 22090,
+      "source": "/home/zhangcheng/self-paging-20261116/base-controls-two/job-100001/summary.jsonl (completed-line prefix)"
+    },
+    "jobs/job-100001/launch.json": {
+      "sha256": "8ca9f6bdbccca67061501bce65bd4a7d2fc122c7988ca1a454dbdf18ef97b676",
+      "bytes": 425,
+      "source": "/home/zhangcheng/self-paging-20261116/base-controls-two/job-100001/launch.json"
+    },
+    "jobs/job-100001/exit.json": {
+      "sha256": "7b592fea3539e65533504f14e81253eb69b44ba0937f4a41256d5be9d1d5c9ef",
+      "bytes": 264,
+      "source": "/home/zhangcheng/self-paging-20261116/base-controls-two/job-100001/exit.json"
+    },
+    "jobs/job-100001/accepted.json": {
+      "sha256": "e37c1218b149a4bc7c79aabba23db86b04a559377302ae2bb3c8e2ad72171961",
+      "bytes": 44,
+      "source": "/home/zhangcheng/self-paging-20261116/base-controls-two/job-100001/accepted.json"
+    },
+    "jobs/job-100005/summary.jsonl": {
+      "sha256": "15935c2b35e316e27b57194d515052033c52f77150be3c84213344de473025a0",
+      "bytes": 27617,
+      "source": "/home/zhangcheng/self-paging-20261116/base-controls-two/job-100005/summary.jsonl (completed-line prefix)"
+    },
+    "jobs/job-100005/launch.json": {
+      "sha256": "e3f547d69c6d351dabba6183427465f9c4b60432b734dd8461dda1d678778674",
+      "bytes": 424,
+      "source": "/home/zhangcheng/self-paging-20261116/base-controls-two/job-100005/launch.json"
+    },
+    "jobs/job-100005/exit.json": {
+      "sha256": "afe3b7a30dc64df7e7ed8d82213048ba98d3875de869dccd9c2e48471e4bb9de",
+      "bytes": 264,
+      "source": "/home/zhangcheng/self-paging-20261116/base-controls-two/job-100005/exit.json"
+    },
+    "jobs/job-100005/accepted.json": {
+      "sha256": "826df61295d0f72f3547978b6a178425714009d632625ed7439a55ece72c1f5c",
+      "bytes": 44,
+      "source": "/home/zhangcheng/self-paging-20261116/base-controls-two/job-100005/accepted.json"
+    },
+    "jobs/job-100010/summary.jsonl": {
+      "sha256": "e07ba8a57ed4dc860cd4d5e472b257f83e325d94ef16fcfb005dadd1a09bd472",
+      "bytes": 27220,
+      "source": "/home/zhangcheng/self-paging-20261116/base-controls-two/job-100010/summary.jsonl (completed-line prefix)"
+    },
+    "jobs/job-100010/launch.json": {
+      "sha256": "3b0a56131e455f5af451b5f0e3768d338fc7a284b552557ef1804c827b69826b",
+      "bytes": 424,
+      "source": "/home/zhangcheng/self-paging-20261116/base-controls-two/job-100010/launch.json"
+    },
+    "jobs/job-100010/exit.json": {
+      "sha256": "65d6bb8ae0f2cc6e04270075ea08cf1d6fd39aa4e866a30169343ff8e8f5534c",
+      "bytes": 264,
+      "source": "/home/zhangcheng/self-paging-20261116/base-controls-two/job-100010/exit.json"
+    },
+    "jobs/job-100010/accepted.json": {
+      "sha256": "d5decd9619f6b95afb860dca69c4e03a2bda16c6d3caff739c3e33836b999801",
+      "bytes": 44,
+      "source": "/home/zhangcheng/self-paging-20261116/base-controls-two/job-100010/accepted.json"
+    },
+    "jobs/job-100015/summary.jsonl": {
+      "sha256": "580086f1636ff627fa64b1c581f55e035c6cafbb60f8279877e43b6d6729ad03",
+      "bytes": 27618,
+      "source": "/home/zhangcheng/self-paging-20261116/base-controls-two/job-100015/summary.jsonl (completed-line prefix)"
+    },
+    "jobs/job-100015/launch.json": {
+      "sha256": "c2246ec9722a89744d39da0e7397e4a215da7a41a02d89294406c908db8ae250",
+      "bytes": 424,
+      "source": "/home/zhangcheng/self-paging-20261116/base-controls-two/job-100015/launch.json"
+    },
+    "jobs/job-100015/exit.json": {
+      "sha256": "357809dde75389dd52e98cb0e7518309be1abdc55a99078e077583cddf782bc5",
+      "bytes": 262,
+      "source": "/home/zhangcheng/self-paging-20261116/base-controls-two/job-100015/exit.json"
+    },
+    "jobs/job-100015/accepted.json": {
+      "sha256": "c298c3711d35d86c23ccbcd20afa1a548c53a16ba11d19bc431998e46aca0fac",
+      "bytes": 44,
+      "source": "/home/zhangcheng/self-paging-20261116/base-controls-two/job-100015/accepted.json"
+    },
+    "jobs/job-100020/summary.jsonl": {
+      "sha256": "41919fa203dc128e8083561991e163d6572342ee0d033bf17017e74d4d6cae47",
+      "bytes": 27245,
+      "source": "/home/zhangcheng/self-paging-20261116/base-controls-two/job-100020/summary.jsonl (completed-line prefix)"
+    },
+    "jobs/job-100020/launch.json": {
+      "sha256": "9624031326195930fc35c1db507111dc4f540d973c40f53eba94e33f34c6b194",
+      "bytes": 424,
+      "source": "/home/zhangcheng/self-paging-20261116/base-controls-two/job-100020/launch.json"
+    },
+    "jobs/job-100020/exit.json": {
+      "sha256": "88c652fa22a3401e7cfedbdd30a63099a4a9e9c811f6ce262ba34c46fe199e8d",
+      "bytes": 263,
+      "source": "/home/zhangcheng/self-paging-20261116/base-controls-two/job-100020/exit.json"
+    },
+    "jobs/job-100020/accepted.json": {
+      "sha256": "ff13ee6d434d56395365e53175d6c95c8bdb0af141c80fbf66d68925d423c38a",
+      "bytes": 42,
+      "source": "/home/zhangcheng/self-paging-20261116/base-controls-two/job-100020/accepted.json"
+    },
+    "jobs/job-100025/summary.jsonl": {
+      "sha256": "38f5426ea02310c7eb6abbf96e569f63487202df7ba4471dca24950a7db0b176",
+      "bytes": 27615,
+      "source": "/home/zhangcheng/self-paging-20261116/base-controls-two/job-100025/summary.jsonl (completed-line prefix)"
+    },
+    "jobs/job-100025/launch.json": {
+      "sha256": "a7542503faf2e5b886cdfc84ac77d635a459e0d68bc312eed2c4039c07aea60e",
+      "bytes": 422,
+      "source": "/home/zhangcheng/self-paging-20261116/base-controls-two/job-100025/launch.json"
+    },
+    "jobs/job-100025/exit.json": {
+      "sha256": "1c5f79bbb8c0c14655f732192e2b55c56a905934b10ce6012abbbb81622caf54",
+      "bytes": 262,
+      "source": "/home/zhangcheng/self-paging-20261116/base-controls-two/job-100025/exit.json"
+    },
+    "jobs/job-100025/accepted.json": {
+      "sha256": "9a67b2999310d712f5d215b21678d82afafc89e4afd87753851e0b7954d570d3",
+      "bytes": 44,
+      "source": "/home/zhangcheng/self-paging-20261116/base-controls-two/job-100025/accepted.json"
+    },
+    "jobs/job-100030/summary.jsonl": {
+      "sha256": "9fe929d5fc901c9bef3d5093daee6c34a3cbb1fed7186805379a8b977359f160",
+      "bytes": 15800,
+      "source": "/home/zhangcheng/self-paging-20261116/base-controls-two/job-100030/summary.jsonl (completed-line prefix)"
+    },
+    "jobs/job-100030/launch.json": {
+      "sha256": "e3dd3913b61457ff10c84b4cc3b18f1b1e521f4528fe7019d53774c040f8e41f",
+      "bytes": 424,
+      "source": "/home/zhangcheng/self-paging-20261116/base-controls-two/job-100030/launch.json"
+    },
+    "jobs/job-100035/summary.jsonl": {
+      "sha256": "8fced7da746f575a67f7b124e6aa47ebff906aa3853230e1bc4fc75529fd6bb2",
+      "bytes": 12882,
+      "source": "/home/zhangcheng/self-paging-20261116/base-controls-two/job-100035/summary.jsonl (completed-line prefix)"
+    },
+    "jobs/job-100035/launch.json": {
+      "sha256": "b578531377e535b93056dca1471c72dc8a1d1dcde661882dddceb52833378b58",
+      "bytes": 424,
+      "source": "/home/zhangcheng/self-paging-20261116/base-controls-two/job-100035/launch.json"
+    },
+    "jobs/job-100040/summary.jsonl": {
+      "sha256": "8a93f3381f1fc8b373797e6dc4dc4edf2b1a93cca4c9ba88627a832b41fa5eb2",
+      "bytes": 11037,
+      "source": "/home/zhangcheng/self-paging-20261116/base-controls-two/job-100040/summary.jsonl (completed-line prefix)"
+    },
+    "jobs/job-100040/launch.json": {
+      "sha256": "0d6aa368ab085196bffc846a1c285f2bc2efa910f012d1b3ad99ca47e8c2a007",
+      "bytes": 424,
+      "source": "/home/zhangcheng/self-paging-20261116/base-controls-two/job-100040/launch.json"
+    },
+    "raw/100000-recent-0.25.json.gz": {
+      "sha256": "1cd4c8c9ac764b993638bbe0848bb729301f1764d6a705903618f60e44667cf1",
+      "bytes": 15350,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls/job-100000/100000-recent-0.25.json.gz"
+    },
+    "raw/100000-recent-0.4.json.gz": {
+      "sha256": "b1a38b6b1d79354a48ef340cdacccf103c67f2dc5f6b488cb19563161dccea4f",
+      "bytes": 15866,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls/job-100000/100000-recent-0.4.json.gz"
+    },
+    "raw/100000-recent-0.6.json.gz": {
+      "sha256": "dfe2fecf33dbc8ea5703c815e26951c08155164e7a97424a123e22a8869c5854",
+      "bytes": 15814,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls/job-100000/100000-recent-0.6.json.gz"
+    },
+    "raw/100000-quest-0.25.json.gz": {
+      "sha256": "7d0e27d2c421a3fe4102dc2fd8d7189b7a46c2fadd642e378b19108186cd41e8",
+      "bytes": 17036,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100000/100000-quest-0.25.json.gz"
+    },
+    "raw/100000-quest-0.4.json.gz": {
+      "sha256": "71320cb73b7f25ee049232f9affaf5c467bf5972b30906e1f7d60c5d9b740813",
+      "bytes": 16036,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100000/100000-quest-0.4.json.gz"
+    },
+    "raw/100000-quest-0.6.json.gz": {
+      "sha256": "dff437775615b5e1b99587ac7ef34b64fff70e32ff01c9c6042f138e7c67fd20",
+      "bytes": 16444,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100000/100000-quest-0.6.json.gz"
+    },
+    "raw/100001-recent-0.25.json.gz": {
+      "sha256": "b4344b547eaac679ba9906cca912087b7bfda88cc35492f9ef2bbac9c9a75184",
+      "bytes": 18445,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100001/100001-recent-0.25.json.gz"
+    },
+    "raw/100001-recent-0.4.json.gz": {
+      "sha256": "2e93cc36879a374bb54ffa7c38a5e755b7ef586ae9e4bda701384e56af5f31c5",
+      "bytes": 18430,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100001/100001-recent-0.4.json.gz"
+    },
+    "raw/100001-recent-0.6.json.gz": {
+      "sha256": "45e8629b0a441cc3c6788ee7e37a4e85a97668f1a4b4a1a84da7a60c244fbade",
+      "bytes": 18374,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100001/100001-recent-0.6.json.gz"
+    },
+    "raw/100001-quest-0.25.json.gz": {
+      "sha256": "d991775bd6a21105077acc68bf98505d045c88c4a3ab6d220418a9759d412010",
+      "bytes": 17581,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100001/100001-quest-0.25.json.gz"
+    },
+    "raw/100001-quest-0.4.json.gz": {
+      "sha256": "d003a4fc909782a2af423a8a88b41a64bfab6c3577e24551cacced71f6e48aea",
+      "bytes": 17303,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100001/100001-quest-0.4.json.gz"
+    },
+    "raw/100001-quest-0.6.json.gz": {
+      "sha256": "45f34ad84a30ece2eda9511c86bea2758b29cf1fb70b2561c37ac1a076484fb9",
+      "bytes": 17049,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100001/100001-quest-0.6.json.gz"
+    },
+    "raw/100002-recent-0.25.json.gz": {
+      "sha256": "6f26578e5c1aa3b99646450bad0ac7a94a4bdf44fd22fa25df1bbf5295ed48bd",
+      "bytes": 15851,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100001/100002-recent-0.25.json.gz"
+    },
+    "raw/100002-recent-0.4.json.gz": {
+      "sha256": "9c293711c72c6e29ccb9ca4bb3113bd68fab5c1b6625cd6db2486d9ffeb49ed3",
+      "bytes": 17010,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100001/100002-recent-0.4.json.gz"
+    },
+    "raw/100002-recent-0.6.json.gz": {
+      "sha256": "81aebf3301c565d82ef3bee2943094dad9ea36a04bdd1336c03044cf99c27e1a",
+      "bytes": 16506,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100001/100002-recent-0.6.json.gz"
+    },
+    "raw/100002-quest-0.25.json.gz": {
+      "sha256": "969f09e6b996b832bc925e2b1ee7162c79452628aa57c7c4fcd3d74e2b1767f7",
+      "bytes": 17119,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100001/100002-quest-0.25.json.gz"
+    },
+    "raw/100002-quest-0.4.json.gz": {
+      "sha256": "db49201f5483375e2a02fdb613dedfda805c6c0e13d680cbaddc3c0be29ad4e1",
+      "bytes": 16527,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100001/100002-quest-0.4.json.gz"
+    },
+    "raw/100002-quest-0.6.json.gz": {
+      "sha256": "52ca6eec188291108943e2f4e9a9ec3a3a25ea64f188689610254fd5f4c93cfe",
+      "bytes": 16928,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100001/100002-quest-0.6.json.gz"
+    },
+    "raw/100003-recent-0.25.json.gz": {
+      "sha256": "54cd64dbd66252168876032df7f3267eaced04398720609bc11b6d20c142a1dd",
+      "bytes": 14748,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100001/100003-recent-0.25.json.gz"
+    },
+    "raw/100003-recent-0.4.json.gz": {
+      "sha256": "83f3d250261033073ad9071a159f8cd34d8791324d7fa099d1f9189ae888d310",
+      "bytes": 14712,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100001/100003-recent-0.4.json.gz"
+    },
+    "raw/100003-recent-0.6.json.gz": {
+      "sha256": "6dfffe6ee00c5f2a2643e90cab5c1ce0b41e3ae5a5961220d540b798e2b39a7b",
+      "bytes": 14642,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100001/100003-recent-0.6.json.gz"
+    },
+    "raw/100003-quest-0.25.json.gz": {
+      "sha256": "60d5988a4ce541a5a09494369d4d85d2c6e6dd46f0e0f6154d5fa3ef8f65cc54",
+      "bytes": 15403,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100001/100003-quest-0.25.json.gz"
+    },
+    "raw/100003-quest-0.4.json.gz": {
+      "sha256": "89ad77fc91cac5cc68ab7b01e44117d8d05ce558f8cf65c07da6b144e57d1e29",
+      "bytes": 15262,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100001/100003-quest-0.4.json.gz"
+    },
+    "raw/100003-quest-0.6.json.gz": {
+      "sha256": "a3cc8341d397d883c44dff13a13032895d226c417c7acea580338377e67575ef",
+      "bytes": 15039,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100001/100003-quest-0.6.json.gz"
+    },
+    "raw/100004-recent-0.25.json.gz": {
+      "sha256": "9ec261fc53ebf2d050b08e428636f3785856115ffa3f46e694441b309685f554",
+      "bytes": 15485,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100001/100004-recent-0.25.json.gz"
+    },
+    "raw/100004-recent-0.4.json.gz": {
+      "sha256": "e02a7f0dfd6fd13f76cc5c9fdc8599baa41d14004e9bc98a194f2e1871c5a298",
+      "bytes": 15485,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100001/100004-recent-0.4.json.gz"
+    },
+    "raw/100004-recent-0.6.json.gz": {
+      "sha256": "0bf64a4b401deec395675793f9330b2c75b2dc87ad0a063f00bd23435078a07e",
+      "bytes": 15408,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100001/100004-recent-0.6.json.gz"
+    },
+    "raw/100004-quest-0.25.json.gz": {
+      "sha256": "277a654854bd416341646c698bb4a27c3c38a7bfcb701dd2785d4fbdd2d1c5a9",
+      "bytes": 16361,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100001/100004-quest-0.25.json.gz"
+    },
+    "raw/100004-quest-0.4.json.gz": {
+      "sha256": "58540f96dda7aa2752dd3565ea5bf0eddcb84fe1d3d3046722b868a1e51b1b12",
+      "bytes": 16196,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100001/100004-quest-0.4.json.gz"
+    },
+    "raw/100004-quest-0.6.json.gz": {
+      "sha256": "56e31496c09a7cae49bc4133ebe450e80607f1dfc0e01ef460964bd505fafe96",
+      "bytes": 15938,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100001/100004-quest-0.6.json.gz"
+    },
+    "raw/100005-recent-0.25.json.gz": {
+      "sha256": "be57c8cbf93b8f5a19392f3f15a24b159ae6e1dd4a8dcd24d332b35471a2155a",
+      "bytes": 16047,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100005/100005-recent-0.25.json.gz"
+    },
+    "raw/100005-recent-0.4.json.gz": {
+      "sha256": "fdc4bca1cfa0f5b838630e9082d126245df319d5dc214cbcdfe5e44bddf6de36",
+      "bytes": 17043,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100005/100005-recent-0.4.json.gz"
+    },
+    "raw/100005-recent-0.6.json.gz": {
+      "sha256": "9d039dd6307df87b19bb75c5ec3e9777b6c401f9e5c65877decb17865550a158",
+      "bytes": 16763,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100005/100005-recent-0.6.json.gz"
+    },
+    "raw/100005-quest-0.25.json.gz": {
+      "sha256": "a64262c8a9c8171f58936fb7f5d0dba8a69f2d25523ba06b47bd0b569eaf9578",
+      "bytes": 16261,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100005/100005-quest-0.25.json.gz"
+    },
+    "raw/100005-quest-0.4.json.gz": {
+      "sha256": "7fcf9dee687d22f3f34501aac78c601cf00af3c140a14c774e1ebbd34a2a15e1",
+      "bytes": 17131,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100005/100005-quest-0.4.json.gz"
+    },
+    "raw/100005-quest-0.6.json.gz": {
+      "sha256": "c34ff9b8b680dc232cc489a07dc3f71dba57761c61479c87f7124398e3ed6e8b",
+      "bytes": 15955,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100005/100005-quest-0.6.json.gz"
+    },
+    "raw/100006-recent-0.25.json.gz": {
+      "sha256": "754145a26c585eaea3078e3198defd87818948e5664433c561a5e0f3acf97163",
+      "bytes": 17492,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100005/100006-recent-0.25.json.gz"
+    },
+    "raw/100006-recent-0.4.json.gz": {
+      "sha256": "63b7d205f6e1982155b0fbb644ede659d1860def44ceba670d10b184b37e1a25",
+      "bytes": 18656,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100005/100006-recent-0.4.json.gz"
+    },
+    "raw/100006-recent-0.6.json.gz": {
+      "sha256": "f2aacbe06b59df95947c1508d18d988d1003c58d76d72a32c2dc99d9cd5a6581",
+      "bytes": 18417,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100005/100006-recent-0.6.json.gz"
+    },
+    "raw/100006-quest-0.25.json.gz": {
+      "sha256": "fab91178b32ba91f3350020048ebd712beeee3a6ceb18c51c59ce36ea8cd725c",
+      "bytes": 18626,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100005/100006-quest-0.25.json.gz"
+    },
+    "raw/100006-quest-0.4.json.gz": {
+      "sha256": "e83918de2e18543f34f57a83c7407daa09639e50dcedb2e9ead3340a19aba872",
+      "bytes": 18489,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100005/100006-quest-0.4.json.gz"
+    },
+    "raw/100006-quest-0.6.json.gz": {
+      "sha256": "745f8f4cdace23d1e2965917187170288f2e5f720ea78b9f4e7b54d0f32b020a",
+      "bytes": 18387,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100005/100006-quest-0.6.json.gz"
+    },
+    "raw/100007-recent-0.25.json.gz": {
+      "sha256": "33e2c9a49cf9beecb2d626b46960f878ec4bf3dcf45bd3af65da418b95ebc62b",
+      "bytes": 15046,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100005/100007-recent-0.25.json.gz"
+    },
+    "raw/100007-recent-0.4.json.gz": {
+      "sha256": "dda7ed66e6fa83ae0dc6e780af379d187341d1a851afb71a2ee88d70c26a9a08",
+      "bytes": 15045,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100005/100007-recent-0.4.json.gz"
+    },
+    "raw/100007-recent-0.6.json.gz": {
+      "sha256": "74609a98b16d9c28169c349ed5ef6631b0af9c976232c842dd7390a0e01d3517",
+      "bytes": 14999,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100005/100007-recent-0.6.json.gz"
+    },
+    "raw/100007-quest-0.25.json.gz": {
+      "sha256": "b710325edae0d3e5d51760189b3eacecbb0e65f01826b5e1274c90c7ce41f03e",
+      "bytes": 15983,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100005/100007-quest-0.25.json.gz"
+    },
+    "raw/100007-quest-0.4.json.gz": {
+      "sha256": "b3454425c675ccf33902a39b1d39558a16512de0a78fcf84ee49cfce0794dda5",
+      "bytes": 16077,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100005/100007-quest-0.4.json.gz"
+    },
+    "raw/100007-quest-0.6.json.gz": {
+      "sha256": "c0535ea2958c4a2aa5284fdcf5c88dd131fda97443e1de215040af3cdf9d2653",
+      "bytes": 15560,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100005/100007-quest-0.6.json.gz"
+    },
+    "raw/100008-recent-0.25.json.gz": {
+      "sha256": "f6760d7cc0ac543d3943a74ef57ad46adbc934e7b92554a7ccfe29dd5da0eb44",
+      "bytes": 17086,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100005/100008-recent-0.25.json.gz"
+    },
+    "raw/100008-recent-0.4.json.gz": {
+      "sha256": "9b92f9568957455b242f1c30b8dfbb9d54e88b98a1c7857ff17d089bb37d3636",
+      "bytes": 17057,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100005/100008-recent-0.4.json.gz"
+    },
+    "raw/100008-recent-0.6.json.gz": {
+      "sha256": "d6c95681375d1516836657202154b7c83a8ed09e5ca2d8e6017464038f8c5c35",
+      "bytes": 15916,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100005/100008-recent-0.6.json.gz"
+    },
+    "raw/100008-quest-0.25.json.gz": {
+      "sha256": "871e54465d8592afcdb44534c43b88bcda2d7a8278fbe667da511499caedb42b",
+      "bytes": 16682,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100005/100008-quest-0.25.json.gz"
+    },
+    "raw/100008-quest-0.4.json.gz": {
+      "sha256": "84e4eb334010d583f2fcff6d1569d50c98a89e54c280e861a42211904eac9617",
+      "bytes": 16486,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100005/100008-quest-0.4.json.gz"
+    },
+    "raw/100008-quest-0.6.json.gz": {
+      "sha256": "6adbb3cbdc2dbddf649fee1f3b5d177f68b3be915dacecdf37eda94222c3843d",
+      "bytes": 16885,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100005/100008-quest-0.6.json.gz"
+    },
+    "raw/100009-recent-0.25.json.gz": {
+      "sha256": "d0fa6c0ba1a2113aed90b3e00f1a9e623d1b66ea8d13efd57ca1c57325151103",
+      "bytes": 15732,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100005/100009-recent-0.25.json.gz"
+    },
+    "raw/100009-recent-0.4.json.gz": {
+      "sha256": "edb62fdbdb3a1b6ddf56cd77424b8d4e6cde4fe3bee74ba97758002ab372f6b3",
+      "bytes": 15674,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100005/100009-recent-0.4.json.gz"
+    },
+    "raw/100009-recent-0.6.json.gz": {
+      "sha256": "18c5bd69bb877c4702a1ca4cb45f6bc8e1480abbd878672cf85f7b4fd9283e3e",
+      "bytes": 15653,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100005/100009-recent-0.6.json.gz"
+    },
+    "raw/100009-quest-0.25.json.gz": {
+      "sha256": "72a8fd4c657cbc18ae18d7607f278a044caa9fcd0ec2f45243dd0e288c368c1b",
+      "bytes": 16522,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100005/100009-quest-0.25.json.gz"
+    },
+    "raw/100009-quest-0.4.json.gz": {
+      "sha256": "db4941e4cf24e72498ee10a661ccea8fcb5aa284232c0ba36e16f2eb9fa6a497",
+      "bytes": 16339,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100005/100009-quest-0.4.json.gz"
+    },
+    "raw/100009-quest-0.6.json.gz": {
+      "sha256": "de3f69159dd08640df06ffa496077f10d07ba6acad75056072fc2dbf5930d833",
+      "bytes": 16146,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100005/100009-quest-0.6.json.gz"
+    },
+    "raw/100010-recent-0.25.json.gz": {
+      "sha256": "82703ef8855b7b0b4eb75507150dc667d988f134221ea17757dbe3a2dcf867fa",
+      "bytes": 15654,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100010/100010-recent-0.25.json.gz"
+    },
+    "raw/100010-recent-0.4.json.gz": {
+      "sha256": "4617021221d95b9e1285ce9bee7fb0fdddca8090f039548860e83cccba1093fe",
+      "bytes": 15671,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100010/100010-recent-0.4.json.gz"
+    },
+    "raw/100010-recent-0.6.json.gz": {
+      "sha256": "cc25c917ea1ab0dfaf2868383b9d018369640726d25570ee0917db9ffb77e454",
+      "bytes": 15576,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100010/100010-recent-0.6.json.gz"
+    },
+    "raw/100010-quest-0.25.json.gz": {
+      "sha256": "b8a86487a66770ad716d2c0252d7b1f95b52f13d14d83abb34f5df4ddbf1db87",
+      "bytes": 16426,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100010/100010-quest-0.25.json.gz"
+    },
+    "raw/100010-quest-0.4.json.gz": {
+      "sha256": "67ecca38853b50618651c59d0338aee1be6100e6929abc5baf2a18fbab25b07f",
+      "bytes": 16144,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100010/100010-quest-0.4.json.gz"
+    },
+    "raw/100010-quest-0.6.json.gz": {
+      "sha256": "adf7118efb817266bee7b2718296601f05c13fcfabd99100c31e01c657ad678d",
+      "bytes": 16015,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100010/100010-quest-0.6.json.gz"
+    },
+    "raw/100011-recent-0.25.json.gz": {
+      "sha256": "6ffb0bf55fed224bf527ddd1e6daf3d4cc9c2e3dda2eabbe88c75ea4cb8f0232",
+      "bytes": 13173,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100010/100011-recent-0.25.json.gz"
+    },
+    "raw/100011-recent-0.4.json.gz": {
+      "sha256": "7d25db88a8a3383821a7ef6940d3629100e52242959a8774063c77177207447d",
+      "bytes": 14171,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100010/100011-recent-0.4.json.gz"
+    },
+    "raw/100011-recent-0.6.json.gz": {
+      "sha256": "6efd8d22cb4e5fb697ca40009f76bf310ee7ff387575b85bffc9a3bfc03ebdd3",
+      "bytes": 14094,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100010/100011-recent-0.6.json.gz"
+    },
+    "raw/100011-quest-0.25.json.gz": {
+      "sha256": "36e31897e31e6f05631bbd0864c3cbec390495b8aa6456d8dd4bb006351b5f9b",
+      "bytes": 13912,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100010/100011-quest-0.25.json.gz"
+    },
+    "raw/100011-quest-0.4.json.gz": {
+      "sha256": "7949df2bcb89966db091e30bd42c3d1dcfc58cde44613410feabed7f12a7fd01",
+      "bytes": 13794,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100010/100011-quest-0.4.json.gz"
+    },
+    "raw/100011-quest-0.6.json.gz": {
+      "sha256": "b1fb644a172b248b626f66995040e3a546ac4ba97aad9440bd8015f49c75e0e5",
+      "bytes": 13477,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100010/100011-quest-0.6.json.gz"
+    },
+    "raw/100012-recent-0.25.json.gz": {
+      "sha256": "6dd144ec38e1e0683a7aa28563f23f952cfafdc723984de700bf338b99487285",
+      "bytes": 15607,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100010/100012-recent-0.25.json.gz"
+    },
+    "raw/100012-recent-0.4.json.gz": {
+      "sha256": "58f88b53d48c57ce64ad9cc4edf4920f8d083fbb285e581d5a776664ff9a8f0c",
+      "bytes": 15585,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100010/100012-recent-0.4.json.gz"
+    },
+    "raw/100012-recent-0.6.json.gz": {
+      "sha256": "aef6bca995008706e53b8bae7842a51f19b94ec320a15eb1be48175901ac121a",
+      "bytes": 15540,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100010/100012-recent-0.6.json.gz"
+    },
+    "raw/100012-quest-0.25.json.gz": {
+      "sha256": "ae76dab4a3e91a8f3a27d3d7812c400b82913c1b3de4484767a5343d42ba826f",
+      "bytes": 16519,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100010/100012-quest-0.25.json.gz"
+    },
+    "raw/100012-quest-0.4.json.gz": {
+      "sha256": "122bf9c261fba020d0cdeac9f8445361b42362d9595c5659d3f5b2baa3c3e745",
+      "bytes": 16309,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100010/100012-quest-0.4.json.gz"
+    },
+    "raw/100012-quest-0.6.json.gz": {
+      "sha256": "1b57c17c3b1a7daae3da0ba31c17e03e5276d0a7779e4d8bed6e258ad2593943",
+      "bytes": 16168,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100010/100012-quest-0.6.json.gz"
+    },
+    "raw/100013-recent-0.25.json.gz": {
+      "sha256": "dcb4827c262cd3baf933cb3d82c18ce62f62cf5b220596ff7096ae9661974244",
+      "bytes": 16364,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100010/100013-recent-0.25.json.gz"
+    },
+    "raw/100013-recent-0.4.json.gz": {
+      "sha256": "2fee95412a8c4f7e0cd14208343cb9219d1135d16bb18da35dc718d3a66cab07",
+      "bytes": 16342,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100010/100013-recent-0.4.json.gz"
+    },
+    "raw/100013-recent-0.6.json.gz": {
+      "sha256": "0cfbe38d293fbc7a46d6b537d362ed8e8602f45e2199c298d17163a2bdb04b1b",
+      "bytes": 16314,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100010/100013-recent-0.6.json.gz"
+    },
+    "raw/100013-quest-0.25.json.gz": {
+      "sha256": "2c8dc1f465093a2f7de062223ad3844fa8374da4c194287883e27db5d757aad8",
+      "bytes": 17565,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100010/100013-quest-0.25.json.gz"
+    },
+    "raw/100013-quest-0.4.json.gz": {
+      "sha256": "653a1c3f24ac5a98d06a5236e8db5a2cb110bd00e20de5d49128a1678eba2ae2",
+      "bytes": 17647,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100010/100013-quest-0.4.json.gz"
+    },
+    "raw/100013-quest-0.6.json.gz": {
+      "sha256": "0ff8d295f3486e7a40aa079b846e78050e841a774f14fcf80b7bc18f7f9990bd",
+      "bytes": 17197,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100010/100013-quest-0.6.json.gz"
+    },
+    "raw/100014-recent-0.25.json.gz": {
+      "sha256": "aa4b4bc3554458640734a8688a62bd26abf3f5a730044dee8f0b1d8462cd36a1",
+      "bytes": 15376,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100010/100014-recent-0.25.json.gz"
+    },
+    "raw/100014-recent-0.4.json.gz": {
+      "sha256": "8f8493cd9703cccea961393f56d68eb80669b00372ec7340a60d21f87d91ffeb",
+      "bytes": 15323,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100010/100014-recent-0.4.json.gz"
+    },
+    "raw/100014-recent-0.6.json.gz": {
+      "sha256": "91d11d08e41b56d12929b1b2766ca460cb5f177538a43f50eb7a92526ffca367",
+      "bytes": 15311,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100010/100014-recent-0.6.json.gz"
+    },
+    "raw/100014-quest-0.25.json.gz": {
+      "sha256": "0c8c72bc20d5f09c12cc92d0fd0d8d44a4a2bea0acf1991945229ade6edacdf0",
+      "bytes": 16286,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100010/100014-quest-0.25.json.gz"
+    },
+    "raw/100014-quest-0.4.json.gz": {
+      "sha256": "662a8a665b833f1a5e54f89e04278f2fd44e107546b6718f67c8e2b9a4730662",
+      "bytes": 16050,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100010/100014-quest-0.4.json.gz"
+    },
+    "raw/100014-quest-0.6.json.gz": {
+      "sha256": "4143b710c1445a1527bcca2e01a77e5920dede9dc1048d84e1b787685a9be04f",
+      "bytes": 15952,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100010/100014-quest-0.6.json.gz"
+    },
+    "raw/100015-recent-0.25.json.gz": {
+      "sha256": "21a719cad1e61ca62ea2ec743b912c6e1a7166e7fc6d933018065cc6018309ba",
+      "bytes": 15993,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100015/100015-recent-0.25.json.gz"
+    },
+    "raw/100015-recent-0.4.json.gz": {
+      "sha256": "6c09fdffd00eaab5bba5a478be9093249d9e55ee3c6a14c1ab9282aba3c4f710",
+      "bytes": 14701,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100015/100015-recent-0.4.json.gz"
+    },
+    "raw/100015-recent-0.6.json.gz": {
+      "sha256": "054199b3f9ea0d352eedf89ad0c801e4262e7e6e7101a3d2ce7a61d480f34564",
+      "bytes": 15593,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100015/100015-recent-0.6.json.gz"
+    },
+    "raw/100015-quest-0.25.json.gz": {
+      "sha256": "f22cd2f1b23c973a5ab902fce04ea87905340c3a658dded8b5bb3b6da9f4d16f",
+      "bytes": 15018,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100015/100015-quest-0.25.json.gz"
+    },
+    "raw/100015-quest-0.4.json.gz": {
+      "sha256": "30bf141caf919c1f2f0dfa05167ec9cce2ee25b556cbd70cc43fdf9bc302af09",
+      "bytes": 14677,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100015/100015-quest-0.4.json.gz"
+    },
+    "raw/100015-quest-0.6.json.gz": {
+      "sha256": "c904bc92731967a813b68dae7e61c65f2e631ad84011ecd9fd21fb930a7941a3",
+      "bytes": 14431,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100015/100015-quest-0.6.json.gz"
+    },
+    "raw/100016-recent-0.25.json.gz": {
+      "sha256": "6ced39801e0a6a1a71a216290022f653e780cc2c66cb2c4641f98b7c2883c0a8",
+      "bytes": 14452,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100015/100016-recent-0.25.json.gz"
+    },
+    "raw/100016-recent-0.4.json.gz": {
+      "sha256": "7b858929ae9285badbea941dfd9d5da6b2e441b78afa1aa68bbd46f41e08fcbc",
+      "bytes": 14632,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100015/100016-recent-0.4.json.gz"
+    },
+    "raw/100016-recent-0.6.json.gz": {
+      "sha256": "0ec1452fb826e079141ce8ce1557c222d8b3f748bb0fa121226ed1aa459822ea",
+      "bytes": 14612,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100015/100016-recent-0.6.json.gz"
+    },
+    "raw/100016-quest-0.25.json.gz": {
+      "sha256": "0eb70213a48a83dd1ab908d2c4c85482491991de405ab5e3281dc67af471813e",
+      "bytes": 15037,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100015/100016-quest-0.25.json.gz"
+    },
+    "raw/100016-quest-0.4.json.gz": {
+      "sha256": "c00f067b6607b204df88082cf9776bca3fb94c8f798d12320046d2e901afe03d",
+      "bytes": 15393,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100015/100016-quest-0.4.json.gz"
+    },
+    "raw/100016-quest-0.6.json.gz": {
+      "sha256": "3c7604e86fd7643528adce74131b1c6d01ee7cb0e1566484a330628e5a386edb",
+      "bytes": 15373,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100015/100016-quest-0.6.json.gz"
+    },
+    "raw/100017-recent-0.25.json.gz": {
+      "sha256": "d07a227422ea0f6ed5b627f29b5a9eb31e4c64568a70530b5d0a58de0e78b3b2",
+      "bytes": 16874,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100015/100017-recent-0.25.json.gz"
+    },
+    "raw/100017-recent-0.4.json.gz": {
+      "sha256": "f035a1fd32a9ae2960579c5c028c5db63f777770f4079acad693c631ec49164d",
+      "bytes": 16733,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100015/100017-recent-0.4.json.gz"
+    },
+    "raw/100017-recent-0.6.json.gz": {
+      "sha256": "7544e91ae08a3924dcacd71bf0ecfd3121ce8896ec24b1b1749ec9dbd03f7770",
+      "bytes": 16872,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100015/100017-recent-0.6.json.gz"
+    },
+    "raw/100017-quest-0.25.json.gz": {
+      "sha256": "182d61c088692f579a0ef27eac2bb40f0173d31732fbfb091596e33501ccd9cc",
+      "bytes": 15993,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100015/100017-quest-0.25.json.gz"
+    },
+    "raw/100017-quest-0.4.json.gz": {
+      "sha256": "7cde969c13a287e69c8e9d3426ae81ca6cb6b200fa1bf28d3d6d3ccace4fd969",
+      "bytes": 15815,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100015/100017-quest-0.4.json.gz"
+    },
+    "raw/100017-quest-0.6.json.gz": {
+      "sha256": "fb1ee8d2e04d982b581c2290a744c74c979542387f152c0260d830eb978deece",
+      "bytes": 15574,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100015/100017-quest-0.6.json.gz"
+    },
+    "raw/100018-recent-0.25.json.gz": {
+      "sha256": "88964ff802ea4b3c1bd7d0abfb0ba666e2356a1023e1ed87e841829c2299b8a2",
+      "bytes": 17789,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100015/100018-recent-0.25.json.gz"
+    },
+    "raw/100018-recent-0.4.json.gz": {
+      "sha256": "f670de3899d50b63fa93fcb58a2637bd9ba56498db584fc89008f5ab22ac8cc6",
+      "bytes": 16512,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100015/100018-recent-0.4.json.gz"
+    },
+    "raw/100018-recent-0.6.json.gz": {
+      "sha256": "fda0b296bbabcbaf086ad12899a5e830be6d31e51023e1b5d35acd96f04d6998",
+      "bytes": 16428,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100015/100018-recent-0.6.json.gz"
+    },
+    "raw/100018-quest-0.25.json.gz": {
+      "sha256": "a5cba168660f57a43cd36bcd518d23493f4b26fea140f24ed6c559beaa0448bc",
+      "bytes": 16402,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100015/100018-quest-0.25.json.gz"
+    },
+    "raw/100018-quest-0.4.json.gz": {
+      "sha256": "d68f21ad9e6cc96d2755539d8374769ec265ef3c7a872a6f94c69e3b3c9fd394",
+      "bytes": 16239,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100015/100018-quest-0.4.json.gz"
+    },
+    "raw/100018-quest-0.6.json.gz": {
+      "sha256": "e85254ca9a76e265428a08d1be17be22e10224892ea04d4340694700995d0e51",
+      "bytes": 17140,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100015/100018-quest-0.6.json.gz"
+    },
+    "raw/100019-recent-0.25.json.gz": {
+      "sha256": "cb7cb1b43ccd628c1a7cb484f513b3e0996ca39260b6211f558e7ad5269a1439",
+      "bytes": 17445,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100015/100019-recent-0.25.json.gz"
+    },
+    "raw/100019-recent-0.4.json.gz": {
+      "sha256": "e2ad1d17285af01d165a4a5ceffbc15cb83e7322424da414ba08e2df1c74faba",
+      "bytes": 18651,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100015/100019-recent-0.4.json.gz"
+    },
+    "raw/100019-recent-0.6.json.gz": {
+      "sha256": "818bff8dca2af7bd31f8c13e20dc637dc227b01f6f1fb690b57774c59bbbaed3",
+      "bytes": 18351,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100015/100019-recent-0.6.json.gz"
+    },
+    "raw/100019-quest-0.25.json.gz": {
+      "sha256": "f7fcbde4792a91e1ef9bd097950816bd5331e822c8ec52cd039cf84ed14b7795",
+      "bytes": 18544,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100015/100019-quest-0.25.json.gz"
+    },
+    "raw/100019-quest-0.4.json.gz": {
+      "sha256": "e9d320727d767dc2e5e99d23d5f88e799ed1603460a5952f5623194fa0236b98",
+      "bytes": 18373,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100015/100019-quest-0.4.json.gz"
+    },
+    "raw/100019-quest-0.6.json.gz": {
+      "sha256": "8c5fdf7fd48e0e4a4290428045873a6fe39aee06d91ee718a88468ee10dfc178",
+      "bytes": 18664,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100015/100019-quest-0.6.json.gz"
+    },
+    "raw/100020-recent-0.25.json.gz": {
+      "sha256": "90ed843738e880d3744d80549cc2a4fddad7c366faf190913b2240e7c550fc8d",
+      "bytes": 13772,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100020/100020-recent-0.25.json.gz"
+    },
+    "raw/100020-recent-0.4.json.gz": {
+      "sha256": "cd5a42aa359fe00ca6b57cc81314bd9d040ae3076d401c016253a5cf28c5ecf6",
+      "bytes": 13742,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100020/100020-recent-0.4.json.gz"
+    },
+    "raw/100020-recent-0.6.json.gz": {
+      "sha256": "f554b1fa8ab82983edf9394c061ffd4392a58bec201689d904df8e4caf2cee2b",
+      "bytes": 13701,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100020/100020-recent-0.6.json.gz"
+    },
+    "raw/100020-quest-0.25.json.gz": {
+      "sha256": "9e2dd72d2197ce914624af8658b906da80cb6de46b7f7a0d5d1fa55d3e6dd414",
+      "bytes": 12964,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100020/100020-quest-0.25.json.gz"
+    },
+    "raw/100020-quest-0.4.json.gz": {
+      "sha256": "030948a0700dc4b3be31660ded4c5fcce6f7ddf2bb152ac77800759e51c06aff",
+      "bytes": 12886,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100020/100020-quest-0.4.json.gz"
+    },
+    "raw/100020-quest-0.6.json.gz": {
+      "sha256": "4bc50f8e08901a72fb28e6bc9b2ccf97f95c062e34310a29e746632965a6fa49",
+      "bytes": 12656,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100020/100020-quest-0.6.json.gz"
+    },
+    "raw/100021-recent-0.25.json.gz": {
+      "sha256": "e06b97f2012831ea741371c9f8c169658d5bd39bed535e9384f0c2002175a7c7",
+      "bytes": 17355,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100020/100021-recent-0.25.json.gz"
+    },
+    "raw/100021-recent-0.4.json.gz": {
+      "sha256": "c07926e4c45cb86a816b2daebec3f839bf05ff8c523edb6d341bf7923f8b63c1",
+      "bytes": 18192,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100020/100021-recent-0.4.json.gz"
+    },
+    "raw/100021-recent-0.6.json.gz": {
+      "sha256": "c3a8af4cd9b5d46249657fd48b8e6559304b094769b0ea5baa958c0924011c22",
+      "bytes": 18473,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100020/100021-recent-0.6.json.gz"
+    },
+    "raw/100021-quest-0.25.json.gz": {
+      "sha256": "ce3786fa900dd3f71fdd8962bfd0baa4a06d8b885a7e17e21089010c76422760",
+      "bytes": 17977,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100020/100021-quest-0.25.json.gz"
+    },
+    "raw/100021-quest-0.4.json.gz": {
+      "sha256": "47988268419f6dfc53c0996a5cf1d4396512c5f580900a35cd222f42b827fe2f",
+      "bytes": 18714,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100020/100021-quest-0.4.json.gz"
+    },
+    "raw/100021-quest-0.6.json.gz": {
+      "sha256": "1fc53272a9dd1d085f9cd03df8770096bc62628c700c27122fe1a6deda1cd755",
+      "bytes": 18425,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100020/100021-quest-0.6.json.gz"
+    },
+    "raw/100022-recent-0.25.json.gz": {
+      "sha256": "79bad25e275a91c02ba9ab072ce8611167c40b173b9d55c23d84457fcad19c45",
+      "bytes": 15278,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100020/100022-recent-0.25.json.gz"
+    },
+    "raw/100022-recent-0.4.json.gz": {
+      "sha256": "0ede24df86b3c97da886122f787cc345f4c640efcf25f55556daaaad6b683d99",
+      "bytes": 14882,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100020/100022-recent-0.4.json.gz"
+    },
+    "raw/100022-recent-0.6.json.gz": {
+      "sha256": "988d1e18fc43b6b24ce37d5bd2831485ac7b40d03a4a9c62151ed444b8a0b4b7",
+      "bytes": 15516,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100020/100022-recent-0.6.json.gz"
+    },
+    "raw/100022-quest-0.25.json.gz": {
+      "sha256": "3acfa8178596b27a2623a19ca306dea689565ef06e2ab86edc6563834fe1bbd6",
+      "bytes": 15322,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100020/100022-quest-0.25.json.gz"
+    },
+    "raw/100022-quest-0.4.json.gz": {
+      "sha256": "83b14fc7ec16a2ed1511860148288ae116736204eed12101e274e753f87d6d29",
+      "bytes": 14888,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100020/100022-quest-0.4.json.gz"
+    },
+    "raw/100022-quest-0.6.json.gz": {
+      "sha256": "91e449030b2174c0f5cc275d4ab4f3e582d0f12ae845dbdd32792daa1460de18",
+      "bytes": 14694,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100020/100022-quest-0.6.json.gz"
+    },
+    "raw/100023-recent-0.25.json.gz": {
+      "sha256": "36a2983b6231358647bff5c50b635053ae2a1f58e770c217baa707842a2f3893",
+      "bytes": 15377,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100020/100023-recent-0.25.json.gz"
+    },
+    "raw/100023-recent-0.4.json.gz": {
+      "sha256": "52d8716d35fd7d45c281e98e2cbbb92fc929cb651b76a0f83fef60614a68e5a3",
+      "bytes": 15327,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100020/100023-recent-0.4.json.gz"
+    },
+    "raw/100023-recent-0.6.json.gz": {
+      "sha256": "d7cd7e974a34ebcb54ff23052bd844f943fce83b8fa2944a72a813740204c61a",
+      "bytes": 15301,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100020/100023-recent-0.6.json.gz"
+    },
+    "raw/100023-quest-0.25.json.gz": {
+      "sha256": "2c726712b3484679644ff14e85ea0fa557b092f3db0684fe9da810ae560d9694",
+      "bytes": 16103,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100020/100023-quest-0.25.json.gz"
+    },
+    "raw/100023-quest-0.4.json.gz": {
+      "sha256": "40820c425e7ce366699f0e72ec8663e5482cb5dee11571f4b6ff7f4a8dd6be6e",
+      "bytes": 15949,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100020/100023-quest-0.4.json.gz"
+    },
+    "raw/100023-quest-0.6.json.gz": {
+      "sha256": "2ba0d83ecfdad06c04ece113a955ca49ac3945a537194b5154b42a6e1f70e686",
+      "bytes": 15724,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100020/100023-quest-0.6.json.gz"
+    },
+    "raw/100024-recent-0.25.json.gz": {
+      "sha256": "ef6150fec7dfb930a200801ac3a40c210d1d34ed37cf1a294ef94b43f80832bc",
+      "bytes": 15477,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100020/100024-recent-0.25.json.gz"
+    },
+    "raw/100024-recent-0.4.json.gz": {
+      "sha256": "2706fef70161ffd8baf292c0d866e9b0a995777e5815e50035169b293d611f83",
+      "bytes": 15027,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100020/100024-recent-0.4.json.gz"
+    },
+    "raw/100024-recent-0.6.json.gz": {
+      "sha256": "848762fadf4345456bc05ccf7c852cf0f51f201cfb9d22af29442af70b4cc0cf",
+      "bytes": 15462,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100020/100024-recent-0.6.json.gz"
+    },
+    "raw/100024-quest-0.25.json.gz": {
+      "sha256": "1d02608ed626f43958fe663d84ed8860ff321469530de962d4cfe88a7b62fc54",
+      "bytes": 16009,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100020/100024-quest-0.25.json.gz"
+    },
+    "raw/100024-quest-0.4.json.gz": {
+      "sha256": "9c09fd64ac21829e62b7374831099c7bbcc62bdf4671682233db0a9833cd5ca3",
+      "bytes": 15810,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100020/100024-quest-0.4.json.gz"
+    },
+    "raw/100024-quest-0.6.json.gz": {
+      "sha256": "ec59a628f50c1d86db752a99a8ace69d1b36e9f88401101bf278e90282eb6cac",
+      "bytes": 15598,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100020/100024-quest-0.6.json.gz"
+    },
+    "raw/100025-recent-0.25.json.gz": {
+      "sha256": "9df994afbca23d5dcc3125ddfd0348f25c8df4253b4e87233d677290dcb51df4",
+      "bytes": 17590,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100025/100025-recent-0.25.json.gz"
+    },
+    "raw/100025-recent-0.4.json.gz": {
+      "sha256": "de058c4825cacfc6225e3d9f42af45a582b4d68a03a46ef63cf1b42eae2724d8",
+      "bytes": 17539,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100025/100025-recent-0.4.json.gz"
+    },
+    "raw/100025-recent-0.6.json.gz": {
+      "sha256": "9d55f743007475b7b21f5dee56bc2676fbe1a7c6796be990b568b19636855c19",
+      "bytes": 17471,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100025/100025-recent-0.6.json.gz"
+    },
+    "raw/100025-quest-0.25.json.gz": {
+      "sha256": "eabb6802310341d40672717f523988551d43940428bc370c420641b92600836f",
+      "bytes": 18248,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100025/100025-quest-0.25.json.gz"
+    },
+    "raw/100025-quest-0.4.json.gz": {
+      "sha256": "d99d82d1a79b1e4e051a8395b52b6f895da508703d74fafebc9ea418d94726b9",
+      "bytes": 18200,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100025/100025-quest-0.4.json.gz"
+    },
+    "raw/100025-quest-0.6.json.gz": {
+      "sha256": "6929c14e33e2da4e8fdfe1125c63d2456d47b7f7111d293b12ddefa8bcad5745",
+      "bytes": 17890,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100025/100025-quest-0.6.json.gz"
+    },
+    "raw/100026-recent-0.25.json.gz": {
+      "sha256": "922c247b39c41891d5ff8642ef69dfd474311d3ed9120c3fbadc4e838bfca5f2",
+      "bytes": 15168,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100025/100026-recent-0.25.json.gz"
+    },
+    "raw/100026-recent-0.4.json.gz": {
+      "sha256": "0afc26ce823784cbb957118ab19b5f6b5adeb51e15908f75ec6f467710b550ca",
+      "bytes": 15095,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100025/100026-recent-0.4.json.gz"
+    },
+    "raw/100026-recent-0.6.json.gz": {
+      "sha256": "876de0812f75ca52f6070a9a5d2cf1e0b99638d4ff9188a1efee57d1535db2e7",
+      "bytes": 15203,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100025/100026-recent-0.6.json.gz"
+    },
+    "raw/100026-quest-0.25.json.gz": {
+      "sha256": "e6c84fc454c596479d834c2dd8d4f407310d9224bcfdc4541c3aa863804a7719",
+      "bytes": 14576,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100025/100026-quest-0.25.json.gz"
+    },
+    "raw/100026-quest-0.4.json.gz": {
+      "sha256": "89c61fb76f8761fcc02aa836e761acf79831a688e3d16243c36d6ac888265a64",
+      "bytes": 14238,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100025/100026-quest-0.4.json.gz"
+    },
+    "raw/100026-quest-0.6.json.gz": {
+      "sha256": "2f71a0a555d202b346300b97dfc910d24cf7cffe27a588122ed085dcdefbe619",
+      "bytes": 14192,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100025/100026-quest-0.6.json.gz"
+    },
+    "raw/100027-recent-0.25.json.gz": {
+      "sha256": "bb58b81f0f0a97a15151551a6cd7b8b1a524755acdc19de6d615fc2498581a5f",
+      "bytes": 14599,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100025/100027-recent-0.25.json.gz"
+    },
+    "raw/100027-recent-0.4.json.gz": {
+      "sha256": "4822cf4bc47b23e8bb3a623750f571ba1685fd64d13b35d93b2725aedd4c9929",
+      "bytes": 15225,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100025/100027-recent-0.4.json.gz"
+    },
+    "raw/100027-recent-0.6.json.gz": {
+      "sha256": "af5aafb9e850ae8d912839598322c4574b9729673db2cdcd36f2655cbf807e01",
+      "bytes": 15253,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100025/100027-recent-0.6.json.gz"
+    },
+    "raw/100027-quest-0.25.json.gz": {
+      "sha256": "d230ee2c103dcf1f93e0064162331e80ae741ce1aa6783c92c584994b4d2e212",
+      "bytes": 15525,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100025/100027-quest-0.25.json.gz"
+    },
+    "raw/100027-quest-0.4.json.gz": {
+      "sha256": "1569ab7b318ab869c2eecc483af62363ccf7f5d559494115845ead6b660a9e1b",
+      "bytes": 15355,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100025/100027-quest-0.4.json.gz"
+    },
+    "raw/100027-quest-0.6.json.gz": {
+      "sha256": "247a6358778a75796e6e2a843f5f0ba56e53156ded4ca789094c5631d44dcc0f",
+      "bytes": 15243,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100025/100027-quest-0.6.json.gz"
+    },
+    "raw/100028-recent-0.25.json.gz": {
+      "sha256": "e57a6519b169f5ed63b8c50fc1721beb94caadaadd751ea1546083a6f9241559",
+      "bytes": 15377,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100025/100028-recent-0.25.json.gz"
+    },
+    "raw/100028-recent-0.4.json.gz": {
+      "sha256": "13de0f22ff98481bc1631cd58c2c7b7dab4cfc5471f8b56c614cf31a69d71fbd",
+      "bytes": 15615,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100025/100028-recent-0.4.json.gz"
+    },
+    "raw/100028-recent-0.6.json.gz": {
+      "sha256": "25345c6302c76410f3e29e3a0b3f7ca24a950a13b8b1ca06f5bcca4425dc27e0",
+      "bytes": 15812,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100025/100028-recent-0.6.json.gz"
+    },
+    "raw/100028-quest-0.25.json.gz": {
+      "sha256": "30a28456d552fd05c7529b51af07ba482f5f7a41230b68f524c7f8975959ef2c",
+      "bytes": 15790,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100025/100028-quest-0.25.json.gz"
+    },
+    "raw/100028-quest-0.4.json.gz": {
+      "sha256": "623c5511e1280ab99d8e340a6e8e8c72a68279758db77bc78b126406433b39e1",
+      "bytes": 16900,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100025/100028-quest-0.4.json.gz"
+    },
+    "raw/100028-quest-0.6.json.gz": {
+      "sha256": "eaa6b5834759f329f3eeaab3465e220328921405bed549910e0dddb1b2e8af75",
+      "bytes": 16597,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100025/100028-quest-0.6.json.gz"
+    },
+    "raw/100029-recent-0.25.json.gz": {
+      "sha256": "5d8c2e1489bd7befb1ede1d9e407c7447e91cc9c6f603abb6fdb0b1d349b59c6",
+      "bytes": 14924,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100025/100029-recent-0.25.json.gz"
+    },
+    "raw/100029-recent-0.4.json.gz": {
+      "sha256": "44a20056bf61b1f0502fb541f1ad207310928dae96a5c40bbb5ec97a2318e5c6",
+      "bytes": 14895,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100025/100029-recent-0.4.json.gz"
+    },
+    "raw/100029-recent-0.6.json.gz": {
+      "sha256": "a78fad589d9ee8274bd4b56fe6281a57508be587073a93193fb29564c8613dd1",
+      "bytes": 14827,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100025/100029-recent-0.6.json.gz"
+    },
+    "raw/100029-quest-0.25.json.gz": {
+      "sha256": "09a6737ab8a234e9b43a1765a2ca7ed91744b57fc0483b49984862ebc3715e55",
+      "bytes": 15845,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100025/100029-quest-0.25.json.gz"
+    },
+    "raw/100029-quest-0.4.json.gz": {
+      "sha256": "bb995f02a97d600bbc83aab197031ec5431530c3c22204c206f77901104a369b",
+      "bytes": 15569,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100025/100029-quest-0.4.json.gz"
+    },
+    "raw/100029-quest-0.6.json.gz": {
+      "sha256": "38a998d2090f093336663eb997a918fcb83cc609696ad812ea4c955802d7e727",
+      "bytes": 15384,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100025/100029-quest-0.6.json.gz"
+    },
+    "raw/100030-recent-0.25.json.gz": {
+      "sha256": "6fdc6cc2d0fec1e9247ce2119ef154afdb0bb53ff841e874e69e05a03fdb153e",
+      "bytes": 9902,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100030/100030-recent-0.25.json.gz"
+    },
+    "raw/100030-recent-0.4.json.gz": {
+      "sha256": "afc692983bcf7ea44b987f2c502ed0ace3b3d15ef1f1270b8e6a4b61df0cb8c4",
+      "bytes": 9855,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100030/100030-recent-0.4.json.gz"
+    },
+    "raw/100030-recent-0.6.json.gz": {
+      "sha256": "ca757a3406bcd645cb64b24599998d5222bf1dbda82f8f50fd7c07867ff15a00",
+      "bytes": 9828,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100030/100030-recent-0.6.json.gz"
+    },
+    "raw/100030-quest-0.25.json.gz": {
+      "sha256": "eba0150e14d23a3abec22cbabbf41d494224362ebd4ae7c098b5e1abe453c67f",
+      "bytes": 10191,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100030/100030-quest-0.25.json.gz"
+    },
+    "raw/100030-quest-0.4.json.gz": {
+      "sha256": "a581c6d84bd3a629086dc2bf9c43c7127bcf34c8db56267b36adffb966bc1c7e",
+      "bytes": 10077,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100030/100030-quest-0.4.json.gz"
+    },
+    "raw/100030-quest-0.6.json.gz": {
+      "sha256": "ffe1c8586aab2541563a600be916bddf94e4c2677c15dfbddc2cab4dd29b4bea",
+      "bytes": 10064,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100030/100030-quest-0.6.json.gz"
+    },
+    "raw/100031-recent-0.25.json.gz": {
+      "sha256": "bb7fd197251adc89672c8a6fae023f01693059aa8ee6ab4754a28e37ee8828a1",
+      "bytes": 17399,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100030/100031-recent-0.25.json.gz"
+    },
+    "raw/100031-recent-0.4.json.gz": {
+      "sha256": "432017512fc388f8b385dd1efc5c22b17b47f5cc3d654219279e69e17f2c5b97",
+      "bytes": 17313,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100030/100031-recent-0.4.json.gz"
+    },
+    "raw/100031-recent-0.6.json.gz": {
+      "sha256": "5ab00da15eb7413aac5204444215e31131fbb08823f283ee305244d944711025",
+      "bytes": 17325,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100030/100031-recent-0.6.json.gz"
+    },
+    "raw/100031-quest-0.25.json.gz": {
+      "sha256": "d8e99e362bebb22c17973f338ae56dfef5d23fce55f5c580916537d603f46874",
+      "bytes": 16331,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100030/100031-quest-0.25.json.gz"
+    },
+    "raw/100031-quest-0.4.json.gz": {
+      "sha256": "0deed007e890d9d1041e94ccdedc4bde7f59138243737e7d901a01eb0e1eb7a3",
+      "bytes": 16226,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100030/100031-quest-0.4.json.gz"
+    },
+    "raw/100031-quest-0.6.json.gz": {
+      "sha256": "50ce1743bae96f5de9c277e5fc584f5fcd3c78666843395cc249a4dbe6ea0f4c",
+      "bytes": 16070,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100030/100031-quest-0.6.json.gz"
+    },
+    "raw/100032-recent-0.25.json.gz": {
+      "sha256": "0715e39adee129af2d76f2572a625102547dfb0025aab12ddfdd65b99d204761",
+      "bytes": 14411,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100030/100032-recent-0.25.json.gz"
+    },
+    "raw/100032-recent-0.4.json.gz": {
+      "sha256": "df69fc70a78c553bfb381776362265fdbe257dad3f0b7d4fc6792439fa4c7203",
+      "bytes": 14419,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100030/100032-recent-0.4.json.gz"
+    },
+    "raw/100032-recent-0.6.json.gz": {
+      "sha256": "50b4aca1c50193d795a985e31f149c78cc60dd9fdb856c45856f38569683f2ec",
+      "bytes": 14344,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100030/100032-recent-0.6.json.gz"
+    },
+    "raw/100032-quest-0.25.json.gz": {
+      "sha256": "7d5fb7b94d673139bcd3f422ae2fcbd60273afa86639e7b5a0c5d1fa91432cf5",
+      "bytes": 15138,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100030/100032-quest-0.25.json.gz"
+    },
+    "raw/100032-quest-0.4.json.gz": {
+      "sha256": "30cf1f9e09d5bfe402823dae0cbebf35c231ed2bcdb1cb4c56de1b75af943b11",
+      "bytes": 14920,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100030/100032-quest-0.4.json.gz"
+    },
+    "raw/100032-quest-0.6.json.gz": {
+      "sha256": "120bef62d8e35eb2e85060d44ee27b92441a5e4e159906ab2cb392d3e1c05002",
+      "bytes": 14696,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100030/100032-quest-0.6.json.gz"
+    },
+    "raw/100035-recent-0.25.json.gz": {
+      "sha256": "4fe8bfd740298ba12ea30d561afc4ac84c69cd8184eb69ceb1531eaad439d5a6",
+      "bytes": 13190,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100035/100035-recent-0.25.json.gz"
+    },
+    "raw/100035-recent-0.4.json.gz": {
+      "sha256": "c600c0fd24ec3742e2af8ae2eb6e9f366954988af61dbea2af2f945729e59bac",
+      "bytes": 13112,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100035/100035-recent-0.4.json.gz"
+    },
+    "raw/100035-recent-0.6.json.gz": {
+      "sha256": "52e83abd17e2efcc52df13a4c46f195a42ff28a691a80f821c84cf287a320e32",
+      "bytes": 12974,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100035/100035-recent-0.6.json.gz"
+    },
+    "raw/100035-quest-0.25.json.gz": {
+      "sha256": "55d3b56eeb5d29ac527c0e7d8db85cb43c9bcc47e326f426d16df7c8d8548a6b",
+      "bytes": 12665,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100035/100035-quest-0.25.json.gz"
+    },
+    "raw/100035-quest-0.4.json.gz": {
+      "sha256": "fd42f33aa21983a363faa534bbf33ea350219344ba2eeea6bcc868d1fa9203a5",
+      "bytes": 12513,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100035/100035-quest-0.4.json.gz"
+    },
+    "raw/100035-quest-0.6.json.gz": {
+      "sha256": "a266584dd06534685e2fa42bc3a9cef11b2ccf8d1690bcac5129fe89a47d793c",
+      "bytes": 12088,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100035/100035-quest-0.6.json.gz"
+    },
+    "raw/100036-recent-0.25.json.gz": {
+      "sha256": "f04d68bd0485c8e1294dc750fc183c2b6b40b3cfca4a21fb894a63e10c4c85e8",
+      "bytes": 16284,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100035/100036-recent-0.25.json.gz"
+    },
+    "raw/100036-recent-0.4.json.gz": {
+      "sha256": "9f48c3b2f6aae2588934b4f5c575e9354e8fde70029a6ef19c87afaba63b6719",
+      "bytes": 16242,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100035/100036-recent-0.4.json.gz"
+    },
+    "raw/100036-recent-0.6.json.gz": {
+      "sha256": "7f1d234d0fafe42188e614057a7bb5ad727573b3ee7e01f3bc4f7fd590b0ca88",
+      "bytes": 16175,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100035/100036-recent-0.6.json.gz"
+    },
+    "raw/100036-quest-0.25.json.gz": {
+      "sha256": "e9dc689e61a5c3088370c2b2231b15620f4271d1a5104ee26dc86117d349669c",
+      "bytes": 17182,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100035/100036-quest-0.25.json.gz"
+    },
+    "raw/100036-quest-0.4.json.gz": {
+      "sha256": "fc13446e94ba6da52b045bf37cc9dea80fbc9d798cb1a7e93e22f6fe5ee1e45e",
+      "bytes": 17070,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100035/100036-quest-0.4.json.gz"
+    },
+    "raw/100036-quest-0.6.json.gz": {
+      "sha256": "af91468ca29380f591e8e62eef9e968119acde7671ca9eaef6542e253a5bba38",
+      "bytes": 16887,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100035/100036-quest-0.6.json.gz"
+    },
+    "raw/100037-recent-0.25.json.gz": {
+      "sha256": "3003ea65d2875d8242c176a2ed9c487622539941c0fb0cd9aa972d72ad6e6c9d",
+      "bytes": 17135,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100035/100037-recent-0.25.json.gz"
+    },
+    "raw/100037-recent-0.4.json.gz": {
+      "sha256": "f70f941d37449cbf84eb3bbb77b9d2e802cbadd1f77011599b21c62f3eace978",
+      "bytes": 18106,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100035/100037-recent-0.4.json.gz"
+    },
+    "raw/100040-recent-0.25.json.gz": {
+      "sha256": "f76b83e18382addea0d916651fc7a9a49737c91c6ce74f21e383548bddc3586c",
+      "bytes": 14749,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100040/100040-recent-0.25.json.gz"
+    },
+    "raw/100040-recent-0.4.json.gz": {
+      "sha256": "de83766e833b21ec74710bbe0e00f991e5c2cff65cc268dd9b6d416c7d1f49c7",
+      "bytes": 14717,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100040/100040-recent-0.4.json.gz"
+    },
+    "raw/100040-recent-0.6.json.gz": {
+      "sha256": "3b232006e55c62352aaea53e066159c7e7e33897e098f0cb89d85afe3d9f01d3",
+      "bytes": 14660,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100040/100040-recent-0.6.json.gz"
+    },
+    "raw/100040-quest-0.25.json.gz": {
+      "sha256": "888db290d6775d33ead5cb33bafbb9de738bf41c57abb9e19111f1ccc7a2270e",
+      "bytes": 15506,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100040/100040-quest-0.25.json.gz"
+    },
+    "raw/100040-quest-0.4.json.gz": {
+      "sha256": "dc6f47bf1954ea06c2986d07e0809085a9fb306562a257cd5f5fd939e0df640a",
+      "bytes": 15336,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100040/100040-quest-0.4.json.gz"
+    },
+    "raw/100040-quest-0.6.json.gz": {
+      "sha256": "5e74acd824d54b64d6866449d7ed4db8372fee4417911b7152399ba8d772b990",
+      "bytes": 15052,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100040/100040-quest-0.6.json.gz"
+    },
+    "raw/100041-recent-0.25.json.gz": {
+      "sha256": "54df2537d585e55050e7aa5580331117642024ea9eee99b25e7f9bc8aa0cf62f",
+      "bytes": 12190,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100040/100041-recent-0.25.json.gz"
+    },
+    "raw/100041-recent-0.4.json.gz": {
+      "sha256": "0a46b0c328091f3dd97fed35e2980d1bd9b3fd9e4b2fcfc5d64da85efa2f054e",
+      "bytes": 12127,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100040/100041-recent-0.4.json.gz"
+    },
+    "raw/100041-recent-0.6.json.gz": {
+      "sha256": "7aee1f9e418817c3e6bc54d676bc3b9c2adba73fb7145ef9cdafe0a90485bad8",
+      "bytes": 12119,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100040/100041-recent-0.6.json.gz"
+    },
+    "raw/100041-quest-0.25.json.gz": {
+      "sha256": "07b8de360b2a022f28ea46587efcb49fd295f056870184af5c2f624881c0aa59",
+      "bytes": 12682,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100040/100041-quest-0.25.json.gz"
+    },
+    "raw/100041-quest-0.4.json.gz": {
+      "sha256": "0351ca3184b17259a7fb997e2a8b4ac4d4cbef2550671e66f396de6a1229ef15",
+      "bytes": 12517,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100040/100041-quest-0.4.json.gz"
+    },
+    "raw/100041-quest-0.6.json.gz": {
+      "sha256": "922ff99aeae166f032ad676c1fa621cde7dd1ba63dd07aabd19a9bdd8cb8aeb7",
+      "bytes": 12415,
+      "source": "/nas/Public/zhangcheng/self-paging-20261116/base-controls-two/job-100040/100041-quest-0.6.json.gz"
+    },
+    "control/identity.json": {
+      "sha256": "fc441d60f007751cd847bc3b1d167c56fb731ce8ee891c19f383c6cd2dccb093",
+      "bytes": 132,
+      "source": "/home/zhangcheng/self-paging-20261116/base-controls-two/identity.json"
+    },
+    "control/health.json": {
+      "sha256": "288724e959b9e43338e04552676fcda7db0ca6abcf9e0c6b22701f352683a892",
+      "bytes": 622,
+      "source": "/home/zhangcheng/self-paging-20261116/base-controls-two/health.json"
+    },
+    "control/plan.json": {
+      "sha256": "e6b65022e5af49aa72886af3b6138bba855e0a134c7af40fc7fb7e6b5ea33517",
+      "bytes": 1115,
+      "source": "/home/zhangcheng/self-paging-20261116/base-controls-two/plan.json"
+    },
+    "control/reused.json": {
+      "sha256": "30db707126b0a8f572bce769526e5500cc3608b966d11ddc57f6af30e7a12a61",
+      "bytes": 3241,
+      "source": "/home/zhangcheng/self-paging-20261116/base-controls-two/reused.json"
+    },
+    "provenance/source-manifest.json": {
+      "sha256": "002841700cbc56c584c1a3a469cd65aa41be8cfadc25182816d565730129667a",
+      "bytes": 9940,
+      "source": "/home/zhangcheng/self-paging-20261116/rl-prep-source-manifest.json"
+    },
+    "provenance/base-controls-three-gpu-helpers.json": {
+      "sha256": "37f3f6271c4356231af059fede8901a8a809824137bfea8edb7c0af8964a0d67",
+      "bytes": 209,
+      "source": "/home/zhangcheng/self-paging-20261116/base-controls-three-gpu-helpers.json"
+    },
+    "provenance/rl-prep-helpers-manifest.json": {
+      "sha256": "8e66a02754262e5c45c21a2db09bb805bcb2f19af6837cdde855bdeaa05acd62",
+      "bytes": 369,
+      "source": "/home/zhangcheng/self-paging-20261116/rl-prep-helpers-manifest.json"
+    },
+    "summary.jsonl": {
+      "sha256": "0ff0d3a9853377707e6429d01e13d04ded834b65fb4d04e6d70ff1c62ba7f988",
+      "bytes": 204634,
+      "source": "concatenated completed rows from captured job prefixes"
+    }
+  }
+}

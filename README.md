@@ -4,6 +4,8 @@
 
 **2026-11-16 实际运行归档：** [Qwen3-8B SFT 训练、200 次评测、代码与证据](experiments/self_paging_20261116/README.md)。包含 431 步训练、9 次验证和可复核的逐题结果。名义 `full` 的 91% 结果仍执行了模型换页，**不是严格完整历史 Full 基线**；原始权重基线和 RL 尚未结算，详见归档限制。
 
+**原始权重基线中间快照：** [Recent / QuestPage 已完成 224/300 次评测](experiments/self_paging_baselines_partial_20261116/README.md)，含 37 个共同世界的同题 SFT 对照和环境调用错误统计；尚非最终结果。
+
 本仓库最初 fork 自 [facebookresearch/context-language-models](https://github.com/facebookresearch/context-language-models)（CLM，arXiv 2609.37725），现在是一个研究工作区：
 
 - **CLM 原始实现**：保留在 [`clm/`](clm/) 和 [`suffix_cache_reuse/`](suffix_cache_reuse/)，是最主要的对照组（模型决定、作用在文本上）；论文原文在 [`clm.pdf`](clm.pdf)；
