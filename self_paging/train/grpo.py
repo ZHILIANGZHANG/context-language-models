@@ -25,11 +25,12 @@ import torch
 from ..agent.episode import EpisodeConfig, ModelPolicy, run_episode
 from ..core.costs import episode_cost
 from ..data.build_t1_sft import t1_budget
+from ..data.build_rl_pool import config_to_dict, dict_to_config
 from ..envs.t1_warehouse import T1Config, WarehouseEnv
 from ..hf.logstore import PagedKV
 from .advantage import group_advantages, informative, token_advantages
 from .batch import pack, token_logprobs
-from .common import append_jsonl, dist_info, load_model, load_tokenizer, tiny_qwen3
+from .common import append_jsonl, dist_info, load_model, load_tokenizer, read_jsonl, tiny_qwen3
 
 
 @dataclass
@@ -56,12 +57,52 @@ class GRPOConfig:
     recompute_old: bool = True
     seed: int = 0
     t1: T1Config = field(default_factory=T1Config)
+    pool: list | None = None        # prompts from data/build_rl_pool.py; None = uniform seeds × ratios
+    adaptive: bool = True           # down-weight buckets whose groups are all-success or all-failure
 
 
-def rollout_group(model, tok, seed, ratio, cfg: GRPOConfig, gen) -> list[dict]:
+class PromptSampler:
+    """Weighted sampling from the prompt pool, with on-line difficulty adaptation.
+
+    Buckets are (ratio, n_decisions). For each bucket an exponential moving average of the group
+    success rate is kept; buckets that are almost always solved or almost never solved get their
+    weight multiplied by ``frozen`` (GRPO learns nothing from groups whose rewards are all equal)."""
+
+    def __init__(self, cfg: GRPOConfig, rng: random.Random, ema: float = 0.8, frozen: float = 0.2):
+        self.cfg, self.rng, self.ema, self.frozen = cfg, rng, ema, frozen
+        self.success: dict[tuple, float] = {}
+
+    @staticmethod
+    def bucket(prompt: dict) -> tuple:
+        return (prompt["ratio"], prompt["t1_config"]["n_decisions"])
+
+    def _mult(self, prompt) -> float:
+        s = self.success.get(self.bucket(prompt))
+        return self.frozen if (self.cfg.adaptive and s is not None and (s < 0.05 or s > 0.95)) else 1.0
+
+    def sample(self) -> dict:
+        if not self.cfg.pool:
+            seed, ratio = self.rng.randrange(*self.cfg.seed_range), self.rng.choice(self.cfg.ratios)
+            return {"seed": seed, "ratio": ratio, "t1_config": config_to_dict(self.cfg.t1), "weight": 1.0}
+        weights = [e.get("weight", 1.0) * self._mult(e) for e in self.cfg.pool]
+        return self.rng.choices(self.cfg.pool, weights=weights, k=1)[0]
+
+    def update(self, prompt: dict, rewards: list[float]) -> None:
+        b = self.bucket(prompt)
+        rate = sum(r >= self.cfg.success_at for r in rewards) / len(rewards)
+        old = self.success.get(b)
+        self.success[b] = rate if old is None else self.ema * old + (1 - self.ema) * rate
+
+    def summary(self) -> dict:
+        frozen = sum(1 for v in self.success.values() if v < 0.05 or v > 0.95)
+        return {"buckets": len(self.success), "buckets_frozen": frozen}
+
+
+def rollout_group(model, tok, prompt: dict, cfg: GRPOConfig, gen) -> list[dict]:
+    seed, ratio, t1cfg = prompt["seed"], prompt["ratio"], dict_to_config(prompt["t1_config"])
     out = []
     for _ in range(cfg.group):
-        env = WarehouseEnv(seed, cfg.t1)
+        env = WarehouseEnv(seed, t1cfg)
         budget = t1_budget(env, tok, ratio)
         ecfg = EpisodeConfig(budget=budget, max_turns=cfg.max_turns, max_new_tokens=cfg.max_new_tokens,
                              reversible=cfg.reversible, notes=cfg.notes)
@@ -161,6 +202,7 @@ def train_grpo(model, tok, cfg: GRPOConfig, log=None, out=None, rank=0, world=1,
     gen = torch.Generator(device=next(model.parameters()).device).manual_seed(cfg.seed + rank)
     opt = torch.optim.AdamW([p for p in model.parameters() if p.requires_grad], lr=cfg.lr, betas=(0.9, 0.95))
     rollout_fn = rollout_fn or rollout_group
+    sampler = PromptSampler(cfg, rng)
     history = []
     for step in range(cfg.steps):
         t0 = time.time()
@@ -168,10 +210,12 @@ def train_grpo(model, tok, cfg: GRPOConfig, log=None, out=None, rank=0, world=1,
         set_attn(model, rollout_attn)
         groups = []
         for _ in range(max(1, cfg.prompts // world)):
-            seed, ratio = rng.randrange(*cfg.seed_range), rng.choice(cfg.ratios)
-            groups.append(rollout_fn(model, tok, seed, ratio, cfg, gen))
+            prompt = sampler.sample()
+            g = rollout_fn(model, tok, prompt, cfg, gen)
+            sampler.update(prompt, [r["reward"] for r in g])
+            groups.append(g)
         set_attn(model, cfg.attn)
-        row = {"step": step, **summarize(groups), **train_step(model, opt, groups, cfg, world),
+        row = {"step": step, **summarize(groups), **train_step(model, opt, groups, cfg, world), **sampler.summary(),
                "sec": round(time.time() - t0, 1)}
         history.append(row)
         if log and rank == 0:
@@ -204,6 +248,8 @@ def main() -> None:
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--save-every", type=int, default=0, help="also save OUT/step_K every K steps")
     ap.add_argument("--yarn", type=float, default=0.0)
+    ap.add_argument("--pool", help="prompt pool from data/build_rl_pool.py (recommended)")
+    ap.add_argument("--no-adaptive", action="store_true", help="disable on-line difficulty adaptation")
     a = ap.parse_args()
     rank, world, local = dist_info()
     tok = load_tokenizer(a.tokenizer or (None if a.model == "tiny" else a.model))
@@ -212,7 +258,8 @@ def main() -> None:
     model = load_model(base, a.attn, device=device, lora_r=a.lora_r, yarn_factor=a.yarn)
     cfg = GRPOConfig(steps=a.steps, prompts=a.prompts, group=a.group, lr=a.lr, w_eff=a.w_eff, attn=a.attn,
                      max_new_tokens=a.max_new_tokens, max_turns=a.max_turns, reversible=not a.irreversible,
-                     notes=not a.no_notes, seed=a.seed, t1=T1Config(n_decisions=a.n_decisions))
+                     notes=not a.no_notes, seed=a.seed, t1=T1Config(n_decisions=a.n_decisions),
+                     pool=read_jsonl(a.pool) if a.pool else None, adaptive=not a.no_adaptive)
     if rank == 0 and a.log:
         append_jsonl(a.log, {"config": {k: str(v) for k, v in asdict(cfg).items()}})
     train_grpo(model, tok, cfg, log=a.log, out=a.out, rank=rank, world=world, save_every=a.save_every)

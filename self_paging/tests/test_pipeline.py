@@ -245,3 +245,43 @@ def test_diversity_options_and_recovery_masking():
     assert ins and all(e[3] == "tool" for e in ins)
     rep = report(kept, TOK)
     assert rep["recovery"]["mistake_turns_no_loss"] > 0 and len(rep["per_turn_action_combos"]) >= 5
+
+
+def test_rl_pool_sampler_and_eval_pool():
+    """Prompt pool (docs/data_and_training.md §3.5): infeasible budgets are dropped, sensitivity is
+    Belady − Recent with the rule reader, GRPO samples by weight and freezes solved buckets."""
+    import random
+
+    from self_paging.data.build_rl_pool import build_pool, dict_to_config, ood_config
+    from self_paging.train.grpo import GRPOConfig, PromptSampler
+
+    pool, stats = build_pool(TOK, range(10), [0.4, 0.8], vary=True)
+    assert pool and stats["total"] == 20
+    for e in pool:
+        assert e["rule_belady"] == 1.0 and -1.0 <= e["sensitivity"] <= 1.0
+        assert e["weight"] == (2.0 if e["sensitivity"] >= 0.25 else 1.0)
+        env = WarehouseEnv(e["seed"], dict_to_config(e["t1_config"]))
+        assert t1_budget(env, TOK, e["ratio"]) == e["budget"]
+    sampler = PromptSampler(GRPOConfig(pool=pool), random.Random(0))
+    for _ in range(30):  # one bucket always solved -> frozen
+        sampler.update(pool[0], [1.0, 1.0])
+    assert sampler.summary()["buckets_frozen"] >= 1
+    b0 = PromptSampler.bucket(pool[0])
+    draws = [PromptSampler.bucket(sampler.sample()) for _ in range(300)]
+    others = [e for e in pool if PromptSampler.bucket(e) != b0]
+    if others:
+        assert draws.count(b0) / len(draws) < 0.5 + 1e-9 or len(others) < 2
+    assert ood_config(1).n_decisions >= 7
+
+
+def test_belady_pager_matches_oracle_feasibility():
+    """BeladyPager used to strand store lines without their dispatch (misleading the reader) and
+    failed prompts the KV oracle solved; it must now solve whatever the oracle solves."""
+    from self_paging.data.build_rl_pool import profile_prompt
+    from self_paging.data.build_t1_sft import varied_config
+
+    for seed in range(8):
+        for ratio in (0.4, 0.6):
+            e = profile_prompt(seed, ratio, varied_config(seed, T1Config()), TOK)
+            if e["oracle_ok"]:
+                assert e["rule_belady"] == 1.0, (seed, ratio)

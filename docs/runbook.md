@@ -72,13 +72,15 @@ uv pip install "transformers==5.23.0" peft numpy pytest
 
 | 步骤 | 命令 | 通过标准 |
 |---|---|---|
-| 0.1 单元测试 | `python -m pytest -q self_paging/tests` | 36 个通过，1 个跳过 |
+| 0.1 单元测试 | `python -m pytest -q self_paging/tests` | 38 个通过，1 个跳过 |
 | 0.2 **模板比对** | `QWEN3_TOKENIZER=$M python -m pytest -q self_paging/tests/test_template_server.py` | 通过。不通过就把 diff 发回来，按 diff 改 `core/protocol.py` 的渲染函数，**不能跳过** |
 | 0.3 oracle 健全性（真实分词器） | `python -m self_paging.eval.t1_eval --model $M --methods oracle --ratios 0.6 0.45 --seeds 100000 100020 --out eval/oracle.jsonl` | oracle 的 reward 全是 1.0 |
 | 0.4 真实模型能跑通 | `python -m self_paging.eval.t1_eval --model $M --methods model --ratios 0.6 --seeds 100000 100002 --out eval/smoke.jsonl` | 能跑完、不报错；`invalid` 不全是满值 |
 | 0.5 核对 config | 读 `$M/config.json` | 36 层、8 个 KV 头、head_dim 128。如果不同，改 `core/costs.py` 里的常数 |
 
 ### 阶段 1：T1 零样本和系统基线（E0、E1 的 T1 部分）
+
+> 也可以先生成评测题库（阶段 5.0 的 `eval` 命令），然后用 `--pool pools/t1_eval_indist.jsonl` 代替下面的 `--seeds`/`--ratios`，这样阶段 1 和阶段 5 的数字可以直接比较。`belady` 这个上界在 2026-11-16 修过一次（不再拆散成对的记录）；之前跑出的 belady 数字要重跑。
 
 ```bash
 for i in 0 1 2 3 4 5 6 7; do
@@ -164,14 +166,35 @@ python -m self_paging.data.reject_sample --model ckpt/sft --tokenizer $M --out d
 
 ### 阶段 5：GRPO（RL-1，只用 T1）
 
+**5.0 准备题库**（RL 的"数据"就是题库，轨迹是训练时在线采样的；设计见 `docs/data_and_training.md` §3.5）：
+
+```bash
+# 训练题库：不需要模型，CPU 即可。会丢掉预算不可行的题，换页敏感的题加权
+python -m self_paging.data.build_rl_pool build --tokenizer $M --out pools/t1_train.jsonl --seeds 0 5000
+# 可选：用 SFT 后的模型画像，只留通过率在 0.1–0.9 之间的题（每题采样 4 次，很慢，可以按种子区间分卡并行）
+python -m self_paging.data.build_rl_pool profile --tokenizer $M --model ckpt/sft --pool pools/t1_train.jsonl \
+  --out pools/t1_train_profiled.jsonl --samples 4
+# 评测题库：分布内 + 分布外，固定不变，所有 checkpoint 都在上面评测
+python -m self_paging.data.build_rl_pool eval --tokenizer $M --out-dir pools/ --n 200
+```
+
+验收：
+- 训练题库至少几千道；
+- 三档预算都有题；
+- 2–6 个决策点都有。
+
+**5.1 训练**：
+
 ```bash
 torchrun --nproc_per_node 8 -m self_paging.train.grpo --model ckpt/sft --tokenizer $M \
   --out ckpt/rl --log logs/rl.jsonl --save-every 20 \
-  --steps 200 --prompts 16 --group 8 --lora-r 64 --lr 1e-5 --attn flex_attention --max-turns 30
+  --steps 200 --prompts 16 --group 8 --lora-r 64 --lr 1e-5 --attn flex_attention --max-turns 30 \
+  --pool pools/t1_train_profiled.jsonl      # 没做画像就用 pools/t1_train.jsonl
 ```
 
 - **先估算时间**：每步要跑 16 × 8 = 128 个 episode，HF rollout 每个可能要几分钟，8 卡并行时一步可能要几十分钟。先用 `--prompts 8 --steps 20` 试跑，测出每步耗时再定规模。太慢就先做开发任务 D8（批量 rollout）或 D6（SGLang）；
-- **每 20 步评测一次**：对 `ckpt/rl/step_K` 跑阶段 1 的命令（`--methods model`，100 个 held-out 种子）。
+- **每 20 步评测一次**：`python -m self_paging.eval.t1_eval --model ckpt/rl/step_K --tokenizer $M --methods model --pool pools/t1_eval_indist.jsonl --out eval/rl_stepK_indist.jsonl`；最后再在 `pools/t1_eval_ood.jsonl` 上评一次分布外；
+- 日志里的 `buckets_frozen` 是被降权的题目桶数（成功率一直 < 5% 或 > 95%）。如果大部分桶都被冻结，说明题库整体太难或太容易，需要重新画像。
 
 **日志里要看的**（`logs/rl.jsonl`）：
 
