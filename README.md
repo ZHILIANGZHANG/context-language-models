@@ -2,6 +2,8 @@
 
 **让模型自己管理 KV 缓存：像 CLM 把上下文管理交给模型那样，把 KV 的调度管理直接交给模型。**
 
+**2026-11-16 实际运行归档：** [Qwen3-8B SFT 训练、200 次评测、代码与证据](experiments/self_paging_20261116/README.md)。包含 431 步训练、9 次验证和可复核的逐题结果。名义 `full` 的 91% 结果仍执行了模型换页，**不是严格完整历史 Full 基线**；原始权重基线和 RL 尚未结算，详见归档限制。
+
 本仓库最初 fork 自 [facebookresearch/context-language-models](https://github.com/facebookresearch/context-language-models)（CLM，arXiv 2609.37725），现在是一个研究工作区：
 
 - **CLM 原始实现**：保留在 [`clm/`](clm/) 和 [`suffix_cache_reuse/`](suffix_cache_reuse/)，是最主要的对照组（模型决定、作用在文本上）；论文原文在 [`clm.pdf`](clm.pdf)；

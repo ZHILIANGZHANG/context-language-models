@@ -1,0 +1,35 @@
+{
+  "time": 1794803585.2121966,
+  "controller": {
+    "pid": 178874,
+    "uid": 1037,
+    "start_ticks": 1259512632,
+    "cwd": "/data/zhangcheng/context-language-models-797680f-val50"
+  },
+  "workers": [
+    {
+      "pid": 180374,
+      "uid": 1037,
+      "start_ticks": 1259512975,
+      "cwd": "/data/zhangcheng/context-language-models-797680f-val50",
+      "cuda": "0,1,2",
+      "rank": "0"
+    },
+    {
+      "pid": 180375,
+      "uid": 1037,
+      "start_ticks": 1259512975,
+      "cwd": "/data/zhangcheng/context-language-models-797680f-val50",
+      "cuda": "0,1,2",
+      "rank": "1"
+    },
+    {
+      "pid": 180377,
+      "uid": 1037,
+      "start_ticks": 1259512975,
+      "cwd": "/data/zhangcheng/context-language-models-797680f-val50",
+      "cuda": "0,1,2",
+      "rank": "2"
+    }
+  ]
+}

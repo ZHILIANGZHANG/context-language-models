@@ -34,12 +34,22 @@ from ..core.log import TokenLog
 
 
 class PagedKV(TokenLog):
-    def __init__(self, model, budget: int | None = None, strict: bool = True) -> None:
+    def __init__(self, model, budget: int | None = None, strict: bool = True,
+                 store_device: str | None = None, prefill_chunk: int | None = None,
+                 last_logits_only: bool = False) -> None:
         super().__init__(budget=budget, strict=strict)
         self.model = model
         self.n_layers = model.config.num_hidden_layers
         self.device = next(model.parameters()).device
         self.dtype = next(model.parameters()).dtype
+        # Optional CPU backing holds every immutable page once while the live
+        # resident cache stays on the model device. This avoids retaining two
+        # GPU copies of an entire 120K log. It changes transfers, not visibility
+        # or positions, and must not be used for HF wall-clock speed claims.
+        self.store_device = torch.device(store_device) if store_device else self.device
+        if prefill_chunk is not None and prefill_chunk < 1:
+            raise ValueError('prefill_chunk must be positive')
+        self.prefill_chunk, self.last_logits_only = prefill_chunk, last_logits_only
         self.kv: dict[int, list[tuple[torch.Tensor, torch.Tensor]]] = {}
         self._live: DynamicCache | None = None  # valid while the resident set is unchanged
 
@@ -66,7 +76,7 @@ class PagedKV(TokenLog):
         pids = super().page_in(pids)
         self._live = None
         for p in pids:
-            self.kv[p] = [(k.to(self.device, non_blocking=True), v.to(self.device, non_blocking=True))
+            self.kv[p] = [(k.to(self.store_device, non_blocking=True), v.to(self.store_device, non_blocking=True))
                           for k, v in self.kv[p]]
         return pids
 
@@ -83,14 +93,23 @@ class PagedKV(TokenLog):
         pages = [p for p in self.table.in_order(self.table.resident() | {pid}) if self.kv[p]]
         if pages:
             for layer in range(self.n_layers):
-                k = torch.cat([self.kv[p][layer][0] for p in pages], dim=-2)
-                v = torch.cat([self.kv[p][layer][1] for p in pages], dim=-2)
+                k = torch.cat([self.kv[p][layer][0].to(self.device) for p in pages], dim=-2)
+                v = torch.cat([self.kv[p][layer][1].to(self.device) for p in pages], dim=-2)
                 cache.update(k, v, layer)
         return cache
 
     @torch.no_grad()
     def feed(self, pid: int, ids: list[int]) -> torch.Tensor:
-        """Append ``ids`` to page ``pid`` (the page being written). Returns logits [n, vocab]."""
+        """Append tokens; return [n,vocab], or [1,vocab] in last-logit-only mode."""
+        if self.prefill_chunk and len(ids) > self.prefill_chunk:
+            chunks = []
+            for start in range(0, len(ids), self.prefill_chunk):
+                part = self.feed(pid, ids[start:start + self.prefill_chunk])
+                if self.last_logits_only:
+                    chunks = [part]
+                else:
+                    chunks.append(part)
+            return torch.cat(chunks, 0)
         n = len(ids)
         cache = self._live if self._live is not None else self._gather(pid)
         l_res = cache.get_seq_length()
@@ -99,10 +118,12 @@ class PagedKV(TokenLog):
             torch.full((n, n), torch.finfo(self.dtype).min, dtype=self.dtype, device=self.device), 1)
         pos = torch.arange(self.log_len, self.log_len + n, device=self.device)[None]
         out = self.model(input_ids=torch.tensor([ids], device=self.device), position_ids=pos,
-                         attention_mask=mask, past_key_values=cache, use_cache=True)
+                         attention_mask=mask, past_key_values=cache, use_cache=True,
+                         **({'logits_to_keep': 1} if self.last_logits_only else {}))
         for layer in range(self.n_layers):
             lay = cache.layers[layer]
-            k_new, v_new = lay.keys[:, :, l_res:].clone(), lay.values[:, :, l_res:].clone()
+            k_new = lay.keys[:, :, l_res:].to(self.store_device, copy=True)
+            v_new = lay.values[:, :, l_res:].to(self.store_device, copy=True)
             if len(self.kv[pid]) < self.n_layers:
                 self.kv[pid].append((k_new, v_new))
             else:

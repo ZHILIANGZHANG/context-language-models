@@ -1,0 +1,11 @@
+{
+  "time": 1794782810.2870617,
+  "scope": "eight_reserved_cases_only",
+  "execution_and_factual_pass": 8,
+  "critical_turns": 127,
+  "fallbacks": 0,
+  "composite_and_note_outputs_inspected": true,
+  "quality_status": "suitable_for_larger_filtered_generation_not_final_corpus_acceptance",
+  "sha256": "f552609acd681bacf1681b0eb490e41a01fcfdbcadab5a0d01fa244f1c2f7f1c",
+  "training_started": false
+}

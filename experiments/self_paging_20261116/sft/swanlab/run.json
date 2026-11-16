@@ -1,0 +1,36 @@
+{
+  "id": "6p5b86uy",
+  "url": "https://swanlab.cn/@zhangcheng525/context-language-models/runs/6p5b86uy",
+  "owner": "zhangcheng525",
+  "project": "context-language-models",
+  "config": {
+    "model": "Qwen3-8B",
+    "upstream": "797680fc691514587fb8cc298236c624ac3bbac8",
+    "source_manifest_sha256": "6859885e5942bfeef1db23daf21a29417407c18ef08eb5213b769a487e898df4",
+    "train_sha256": "13a002dc93ae0f7c0cf3c90267b3f75321260ca5f1f284fc0c072c73f03b6b6b",
+    "heldout_sha256": "07f49e8782a9caee4685cb80a0a80372928153ff1da759447da6367c3c714d71",
+    "train_records": 2400,
+    "heldout_records": 240,
+    "epochs": 1,
+    "lora_rank": 64,
+    "lora_alpha": 128,
+    "lr": 0.0001,
+    "optimizer_steps": 431,
+    "seed": 0,
+    "max_packed_tokens": 32768,
+    "world_size": 3,
+    "gpus": [
+      0,
+      1,
+      2
+    ],
+    "corpus": "zero-fallback GPU rewrites of audited oracle plans; not autonomous teacher reasoning",
+    "plain_next_loss_retention": 0.25,
+    "checkpoint_initialization": "original base; smoke updates discarded",
+    "eval_every": 50,
+    "save_every": 50,
+    "validation_records": 240,
+    "checkpoint_kind": "evaluable LoRA adapters; no optimizer resume state"
+  },
+  "time": 1794803533.4359534
+}

@@ -1,0 +1,17 @@
+........................................................................ [ 98%]
+.                                                                        [100%]
+=============================== warnings summary ===============================
+self_paging/tests/test_equivalence.py: 14 warnings
+  /home/zhangcheng/My-OPD/.venv-cu129/lib/python3.12/site-packages/torch/jit/_script.py:365: DeprecationWarning: `torch.jit.script_method` is deprecated. Please switch to `torch.compile` or `torch.export`.
+    warnings.warn(
+
+self_paging/tests/test_template_server.py::test_render_matches_chat_template
+  <frozen importlib._bootstrap>:488: DeprecationWarning: builtin type SwigPyPacked has no __module__ attribute
+
+self_paging/tests/test_template_server.py::test_render_matches_chat_template
+  <frozen importlib._bootstrap>:488: DeprecationWarning: builtin type SwigPyObject has no __module__ attribute
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+-- generated xml file: /home/zhangcheng/self-paging-20261116/quality-cpu.xml ---
+73 passed, 16 warnings in 354.57s (0:05:54)
+sys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute

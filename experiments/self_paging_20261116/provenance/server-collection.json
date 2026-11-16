@@ -1,0 +1,635 @@
+{
+  "collected_at": 1794838614.0695572,
+  "source_check": {
+    "val50-source-manifest.json": {
+      "files": 91,
+      "mismatches": []
+    },
+    "rl-prep-source-manifest.json": {
+      "files": 93,
+      "mismatches": []
+    }
+  },
+  "files": {
+    "server_helpers/assemble_quality_data.py": {
+      "sha256": "335ff272a7d9c427a04c1e822141cdfa8957ff7dfd06db146711ba12dab2ea8f",
+      "bytes": 4913,
+      "server_path": "/home/zhangcheng/self-paging-20261116/assemble_quality_data.py"
+    },
+    "server_helpers/audit_protocol.py": {
+      "sha256": "3c2d78985afbd801f916be4bf3d2b7c2aa2191b7d64e4ab87a68bb2835e1350c",
+      "bytes": 2461,
+      "server_path": "/home/zhangcheng/self-paging-20261116/audit_protocol.py"
+    },
+    "server_helpers/base_controls_two_worker.py": {
+      "sha256": "59aaab840d9bd0096f8fad8d0e66779bd3036c4814c350429e272642449f6609",
+      "bytes": 5229,
+      "server_path": "/home/zhangcheng/self-paging-20261116/base_controls_two_worker.py"
+    },
+    "server_helpers/build_quality_candidates.py": {
+      "sha256": "befbd3db4ef9a0402fd0bec9616ebb45d46ac5cde5de23124bc762725ef6056f",
+      "bytes": 3332,
+      "server_path": "/home/zhangcheng/self-paging-20261116/build_quality_candidates.py"
+    },
+    "server_helpers/build_rl_cpu.py": {
+      "sha256": "8208cd7b83c9088aa4d5b17363b85703e8c4ea7e0b82b7b65c552a8035191a61",
+      "bytes": 7093,
+      "server_path": "/home/zhangcheng/self-paging-20261116/build_rl_cpu.py"
+    },
+    "server_helpers/diversity_audit.py": {
+      "sha256": "0549a62872d879470151cff7f1dfab3f1e1568fe4b844bf1cb8e274861d72668",
+      "bytes": 5154,
+      "server_path": "/home/zhangcheng/self-paging-20261116/diversity_audit.py"
+    },
+    "server_helpers/finalize_teacher_quality.py": {
+      "sha256": "0c5bbd783481ae20fbf44eb4a5ca6d80d8067d3465b27a7e18e7b35a0d917f1b",
+      "bytes": 1790,
+      "server_path": "/home/zhangcheng/self-paging-20261116/finalize_teacher_quality.py"
+    },
+    "server_helpers/quality_checks.py": {
+      "sha256": "d162320f98bb05216f167af5740a6744c9b70de30ecf99268c0ee311bc126756",
+      "bytes": 2100,
+      "server_path": "/home/zhangcheng/self-paging-20261116/quality_checks.py"
+    },
+    "server_helpers/quality_pool_finalize.py": {
+      "sha256": "2015cc4c7b9646c7424aeda394f188ccc31bea71f945e8e58bee90eb68bc7b2d",
+      "bytes": 2382,
+      "server_path": "/home/zhangcheng/self-paging-20261116/quality_pool_finalize.py"
+    },
+    "server_helpers/quality_production_worker.py": {
+      "sha256": "d4a5de99c095a9a48a7e609ce360f945a0c438106c7b2302e415664469c8b513",
+      "bytes": 3750,
+      "server_path": "/home/zhangcheng/self-paging-20261116/quality_production_worker.py"
+    },
+    "server_helpers/quality_scale_worker.py": {
+      "sha256": "eb887f38cd838bb706cf9e0017535df45b9b891e6ef5f5c07f7aa98dc384fdf3",
+      "bytes": 2844,
+      "server_path": "/home/zhangcheng/self-paging-20261116/quality_scale_worker.py"
+    },
+    "server_helpers/quality_semantics.py": {
+      "sha256": "61e510f577486e55dd3b34e98f9e131dd2dbe13033b80a02f35beecaf8df4c45",
+      "bytes": 1726,
+      "server_path": "/home/zhangcheng/self-paging-20261116/quality_semantics.py"
+    },
+    "server_helpers/quality_supplement_worker.py": {
+      "sha256": "9f90a9d4ef818cda2e1bb8e3c9a7d90ba835da0d0d51dab4cc7e2f808c4750d1",
+      "bytes": 3752,
+      "server_path": "/home/zhangcheng/self-paging-20261116/quality_supplement_worker.py"
+    },
+    "server_helpers/quality_teacher_v3.py": {
+      "sha256": "5ab36acbef938d28651ac265c00a9e3c1a423cef893e0c560866848e016a5d0a",
+      "bytes": 3097,
+      "server_path": "/home/zhangcheng/self-paging-20261116/quality_teacher_v3.py"
+    },
+    "server_helpers/quality_teacher_v4.py": {
+      "sha256": "17167b2da174fc0ceb0af93074334f5536409b3f6000eb43c3a7491a14cefdd6",
+      "bytes": 3097,
+      "server_path": "/home/zhangcheng/self-paging-20261116/quality_teacher_v4.py"
+    },
+    "server_helpers/quality_writer.py": {
+      "sha256": "91c7c284eb0e46ceb801fc519fd7c1d338e331635ccd002ba0c628725b6e95d8",
+      "bytes": 4130,
+      "server_path": "/home/zhangcheng/self-paging-20261116/quality_writer.py"
+    },
+    "server_helpers/quality_writer_v3.py": {
+      "sha256": "a61ad1c8a34da15dc684944b0ecad9a958de5d6397e332fe3ae54e2b1b9aa3c7",
+      "bytes": 5247,
+      "server_path": "/home/zhangcheng/self-paging-20261116/quality_writer_v3.py"
+    },
+    "server_helpers/quality_writer_v4.py": {
+      "sha256": "a333c8ad3f201dc1b7a88e1054b2ec26ea39ba299753ae5c2d48b9ed20bbecc8",
+      "bytes": 6489,
+      "server_path": "/home/zhangcheng/self-paging-20261116/quality_writer_v4.py"
+    },
+    "server_helpers/queue_base_controls_three_gpu.py": {
+      "sha256": "de6fc048b5663044d500e29d821da8bc867edd49db36e3164c34cfb613db84c5",
+      "bytes": 9659,
+      "server_path": "/home/zhangcheng/self-paging-20261116/queue_base_controls_three_gpu.py"
+    },
+    "server_helpers/queue_rl_profile.py": {
+      "sha256": "dce517a1af24fb419fa9d2455ccf2eb4a60ca0220785f3253adfe0dc927dc64d",
+      "bytes": 8737,
+      "server_path": "/home/zhangcheng/self-paging-20261116/queue_rl_profile.py"
+    },
+    "server_helpers/rl_profile_worker.py": {
+      "sha256": "61b6428f6265b3164c5c3726f159c80d26ceb5695081bf2d0067c77acd5f8f72",
+      "bytes": 4119,
+      "server_path": "/home/zhangcheng/self-paging-20261116/rl_profile_worker.py"
+    },
+    "server_helpers/run_quality_production.py": {
+      "sha256": "d117236e2a10b9747baeb97f83159f375477a2b4f0e41723c40aff52d053b0f6",
+      "bytes": 4601,
+      "server_path": "/home/zhangcheng/self-paging-20261116/run_quality_production.py"
+    },
+    "server_helpers/run_quality_supplement1.py": {
+      "sha256": "db5e43f65af4909c7d488e81578973dc8df4b39b7984f8dc81c9e786adc9de17",
+      "bytes": 5551,
+      "server_path": "/home/zhangcheng/self-paging-20261116/run_quality_supplement1.py"
+    },
+    "server_helpers/run_quality_teacher_v3.py": {
+      "sha256": "c24788a998f6b1caf344fadc731837db89527f5dae252f40f557e42bde153f35",
+      "bytes": 3089,
+      "server_path": "/home/zhangcheng/self-paging-20261116/run_quality_teacher_v3.py"
+    },
+    "server_helpers/run_quality_val50.py": {
+      "sha256": "a1cbd7225352102d2d88dbf51c97f5a7feb75030a02336e476aa53b372717387",
+      "bytes": 11964,
+      "server_path": "/home/zhangcheng/self-paging-20261116/run_quality_val50.py"
+    },
+    "server_helpers/select_quality_cases.py": {
+      "sha256": "630ef9ba7cefda677271820f64c3d8a10d27114b9cfc24fdd3bf95a7cb7d0635",
+      "bytes": 3166,
+      "server_path": "/home/zhangcheng/self-paging-20261116/select_quality_cases.py"
+    },
+    "server_helpers/swanlab_val50_relay.py": {
+      "sha256": "8cbea815f5c34c7dfe73d2f6feb14bb39dd71780759574233c09ec13283eb2ec",
+      "bytes": 4168,
+      "server_path": "/home/zhangcheng/self-paging-20261116/swanlab_val50_relay.py"
+    },
+    "server_helpers/swanlab_val50_verify.py": {
+      "sha256": "bec592dc35420eee284de0bcc8ad3c7d506d78d12918c8e584f6e49e4a11a822",
+      "bytes": 2222,
+      "server_path": "/home/zhangcheng/self-paging-20261116/swanlab_val50_verify.py"
+    },
+    "server_helpers/test_assemble_quality_data.py": {
+      "sha256": "ec77ce9e27d984e62a5b745d441e490b68e1fd9e022204ab5597a3ce526f7fef",
+      "bytes": 559,
+      "server_path": "/home/zhangcheng/self-paging-20261116/test_assemble_quality_data.py"
+    },
+    "server_helpers/test_diversity_audit.py": {
+      "sha256": "f0ab6b68115499ae8b7d437938aae0c52b90e56bbee0ff664a11004aa7ba0c3a",
+      "bytes": 1278,
+      "server_path": "/home/zhangcheng/self-paging-20261116/test_diversity_audit.py"
+    },
+    "server_helpers/test_quality_semantics.py": {
+      "sha256": "dc93b2bf0c7cb64a8b8cd43f546cdd8bbd9d24d439c350bd96f71219e6a00e2e",
+      "bytes": 712,
+      "server_path": "/home/zhangcheng/self-paging-20261116/test_quality_semantics.py"
+    },
+    "server_helpers/test_quality_writer.py": {
+      "sha256": "473fe6d6e4cf8a0b351e9760fa2b931c4c25f6abb139ddfab9b59ac8467b010b",
+      "bytes": 413,
+      "server_path": "/home/zhangcheng/self-paging-20261116/test_quality_writer.py"
+    },
+    "server_helpers/test_select_quality_cases.py": {
+      "sha256": "14c65e9c541439ac72b6ac1e07d654f41075504cce1ee9acfcb38e240f99cf95",
+      "bytes": 765,
+      "server_path": "/home/zhangcheng/self-paging-20261116/test_select_quality_cases.py"
+    },
+    "server_helpers/val50_training_witness.py": {
+      "sha256": "1886168e94d8333d95af60ae670250de6e246a047f34c87cd897157fbc1f2c1d",
+      "bytes": 2902,
+      "server_path": "/home/zhangcheng/self-paging-20261116/val50_training_witness.py"
+    },
+    "sft/sft.jsonl": {
+      "sha256": "b57dca5b00867b7dc8c16350b67a0bbe9656487234fa0d15cd9b5221a8b18b74",
+      "bytes": 60812,
+      "server_path": "/home/zhangcheng/self-paging-20261116/quality-training-val50/sft.jsonl"
+    },
+    "sft/training-plan.json": {
+      "sha256": "cb08f8195da4711b7296bcdd3dbe3a16d1c3452ec6275ee05d3defcd43ee9890",
+      "bytes": 954,
+      "server_path": "/home/zhangcheng/self-paging-20261116/quality-training-val50/training-plan.json"
+    },
+    "sft/periodic-accepted.json": {
+      "sha256": "c56cf1beaabe5a85593ec2efc7d64893422cb6f26a7d07cfa42278710508ab6f",
+      "bytes": 996,
+      "server_path": "/home/zhangcheng/self-paging-20261116/quality-training-val50/periodic-accepted.json"
+    },
+    "sft/verified-launch.json": {
+      "sha256": "9aa85169a252c287547e3fad34735200fea7548a93ec9c679e52c55fc433463d",
+      "bytes": 803,
+      "server_path": "/home/zhangcheng/self-paging-20261116/quality-training-val50/verified-launch.json"
+    },
+    "sft/sft-complete.json": {
+      "sha256": "76380f11efa4539fb2acba26ba829e29b275a457ae1d9f5112717619db93f8ac",
+      "bytes": 208,
+      "server_path": "/home/zhangcheng/self-paging-20261116/quality-training-val50/sft-complete.json"
+    },
+    "sft/complete.json": {
+      "sha256": "3af3a739f37f95ed2d3a800eb7586a0a94a1e4b6a990af92cc0dc4e19194cd41",
+      "bytes": 249,
+      "server_path": "/home/zhangcheng/self-paging-20261116/quality-training-val50/complete.json"
+    },
+    "sft/sft-quality/launch.json": {
+      "sha256": "b4b7a8715b4a98a14851910f801a4a8d2777a68218416316da13294576a4e1ab",
+      "bytes": 1198,
+      "server_path": "/home/zhangcheng/self-paging-20261116/quality-training-val50/sft-quality/launch.json"
+    },
+    "sft/sft-quality/exit.json": {
+      "sha256": "bc16309092881d08d1b18439951103f6366d30443101c2d3dec97391e1247a96",
+      "bytes": 207,
+      "server_path": "/home/zhangcheng/self-paging-20261116/quality-training-val50/sft-quality/exit.json"
+    },
+    "sft/sft-quality/stdout.log": {
+      "sha256": "d028692b94855275936549764a52f1dea204abb342e24e9714ac6220822ca70d",
+      "bytes": 18889,
+      "server_path": "/home/zhangcheng/self-paging-20261116/quality-training-val50/sft-quality/stdout.log"
+    },
+    "sft/smoke-periodic/launch.json": {
+      "sha256": "8d40d0185a0f23d1c2339c0813c7a3f35a500bee2a13625afa424c5e80dce21f",
+      "bytes": 899,
+      "server_path": "/home/zhangcheng/self-paging-20261116/quality-training-val50/smoke-periodic/launch.json"
+    },
+    "sft/smoke-periodic/exit.json": {
+      "sha256": "618349133e47b477dd1063b06090fadfd425840bdd08890e551e4c72c2f5e0e0",
+      "bytes": 206,
+      "server_path": "/home/zhangcheng/self-paging-20261116/quality-training-val50/smoke-periodic/exit.json"
+    },
+    "sft/smoke-periodic/stdout.log": {
+      "sha256": "3435ff4c08687fedb1d8df56a40c7591ceb86260ec09394df206c718d7f6b26e",
+      "bytes": 19353,
+      "server_path": "/home/zhangcheng/self-paging-20261116/quality-training-val50/smoke-periodic/stdout.log"
+    },
+    "sft/swanlab/cloud-verified.json": {
+      "sha256": "deb3999659c8841e9c06042550f9717a91bd5f138073fc0f67f6de769297fdfe",
+      "bytes": 342,
+      "server_path": "/home/zhangcheng/self-paging-20261116/quality-training-val50/swanlab/cloud-verified.json"
+    },
+    "sft/swanlab/run.json": {
+      "sha256": "13fe1d4c757eb2d345bfea69c3e84b050dd11e097f20c01d4085585b2015d1a2",
+      "bytes": 1228,
+      "server_path": "/home/zhangcheng/self-paging-20261116/quality-training-val50/swanlab/run.json"
+    },
+    "sft/swanlab/exit.json": {
+      "sha256": "593d625c27fe21d1a4926cd3a29c3efb7ee8727fbee2e493c5d1853164e88563",
+      "bytes": 94,
+      "server_path": "/home/zhangcheng/self-paging-20261116/quality-training-val50/swanlab/exit.json"
+    },
+    "sft/eval-100000/summary.jsonl": {
+      "sha256": "e600ad88a5d5b73f1de12dd27bb34a8a23b4bfcfa7d86b8ebf9904978ecb505a",
+      "bytes": 9380,
+      "server_path": "/home/zhangcheng/self-paging-20261116/quality-training-val50/eval-100000/summary.jsonl"
+    },
+    "sft/eval-100000/launch.json": {
+      "sha256": "803a14e3612077e50844701edde83df5a12d9b5c8209d28371fee73bb3d28c31",
+      "bytes": 753,
+      "server_path": "/home/zhangcheng/self-paging-20261116/quality-training-val50/eval-100000/launch.json"
+    },
+    "sft/eval-100000/exit.json": {
+      "sha256": "b7c140b85c639ff4d377cb3f343fbcb691ff0e69afb00e06c73b7f35e6593cf7",
+      "bytes": 207,
+      "server_path": "/home/zhangcheng/self-paging-20261116/quality-training-val50/eval-100000/exit.json"
+    },
+    "sft/eval-100000/stdout.log": {
+      "sha256": "d40ae6b927d6b9199d2cf42d8709b647e62c50f4ff524a1ee2e5e55567b8693a",
+      "bytes": 7411,
+      "server_path": "/home/zhangcheng/self-paging-20261116/quality-training-val50/eval-100000/stdout.log"
+    },
+    "sft/eval-100005/summary.jsonl": {
+      "sha256": "8b70a6125074305c96e58bb9ee6445da5f13ad7cb660849e4ce3681deea91ae7",
+      "bytes": 9371,
+      "server_path": "/home/zhangcheng/self-paging-20261116/quality-training-val50/eval-100005/summary.jsonl"
+    },
+    "sft/eval-100005/launch.json": {
+      "sha256": "b6e1c2159ce13b76881f79b85474b1f855b17345b658e7bf6d1f755393cd06ab",
+      "bytes": 753,
+      "server_path": "/home/zhangcheng/self-paging-20261116/quality-training-val50/eval-100005/launch.json"
+    },
+    "sft/eval-100005/exit.json": {
+      "sha256": "50b77f16829b717a75e6fe9ea37672ef48fb48214539a2cc1a74fd30dae82282",
+      "bytes": 207,
+      "server_path": "/home/zhangcheng/self-paging-20261116/quality-training-val50/eval-100005/exit.json"
+    },
+    "sft/eval-100005/stdout.log": {
+      "sha256": "d3dc9feb630522c3744289aa61f37a6c953d49d8826288df47d457b1eee1989d",
+      "bytes": 7088,
+      "server_path": "/home/zhangcheng/self-paging-20261116/quality-training-val50/eval-100005/stdout.log"
+    },
+    "sft/eval-100010/summary.jsonl": {
+      "sha256": "eb8232929d8164ef057b66d0e4ec123a44036aec7b81ec7999067d4a6112e987",
+      "bytes": 9367,
+      "server_path": "/home/zhangcheng/self-paging-20261116/quality-training-val50/eval-100010/summary.jsonl"
+    },
+    "sft/eval-100010/launch.json": {
+      "sha256": "509d06dc4df9ea5252c9b232086a0227b122fb45f11b80e6ec2b5d2ae9082892",
+      "bytes": 753,
+      "server_path": "/home/zhangcheng/self-paging-20261116/quality-training-val50/eval-100010/launch.json"
+    },
+    "sft/eval-100010/exit.json": {
+      "sha256": "a58b53c4bdefd721cb7cc3cda3f286f38173f6212cbeb75e857c606739252ea2",
+      "bytes": 207,
+      "server_path": "/home/zhangcheng/self-paging-20261116/quality-training-val50/eval-100010/exit.json"
+    },
+    "sft/eval-100010/stdout.log": {
+      "sha256": "84db0287ae01e3286eb9c4810e4edb94d8b52dd85bc1be96d4a0afc505efa6fa",
+      "bytes": 6227,
+      "server_path": "/home/zhangcheng/self-paging-20261116/quality-training-val50/eval-100010/stdout.log"
+    },
+    "sft/eval-100015/summary.jsonl": {
+      "sha256": "1687f082cf2f43e08e42d598c0c0032ce6ff17d8a84ec302dab28adb28a9b9d4",
+      "bytes": 9349,
+      "server_path": "/home/zhangcheng/self-paging-20261116/quality-training-val50/eval-100015/summary.jsonl"
+    },
+    "sft/eval-100015/launch.json": {
+      "sha256": "e731b63a43cce57523d0a02805af08cb133f09b302ad579d2945a8e03f693ed0",
+      "bytes": 754,
+      "server_path": "/home/zhangcheng/self-paging-20261116/quality-training-val50/eval-100015/launch.json"
+    },
+    "sft/eval-100015/exit.json": {
+      "sha256": "834305b3dfe33ebb4a56dea2521cf8c125ee6044558bb1c253c84ff65d859f35",
+      "bytes": 208,
+      "server_path": "/home/zhangcheng/self-paging-20261116/quality-training-val50/eval-100015/exit.json"
+    },
+    "sft/eval-100015/stdout.log": {
+      "sha256": "854ad809dfff0ba4c76d79957ed2909f4e4db5b2a441b6f02170a91bc8b30684",
+      "bytes": 7146,
+      "server_path": "/home/zhangcheng/self-paging-20261116/quality-training-val50/eval-100015/stdout.log"
+    },
+    "sft/eval-100020/summary.jsonl": {
+      "sha256": "852b8774cfbd8af270d50589d68242b010725b5bcc01c7cdcbcf7ca149affce7",
+      "bytes": 9376,
+      "server_path": "/home/zhangcheng/self-paging-20261116/quality-training-val50/eval-100020/summary.jsonl"
+    },
+    "sft/eval-100020/launch.json": {
+      "sha256": "f96e2bada0a96aa19dfcfe89b2722174fb1b8dfe71296d9323717dc15ea63a9f",
+      "bytes": 754,
+      "server_path": "/home/zhangcheng/self-paging-20261116/quality-training-val50/eval-100020/launch.json"
+    },
+    "sft/eval-100020/exit.json": {
+      "sha256": "f6488292423474323dd622c057bbc66f2a2e6c70c417c5c0319e192826c7b9fd",
+      "bytes": 208,
+      "server_path": "/home/zhangcheng/self-paging-20261116/quality-training-val50/eval-100020/exit.json"
+    },
+    "sft/eval-100020/stdout.log": {
+      "sha256": "29f2e2f87f14ab8b3605f7941cf0821f8729ede927fc5ad940f7c1a04e692df1",
+      "bytes": 9826,
+      "server_path": "/home/zhangcheng/self-paging-20261116/quality-training-val50/eval-100020/stdout.log"
+    },
+    "sft/eval-100025/summary.jsonl": {
+      "sha256": "164912a0a908ecf80eaa55ad9d510853f06253febd0d2eb011ab1bf31f1e1e28",
+      "bytes": 9365,
+      "server_path": "/home/zhangcheng/self-paging-20261116/quality-training-val50/eval-100025/summary.jsonl"
+    },
+    "sft/eval-100025/launch.json": {
+      "sha256": "729d5a32c322e7f4bfc062f70aa949ebc9e936a004a58d5b7921bf125a329363",
+      "bytes": 754,
+      "server_path": "/home/zhangcheng/self-paging-20261116/quality-training-val50/eval-100025/launch.json"
+    },
+    "sft/eval-100025/exit.json": {
+      "sha256": "4b5e597beb7ca3dd437eece781572091b73f2faad03b5c5006103e3e45f73e0b",
+      "bytes": 208,
+      "server_path": "/home/zhangcheng/self-paging-20261116/quality-training-val50/eval-100025/exit.json"
+    },
+    "sft/eval-100025/stdout.log": {
+      "sha256": "423342f420245196ef811aaa13c464baebbe8d24163444153974b18cdd17e730",
+      "bytes": 7191,
+      "server_path": "/home/zhangcheng/self-paging-20261116/quality-training-val50/eval-100025/stdout.log"
+    },
+    "sft/eval-100030/summary.jsonl": {
+      "sha256": "7b6991feef5275612d7e55c167f8e69d1b19d75970509ff8fb027caaf83b7e17",
+      "bytes": 9363,
+      "server_path": "/home/zhangcheng/self-paging-20261116/quality-training-val50/eval-100030/summary.jsonl"
+    },
+    "sft/eval-100030/launch.json": {
+      "sha256": "62d9464fd3ac29cae6198e7c0d3d285f434b910fcab4661753494c0e4fd83796",
+      "bytes": 754,
+      "server_path": "/home/zhangcheng/self-paging-20261116/quality-training-val50/eval-100030/launch.json"
+    },
+    "sft/eval-100030/exit.json": {
+      "sha256": "172ef1628dd946302b19d20047d1bd5ebfda4af953c6e158bbe5779f67079e0c",
+      "bytes": 208,
+      "server_path": "/home/zhangcheng/self-paging-20261116/quality-training-val50/eval-100030/exit.json"
+    },
+    "sft/eval-100030/stdout.log": {
+      "sha256": "820fb08e20159542fc5be28572329fc02adab90e4b36d37b967dc0cdef3688a4",
+      "bytes": 7618,
+      "server_path": "/home/zhangcheng/self-paging-20261116/quality-training-val50/eval-100030/stdout.log"
+    },
+    "sft/eval-100035/summary.jsonl": {
+      "sha256": "4dd4ccaea798b03936f6c32e6f63a742995f76faaf52db81c04f23308e25f80f",
+      "bytes": 9365,
+      "server_path": "/home/zhangcheng/self-paging-20261116/quality-training-val50/eval-100035/summary.jsonl"
+    },
+    "sft/eval-100035/launch.json": {
+      "sha256": "bb26dfa66c6a85512560861af29de5947baa0a9f0b0b60124d9a70263e468678",
+      "bytes": 754,
+      "server_path": "/home/zhangcheng/self-paging-20261116/quality-training-val50/eval-100035/launch.json"
+    },
+    "sft/eval-100035/exit.json": {
+      "sha256": "7cf4ae43cda00741b6a4de29efc65827208041b59a1b3d41ab82693bd352b123",
+      "bytes": 207,
+      "server_path": "/home/zhangcheng/self-paging-20261116/quality-training-val50/eval-100035/exit.json"
+    },
+    "sft/eval-100035/stdout.log": {
+      "sha256": "6c7dfc4a9ea1eb4cd193291a5ff9912f2ea736e195f058391c8089174627fdb2",
+      "bytes": 5798,
+      "server_path": "/home/zhangcheng/self-paging-20261116/quality-training-val50/eval-100035/stdout.log"
+    },
+    "sft/eval-100040/summary.jsonl": {
+      "sha256": "b440e0610f397d59df58ba62adbae950f51b4eb9689bb46da739b4c41f6a3f39",
+      "bytes": 9359,
+      "server_path": "/home/zhangcheng/self-paging-20261116/quality-training-val50/eval-100040/summary.jsonl"
+    },
+    "sft/eval-100040/launch.json": {
+      "sha256": "0a663cb259d1d41f67e2cb4c458b2363e577311581fd9c55a3d2b739b78c87f7",
+      "bytes": 754,
+      "server_path": "/home/zhangcheng/self-paging-20261116/quality-training-val50/eval-100040/launch.json"
+    },
+    "sft/eval-100040/exit.json": {
+      "sha256": "3686b10a001db0ed466c91f483f1d5cd7df47b0301cfaa305f5287e1b1549550",
+      "bytes": 208,
+      "server_path": "/home/zhangcheng/self-paging-20261116/quality-training-val50/eval-100040/exit.json"
+    },
+    "sft/eval-100040/stdout.log": {
+      "sha256": "e83985a2f6afbc5fe8d3c78af9b5f84977aff26568dc036eaf4e14d63d1338e9",
+      "bytes": 6637,
+      "server_path": "/home/zhangcheng/self-paging-20261116/quality-training-val50/eval-100040/stdout.log"
+    },
+    "sft/eval-100045/summary.jsonl": {
+      "sha256": "79db17aba0d06eaffcfa4702645cc15e8dd5ccb52b830eba52448286142b82b5",
+      "bytes": 9357,
+      "server_path": "/home/zhangcheng/self-paging-20261116/quality-training-val50/eval-100045/summary.jsonl"
+    },
+    "sft/eval-100045/launch.json": {
+      "sha256": "aa181b6594d789fbaf208912ba40726221f06f8ad98541f4bf7c57d497b97bec",
+      "bytes": 754,
+      "server_path": "/home/zhangcheng/self-paging-20261116/quality-training-val50/eval-100045/launch.json"
+    },
+    "sft/eval-100045/exit.json": {
+      "sha256": "35486cb9a63e83e02680c90f50e9846f233edc3c5831a1bc4317d17ba5992058",
+      "bytes": 208,
+      "server_path": "/home/zhangcheng/self-paging-20261116/quality-training-val50/eval-100045/exit.json"
+    },
+    "sft/eval-100045/stdout.log": {
+      "sha256": "b914f8f1033d2b06c11fd0ce9253e753954fcc50e018316fe3daedf63affffcc",
+      "bytes": 6379,
+      "server_path": "/home/zhangcheng/self-paging-20261116/quality-training-val50/eval-100045/stdout.log"
+    },
+    "raw/sft-quality-val50-eval-100000.jsonl": {
+      "sha256": "53ddcccdb6d313ff23de23f77f4b847f9a93f63d5718dae656330e943e41d458",
+      "bytes": 8564858,
+      "server_path": "/nas/Public/zhangcheng/self-paging-20261116/sft-quality-val50-eval-100000.jsonl"
+    },
+    "raw/sft-quality-val50-eval-100005.jsonl": {
+      "sha256": "185628410ca8a6714fed552ac2a2d063d0391968acd072ff7eb732cb3d1b1924",
+      "bytes": 8743845,
+      "server_path": "/nas/Public/zhangcheng/self-paging-20261116/sft-quality-val50-eval-100005.jsonl"
+    },
+    "raw/sft-quality-val50-eval-100010.jsonl": {
+      "sha256": "d60c531bef07f34a613049dbf5893e15a90838bca3a93683475c976589737446",
+      "bytes": 8643860,
+      "server_path": "/nas/Public/zhangcheng/self-paging-20261116/sft-quality-val50-eval-100010.jsonl"
+    },
+    "raw/sft-quality-val50-eval-100015.jsonl": {
+      "sha256": "eef2b93f37487c08075e559a923873820e635a3cb14c8bb9e108021631de90b4",
+      "bytes": 7987484,
+      "server_path": "/nas/Public/zhangcheng/self-paging-20261116/sft-quality-val50-eval-100015.jsonl"
+    },
+    "raw/sft-quality-val50-eval-100020.jsonl": {
+      "sha256": "1c3d9c20818c1d557a6ed5483115982537bd3a53c6e9f00fe44bb50db392f940",
+      "bytes": 7963490,
+      "server_path": "/nas/Public/zhangcheng/self-paging-20261116/sft-quality-val50-eval-100020.jsonl"
+    },
+    "raw/sft-quality-val50-eval-100025.jsonl": {
+      "sha256": "8df33342e0ff7896a22ef2bda89aaae719066bbb3d1af9507f86828a7fd57e26",
+      "bytes": 8057017,
+      "server_path": "/nas/Public/zhangcheng/self-paging-20261116/sft-quality-val50-eval-100025.jsonl"
+    },
+    "raw/sft-quality-val50-eval-100030.jsonl": {
+      "sha256": "e54c8808a831fc8adc587981b16a6a02a1e3d948536361a912886f1dbbefb20b",
+      "bytes": 7268270,
+      "server_path": "/nas/Public/zhangcheng/self-paging-20261116/sft-quality-val50-eval-100030.jsonl"
+    },
+    "raw/sft-quality-val50-eval-100035.jsonl": {
+      "sha256": "d7fe2a603ddef319e47103370c58b002a9a13eb715ac5def168b28691bfdb8bb",
+      "bytes": 8418835,
+      "server_path": "/nas/Public/zhangcheng/self-paging-20261116/sft-quality-val50-eval-100035.jsonl"
+    },
+    "raw/sft-quality-val50-eval-100040.jsonl": {
+      "sha256": "063d876561f915c69d7f17d9534c429febea7b6f3c5552d24f2c19f443427f64",
+      "bytes": 7259870,
+      "server_path": "/nas/Public/zhangcheng/self-paging-20261116/sft-quality-val50-eval-100040.jsonl"
+    },
+    "raw/sft-quality-val50-eval-100045.jsonl": {
+      "sha256": "2ef10b6755ca77277e5bcb20a32e83ef8486038dee27cadcaaf202dc4fc49465",
+      "bytes": 7744326,
+      "server_path": "/nas/Public/zhangcheng/self-paging-20261116/sft-quality-val50-eval-100045.jsonl"
+    },
+    "sft/sft-evaluation-integrity.json": {
+      "sha256": "13b2d7911e9326069797b1b744772f7628131927a0199850257e3e562b80c075",
+      "bytes": 1540,
+      "server_path": "/home/zhangcheng/self-paging-20261116/base-controls-two/sft-evaluation-integrity.json"
+    },
+    "data/data-accepted.json": {
+      "sha256": "299fab0400e0b0658674a457b68f46d8972ea17acf22f25bd5077c42520e07b7",
+      "bytes": 3382,
+      "server_path": "/nas/Public/zhangcheng/self-paging-20261116/data/quality-accepted/data-accepted.json"
+    },
+    "rl_data/cpu-accepted.json": {
+      "sha256": "653110e64de1dabfd2874a016eaf448985d79cd3437ef37e1bc67418731f7100",
+      "bytes": 1448,
+      "server_path": "/nas/Public/zhangcheng/self-paging-20261116/data/rl-preparation/cpu-accepted.json"
+    },
+    "rl_data/split-audit.json": {
+      "sha256": "223484ce5afd6f0c1d548f540546bd8394dc97a3cff8729e341e5d91228a89a1",
+      "bytes": 595,
+      "server_path": "/nas/Public/zhangcheng/self-paging-20261116/data/rl-preparation/split-audit.json"
+    },
+    "rl_data/complete.json": {
+      "sha256": "653110e64de1dabfd2874a016eaf448985d79cd3437ef37e1bc67418731f7100",
+      "bytes": 1448,
+      "server_path": "/home/zhangcheng/self-paging-20261116/rl-preparation/complete.json"
+    },
+    "rl_data/source-verified.json": {
+      "sha256": "3420c530d28678919303dcc3109bca3461a9488fafd5e30d4ece3e7e420271c6",
+      "bytes": 47,
+      "server_path": "/home/zhangcheng/self-paging-20261116/rl-preparation/source-verified.json"
+    },
+    "checkpoints/sft-quality-val50-r64/adapter_config.json": {
+      "sha256": "46384eccd264bc1a6f65dbcbd8a4b3ef1f863b0e0956e5e3281e216cef64679f",
+      "bytes": 1117,
+      "server_path": "/nas/Public/zhangcheng/self-paging-20261116/checkpoints/sft-quality-val50-r64/adapter_config.json"
+    },
+    "checkpoints/checkpoint-000050/adapter_config.json": {
+      "sha256": "46384eccd264bc1a6f65dbcbd8a4b3ef1f863b0e0956e5e3281e216cef64679f",
+      "bytes": 1117,
+      "server_path": "/nas/Public/zhangcheng/self-paging-20261116/checkpoints/sft-quality-val50-r64/checkpoint-000050/adapter_config.json"
+    },
+    "checkpoints/checkpoint-000050/checkpoint.json": {
+      "sha256": "98568cafb2423c18eccc030650cf2d908d248205b43e6b7b2624e55a51a9aae4",
+      "bytes": 146,
+      "server_path": "/nas/Public/zhangcheng/self-paging-20261116/checkpoints/sft-quality-val50-r64/checkpoint-000050/checkpoint.json"
+    },
+    "checkpoints/checkpoint-000100/adapter_config.json": {
+      "sha256": "46384eccd264bc1a6f65dbcbd8a4b3ef1f863b0e0956e5e3281e216cef64679f",
+      "bytes": 1117,
+      "server_path": "/nas/Public/zhangcheng/self-paging-20261116/checkpoints/sft-quality-val50-r64/checkpoint-000100/adapter_config.json"
+    },
+    "checkpoints/checkpoint-000100/checkpoint.json": {
+      "sha256": "53dab0e38b3d464fcd253c8686a4e9161a933307655be1abd080b6555587d6c9",
+      "bytes": 147,
+      "server_path": "/nas/Public/zhangcheng/self-paging-20261116/checkpoints/sft-quality-val50-r64/checkpoint-000100/checkpoint.json"
+    },
+    "checkpoints/checkpoint-000150/adapter_config.json": {
+      "sha256": "46384eccd264bc1a6f65dbcbd8a4b3ef1f863b0e0956e5e3281e216cef64679f",
+      "bytes": 1117,
+      "server_path": "/nas/Public/zhangcheng/self-paging-20261116/checkpoints/sft-quality-val50-r64/checkpoint-000150/adapter_config.json"
+    },
+    "checkpoints/checkpoint-000150/checkpoint.json": {
+      "sha256": "f121bbc6794930761257b05b8db9b9db55a5a6260e0bd7544be87d85af127eba",
+      "bytes": 146,
+      "server_path": "/nas/Public/zhangcheng/self-paging-20261116/checkpoints/sft-quality-val50-r64/checkpoint-000150/checkpoint.json"
+    },
+    "checkpoints/checkpoint-000200/adapter_config.json": {
+      "sha256": "46384eccd264bc1a6f65dbcbd8a4b3ef1f863b0e0956e5e3281e216cef64679f",
+      "bytes": 1117,
+      "server_path": "/nas/Public/zhangcheng/self-paging-20261116/checkpoints/sft-quality-val50-r64/checkpoint-000200/adapter_config.json"
+    },
+    "checkpoints/checkpoint-000200/checkpoint.json": {
+      "sha256": "1fa8f911ddcf1dd8ea12325657a8ac071d4f4581e640751e2b22607c45ac851e",
+      "bytes": 147,
+      "server_path": "/nas/Public/zhangcheng/self-paging-20261116/checkpoints/sft-quality-val50-r64/checkpoint-000200/checkpoint.json"
+    },
+    "checkpoints/checkpoint-000250/adapter_config.json": {
+      "sha256": "46384eccd264bc1a6f65dbcbd8a4b3ef1f863b0e0956e5e3281e216cef64679f",
+      "bytes": 1117,
+      "server_path": "/nas/Public/zhangcheng/self-paging-20261116/checkpoints/sft-quality-val50-r64/checkpoint-000250/adapter_config.json"
+    },
+    "checkpoints/checkpoint-000250/checkpoint.json": {
+      "sha256": "1a9ae62cc740fc1f48db56dfae1f8b4bdd3b9ac1ccc76ffbc1a785f3f18efef1",
+      "bytes": 146,
+      "server_path": "/nas/Public/zhangcheng/self-paging-20261116/checkpoints/sft-quality-val50-r64/checkpoint-000250/checkpoint.json"
+    },
+    "checkpoints/checkpoint-000300/adapter_config.json": {
+      "sha256": "46384eccd264bc1a6f65dbcbd8a4b3ef1f863b0e0956e5e3281e216cef64679f",
+      "bytes": 1117,
+      "server_path": "/nas/Public/zhangcheng/self-paging-20261116/checkpoints/sft-quality-val50-r64/checkpoint-000300/adapter_config.json"
+    },
+    "checkpoints/checkpoint-000300/checkpoint.json": {
+      "sha256": "8bc02e262843faeddaf00f59cc792e5932819e02445ea5f01c97d4748287d181",
+      "bytes": 147,
+      "server_path": "/nas/Public/zhangcheng/self-paging-20261116/checkpoints/sft-quality-val50-r64/checkpoint-000300/checkpoint.json"
+    },
+    "checkpoints/checkpoint-000350/adapter_config.json": {
+      "sha256": "46384eccd264bc1a6f65dbcbd8a4b3ef1f863b0e0956e5e3281e216cef64679f",
+      "bytes": 1117,
+      "server_path": "/nas/Public/zhangcheng/self-paging-20261116/checkpoints/sft-quality-val50-r64/checkpoint-000350/adapter_config.json"
+    },
+    "checkpoints/checkpoint-000350/checkpoint.json": {
+      "sha256": "b9e519a802e707c9022cd795482b9438f68913179b459f9be47e51eb3945772b",
+      "bytes": 147,
+      "server_path": "/nas/Public/zhangcheng/self-paging-20261116/checkpoints/sft-quality-val50-r64/checkpoint-000350/checkpoint.json"
+    },
+    "checkpoints/checkpoint-000400/adapter_config.json": {
+      "sha256": "46384eccd264bc1a6f65dbcbd8a4b3ef1f863b0e0956e5e3281e216cef64679f",
+      "bytes": 1117,
+      "server_path": "/nas/Public/zhangcheng/self-paging-20261116/checkpoints/sft-quality-val50-r64/checkpoint-000400/adapter_config.json"
+    },
+    "checkpoints/checkpoint-000400/checkpoint.json": {
+      "sha256": "872cbf0b959704658ee90aa8f8e1edc1eb0db12afed529873e42aa4ad1819ad9",
+      "bytes": 148,
+      "server_path": "/nas/Public/zhangcheng/self-paging-20261116/checkpoints/sft-quality-val50-r64/checkpoint-000400/checkpoint.json"
+    },
+    "checkpoints/checkpoint-000431/adapter_config.json": {
+      "sha256": "46384eccd264bc1a6f65dbcbd8a4b3ef1f863b0e0956e5e3281e216cef64679f",
+      "bytes": 1117,
+      "server_path": "/nas/Public/zhangcheng/self-paging-20261116/checkpoints/sft-quality-val50-r64/checkpoint-000431/adapter_config.json"
+    },
+    "checkpoints/checkpoint-000431/checkpoint.json": {
+      "sha256": "afadb90e1b8158a53c74ec1cb5d898e7b8558106c5e75bd4a9fc9cfd6eca2fdd",
+      "bytes": 147,
+      "server_path": "/nas/Public/zhangcheng/self-paging-20261116/checkpoints/sft-quality-val50-r64/checkpoint-000431/checkpoint.json"
+    }
+  }
+}

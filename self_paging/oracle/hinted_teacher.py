@@ -16,7 +16,7 @@ import re
 
 import torch
 
-from ..core.protocol import IM_END, IM_START, NO_THINK
+from ..core.protocol import IM_END, IM_START, NO_THINK, assistant_prefix
 
 LEAK = re.compile(r"hint|oracle|privileged|提示|planned action|told to", re.I)
 
@@ -28,6 +28,14 @@ class HintedTeacher:
     def _visible_text(self, st) -> str:
         log = st.log
         res = log.table.resident()
+        # run_episode has already opened the student's assistant turn. The
+        # teacher gets a separate privileged user message, so its prompt must
+        # not nest that message inside this unfinished assistant prefix.
+        current = log.table.pages[log.table.current]
+        prefix = log.tokens[current.start:current.end]
+        if current.kind != 'assistant' or prefix != self.tok.encode(assistant_prefix(st.cfg.thinking)):
+            raise ValueError('Teacher must be called before any assistant continuation')
+        res.discard(current.pid)
         ids = [t for t, p in zip(log.tokens, log.page_of) if p in res]
         return self.tok.decode(ids)
 

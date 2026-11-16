@@ -1,0 +1,10 @@
+{
+  "status": "ARCHIVE_ACCOUNTING_VERIFIED_WITH_FULL_CONTROL_QUALIFICATION",
+  "episodes": 200,
+  "decisions": 800,
+  "optimizer_updates": 431,
+  "validation_points": 9,
+  "raw_files": 10,
+  "source_manifests_verified": true,
+  "warning": "Nominal Full executes model-issued KV tools; not a strict complete-history control."
+}

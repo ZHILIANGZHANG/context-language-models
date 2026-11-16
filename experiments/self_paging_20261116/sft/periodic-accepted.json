@@ -1,0 +1,52 @@
+{
+  "world": 3,
+  "history": [
+    {
+      "step": 0,
+      "epoch": 0,
+      "loss": 1.2502835988998413,
+      "tokens": 2434,
+      "lr": 0.0001,
+      "sec": 40.47,
+      "completed_steps": 1
+    },
+    {
+      "epoch": 0,
+      "eval_loss": 0.4004685552942725,
+      "eval_step": 0,
+      "completed_steps": 1,
+      "eval_records": 3,
+      "eval_sec": 9.824
+    },
+    {
+      "step": 1,
+      "epoch": 0,
+      "loss": 0.46068865060806274,
+      "tokens": 4913,
+      "lr": 5e-05,
+      "sec": 34.519,
+      "completed_steps": 2
+    },
+    {
+      "epoch": 0,
+      "eval_loss": 0.3232730530150287,
+      "eval_step": 1,
+      "completed_steps": 2,
+      "eval_records": 3,
+      "eval_sec": 3.55
+    }
+  ],
+  "lora_r": 64,
+  "changed_tensors": 504,
+  "parameter_sha256": "4fe1a05543a4575f352328ac7a8fdcec1619d66625e37db7b474e1c57b6e01d9",
+  "tokens": [
+    9238,
+    9333,
+    9496,
+    21084,
+    21315,
+    21360
+  ],
+  "checkpoint_discarded": true,
+  "peak_memory_bytes": 32567946752
+}

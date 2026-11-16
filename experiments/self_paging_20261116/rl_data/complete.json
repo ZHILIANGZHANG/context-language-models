@@ -1,0 +1,61 @@
+{
+  "time": 1794824810.8689928,
+  "status": "CPU_POOL_ACCEPTED_GPU_PROFILE_PENDING",
+  "conditions": 13900,
+  "selected": 5000,
+  "gaps": {
+    "1.0": 0,
+    "0.6": 0,
+    "0.4": 0,
+    "0.25": 0
+  },
+  "coverage": {
+    "1.0": {
+      "2": 100,
+      "3": 100,
+      "4": 100,
+      "5": 100,
+      "6": 100
+    },
+    "0.6": {
+      "2": 300,
+      "3": 300,
+      "4": 300,
+      "5": 300,
+      "6": 300
+    },
+    "0.4": {
+      "2": 300,
+      "3": 300,
+      "4": 300,
+      "5": 300,
+      "6": 300
+    },
+    "0.25": {
+      "2": 300,
+      "3": 300,
+      "4": 300,
+      "5": 300,
+      "6": 300
+    }
+  },
+  "sha256": {
+    "train": "fcba1d687e43407a41431c1729c0beebad0a97f5c4a173a24baa7dc0f68cd13d",
+    "dev": "5c1f8403930a2d77d734e6b8714df437d779b75aa84af11b123b43f2e8337ef2",
+    "test": "f2c9c7d3044be9e263ce09f52402e1bda0359aafea35d364ac59469775cb99a1",
+    "ood": "d0cbae2e72f621451995d6cf41cea3acda44edf73b02b3866e6e20212dca7923",
+    "profile64": "8d8040d0f788b924acac5815580c14eef6c02f4e3bbe610aa2c1743510950e51"
+  },
+  "stats": {
+    "train/total": 12000,
+    "train/eligible": 11266,
+    "dev/total": 800,
+    "dev/eligible": 731,
+    "test/total": 800,
+    "test/eligible": 756,
+    "ood/total": 300,
+    "ood/eligible": 1
+  },
+  "source_manifest_sha256": "002841700cbc56c584c1a3a469cd65aa41be8cfadc25182816d565730129667a",
+  "scope": "32K-supported T1; OOD outside this scope retained with flags, not silently truncated"
+}

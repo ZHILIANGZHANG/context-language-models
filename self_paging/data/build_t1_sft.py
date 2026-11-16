@@ -26,7 +26,7 @@ from ..oracle.hinted_teacher import HintedTeacher
 from ..oracle.t1_oracle import T1Oracle
 from ..train.common import load_tokenizer, write_jsonl
 
-GATES = ("invalid", "truncated_tokens", "forced_evictions", "kv_errors", "over_budget", "oracle_unsupported")
+GATES = ("invalid", "truncated_tokens", "forced_evictions", "kv_errors", "over_budget", "oracle_unsupported", "structural_exhausted")
 
 
 def t1_budget(env: WarehouseEnv, tok, ratio: float, overhead: int | None = None) -> int | None:

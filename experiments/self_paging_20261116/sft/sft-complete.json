@@ -1,0 +1,11 @@
+{
+  "checkpoint": "/nas/Public/zhangcheng/self-paging-20261116/checkpoints/sft-quality-val50-r64",
+  "time": 1794827270.1845288,
+  "steps": 431,
+  "gpus": [
+    0,
+    1,
+    2
+  ],
+  "cloud_verified": true
+}

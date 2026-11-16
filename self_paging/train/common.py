@@ -41,6 +41,24 @@ def dist_info() -> tuple[int, int, int]:
     return 0, 1, 0
 
 
+def configure_yarn(cfg, factor: float):
+    """Preserve the pretrained RoPE base under the Transformers 5 config API."""
+    if factor <= 1:
+        raise ValueError("YaRN extrapolation factor must exceed 1")
+    current = getattr(cfg, "rope_parameters", None) or {}
+    theta = current.get("rope_theta") or getattr(cfg, "rope_theta", None)
+    if theta is None:
+        raise ValueError("Missing pretrained rope_theta; cannot safely enable YaRN")
+    params = {"rope_type": "yarn", "rope_theta": theta, "factor": factor,
+              "original_max_position_embeddings": 32768}
+    if hasattr(cfg, "rope_parameters"):
+        cfg.rope_parameters = params
+    else:
+        cfg.rope_scaling = {k: v for k, v in params.items() if k != "rope_theta"}
+    cfg.max_position_embeddings = int(32768 * factor)
+    return cfg
+
+
 def load_model(path_or_model, attn: str, dtype: str = "bfloat16", device: str | None = None,
                lora_r: int = 0, lora_alpha: int = 0, grad_ckpt: bool = False, yarn_factor: float = 0.0):
     """Load an HF causal LM (or pass one through) with the attention implementation we need.
@@ -62,8 +80,7 @@ def load_model(path_or_model, attn: str, dtype: str = "bfloat16", device: str | 
     if isinstance(path_or_model, str):
         cfg = AutoConfig.from_pretrained(path_or_model)
         if yarn_factor:
-            cfg.rope_scaling = {"rope_type": "yarn", "factor": yarn_factor,
-                                "original_max_position_embeddings": 32768}
+            configure_yarn(cfg, yarn_factor)
         model = AutoModelForCausalLM.from_pretrained(path_or_model, config=cfg, torch_dtype=torch_dtype,
                                                      attn_implementation=attn)
     else:
