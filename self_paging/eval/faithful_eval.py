@@ -116,6 +116,8 @@ def main():
     ap.add_argument('--out',required=True);ap.add_argument('--seeds',nargs=2,type=int,required=True)
     ap.add_argument('--methods',nargs='+',choices=['full','model','streaming','h2o'],required=True)
     ap.add_argument('--ratios',nargs='+',type=float,default=[.25,.35,.4,.5,.6])
+    ap.add_argument('--prefill-evict',choices=('token','space'),default='token',
+                    help="StreamingLLM/H2O prefill when full: 'token' (one token per forward) or 'space' (evict-for-space per chunk); use a new --out")
     a=ap.parse_args(); torch.manual_seed(0)
     out=Path(a.out);out.mkdir(parents=True,exist_ok=True)
     tok=load_tokenizer(a.tokenizer)
@@ -125,7 +127,9 @@ def main():
             for ratio in ([1.] if method=='full' else a.ratios):
                 name=f'{seed}-{method}-{ratio}'; dst=out/(name+'.json'); raw=out/(name+'.trajectory.json')
                 if dst.exists():
-                    old=json.loads(dst.read_text());assert hashlib.sha256(raw.read_bytes()).hexdigest()==old['trajectory_sha256'];continue
+                    old=json.loads(dst.read_text());assert hashlib.sha256(raw.read_bytes()).hexdigest()==old['trajectory_sha256']
+                    assert method in ('full','model') or old.get('prefill_evict','token')==a.prefill_evict,'Mixed prefill modes in one --out'
+                    continue
                 assert not raw.exists(),'Uncommitted raw output; inspect before resume'
                 env=WarehouseEnv(seed,T1Config(n_decisions=4)); budget=t1_budget(env,tok,ratio)
                 started=time.time()
@@ -134,7 +138,7 @@ def main():
                     rec=run_episode(env,log,ModelPolicy(tok,temperature=0),tok,
                         EpisodeConfig(budget=budget,max_turns=60,max_new_tokens=1024,max_log_tokens=32768))
                 else:
-                    log=PagedKV(model,budget=None,strict=False) if method=='full' else FaithfulKV(model,method,budget)
+                    log=PagedKV(model,budget=None,strict=False) if method=='full' else FaithfulKV(model,method,budget,prefill=a.prefill_evict)
                     try: rec=system_episode(env,log,tok)
                     finally:
                         if isinstance(log,FaithfulKV):log.close()
@@ -146,6 +150,7 @@ def main():
                 row=dict(seed=seed,method=method,ratio=ratio,budget=budget,reward=rec['reward'],
                     peak_resident=rec['peak_resident'],tokens=len(rec['tokens']),meta=rec['meta'],
                     trajectory_sha256=hashlib.sha256(raw.read_bytes()).hexdigest(),seconds=time.time()-started)
+                if method in ('streaming','h2o') and a.prefill_evict!='token':row['prefill_evict']=a.prefill_evict
                 if method!='model':row['mean_resident_decode']=sum(rec['decode_residency'])/max(1,len(rec['decode_residency']))
                 else:
                     from ..core.costs import episode_cost

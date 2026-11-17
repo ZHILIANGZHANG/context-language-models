@@ -10,6 +10,17 @@ forwards, reserving one slot; H2O heavy/recent split is floor/ceil((B-1)/2).
 Forward chunks are bounded by free capacity; once full, update/evict every token.
 Scores are FP32; GQA query-head attention is averaged within each KV-head group.
 Actual outputs use SDPA for consistency with the native Full/model arms. No latency claim.
+
+``prefill`` (2026-11-17): how a chunk longer than the free space is fed once the cache is full.
+* ``'token'`` (default, the 11-17 campaign): chunks never exceed the free space, so a saturated
+  cache advances ONE token per whole-model forward. Document reading then runs at decoding speed
+  (~65 ms/token on Qwen3-8B): this, not the algorithms, is why the ported StreamingLLM/H2O read
+  documents ~45x slower than Full on LongBench;
+* ``'space'``: before each chunk of up to ``chunk`` tokens, evict with the method's own retention
+  rule down to ``B - chunk`` slots, then feed the chunk in one forward. This is the authors'
+  StreamingLLM runner (``kv_cache.evict_for_space(past_key_values, space_needed)`` before each
+  prompt); H2O evicts with its accumulated scores. The peak stays <= B; tokens inside a chunk see up
+  to ``chunk`` fewer old slots than in ``'token'`` mode. Decoding (one token per forward) is identical.
 """
 from __future__ import annotations
 import types
@@ -33,9 +44,12 @@ def retention_indices(method, scores, length, capacity, heads, device, sink=4):
 
 
 class FaithfulKV(TokenLog):
-    def __init__(self, model, method, budget, record_trace=False):
+    def __init__(self, model, method, budget, record_trace=False, prefill='token', chunk=128):
         if method not in ('streaming', 'h2o') or budget < 8:
             raise ValueError('Expected streaming/h2o and budget >= 8')
+        if prefill not in ('token', 'space'):
+            raise ValueError("prefill must be 'token' or 'space'")
+        self.prefill, self.chunk = prefill, max(1, min(chunk, budget // 2))
         super().__init__(budget=budget, strict=False)
         self.model, self.method, self.capacity = model, method, budget-1
         self.base = model.get_base_model() if hasattr(model, 'get_base_model') else model
@@ -76,6 +90,22 @@ class FaithfulKV(TokenLog):
 
     page_in = page_out
     drop = page_out
+
+    def _evict_to(self, slots):
+        """Evict every layer to ``slots`` with the method's own retention rule (evict-for-space)."""
+        for i, s in enumerate(self.state):
+            if s is None or s[0].shape[-2] <= slots:
+                continue
+            k, v, scores, positions = s
+            length = k.shape[-2]
+            idx = retention_indices(self.method, scores, length, slots, self.hkv, self.device)
+            gi = idx[None, :, :, None].expand(1, self.hkv, idx.shape[-1], k.shape[-1])
+            self.state[i] = (k.gather(2, gi), v.gather(2, gi),
+                             scores.gather(1, idx) if scores is not None else None, positions.gather(1, idx))
+            if i == 0:
+                self.evictions += length - slots
+            if self.record_trace:
+                self.trace.append(dict(layer=i, at=self.log_len, positions=self.state[i][3].cpu().tolist()))
 
     def _attention(self, i, module, hidden, rope):
         from transformers.models.qwen3.modeling_qwen3 import apply_rotary_pos_emb, rotate_half
@@ -135,7 +165,13 @@ class FaithfulKV(TokenLog):
         offset = 0
         while offset < len(ids):
             previous = self.resident_tokens()
-            n = min(len(ids)-offset, 128, self.budget-previous)
+            if self.prefill == 'space':
+                n = min(len(ids)-offset, self.chunk)
+                if previous + n > self.budget:
+                    self._evict_to(self.budget - n)
+                    previous = self.resident_tokens()
+            else:
+                n = min(len(ids)-offset, 128, self.budget-previous)
             assert n >= 1
             chunk = ids[offset:offset+n]
             self.native_mask = torch.zeros(1, 1, n, previous+n, dtype=self.dtype, device=self.device)
@@ -158,7 +194,7 @@ class FaithfulKV(TokenLog):
 
     def record(self):
         result = super().record()
-        result.update(cache_algorithm=self.method, cache_evictions=self.evictions,
+        result.update(cache_algorithm=self.method, cache_evictions=self.evictions, cache_prefill=self.prefill,
                       cache_capacity=self.capacity, peak_resident=self.peak_resident,
                       cache_final_state=[dict(layer=i, slots=s[0].shape[-2],
                           positions_sha256=hashlib.sha256(s[3].cpu().numpy().tobytes()).hexdigest(),

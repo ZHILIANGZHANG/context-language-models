@@ -77,3 +77,21 @@ Scores and invalid-tool counts are reported even when disappointing; no tuning o
 test correctness. Final results include accuracy by decision type, actual peak
 and mean decode KV, incomplete decisions, invalid tool calls, and world-paired
 bootstrap intervals. Historical sampled (temperature .6) scores are not pooled.
+
+## Prefill modes and the LongBench speed gap (2026-11-17)
+
+The 45x slower document reading of StreamingLLM/H2O on LongBench (159 s / 145 s vs Full 3.6 s per
+item; per-token decoding speed is the same, about 61-68 ms) comes from this port, not from the
+algorithms. With peak <= B and one reserved slot, a saturated cache admits one token per forward
+(`n = min(..., budget - previous)` = 1), so documents are read at decoding speed: H2O evicts ~2414
+tokens per item, and 159 s / 2414 is about 66 ms, one decode step.
+
+`FaithfulKV(..., prefill='space')` (CLI `--prefill-evict space` in `longbench_v1` and
+`faithful_eval`) evicts with the method's own retention rule down to `B - chunk` before each chunk
+of up to 128 tokens and then feeds the chunk in one forward; peak stays <= B and decoding is
+unchanged. This mirrors the StreamingLLM runner (`evict_for_space(past_key_values, space_needed)`
+before each prompt) [K: verify against the pinned commit]. CPU check on a 6000-token document with
+B = 4096: 1936 -> 47 forwards, same peak and eviction count, identical final StreamingLLM slots
+(`test_space_prefill_keeps_budget_and_needs_few_forwards`). Tokens inside a chunk see up to 128
+fewer old slots. The default stays `'token'` so the running campaign is unchanged; results of the
+two modes must not share an `--out` directory (the scripts refuse to mix them).

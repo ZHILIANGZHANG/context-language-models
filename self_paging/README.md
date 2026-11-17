@@ -43,6 +43,7 @@
 | `logstore.py` | `PagedKV(TokenLog)`：**参考推理引擎**。每次前向时，把驻留页的 KV 按日志顺序拼成 `DynamicCache`（驻留集不变就复用上一次的），新 token 用全局位置，并传一个显式的 4D 掩码。`page_out(physical=True)` 会把 KV 真的挪到内存（CUDA 上用锁页内存）。**token 级保留掩码（D10）**：`set_keep(keep[层, KV 头, 位置])`，token 可见 = 所在页驻留且该层该头保留；每个（层, 头）保留数必须相同，这样拼出的 cache 形状一致；页级换入换出让各头不等时，系统隐藏多出的最旧 token（`keep_equalized`）；`resident_tokens()` 只算保留的；`record_keep=True` 时可用 `visibility_parts` / `visibility_rows` / `token_visibility` 重建逐层逐头可见性；记录里的 `hidden_pages` 供代价计算 | `feed(pid, ids) -> logits[n, vocab]`；`set_keep`、`keep_view`、`visible_positions`；其余接口同 `TokenLog` |
 | `masks.py` | 训练用的掩码：驻留矩阵、可见性矩阵、HF 用的加性 4D 掩码、FlexAttention 的 `mask_mod`（支持多条轨迹打包） | `resident_matrix / visibility / additive_mask / make_mask_mod` |
 | `token_probe.py` | `ProbedPagedKV(PagedKV)`：token 级基线用的观测，不改任何注意力输出。记录每层最近 `window` 个 token 的 query（过了 norm 和 RoPE）；`accumulate=True` 时把每个 query 对每个可见 key 的注意力累加到 `acc[层, KV 头, 位置]`（H2O）；`window_attention(layer)`：窗口 query 对现在可见的 key 的注意力（TOVA、SnapKV）；`all_keys(layer)`：所有驻留 token 的 key（Quest 的块上下界）。测试里和单次前向的注意力逐项对上 | `window_attention / visible_keys / all_keys / acc` |
+| `faithful_cache.py` | 服务器 agent 写的 StreamingLLM / H2O 忠实移植（`docs/faithful_baselines.md`）：替换各层注意力，只保留紧凑的 K/V，不可逆，峰值 ≤ B。`prefill='token'`（默认，11-17 的测评）缓存满后每次前向只进 1 个 token，读文档和逐 token 解码一样慢；`prefill='space'` 每块进来前先按方法自己的规则腾出整块的空间，前向次数大约少 40 倍，峰值不变 | `FaithfulKV(model, method, budget, prefill=...)`；用完要 `close()` |
 
 ### 2.3 `envs/`：环境
 
@@ -96,6 +97,7 @@
 |---|---|
 | `t1_eval.py` | T1 评测，五种方法：`model`（模型自己管 KV）、`full`（不设预算）、`recent`、`belady`（系统换页）、`oracle`（健全性检查，应该是 1.0）。每个 episode 一行 JSONL（奖励、代价、峰值驻留、各种计数），结束时打印按"方法 @ 预算"汇总的结果。`--pool` 直接读评测题库 |
 | `control_eval.py` | 正式的 E0 系统基线评测（服务器 agent 写的，贪心解码，按世界存档、可续跑）。方法：`full`、`recent`、`belady`、页级近似 `quest` 和 `attn_evict`、`model`，以及 token 级的 `streaming`、`h2o`、`tova`、`snapkv`、`quest_token`。token 级超参用 `--pager-kwargs '{"snapkv": {"kernel": 7}}'`，观测窗口用 `--window`；只在开发集上调参 |
+| `t1_audit.py` | T1 是否真的考记忆、模型换页在响应什么（2026-11-17 诊断）。`shortcut`：只看最近 k 页、把没见过的货架当作已占用的读者能答对多少，命中率高说明这个配置不考记忆；`trajectories`：模型轨迹里每个决策作答时驻留文本够不够、驻留环境页比例、发出 kv_out 时的驻留占比和其他回合的对比 |
 | `token_sanity.py` | D11 的验收：单轮大海捞针（问题在最后）。`oneshot` 是论文设定：整段 prefill，以问题为观察窗口压缩一次，再解码，预期 SnapKV、TOVA、Quest 远好于 StreamingLLM，H2O 居中；`stream` 是我们的协议：预算严格，逐页压缩，预期不可逆方法跌到“针还在”的比例，Quest 能恢复 |
 
 ### 2.9 `testing/` 和 `tests/`

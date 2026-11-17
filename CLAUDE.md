@@ -4,7 +4,7 @@
 
 ## 先读什么
 
-**如果你是来执行实验或开发的 agent**：开始 RL 之前先读 `docs/rl_design.md`（基于 2026-11-16 SFT 结果的 RL 数据和奖励设计，以及 RL 前必须先修的三件事）；和基线对比前读 `docs/baseline_protocol.md`（公平对比协议）；其余先读 `docs/runbook.md`（准备什么、实验顺序、验收标准、剩下的开发任务 D1–D9），再读 `self_paging/README.md`（代码文档：每个文件做什么、数据格式、测试状态）。
+**如果你是来执行实验或开发的 agent**：开始 RL 之前先读 `docs/sft_v2_diagnosis.md`（2026-11-17：SFT v2 为什么还不会按压力换出、不会换回，T1 默认配置能走捷径，以及 RL 前要先改的数据和环境）和 `docs/rl_design.md`（基于 2026-11-16 SFT 结果的 RL 数据和奖励设计）；和基线对比前读 `docs/baseline_protocol.md`（公平对比协议）；其余先读 `docs/runbook.md`（准备什么、实验顺序、验收标准、剩下的开发任务 D1–D9），再读 `self_paging/README.md`（代码文档：每个文件做什么、数据格式、测试状态）。
 
 做研究设计时，按这个顺序读，就能接上全部进度：
 

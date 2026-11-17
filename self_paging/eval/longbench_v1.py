@@ -214,7 +214,7 @@ def official_full(item, tok, model, latency=None):
         tokens=ids + output, budget=None, peak_resident=len(ids) + max(0, len(output) - 1), meta={})
 
 
-def predict(item, method, tok, model, metrics, latency=None):
+def predict(item, method, tok, model, metrics, latency=None, prefill='token'):
     if method == 'official_full':
         answer, trace = official_full(item, tok, model, latency)
         return answer, trace, len(item['pages']), True
@@ -224,7 +224,7 @@ def predict(item, method, tok, model, metrics, latency=None):
     # The same tool output reserve applies across paged arms. Score only answer text up to the official limit.
     max_new = item['max_answer_tokens'] + 96
     if method in ('streaming', 'h2o'):
-        cache = FaithfulKV(model, method, budget)
+        cache = FaithfulKV(model, method, budget, prefill=prefill)
         try:
             trace = system_episode(env, cache, tok, max_turns=turns, max_new=max_new, max_log=LOG_LIMIT,
                                    latency=latency)
@@ -290,14 +290,16 @@ def run(args, manifest, tok):
             if dst.exists():
                 row = read_json(dst)
                 if (row['manifest_sha256'] != manifest_sha or row['trajectory_sha256'] != file_hash(raw)
-                        or ('latency' in row) != args.latency):
+                        or ('latency' in row) != args.latency
+                        or row.get('prefill_evict', 'token') != args.prefill_evict):
                     raise ValueError(f'Mismatched resume record: {key}')
                 continue
             if raw.exists():
                 raise ValueError(f'Uncommitted trajectory: {key}')
             started = time.monotonic()
             timer = Latency(next(model.parameters()).device) if args.latency else None
-            prediction, trace, pages, question = predict(item, method, tok, model, metrics, timer)
+            prediction, trace, pages, question = predict(item, method, tok, model, metrics, timer,
+                                                         prefill=args.prefill_evict)
             if timer is not None:
                 timings = timer.record()
                 trace['latency'] = timings
@@ -316,6 +318,8 @@ def run(args, manifest, tok):
                        cache_evictions=trace.get('cache_evictions'), meta=trace['meta'],
                        seconds=round(time.monotonic() - started, 3), model=args.model,
                        manifest_sha256=manifest_sha, trajectory_sha256=file_hash(raw))
+            if args.prefill_evict != 'token' and method in ('streaming', 'h2o'):
+                row['prefill_evict'] = args.prefill_evict
             if timer is not None:
                 row['latency'] = {k: v for k, v in timings.items() if k != 'turns'}
                 row['gpu'] = os.environ.get('CUDA_VISIBLE_DEVICES')
@@ -426,6 +430,9 @@ def main():
     ap.add_argument('--methods', nargs='+', choices=METHODS, default=METHODS)
     ap.add_argument('--cuda-memory-fraction', type=float)
     ap.add_argument('--latency', action='store_true')
+    ap.add_argument('--prefill-evict', choices=('token', 'space'), default='token',
+                    help="StreamingLLM/H2O document prefill once the cache is full: 'token' = one token per forward "
+                         "(11-17 campaign); 'space' = evict-for-space before each chunk (authors' runner); use a new --out")
     ap.add_argument('--latency-csv', type=Path)
     ap.add_argument('--contention-log', type=Path)
     args = ap.parse_args()

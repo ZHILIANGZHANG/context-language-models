@@ -13,6 +13,8 @@ from self_paging.envs.t1_warehouse import WarehouseEnv,T1Config,SYSTEM
 
 
 def reference_classes():
+    if 'FAITHFUL_REFERENCES' not in os.environ:
+        pytest.skip('needs the pinned authors repositories (FAITHFUL_REFERENCES)')
     root=Path(os.environ['FAITHFUL_REFERENCES'])
     spec=importlib.util.spec_from_file_location('authors_streaming',root/'streaming/streaming_llm/kv_cache.py')
     mod=importlib.util.module_from_spec(spec);spec.loader.exec_module(mod)
@@ -129,3 +131,32 @@ def test_chunking_budget_and_irreversibility(method):
             previous[key]=(e['at'],now)
         if method=='streaming':assert log.state[0][3][0,:4].tolist()==[0,1,2,3]
     finally:log.close()
+
+
+@pytest.mark.parametrize('method',['streaming','h2o'])
+def test_space_prefill_keeps_budget_and_needs_few_forwards(method):
+    """prefill='space' (authors' evict_for_space): a saturated cache reads a long page in a few
+    chunked forwards instead of one forward per token; the peak stays <= B and nothing returns."""
+    model=small();tokens=list(range(70))*2
+    runs={}
+    for mode in ('token','space'):  # one FaithfulKV at a time: it patches the model's attention
+        log=FaithfulKV(model,method,24,record_trace=True,prefill=mode,chunk=8)
+        try:
+            out=log.feed(log.open('tool'),tokens)
+            assert out.shape==(140,79) and torch.isfinite(out).all()
+            assert log.peak_resident<=24 and all(s[0].shape[-2]<=23 for s in log.state)
+            p=log.open('assistant');log.feed(p,[5]);log.feed(p,[6])  # decoding: one token per forward
+            assert log.peak_resident<=24
+            runs[mode]=(len(log.feed_stats),log.trace,log.state[0][3].clone())
+        finally:
+            log.close()
+    assert runs['space'][0]<=len(tokens)//8+4 < runs['token'][0]
+    previous={}
+    for e in runs['space'][1]:
+        now=[set(x) for x in e['positions']]
+        if e['layer'] in previous:
+            old_at,old=previous[e['layer']]
+            for a,b in zip(now,old):assert a.issubset(b|set(range(old_at,e['at'])))
+        previous[e['layer']]=(e['at'],now)
+    if method=='streaming':  # same retention rule: identical final slots
+        assert torch.equal(runs['space'][2],runs['token'][2]) and runs['space'][2][0,:4].tolist()==[0,1,2,3]
