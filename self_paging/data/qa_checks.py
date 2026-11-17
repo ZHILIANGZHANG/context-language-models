@@ -1,21 +1,19 @@
-"""Model-free checks of QA page streams (docs/real_data_sft.md §checks). The model-based necessity
-check (answer must fail without the evidence pages) is ``eval/qa_necessity.py`` and runs on GPU.
+"""Checks of QA page streams (docs/real_data_sft.md §checks). The model-based necessity check (the
+answer must fail without the evidence pages) is ``eval/qa_necessity.py`` and runs on GPU.
 
-Per question:
-* ``answer_elsewhere``: the answer string also appears on a page that is not marked as evidence, so
-  another page could answer it and "which page to recall" is ambiguous (dropped);
-* ``answer_in_evidence``: the answer string appears in the evidence text (False for abstractive
-  answers; kept, reported);
-* ``recall_needed``: at the moment the question can be answered, the evidence cannot all sit in the
-  most recent window the budget keeps ("last" mode), or cannot all be kept while reading ("first"
-  mode: evidence + structure exceed the budget). If False, recency alone answers: these are the
-  "no kv_in" negatives, fine in moderation, but they must not be the majority;
-* ``bm25_rank``: worst rank of an evidence page among the pages delivered so far, scoring the page
-  *text* against the question. An upper bound on what model-written labels can reach; the label
-  realizability check redoes this on labels.
+Per question, model-free:
+* ``answer_elsewhere``: the answer string also appears on a non-evidence page (mostly coincidences
+  of short answers; the necessity check decides);
+* ``answer_in_evidence``: the answer string appears in the evidence text (False for abstractive);
+* ``bm25_rank``: worst rank of an evidence page among the pages delivered so far, by page text;
+and from the teacher plan (``qa_policy.simulate``, attached by ``qa_streams``): ``recall`` (the
+teacher pages something in for it), ``steps`` (page-in steps; multi-hop needs several) and
+``realizable`` (every step's target was findable from what is visible).
 
-``report`` aggregates them with the stream statistics that reveal fixed patterns: page lengths,
-budget / stream ratio, pressure onset, questions per stream, evidence position and age.
+``report`` also measures whether *surface features* predict a page-in: mutual information between
+``recall`` and the mode, source, length bucket, page style, ask position and questions per stream.
+It should be near zero: if a surface feature predicts the action, the model will learn the
+feature instead of the cue.
 """
 
 from __future__ import annotations
@@ -55,40 +53,23 @@ def bm25_scores(query: str, docs: list[str], k1: float = 1.2, b: float = 0.75) -
     return out
 
 
-def recent_window(page_tokens: list[int], upto: int, room: int) -> set[int]:
-    """Pages ending at ``upto`` (inclusive) that fit, newest first, in ``room`` tokens."""
-    out, used = set(), 0
-    for p in range(upto, -1, -1):
-        if used + page_tokens[p] > room:
-            break
-        out.add(p)
-        used += page_tokens[p]
-    return out
+def ready_page(q: dict) -> int:
+    return q.get("due_after", max(q["evidence_pages"]) if q["mode"] == "first" else q["ask_after"])
 
 
-def check_question(s: dict, q: dict, system_tokens: int = 700, structure_per_page: int = 40) -> dict:
-    pages, lengths = s["pages"], s["page_tokens"]
+def check_question(s: dict, q: dict) -> dict:
+    pages = s["pages"]
     ev = q["evidence_pages"]
     answers = [norm(a) for a in q["answers"] if norm(a)]
     ev_text = " " + " ".join(norm(pages[p]["text"]) for p in ev) + " "
     others = [p for p in range(len(pages)) if p not in ev]
     elsewhere = any(any(f" {a} " in f" {norm(pages[p]['text'])} " for a in answers) for p in others)
-    in_ev = any(f" {a} " in ev_text for a in answers)
-    ready = max(ev) if q["mode"] == "first" else q["ask_after"]  # when it can be answered
-    budget = s.get("budget")
-    if budget is None:
-        recall = False
-    elif q["mode"] == "last":
-        room = budget - system_tokens - structure_per_page * (ready + 1)
-        recall = not set(ev) <= recent_window(lengths, ready, max(0, room))
-    else:
-        recall = sum(lengths[p] for p in ev) + system_tokens + structure_per_page * (ready + 1) + lengths[ready] > budget
+    ready = ready_page(q)
     seen = list(range(ready + 1))
     sc = bm25_scores(q["question"], [pages[p]["text"] for p in seen])
     order = sorted(seen, key=lambda p: -sc[p])
-    rank = max(order.index(p) for p in ev) + 1
-    return dict(answer_elsewhere=elsewhere, answer_in_evidence=in_ev, recall_needed=recall, bm25_rank=rank,
-                n_seen=len(seen), evidence_age=ready - min(ev), ready=ready)
+    return dict(answer_elsewhere=elsewhere, answer_in_evidence=any(f" {a} " in ev_text for a in answers),
+                bm25_rank=max(order.index(p) for p in ev) + 1, evidence_age=ready - min(ev), ready=ready)
 
 
 def annotate(s: dict) -> dict:
@@ -102,50 +83,98 @@ def _q(xs, qs=(0.1, 0.5, 0.9)):
     return [xs[min(len(xs) - 1, int(q * len(xs)))] for q in qs] if xs else []
 
 
+def mutual_information(xs: list, ys: list) -> float:
+    """I(X; Y) in bits for discrete sequences."""
+    n = len(xs)
+    if not n:
+        return 0.0
+    pxy, px, py = Counter(zip(xs, ys)), Counter(xs), Counter(ys)
+    return sum(c / n * math.log2((c / n) / (px[x] / n * py[y] / n)) for (x, y), c in pxy.items())
+
+
+def surface_features(s: dict, q: dict) -> dict:
+    from .qa_streams import len_bucket
+
+    n = len(s["pages"])
+    return {"mode": q["mode"], "source": q["source"], "length": len_bucket(s["stream_tokens"]),
+            "style": s.get("style", "para"), "ask_quartile": min(3, 4 * max(0, q["ask_after"]) // max(1, n)),
+            "due_quartile": min(3, 4 * max(0, ready_page(q)) // max(1, n)),
+            "questions_in_stream": min(len(s["questions"]), 8), "pressure": bool(s.get("budget"))}
+
+
+def surface_predictability(streams: list[dict], folds: int = 5, keys=None) -> dict:
+    """How well the best lookup table over surface-feature combinations predicts a page-in, out of
+    fold (streams split into folds). Compare with the majority-class rate: the closer, the less a
+    model can learn from surface features. ``pressure`` is excluded by default: it is shown on the
+    gauge and is a legitimate cue."""
+    keys = keys or ("mode", "source", "length", "style", "ask_quartile", "due_quartile", "questions_in_stream")
+    rows = [(i % folds, tuple(surface_features(s, q)[k] for k in keys), bool(q.get("recall")))
+            for i, s in enumerate(streams) if s.get("budget") for q in s["questions"]]
+    if not rows:
+        return {}
+    hit = 0
+    for f in range(folds):
+        table: dict = {}
+        for g, x, y in rows:
+            if g != f:
+                table.setdefault(x, Counter())[y] += 1
+        prior = Counter(y for g, _, y in rows if g != f).most_common(1)[0][0]
+        for g, x, y in rows:
+            if g == f:
+                hit += (table[x].most_common(1)[0][0] if x in table else prior) == y
+    base = max(sum(y for *_, y in rows), sum(not y for *_, y in rows)) / len(rows)
+    return {"questions_under_pressure": len(rows), "majority_rate": round(base, 3),
+            "surface_lookup_accuracy": round(hit / len(rows), 3)}
+
+
 def report(streams: list[dict]) -> dict:
     qs = [(s, q) for s in streams for q in s["questions"]]
-    c = Counter()
-    for s, q in qs:
-        k = q["checks"]
-        c["questions"] += 1
-        c[f"mode/{q['mode']}"] += 1
-        c["answer_elsewhere"] += k["answer_elsewhere"]
-        c["answer_in_evidence"] += k["answer_in_evidence"]
-        c["recall_needed"] += k["recall_needed"]
-        c[f"recall_needed/{q['mode']}"] += k["recall_needed"]
-        c["bm25_top1"] += k["bm25_rank"] <= len(q["evidence_pages"])
-        c["bm25_top5"] += k["bm25_rank"] <= 5
+    nq = max(1, len(qs))
+    rec = [bool(q.get("recall")) for _, q in qs]
+    feats = [surface_features(s, q) for s, q in qs]
+    h = mutual_information(rec, rec) or 1e-9  # entropy of recall
+    mi = {k: round(mutual_information([f[k] for f in feats], rec), 4) for k in feats[0]} if feats else {}
+    by = {}
+    for k in ("mode", "source", "length", "style"):
+        groups: dict = {}
+        for f, r in zip(feats, rec):
+            groups.setdefault(f[k], []).append(r)
+        by[k] = {g: round(sum(v) / len(v), 3) for g, v in sorted(groups.items())}
     pressure = [s for s in streams if s.get("budget")]
-    onset = []
-    for s in pressure:  # first page at which the stream no longer fits the budget
-        used = 700
-        for i, n in enumerate(s["page_tokens"]):
-            used += n + 40
-            if used > s["budget"]:
-                onset.append(i)
-                break
-    n_q = c["questions"] or 1
+    plans = [s["plan"] for s in streams if "plan" in s]
+    k = [q["checks"] for _, q in qs if "checks" in q]
     return {
         "streams": len(streams),
         "by_kind": dict(Counter(s["kind"] for s in streams)),
+        "by_style": dict(Counter(s.get("style", "para") for s in streams)),
         "sources_per_stream": dict(Counter(len(s["sources"]) for s in streams)),
-        "questions": c["questions"],
+        "questions": len(qs),
         "questions_per_stream": dict(sorted(Counter(len(s["questions"]) for s in streams).items())),
-        "share": {k: round(c[k] / n_q, 3) for k in ("mode/first", "mode/last", "answer_elsewhere",
-                                                     "answer_in_evidence", "recall_needed", "bm25_top1", "bm25_top5")},
-        "recall_needed_by_mode": {m: round(c[f"recall_needed/{m}"] / max(1, c[f"mode/{m}"]), 3) for m in ("first", "last")},
+        "recall_share": round(sum(rec) / nq, 3),
+        "recall_share_by": by,
+        "recall_entropy_bits": round(h, 4),
+        "surface_mutual_information_bits": mi,
+        "surface_predictability": surface_predictability(streams),
+        "pagein_steps": dict(sorted(Counter(q.get("steps", 0) for _, q in qs if q.get("recall")).items())),
+        "realizable_share_of_recalls": round(sum(q.get("realizable", True) for _, q in qs if q.get("recall"))
+                                             / max(1, sum(rec)), 3),
+        "kv_out_per_stream_pressure_q10_50_90": _q([s["plan"]["kv_out"] for s in pressure if "plan" in s]),
+        "kv_out_in_no_pressure_streams": sum(s["plan"]["kv_out"] for s in streams if not s.get("budget") and "plan" in s),
+        "kv_in_per_stream_q10_50_90": _q([p["kv_in"] for p in plans]),
+        "answer_elsewhere": round(sum(c["answer_elsewhere"] for c in k) / max(1, len(k)), 3),
+        "answer_in_evidence": round(sum(c["answer_in_evidence"] for c in k) / max(1, len(k)), 3),
+        "bm25_top5": round(sum(c["bm25_rank"] <= 5 for c in k) / max(1, len(k)), 3),
         "page_tokens_q10_50_90": _q([n for s in streams for n in s["page_tokens"]]),
         "page_cap_q10_50_90": _q([s["page_cap"] for s in streams]),
-        "pages_per_stream_q10_50_90": _q([len(s["pages"]) for s in streams]),
         "stream_tokens_q10_50_90": _q([s["stream_tokens"] for s in streams]),
+        "stream_tokens_by_bucket": dict(Counter(surface_features(s, s["questions"][0])["length"] for s in streams)),
         "no_pressure_share": round(1 - len(pressure) / max(1, len(streams)), 3),
         "budget_q10_50_90": _q([s["budget"] for s in pressure]),
         "budget_over_stream_q10_50_90": _q([round(s["budget"] / s["stream_tokens"], 2) for s in pressure]),
-        "pressure_onset_page_q10_50_90": _q(onset),
+        "eval_like_budget_share": round(sum(s["budget"] in (2048, 3072, 4096, 6144, 8192) for s in pressure)
+                                        / max(1, len(pressure)), 3),
         "evidence_pages_per_question": dict(sorted(Counter(len(q["evidence_pages"]) for _, q in qs).items())),
-        "evidence_relative_position_q10_50_90": _q([round(min(q["evidence_pages"]) / max(1, len(s["pages"]) - 1), 2)
-                                                    for s, q in qs]),
-        "evidence_age_pages_q10_50_90": _q([q["checks"]["evidence_age"] for _, q in qs]),
+        "evidence_age_pages_q10_50_90": _q([c["evidence_age"] for c in k]),
     }
 
 

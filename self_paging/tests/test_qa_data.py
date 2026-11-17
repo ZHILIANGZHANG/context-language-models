@@ -84,61 +84,134 @@ def test_guessable_and_exclusion(files, tmp_path):
     assert d is None and why == {"eval_question": 1}
 
 
-def _docs(n):
+def _docs(n, scale=1):
     out = []
     for i in range(n):
-        paras = [(f"T{i}-{j}", f"Paragraph {j} of item {i} " + "word " * (10 + 7 * j)) for j in range(6)]
+        paras = [(f"T{i}-{j}", f"Paragraph {j} of item {i} " + "word " * (scale * (10 + 7 * j))) for j in range(6)]
         out.append(qa_sources.QADoc("hotpot", f"d{i}", paras,
-                                    [Question(f"hotpot:{i}", f"Question about item {i}?", [f"answer{i}"], [1, 4])]))
+                                    [Question(f"hotpot:{i}", f"Question about item {i} paragraph?", [f"answer{i}"], [1, 4])]))
     return out
 
 
-def test_compose_wiki_keeps_evidence_and_timing():
-    cfg = qa_streams.StreamConfig(items=(3, 3), max_tokens=10 ** 6, p_no_pressure=0.0)
-    count = lambda t: len(t.split())  # noqa: E731
-    streams = qa_streams.build({"hotpot": _docs(30)}, 10, count, cfg, seed=1)
-    assert len(streams) == 10
-    for s in streams:
-        assert len(s["questions"]) == 3 and s["page_tokens"] == [count(p["text"]) for p in s["pages"]]
+class WordTok:
+    """Whitespace tokenizer with encode/decode (enough for pagination tests)."""
+
+    def __init__(self):
+        self.vocab, self.words = {}, []
+
+    def encode(self, text):
+        out = []
+        for w in text.replace("\n", " \n ").split(" "):
+            if w not in self.vocab:
+                self.vocab[w] = len(self.words)
+                self.words.append(w)
+            out.append(self.vocab[w])
+        return out
+
+    def decode(self, ids):
+        return " ".join(self.words[i] for i in ids).replace(" \n ", "\n")
+
+
+def _stream(seed, style, scale=1, **kw):
+    rng = random.Random(seed)
+    kw = {"page_target": (20 * scale, 40 * scale), "chunk_sizes": (40 * scale,), **kw}  # small documents: small pages
+    cfg = qa_streams.StreamConfig(p_chunk=1.0 if style == "chunk" else 0.0, p_no_pressure=0.0, **kw)
+    tok = WordTok()
+    flat = qa_streams.merge_wiki(rng, _docs(4, scale), cfg)
+    s = qa_streams.finalize(rng, qa_streams.paginate(rng, flat, tok, cfg), lambda t: len(tok.encode(t)), cfg, 10 ** 6)
+    return s, tok
+
+
+@pytest.mark.parametrize("style", ["para", "chunk"])
+def test_pagination_keeps_evidence_and_timing(style):
+    for seed in range(5):
+        s, tok = _stream(seed, style)
+        assert s["style"] == style and len(s["questions"]) == 4
         for q in s["questions"]:
             i = q["qid"].split(":")[1]
-            for j in (1, 4):  # the evidence paragraphs are on the evidence pages
-                assert any(f"Paragraph {j} of item {i} " in s["pages"][p]["text"] for p in q["evidence_pages"])
+            for j in (1, 4):  # the evidence paragraph's words are on the evidence pages
+                marker = f"Paragraph {j} of item {i} "
+                assert any(marker.split()[0] in s["pages"][p]["text"] and f"item {i}" in s["pages"][p]["text"]
+                           for p in q["evidence_pages"])
             if q["mode"] == "first":
-                assert q["ask_after"] < min(q["evidence_pages"])
+                assert q["ask_after"] < min(q["evidence_pages"]) and q["due_after"] >= max(q["evidence_pages"])
             else:
-                assert q["ask_after"] >= max(q["evidence_pages"])
-        assert s["budget"] is None or s["budget"] >= 2 * s["page_cap"]
-    assert {q["mode"] for s in streams for q in s["questions"]} == {"first", "last"}
-    assert len({len(s["pages"]) for s in streams}) > 1  # 1-3 paragraphs per page
+                assert q["ask_after"] == q["due_after"] >= max(q["evidence_pages"])
 
 
-def test_compose_qasper_keeps_reading_order_and_length_cap(files):
-    doc = list(qa_sources.load_qasper(files["qasper"]))[0]
-    d, _ = clean(doc)
-    s = qa_streams.compose_qasper(random.Random(0), d, qa_streams.StreamConfig())
+def test_chunk_pages_are_lossless_slices():
+    s, tok = _stream(1, "chunk", chunk_sizes=(37,))
+    words = " ".join(p["text"] for p in s["pages"]).split()
+    assert all(len(tok.encode(p["text"])) <= 40 for p in s["pages"][:-1])
+    assert words[:6] == " ".join(s["pages"][0]["text"].split()).split()[:6] and len(words) > 100
+
+
+def test_compose_qasper_keeps_reading_order(files):
+    doc, _ = clean(list(qa_sources.load_qasper(files["qasper"]))[0])
+    flat = qa_streams.flat_qasper(doc)
+    s = qa_streams.paginate(random.Random(0), flat, WordTok(), qa_streams.StreamConfig(p_chunk=0.0))
     joined = " ".join(p["text"] for p in s["pages"])
     assert joined.index("Seeds matter") < joined.index("seed lexicon") < joined.index("Accuracy")
-    cfg = qa_streams.StreamConfig(max_tokens=6)
-    assert qa_streams.finalize(random.Random(0), s, lambda t: len(t.split()), cfg) is None  # evidence cut off
 
 
-def test_checks_recall_rank_and_elsewhere():
+def test_teacher_plan_and_question_targets():
+    from self_paging.data.qa_policy import PolicyConfig, simulate
+
+    found = set()
+    for seed in range(8):
+        s, tok = _stream(seed, "para", scale=12)
+        total = sum(s["page_tokens"])
+        s["budget"] = PolicyConfig().system_tokens + 24 * len(s["pages"]) + 2 * s["page_cap"] + 400
+        s["stream_id"] = str(seed)
+        assert s["budget"] < total
+        s = qa_streams.schedule(random.Random(seed), s)
+        plan = simulate(s)
+        assert plan["peak"] <= s["budget"]  # the teacher never exceeds the budget
+        evicted = set()
+        for e in plan["events"]:
+            if e["op"] == "kv_out":
+                evicted |= set(e["pages"])
+            if e["op"] == "kv_in":  # only evidence that was really paged out comes back
+                q = next(q for q in s["questions"] if q["qid"] == e["qid"])
+                assert set(e["pages"]) <= evicted and set(e["pages"]) <= set(q["evidence_pages"])
+        assert sum(e["op"] == "answer" for e in plan["events"]) == len(s["questions"])
+        for q in s["questions"]:
+            found.add((q["target_recall"], plan["outcome"][q["qid"]]["recall"]))
+    assert (True, True) in found and (False, False) in found
+    s, _ = _stream(0, "para")
+    s["budget"], s["stream_id"] = None, "free"
+    assert simulate(s)["kv_out"] == 0  # no pressure, no page-out
+
+
+def test_balanced_selection_moves_cells_to_half():
+    def fake(i, recall):
+        return {"stream_id": str(i), "pressure": True, "budget": 1000, "stream_tokens": 5000, "style": "para",
+                "pages": [{}] * 8, "questions": [{"mode": "last", "source": "hotpot", "due_after": 6, "recall": recall}]}
+
+    cands = [fake(i, i % 5 == 0) for i in range(500)]  # 20% recall
+    chosen, stats = qa_streams.select_balanced(cands, 200, p_no_pressure=0.0, min_cell=10)
+    share = sum(s["questions"][0]["recall"] for s in chosen) / len(chosen)
+    assert share > 0.4 and stats["chosen"] == len(chosen)
+
+
+def test_checks_rank_elsewhere_and_surface_measures():
     s = {"pages": [{"text": "alpha beta"}, {"text": "the museum is in Brindle"}, {"text": "filler " * 50},
                    {"text": "Brindle again"}, {"text": "more filler " * 30}],
          "page_tokens": [10, 10, 300, 10, 200], "budget": 1300}
-    q = {"question": "Where is the museum?", "answers": ["Brindle"], "evidence_pages": [1], "mode": "last", "ask_after": 4}
-    k = qa_checks.check_question(s, q, system_tokens=700, structure_per_page=40)
-    assert k["answer_elsewhere"] and k["answer_in_evidence"] and k["bm25_rank"] == 1
-    assert k["recall_needed"]  # room 1300-700-200 = 400 keeps only the last two pages
-    s["budget"] = 2000
-    assert not qa_checks.check_question(s, q)["recall_needed"]
-    s["budget"] = None
-    assert not qa_checks.check_question(s, q)["recall_needed"]
-    rep = qa_checks.report([qa_checks.annotate({**s, "budget": 1300, "kind": "wiki", "sources": ["hotpot"],
-                                                "page_cap": 300, "stream_tokens": 530,
-                                                "questions": [dict(q, qid="a", source="hotpot")]})])
-    assert rep["share"]["recall_needed"] == 1.0 and rep["questions"] == 1
+    q = {"question": "Where is the museum?", "answers": ["Brindle"], "evidence_pages": [1], "mode": "last",
+         "ask_after": 4, "due_after": 4}
+    k = qa_checks.check_question(s, q)
+    assert k["answer_elsewhere"] and k["answer_in_evidence"] and k["bm25_rank"] == 1 and k["evidence_age"] == 3
+    assert qa_checks.mutual_information([0, 1, 0, 1], [0, 1, 0, 1]) == 1.0
+    assert qa_checks.mutual_information([0, 0, 1, 1], [0, 1, 0, 1]) == 0.0
+    streams = []
+    for i in range(40):  # recall depends on the mode only: surface lookup must find it
+        mode = "first" if i % 2 else "last"
+        streams.append({"budget": 1000, "stream_tokens": 3000, "style": "para", "pages": [{}] * 4, "sources": ["hotpot"],
+                        "questions": [{"mode": mode, "source": "hotpot", "ask_after": 1, "due_after": 2,
+                                       "evidence_pages": [0], "recall": mode == "last"}]})
+    sp = qa_checks.surface_predictability(streams)
+    assert sp["surface_lookup_accuracy"] == 1.0 and sp["majority_rate"] == 0.5
 
 
 def test_necessity_scoring_and_run():

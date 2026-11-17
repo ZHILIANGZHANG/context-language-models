@@ -76,8 +76,9 @@
 | `build_t1_sft.py` | 用 oracle 造 T1 的 SFT 数据。默认：四种模式（paging、notes、eager、mixed）；每个种子随机难度（`--vary`）；以 15% 的概率加入失误后恢复的样本（`--recovery`，失误回合不算损失）。每个种子在多个预算下各跑一次（1.0 表示不设预算，就是"不换页"样本），按换页、笔记两种模式。质量门槛：答对；没有非法调用、截断、强制换出、KV 报错；不超预算；答案有依据。可选 `--max-future-share` 过滤掉主要靠未来信息的 episode；`--teacher` 用真实模型写理由。`t1_budget(env, tok, ratio)` 定义预算 |
 | `build_rl_pool.py` | RL 题库。`build`：不需要模型，丢掉预算不可行的题，换页敏感的题加权；`profile`：用策略模型测通过率，只留 0.1–0.9 之间的；`eval`：固定的分布内、分布外评测题库。格式：每行 `{env, seed, ratio, t1_config, budget, n_pages, n_decisions, rule_belady, rule_recent, sensitivity, oracle_ok, pass_rate, weight}` |
 | `qa_sources.py` | 真实 QA 数据的读取（2026-11-17，`docs/real_data_sft.md`）：HotpotQA、2WikiMultihopQA、MuSiQue、Qasper 的官方训练文件，统一成"段落 + 问题 + 证据段落下标"。丢掉能猜的题（是/否、答案在问题里）；`Exclusion` 按问题和段落文本，和 LongBench 等评测集去重；能读大文件，也能读截断的文件开头 |
-| `qa_streams.py` | 把真实文档排成页流：多道题的段落合成一串（或一篇 Qasper 论文按阅读顺序），每页 1–3 段，问题先给或最后给，预算是随机的绝对槽数，环境声明页长上限。不需要模型 |
-| `qa_checks.py` | 页流的模型无关检查：答案是否也在非证据页上、证据里有没有答案、只靠最近窗口能不能答（`recall_needed`）、BM25 下证据页的排名；`report` 汇总长度、预算、压力出现的位置、证据位置等分布 |
+| `qa_streams.py` | 把真实文档排成页流（v1）：多道题合成一串，或一篇 Qasper 论文按阅读顺序；目标长度在 2K–24K 之间按对数尺度抽；两种分页方式（按段落凑页长 / 按 token 硬切）；提问和作答分开；预算是随机的绝对槽数，环境声明页长上限；`schedule` 按题定目标（要不要换回），再选时间实现它；`select_balanced` 按切片挑选页流，让每个切片里换回约占一半 |
+| `qa_policy.py` | 只用可观察信息的老师，到页和 token 层面：什么时候换出（放不下）、先换出哪些（和未答问题无关的；页号选择不算损失）、什么时候分步换回（到期作答时证据不全）；记录每题是否换回、几步、是否找得到，以及峰值（不超过预算） |
+| `qa_checks.py` | 页流检查：答案是否也在非证据页上、证据里有没有答案、BM25 下证据页的排名；`report` 汇总分布，以及表面特征能不能预测换回（`mutual_information`、`surface_predictability`：只用表面特征查表、交叉验证的准确率，和多数类基线比） |
 | `rl_preparation.py` | 服务器 agent 的 CPU 题库准备（划分、每个世界的难度、参考方法判可行、按预算 × 决策点数选 5000 题）。OOD 用 `ood_config_v2`（7–9 个决策点，放得进 32K；`config(seed, True, ood_version=1)` 是旧版） |
 | `rl_strata.py` | 按决策类型分层（不需要模型和分词器）：`annotate` 给题目加 `n_delayed`、`n_long_delayed`、`max_gap_pages`、`stratum`（long_delayed / delayed / no_delayed）和每个决策的关键事件距离；`select_stratified` 在原有配额上保证 delayed 决策 ≥ 40%、远距离题 ≥ 35%；`select_profile_stratified` 选按"预算 × 分层"均衡的 64 题画像集。命令行读 `cpu-profile.jsonl`，见 runbook v2.5 |
 | `inspect_sft.py` | 数据质量和多样性报告：按预算 × 模式统计换出、换回、反复换回的页、换出多久后换回；动作组合种类；episode 形态；恢复样本数（`docs/data_and_training.md` §2.8–§2.9） |

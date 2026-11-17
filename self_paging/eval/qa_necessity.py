@@ -61,7 +61,7 @@ def prompt(pages: list[str], question: str) -> str:
 
 
 def views(s: dict, q: dict) -> dict[str, list[str]]:
-    ready = q.get("checks", {}).get("ready")
+    ready = q.get("due_after")
     if ready is None:
         ready = max(q["evidence_pages"]) if q["mode"] == "first" else q["ask_after"]
     seen = list(range(ready + 1))
