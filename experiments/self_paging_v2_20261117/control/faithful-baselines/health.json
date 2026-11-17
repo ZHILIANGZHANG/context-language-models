@@ -1,0 +1,68 @@
+{
+  "phase": "T1_COMPARISON",
+  "time": 1794906861.288069,
+  "pending": [
+    "t1-100006-h2o",
+    "t1-100011-full",
+    "t1-100011-model",
+    "t1-100011-streaming",
+    "t1-100011-h2o",
+    "t1-100016-full",
+    "t1-100016-model",
+    "t1-100016-streaming",
+    "t1-100016-h2o",
+    "t1-100021-full",
+    "t1-100021-model",
+    "t1-100021-streaming",
+    "t1-100021-h2o",
+    "t1-100026-full",
+    "t1-100026-model",
+    "t1-100026-streaming",
+    "t1-100026-h2o",
+    "t1-100031-full",
+    "t1-100031-model",
+    "t1-100031-streaming",
+    "t1-100031-h2o",
+    "t1-100036-full",
+    "t1-100036-model",
+    "t1-100036-streaming",
+    "t1-100036-h2o",
+    "t1-100041-full",
+    "t1-100041-model",
+    "t1-100041-streaming",
+    "t1-100041-h2o",
+    "t1-100046-full",
+    "t1-100046-model",
+    "t1-100046-streaming",
+    "t1-100046-h2o"
+  ],
+  "active": {
+    "1": {
+      "identity": {
+        "pid": 1516035,
+        "uid": 1037,
+        "cwd": "/data/zhangcheng/context-language-models-faithful-20261117",
+        "start_ticks": 1269097468
+      },
+      "job": "t1-100001-streaming"
+    },
+    "2": {
+      "identity": {
+        "pid": 1603745,
+        "uid": 1037,
+        "cwd": "/data/zhangcheng/context-language-models-faithful-20261117",
+        "start_ticks": 1269121351
+      },
+      "job": "t1-100001-h2o"
+    },
+    "0": {
+      "identity": {
+        "pid": 3657443,
+        "uid": 1037,
+        "cwd": "/data/zhangcheng/context-language-models-faithful-20261117",
+        "start_ticks": 1269691805
+      },
+      "job": "t1-100006-streaming"
+    }
+  }
+}

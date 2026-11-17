@@ -1,0 +1,14 @@
+{
+  "environment": {
+    "torch": "2.11.0+cu129",
+    "transformers": "5.23.0",
+    "peft": "0.19.1",
+    "numpy": "2.3.5",
+    "triton": "3.6.0",
+    "pytest": "8.4.2"
+  },
+  "spec_canonical_sha256": "ebce4f9e3fea4ddb9654d6604ffdc400afb3b70bb419aceedb2d2d787cd72354",
+  "checkpoint_verified": true,
+  "campaign_lock_available": true,
+  "environment_rebuilt": false
+}

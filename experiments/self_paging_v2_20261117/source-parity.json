@@ -1,0 +1,42 @@
+[
+  {
+    "path": "self_paging/agent/episode.py",
+    "sha256": "68969452c21c9bd08c59ab6f878c8342c8138151e882e64742e3d9d050431147",
+    "matches_runtime": true
+  },
+  {
+    "path": "self_paging/envs/t1_warehouse.py",
+    "sha256": "256c8d35d6b80a1954f9e0da4513af8fdb104466035718259822d3a2e5b35b0c",
+    "matches_runtime": true
+  },
+  {
+    "path": "self_paging/eval/faithful_eval.py",
+    "sha256": "724a8ea2af1e790db94fa6d05a31bb2c5cfc9a890f603db07450c7df6655569e",
+    "matches_runtime": true
+  },
+  {
+    "path": "self_paging/eval/faithful_probe.py",
+    "sha256": "0dc481f1e6056d373ffd2083b0413bdac11c2cebd66da9826e4c944635b179c8",
+    "matches_runtime": true
+  },
+  {
+    "path": "self_paging/eval/latency.py",
+    "sha256": "76f2b834166153aa06453390ae4aa83a9c60429e09c50d4bdfc77ecdb1974979",
+    "matches_runtime": true
+  },
+  {
+    "path": "self_paging/eval/longbench_v1.py",
+    "sha256": "298326db38482310b950c08ae356b9487735808de96a1af3f1df6cb10b2d1f86",
+    "matches_runtime": true
+  },
+  {
+    "path": "self_paging/hf/faithful_cache.py",
+    "sha256": "cfabaadcdb75e5511b54d7b08e453ee5e73f21a46cd709690208dad167c3e284",
+    "matches_runtime": true
+  },
+  {
+    "path": "self_paging/tests/test_faithful_baselines.py",
+    "sha256": "5fb66a4549756fcd1f0705680baf876b212df294b3cbf2b55041b7ef307620ce",
+    "matches_runtime": true
+  }
+]

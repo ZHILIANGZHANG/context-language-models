@@ -1,0 +1,26 @@
+{
+  "path": "/nas/Public/zhangcheng/self-paging-v2-20261117/checkpoints/sft-v2-r64",
+  "sha256": {
+    "adapter_config.json": "0004a8ea88343823372942add3c6080dc541b2ac342f1b04cd32facafb9e699f",
+    "adapter_model.safetensors": "72e00afc2cd028cc64633a0f78773e960ce13019f26b0c1b43d4f50b8007508c"
+  },
+  "completed_steps": 516,
+  "final_validation": {
+    "epoch": 0,
+    "eval_loss": 0.045459969218780816,
+    "eval_step": 515,
+    "completed_steps": 516,
+    "eval_records": 240,
+    "eval_sec": 644.391
+  },
+  "training_exit": {
+    "returncode": 0,
+    "identity": {
+      "pid": 1432426,
+      "uid": 1037,
+      "start_ticks": 1264453682,
+      "cwd": "/data/zhangcheng/context-language-models-sft-v2-8fc082e"
+    },
+    "time": 1794885001.2342925
+  }
+}

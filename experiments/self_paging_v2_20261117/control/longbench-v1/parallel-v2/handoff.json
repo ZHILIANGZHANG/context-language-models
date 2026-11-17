@@ -1,0 +1,11 @@
+{
+  "archived": "/nas/Public/zhangcheng/self-paging-v2-20261117/longbench-v1-before-final-marker",
+  "archive_files": [
+    "03-full.json",
+    "03-full.trajectory.json"
+  ],
+  "reused_official_full": {
+    "03-official_full": 0.0
+  },
+  "time": 1794907132.5878582
+}

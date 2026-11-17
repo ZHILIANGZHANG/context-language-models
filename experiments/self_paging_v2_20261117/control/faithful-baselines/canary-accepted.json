@@ -1,0 +1,9 @@
+{
+  "jobs": [
+    "canary-full",
+    "canary-model",
+    "canary-streaming",
+    "canary-h2o"
+  ],
+  "time": 1794897995.6504738
+}

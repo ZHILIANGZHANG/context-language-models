@@ -1,0 +1,34 @@
+diff --git a/self_paging/agent/episode.py b/self_paging/agent/episode.py
+index d6cdea9..052a2fb 100644
+--- a/self_paging/agent/episode.py
++++ b/self_paging/agent/episode.py
+@@ -89,7 +89,8 @@ def run_episode(env, log, policy, tok: Tok, cfg: EpisodeConfig, pager=None) -> d
+     def pinned(kind, text):
+         return feed(log.open(kind, pinned=True), text)
+ 
+-    pinned("system", render_system(env.system, tools))
++    system = env.system_for_tools(cfg.kv_tools) if hasattr(env, "system_for_tools") else env.system
++    pinned("system", render_system(system, tools))
+     last = pinned("task", render_user(env.task))
+     if cfg.max_log_tokens is not None:
+         if cfg.answer_reserve < cfg.max_new_tokens + 256:
+diff --git a/self_paging/envs/t1_warehouse.py b/self_paging/envs/t1_warehouse.py
+index fba41ad..0d47c46 100644
+--- a/self_paging/envs/t1_warehouse.py
++++ b/self_paging/envs/t1_warehouse.py
+@@ -290,6 +290,15 @@ TOOLS = [
+ 
+ 
+ class WarehouseEnv:
++    def system_for_tools(self, kv_tools: bool) -> str:
++        """Keep trained paging prompt unchanged; system baselines get task instructions only."""
++        if kv_tools:
++            return self.system
++        return ("You are a warehouse agent. " + RULE + " "
++                "Read the event log page by page with next_events. When a page ends with DECISION REQUIRED, "
++                "decide the shelf and call store. Use only the listed task tools. "
++                "Memory is managed automatically by the system; focus on completing the warehouse task.")
++
+     """Environment protocol used by ``self_paging.agent.episode``:
+ 
+     ``system``/``task``/``tools`` describe the episode; ``step(name, args)`` returns

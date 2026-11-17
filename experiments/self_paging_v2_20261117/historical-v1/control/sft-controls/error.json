@@ -1,0 +1,4 @@
+{
+  "time": 1794844770.5263908,
+  "traceback": "Traceback (most recent call last):\n  File \"/home/zhangcheng/self-paging-20261116/queue_sft_controls.py\", line 168, in <module>\n    main()\n  File \"/home/zhangcheng/self-paging-20261116/queue_sft_controls.py\", line 152, in main\n    dispatch(); finalize()\n    ^^^^^^^^^^\n  File \"/home/zhangcheng/self-paging-20261116/queue_sft_controls.py\", line 41, in dispatch\n    stop()\n  File \"/home/zhangcheng/self-paging-20261116/queue_sft_controls.py\", line 29, in stop\n    raise RuntimeError('User STOP')\nRuntimeError: User STOP\n"
+}

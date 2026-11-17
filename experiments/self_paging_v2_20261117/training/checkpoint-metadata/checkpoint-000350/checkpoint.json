@@ -1,0 +1,7 @@
+{
+  "completed_steps": 350,
+  "epoch": 0,
+  "seed": 0,
+  "eval_loss": 0.04818337279263633,
+  "checkpoint_kind": "model_or_adapter_for_evaluation"
+}

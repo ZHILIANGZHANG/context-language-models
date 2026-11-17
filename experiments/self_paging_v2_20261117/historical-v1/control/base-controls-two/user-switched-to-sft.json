@@ -1,0 +1,46 @@
+{
+  "time": 1794841232.5492656,
+  "reason": "user_switch_to_sft_checkpoint",
+  "controller": {
+    "pid": 3985352,
+    "uid": 1037,
+    "start_ticks": 1262844157,
+    "cwd": "/data/zhangcheng/context-language-models-223cc65-rlprep"
+  },
+  "workers": [
+    {
+      "pid": 896292,
+      "uid": 1037,
+      "start_ticks": 1263146831,
+      "cwd": "/data/zhangcheng/context-language-models-223cc65-rlprep"
+    },
+    {
+      "pid": 971752,
+      "uid": 1037,
+      "start_ticks": 1263168044,
+      "cwd": "/data/zhangcheng/context-language-models-223cc65-rlprep"
+    },
+    {
+      "pid": 1349651,
+      "uid": 1037,
+      "start_ticks": 1263272779,
+      "cwd": "/data/zhangcheng/context-language-models-223cc65-rlprep"
+    }
+  ],
+  "verified_gone": true,
+  "locks_released": true,
+  "completed_rows": 259,
+  "source_unchanged": true,
+  "summary_sha256": {
+    "job-100035/summary.jsonl": "91daf64a8f3c53fdfddb9c05ca7f7ab438c7a851ffabcd680e808daeeea23cf6",
+    "job-100010/summary.jsonl": "e07ba8a57ed4dc860cd4d5e472b257f83e325d94ef16fcfb005dadd1a09bd472",
+    "job-100001/summary.jsonl": "80da9c362afa7e638bc6d1d65d14b4d2438676f12a42fc031e14528fd35a3a36",
+    "job-100000/summary.jsonl": "95db6310baf2a13f7feaeee0411625a160eece82d5cb20347f040f3935c86b44",
+    "job-100040/summary.jsonl": "97644f64962f591458de44a405928982e9a2604a22641f82c5534e1d2acb2e9b",
+    "job-100020/summary.jsonl": "41919fa203dc128e8083561991e163d6572342ee0d033bf17017e74d4d6cae47",
+    "job-100025/summary.jsonl": "38f5426ea02310c7eb6abbf96e569f63487202df7ba4471dca24950a7db0b176",
+    "job-100015/summary.jsonl": "580086f1636ff627fa64b1c581f55e035c6cafbb60f8279877e43b6d6729ad03",
+    "job-100005/summary.jsonl": "15935c2b35e316e27b57194d515052033c52f77150be3c84213344de473025a0",
+    "job-100030/summary.jsonl": "87a9a54dc91442f2fc6952f323fa66352a054e394b7058eadfcc25f60d95662a"
+  }
+}

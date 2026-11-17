@@ -1,0 +1,25 @@
+{
+  "time": 1794841221.5610416,
+  "phase": "BASE_CONTROLS",
+  "pending": [],
+  "active": {
+    "2": {
+      "pid": 896292,
+      "uid": 1037,
+      "start_ticks": 1263146831,
+      "cwd": "/data/zhangcheng/context-language-models-223cc65-rlprep"
+    },
+    "1": {
+      "pid": 971752,
+      "uid": 1037,
+      "start_ticks": 1263168044,
+      "cwd": "/data/zhangcheng/context-language-models-223cc65-rlprep"
+    },
+    "0": {
+      "pid": 1349651,
+      "uid": 1037,
+      "start_ticks": 1263272779,
+      "cwd": "/data/zhangcheng/context-language-models-223cc65-rlprep"
+    }
+  }
+}

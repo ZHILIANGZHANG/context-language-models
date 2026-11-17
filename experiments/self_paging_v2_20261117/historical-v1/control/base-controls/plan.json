@@ -1,0 +1,42 @@
+{
+  "weights": "/nas/Public/zhangcheng/models/Qwen3-8B",
+  "adapters": false,
+  "seeds": [
+    100000,
+    100050
+  ],
+  "methods": [
+    "full",
+    "model",
+    "recent",
+    "belady",
+    "quest",
+    "attn_evict"
+  ],
+  "ratios": [
+    0.25,
+    0.4,
+    0.6
+  ],
+  "episodes": 800,
+  "temperature": 0.6,
+  "top_p": 0.95,
+  "top_k": 20,
+  "sample_seed": 0,
+  "n_decisions": 4,
+  "max_turns": 60,
+  "max_new_tokens": 1024,
+  "thinking": false,
+  "dependency": "quality-training-val50 complete and controller exited",
+  "next": "resume deferred original RL profile64",
+  "first_world": "100000 all16 conditions, reused in final results",
+  "source": "/data/zhangcheng/context-language-models-223cc65-rlprep",
+  "notes": [
+    "Belady corrected upstream223cc65",
+    "QuestPage is page-key approximation",
+    "AttnEvict actual attention mass last16 queries, irreversible",
+    "Same environment, runner and sampling as SFT; original weights on all controls",
+    "Analytical costs, not measured transfer latency"
+  ],
+  "environment_spec_sha256": "4d98500ebaaa99b65383a47c53dffae814a291f044c9e6fec06d70b5213dd420"
+}

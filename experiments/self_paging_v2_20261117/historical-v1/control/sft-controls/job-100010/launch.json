@@ -1,0 +1,19 @@
+{
+  "identity": {
+    "pid": 1540071,
+    "uid": 1037,
+    "start_ticks": 1263329322,
+    "cwd": "/data/zhangcheng/context-language-models-sft-controls-20261116"
+  },
+  "gpu": 2,
+  "cmd": [
+    "/data/zhangcheng/self-paging-20261116/venv/bin/python",
+    "/home/zhangcheng/self-paging-20261116/sft_controls_worker.py",
+    "--start",
+    "100010",
+    "--end",
+    "100015"
+  ],
+  "expected": 30,
+  "time": 1794841696.9866347
+}

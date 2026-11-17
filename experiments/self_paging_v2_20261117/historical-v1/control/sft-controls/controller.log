@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "/home/zhangcheng/self-paging-20261116/queue_sft_controls.py", line 168, in <module>
+    main()
+  File "/home/zhangcheng/self-paging-20261116/queue_sft_controls.py", line 152, in main
+    dispatch(); finalize()
+    ^^^^^^^^^^
+  File "/home/zhangcheng/self-paging-20261116/queue_sft_controls.py", line 41, in dispatch
+    stop()
+  File "/home/zhangcheng/self-paging-20261116/queue_sft_controls.py", line 29, in stop
+    raise RuntimeError('User STOP')
+RuntimeError: User STOP

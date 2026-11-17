@@ -1,0 +1,12 @@
+{
+  "pins": {
+    "torch": "2.11.0+cu129",
+    "transformers": "5.23.0",
+    "peft": "0.19.1",
+    "numpy": "2.3.5",
+    "triton": "3.6.0",
+    "pytest": "8.4.2"
+  },
+  "warm_reuse": true,
+  "time": 1794885011.244998
+}

@@ -1,0 +1,36 @@
+{
+  "total": 14300,
+  "accepted": 8603,
+  "by_split": {
+    "train": 13000,
+    "heldout": 1300
+  },
+  "accepted_cells": {
+    "train/1.0/paging": 972,
+    "train/0.6/paging": 803,
+    "train/0.6/notes": 839,
+    "train/0.6/eager": 651,
+    "train/0.45/paging": 647,
+    "train/0.45/eager": 573,
+    "train/0.6/mixed": 407,
+    "train/0.45/notes": 764,
+    "train/0.45/mixed": 290,
+    "train/0.35/paging": 508,
+    "train/0.35/notes": 724,
+    "train/0.35/eager": 467,
+    "train/0.35/mixed": 140,
+    "heldout/1.0/paging": 97,
+    "heldout/0.6/paging": 84,
+    "heldout/0.6/notes": 85,
+    "heldout/0.6/eager": 64,
+    "heldout/0.45/paging": 66,
+    "heldout/0.45/notes": 82,
+    "heldout/0.45/eager": 57,
+    "heldout/0.35/paging": 56,
+    "heldout/0.35/notes": 76,
+    "heldout/0.35/eager": 51,
+    "heldout/0.35/mixed": 23,
+    "heldout/0.6/mixed": 43,
+    "heldout/0.45/mixed": 34
+  }
+}

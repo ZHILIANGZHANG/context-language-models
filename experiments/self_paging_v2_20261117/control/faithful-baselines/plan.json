@@ -1,0 +1,33 @@
+{
+  "methods": [
+    "full",
+    "model",
+    "streaming",
+    "h2o"
+  ],
+  "ratios": [
+    0.25,
+    0.35,
+    0.4,
+    0.5,
+    0.6
+  ],
+  "seeds": [
+    100000,
+    100050
+  ],
+  "temperature": 0,
+  "episodes": 800,
+  "decisions": 3200,
+  "checkpoint": "/nas/Public/zhangcheng/self-paging-v2-20261117/checkpoints/sft-v2-r64",
+  "source": "/data/zhangcheng/context-language-models-faithful-20261117",
+  "allowed_gpus": [
+    0,
+    1,
+    2
+  ],
+  "max_turns": 60,
+  "max_new_tokens": 1024,
+  "max_log_tokens": 32768,
+  "gating": "author-code equivalence, CUDA native parity and real first-world canary; NO score ordering gate"
+}

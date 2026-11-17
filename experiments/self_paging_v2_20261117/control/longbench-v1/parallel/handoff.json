@@ -1,0 +1,30 @@
+{
+  "reused": {
+    "03-full": {
+      "score": 0.0,
+      "pages_read": 5,
+      "total_pages": 5,
+      "peak_kv": 6900,
+      "seconds": 74.932
+    },
+    "03-official_full": {
+      "score": 0.0,
+      "pages_read": 5,
+      "total_pages": 5,
+      "peak_kv": 5260,
+      "seconds": 5.858
+    }
+  },
+  "original_exit": {
+    "returncode": -15,
+    "worker": {
+      "pid": 111425,
+      "uid": 1037,
+      "cwd": "/home/zhangcheng/self-paging-v2-20261117/longbench-v1/src",
+      "start_ticks": 1269825936
+    },
+    "time": 1794906908.1225893
+  },
+  "orphan_files_preserved": [],
+  "time": 1794906977.728287
+}

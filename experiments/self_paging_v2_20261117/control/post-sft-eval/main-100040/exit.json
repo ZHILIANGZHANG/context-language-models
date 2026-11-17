@@ -1,0 +1,10 @@
+{
+  "returncode": 0,
+  "identity": {
+    "pid": 2395458,
+    "uid": 1037,
+    "cwd": "/data/zhangcheng/context-language-models-sft-v2-8fc082e",
+    "start_ticks": 1268191629
+  },
+  "time": 1794892103.0048068
+}

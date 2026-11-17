@@ -1,0 +1,6 @@
+{
+  "status": "SFT_COMPLETE",
+  "checkpoint": "/nas/Public/zhangcheng/self-paging-v2-20261117/checkpoints/sft-v2-r64",
+  "steps": 516,
+  "time": 1794885021.2473454
+}

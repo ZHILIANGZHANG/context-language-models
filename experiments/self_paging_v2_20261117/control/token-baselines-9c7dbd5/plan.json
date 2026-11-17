@@ -1,0 +1,27 @@
+{
+  "commit": "9c7dbd582610203cdf4ef80747424b93b5ec3022",
+  "methods": [
+    "full",
+    "model",
+    "streaming",
+    "h2o"
+  ],
+  "ratios": [
+    0.25,
+    0.35,
+    0.4,
+    0.5,
+    0.6
+  ],
+  "seeds": [
+    100000,
+    100050
+  ],
+  "decisions_per_episode": 4,
+  "temperature": 0,
+  "checkpoint": "/nas/Public/zhangcheng/self-paging-v2-20261117/checkpoints/sft-v2-r64",
+  "comparison_episodes": 800,
+  "source": "/data/zhangcheng/context-language-models-token-baselines-9c7dbd5",
+  "output": "/nas/Public/zhangcheng/self-paging-v2-20261117/token-baselines-9c7dbd5",
+  "depends_on": "/home/zhangcheng/self-paging-v2-20261117/post-sft-eval/complete.json"
+}

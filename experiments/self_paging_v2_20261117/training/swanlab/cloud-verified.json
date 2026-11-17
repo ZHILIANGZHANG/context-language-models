@@ -1,0 +1,24 @@
+{
+  "validation_matching_steps": [
+    49,
+    99,
+    149,
+    199,
+    249,
+    299,
+    349,
+    399,
+    449,
+    499,
+    515
+  ],
+  "time": 1794885012.7661796,
+  "url": "https://swanlab.cn/@zhangcheng525/context-language-models/runs/52iv3vyl/chart",
+  "id": "52iv3vyl",
+  "matching_steps": [
+    0,
+    515
+  ],
+  "local_latest": 515,
+  "private": true
+}

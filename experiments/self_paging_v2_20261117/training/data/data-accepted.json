@@ -1,0 +1,335 @@
+{
+  "status": "DATA_ACCEPTED",
+  "splits": {
+    "train": {
+      "records": 2400,
+      "seeds": 959,
+      "sha256": "c5380a4fc24597fc183651f00d78be1895b65cb5e56fb6071385382d91fb0a06",
+      "quarantine_page_restores": 502,
+      "actual_no_paging": 480,
+      "quality_counts": {
+        "invalid": 0,
+        "forced_evictions": 0,
+        "truncated_tokens": 0,
+        "teacher_fallbacks": 0,
+        "unrealizable_kv_in": 0,
+        "unoffered_kv_calls": 0
+      },
+      "memory_counts": {
+        "turn/none": 38676,
+        "turn/out_only": 25792,
+        "action/kv_out": 26614,
+        "evicted_page_kind/assistant": 39717,
+        "evicted_page_kind/tool": 32638,
+        "trajectory/out_only": 955,
+        "turn/both": 822,
+        "action/kv_in": 1277,
+        "restored_page_kind/tool": 1708,
+        "restore/changes_reference_read": 1272,
+        "restore/repairs_current_reference_answer": 1264,
+        "trajectory/both": 965,
+        "turn/in_only": 455,
+        "evicted_page_kind/note": 7530,
+        "trajectory/none": 480
+      },
+      "tokens": {
+        "min": 4571,
+        "median": 14477,
+        "max": 32459,
+        "total": 37562146
+      },
+      "diversity": {
+        "cells": {
+          "1.0/paging": {
+            "n": 480,
+            "out_per_ep": 0.0,
+            "in_per_ep": 0.0,
+            "ep_with_in": "0%",
+            "pages_in_2plus": 0
+          },
+          "0.6/eager": {
+            "n": 285,
+            "out_per_ep": 28.7,
+            "in_per_ep": 1.58,
+            "ep_with_in": "80%",
+            "pages_in_2plus": 19
+          },
+          "0.6/mixed": {
+            "n": 70,
+            "out_per_ep": 33.6,
+            "in_per_ep": 1.14,
+            "ep_with_in": "80%",
+            "pages_in_2plus": 0
+          },
+          "0.6/notes": {
+            "n": 240,
+            "out_per_ep": 41.4,
+            "in_per_ep": 0.0,
+            "ep_with_in": "0%",
+            "pages_in_2plus": 0
+          },
+          "0.6/paging": {
+            "n": 45,
+            "out_per_ep": 33.2,
+            "in_per_ep": 0.96,
+            "ep_with_in": "80%",
+            "pages_in_2plus": 2
+          },
+          "0.45/eager": {
+            "n": 240,
+            "out_per_ep": 38.7,
+            "in_per_ep": 1.5,
+            "ep_with_in": "80%",
+            "pages_in_2plus": 25
+          },
+          "0.45/mixed": {
+            "n": 60,
+            "out_per_ep": 38.6,
+            "in_per_ep": 1.08,
+            "ep_with_in": "80%",
+            "pages_in_2plus": 2
+          },
+          "0.45/notes": {
+            "n": 240,
+            "out_per_ep": 48.4,
+            "in_per_ep": 0.0,
+            "ep_with_in": "0%",
+            "pages_in_2plus": 0
+          },
+          "0.45/paging": {
+            "n": 100,
+            "out_per_ep": 34.4,
+            "in_per_ep": 1.17,
+            "ep_with_in": "80%",
+            "pages_in_2plus": 23
+          },
+          "0.35/eager": {
+            "n": 225,
+            "out_per_ep": 48.1,
+            "in_per_ep": 1.64,
+            "ep_with_in": "80%",
+            "pages_in_2plus": 35
+          },
+          "0.35/mixed": {
+            "n": 35,
+            "out_per_ep": 49.5,
+            "in_per_ep": 1.11,
+            "ep_with_in": "80%",
+            "pages_in_2plus": 1
+          },
+          "0.35/notes": {
+            "n": 240,
+            "out_per_ep": 53.1,
+            "in_per_ep": 0.02,
+            "ep_with_in": "2%",
+            "pages_in_2plus": 0
+          },
+          "0.35/paging": {
+            "n": 140,
+            "out_per_ep": 42.7,
+            "in_per_ep": 1.29,
+            "ep_with_in": "80%",
+            "pages_in_2plus": 26
+          }
+        },
+        "paged_out_pages_by_times_back_in": {
+          "0": 77375,
+          "1": 1436,
+          "2": 127,
+          "3": 6
+        },
+        "turns_out_before_back_in": {
+          "median": 4.0,
+          "max": 45,
+          "n": 1708
+        },
+        "per_turn_action_combos": {
+          "n": 29541,
+          "on": 17064,
+          "s": 9135,
+          "won": 8148,
+          "oi": 822,
+          "i": 455,
+          "o": 449,
+          "wo": 131
+        },
+        "distinct_3turn_action_ngrams": 186,
+        "decisions_per_episode": {
+          "2": 558,
+          "3": 542,
+          "4": 493,
+          "5": 421,
+          "6": 386
+        },
+        "turns_per_episode": {
+          "min": 8,
+          "median": 26.0,
+          "max": 62
+        },
+        "recovery": {
+          "episodes": 0,
+          "mistake_turns_no_loss": 0
+        }
+      }
+    },
+    "heldout": {
+      "records": 240,
+      "seeds": 95,
+      "sha256": "9e9509dd56d7f5834c288d8fa2929b4347096ad4988538503a691241af4c9677",
+      "quarantine_page_restores": 53,
+      "actual_no_paging": 48,
+      "quality_counts": {
+        "invalid": 0,
+        "forced_evictions": 0,
+        "truncated_tokens": 0,
+        "teacher_fallbacks": 0,
+        "unrealizable_kv_in": 0,
+        "unoffered_kv_calls": 0
+      },
+      "memory_counts": {
+        "turn/none": 3931,
+        "turn/out_only": 2642,
+        "action/kv_out": 2718,
+        "evicted_page_kind/assistant": 3815,
+        "evicted_page_kind/tool": 3334,
+        "trajectory/out_only": 96,
+        "turn/both": 76,
+        "action/kv_in": 126,
+        "restored_page_kind/tool": 153,
+        "restore/changes_reference_read": 126,
+        "restore/repairs_current_reference_answer": 126,
+        "trajectory/both": 96,
+        "turn/in_only": 50,
+        "evicted_page_kind/note": 766,
+        "trajectory/none": 48
+      },
+      "tokens": {
+        "min": 6486,
+        "median": 15588,
+        "max": 31761,
+        "total": 3959718
+      },
+      "diversity": {
+        "cells": {
+          "1.0/paging": {
+            "n": 48,
+            "out_per_ep": 0.0,
+            "in_per_ep": 0.0,
+            "ep_with_in": "0%",
+            "pages_in_2plus": 0
+          },
+          "0.6/eager": {
+            "n": 35,
+            "out_per_ep": 26.6,
+            "in_per_ep": 1.29,
+            "ep_with_in": "80%",
+            "pages_in_2plus": 2
+          },
+          "0.6/mixed": {
+            "n": 5,
+            "out_per_ep": 30.2,
+            "in_per_ep": 1.2,
+            "ep_with_in": "80%",
+            "pages_in_2plus": 0
+          },
+          "0.6/notes": {
+            "n": 24,
+            "out_per_ep": 44.5,
+            "in_per_ep": 0.0,
+            "ep_with_in": "0%",
+            "pages_in_2plus": 0
+          },
+          "0.45/eager": {
+            "n": 30,
+            "out_per_ep": 38.0,
+            "in_per_ep": 1.3,
+            "ep_with_in": "80%",
+            "pages_in_2plus": 2
+          },
+          "0.45/mixed": {
+            "n": 5,
+            "out_per_ep": 45.2,
+            "in_per_ep": 1.4,
+            "ep_with_in": "80%",
+            "pages_in_2plus": 1
+          },
+          "0.45/notes": {
+            "n": 24,
+            "out_per_ep": 50.8,
+            "in_per_ep": 0.0,
+            "ep_with_in": "0%",
+            "pages_in_2plus": 0
+          },
+          "0.45/paging": {
+            "n": 5,
+            "out_per_ep": 39.4,
+            "in_per_ep": 1.0,
+            "ep_with_in": "80%",
+            "pages_in_2plus": 0
+          },
+          "0.35/eager": {
+            "n": 25,
+            "out_per_ep": 42.6,
+            "in_per_ep": 1.28,
+            "ep_with_in": "80%",
+            "pages_in_2plus": 5
+          },
+          "0.35/notes": {
+            "n": 24,
+            "out_per_ep": 54.8,
+            "in_per_ep": 0.0,
+            "ep_with_in": "0%",
+            "pages_in_2plus": 0
+          },
+          "0.35/paging": {
+            "n": 15,
+            "out_per_ep": 40.1,
+            "in_per_ep": 1.27,
+            "ep_with_in": "80%",
+            "pages_in_2plus": 4
+          }
+        },
+        "paged_out_pages_by_times_back_in": {
+          "0": 7700,
+          "1": 125,
+          "2": 14
+        },
+        "turns_out_before_back_in": {
+          "median": 4,
+          "max": 30,
+          "n": 153
+        },
+        "per_turn_action_combos": {
+          "n": 2986,
+          "on": 1776,
+          "s": 945,
+          "won": 836,
+          "oi": 76,
+          "i": 50,
+          "o": 26,
+          "wo": 4
+        },
+        "distinct_3turn_action_ngrams": 109,
+        "decisions_per_episode": {
+          "2": 43,
+          "3": 52,
+          "4": 59,
+          "5": 49,
+          "6": 37
+        },
+        "turns_per_episode": {
+          "min": 11,
+          "median": 26.0,
+          "max": 53
+        },
+        "recovery": {
+          "episodes": 0,
+          "mistake_turns_no_loss": 0
+        }
+      }
+    }
+  },
+  "upstream": "8fc082e",
+  "zero_fallback": true,
+  "split_overlap": 0
+}

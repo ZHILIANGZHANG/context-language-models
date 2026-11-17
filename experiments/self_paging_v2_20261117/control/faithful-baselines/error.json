@@ -1,0 +1,4 @@
+{
+  "traceback": "Traceback (most recent call last):\n  File \"/home/zhangcheng/self-paging-v2-20261117/faithful-baselines/campaign.py\", line 147, in main\n    run_jobs('T1_COMPARISON',jobs,active);finalize()\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/zhangcheng/self-paging-v2-20261117/faithful-baselines/campaign.py\", line 75, in run_jobs\n    stop()\n  File \"/home/zhangcheng/self-paging-v2-20261117/faithful-baselines/campaign.py\", line 13, in stop\n    if (H/'STOP').exists() or (R/'STOP').exists():raise RuntimeError('User STOP')\n                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: User STOP\n",
+  "time": 1794906871.290998
+}

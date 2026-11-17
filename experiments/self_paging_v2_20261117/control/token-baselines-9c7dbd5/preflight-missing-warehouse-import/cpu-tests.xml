@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="8" skipped="0" tests="24" time="4.807" timestamp="2026-11-17T02:39:02.765155+00:00" hostname="A6000x8"><testcase classname="self_paging.tests.test_token_baselines" name="test_all_true_mask_is_bit_identical" time="0.166" /><testcase classname="self_paging.tests.test_token_baselines" name="test_token_mask_equals_masked_single_pass[0-eager]" time="0.082" /><testcase classname="self_paging.tests.test_token_baselines" name="test_token_mask_equals_masked_single_pass[0-sdpa]" time="0.071" /><testcase classname="self_paging.tests.test_token_baselines" name="test_token_mask_equals_masked_single_pass[1-eager]" time="0.081" /><testcase classname="self_paging.tests.test_token_baselines" name="test_token_mask_equals_masked_single_pass[1-sdpa]" time="0.072" /><testcase classname="self_paging.tests.test_token_baselines" name="test_token_mask_matters_and_budget_counts_kept_tokens" time="0.074" /><testcase classname="self_paging.tests.test_token_baselines" name="test_set_keep_validates" time="0.010" /><testcase classname="self_paging.tests.test_token_baselines" name="test_equalize_after_page_move" time="0.020" /><testcase classname="self_paging.tests.test_token_baselines" name="test_h2o_accumulation_equals_reference_attention" time="0.076" /><testcase classname="self_paging.tests.test_token_baselines" name="test_window_queries_reproduce_last_row_attention" time="0.069" /><testcase classname="self_paging.tests.test_token_baselines" name="test_select_keep_protects_and_respects_irreversibility" time="0.002" /><testcase classname="self_paging.tests.test_token_baselines" name="test_streaming_keeps_sinks_and_recent" time="0.000" /><testcase classname="self_paging.tests.test_token_baselines" name="test_tova_keeps_what_the_last_query_attends" time="0.000" /><testcase classname="self_paging.tests.test_token_baselines" name="test_snapkv_pooling_keeps_neighbours_of_a_vote" time="0.003" /><testcase classname="self_paging.tests.test_token_baselines" name="test_quest_bound_is_an_upper_bound_and_finds_the_chunk" time="0.010" /><testcase classname="self_paging.tests.test_token_baselines" name="test_token_pagers_hold_the_budget_and_match_single_pass[streaming]" time="0.020"><failure message="ModuleNotFoundError: No module named 'state_study'">method = 'streaming'
+toy = (&lt;self_paging.core.protocol.Tok object at 0x7f3644e90a10&gt;, Qwen3ForCausalLM(
+  (model): Qwen3Model(
+    (embed_tokens)...e-06)
+    (rotary_emb): Qwen3RotaryEmbedding()
+  )
+  (lm_head): Linear(in_features=64, out_features=106, bias=False)
+))
+
+    @pytest.mark.parametrize("method", list(TOKEN_PAGERS))
+    def test_token_pagers_hold_the_budget_and_match_single_pass(method, toy):
+        tok, model = toy
+&gt;       rec, log = _episode(method, model, tok)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+self_paging/tests/test_token_baselines.py:311: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+self_paging/tests/test_token_baselines.py:288: in _episode
+    from self_paging.data.build_t1_sft import t1_budget
+self_paging/data/build_t1_sft.py:25: in &lt;module&gt;
+    from ..envs.t1_warehouse import T1Config, WarehouseEnv
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    """T1: multi-turn warehouse environment (docs/experiment_plan.md §3, docs/data_and_training.md §1.1).
+    
+    The event stream reuses the world simulator of the warehouse probe (``state_study.probes.warehouse``).
+    An episode has several decision points; each one depends on a key event earlier in the stream
+    (an audit correction, an inventory scan, or a quarantine notice that becomes relevant later).
+    
+    The agent pulls pages with ``next_events``; when a page ends with a decision it must call
+    ``store(shelf)``. The environment then applies the rule-correct storage regardless of the answer,
+    so the world (and therefore every page and every "needed" set) is fixed by the seed. That is what
+    lets the oracle and the minimal sufficient sets be computed exactly.
+    
+    ``rule_read`` is the rule reader: it sees only page text. ``need[d]`` is a minimal set of pages with
+    which the rule reader still gets decision ``d`` right.
+    """
+    
+    from __future__ import annotations
+    
+    import random
+    import re
+    from dataclasses import dataclass, field
+    
+&gt;   from state_study.probes.warehouse import RULE, Event, _World
+E   ModuleNotFoundError: No module named 'state_study'
+
+self_paging/envs/t1_warehouse.py:22: ModuleNotFoundError</failure></testcase><testcase classname="self_paging.tests.test_token_baselines" name="test_token_pagers_hold_the_budget_and_match_single_pass[h2o]" time="0.001"><failure message="ModuleNotFoundError: No module named 'state_study'">method = 'h2o'
+toy = (&lt;self_paging.core.protocol.Tok object at 0x7f3644e90a10&gt;, Qwen3ForCausalLM(
+  (model): Qwen3Model(
+    (embed_tokens)...e-06)
+    (rotary_emb): Qwen3RotaryEmbedding()
+  )
+  (lm_head): Linear(in_features=64, out_features=106, bias=False)
+))
+
+    @pytest.mark.parametrize("method", list(TOKEN_PAGERS))
+    def test_token_pagers_hold_the_budget_and_match_single_pass(method, toy):
+        tok, model = toy
+&gt;       rec, log = _episode(method, model, tok)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+self_paging/tests/test_token_baselines.py:311: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+self_paging/tests/test_token_baselines.py:288: in _episode
+    from self_paging.data.build_t1_sft import t1_budget
+self_paging/data/build_t1_sft.py:25: in &lt;module&gt;
+    from ..envs.t1_warehouse import T1Config, WarehouseEnv
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    """T1: multi-turn warehouse environment (docs/experiment_plan.md §3, docs/data_and_training.md §1.1).
+    
+    The event stream reuses the world simulator of the warehouse probe (``state_study.probes.warehouse``).
+    An episode has several decision points; each one depends on a key event earlier in the stream
+    (an audit correction, an inventory scan, or a quarantine notice that becomes relevant later).
+    
+    The agent pulls pages with ``next_events``; when a page ends with a decision it must call
+    ``store(shelf)``. The environment then applies the rule-correct storage regardless of the answer,
+    so the world (and therefore every page and every "needed" set) is fixed by the seed. That is what
+    lets the oracle and the minimal sufficient sets be computed exactly.
+    
+    ``rule_read`` is the rule reader: it sees only page text. ``need[d]`` is a minimal set of pages with
+    which the rule reader still gets decision ``d`` right.
+    """
+    
+    from __future__ import annotations
+    
+    import random
+    import re
+    from dataclasses import dataclass, field
+    
+&gt;   from state_study.probes.warehouse import RULE, Event, _World
+E   ModuleNotFoundError: No module named 'state_study'
+
+self_paging/envs/t1_warehouse.py:22: ModuleNotFoundError</failure></testcase><testcase classname="self_paging.tests.test_token_baselines" name="test_token_pagers_hold_the_budget_and_match_single_pass[tova]" time="0.001"><failure message="ModuleNotFoundError: No module named 'state_study'">method = 'tova'
+toy = (&lt;self_paging.core.protocol.Tok object at 0x7f3644e90a10&gt;, Qwen3ForCausalLM(
+  (model): Qwen3Model(
+    (embed_tokens)...e-06)
+    (rotary_emb): Qwen3RotaryEmbedding()
+  )
+  (lm_head): Linear(in_features=64, out_features=106, bias=False)
+))
+
+    @pytest.mark.parametrize("method", list(TOKEN_PAGERS))
+    def test_token_pagers_hold_the_budget_and_match_single_pass(method, toy):
+        tok, model = toy
+&gt;       rec, log = _episode(method, model, tok)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+self_paging/tests/test_token_baselines.py:311: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+self_paging/tests/test_token_baselines.py:288: in _episode
+    from self_paging.data.build_t1_sft import t1_budget
+self_paging/data/build_t1_sft.py:25: in &lt;module&gt;
+    from ..envs.t1_warehouse import T1Config, WarehouseEnv
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    """T1: multi-turn warehouse environment (docs/experiment_plan.md §3, docs/data_and_training.md §1.1).
+    
+    The event stream reuses the world simulator of the warehouse probe (``state_study.probes.warehouse``).
+    An episode has several decision points; each one depends on a key event earlier in the stream
+    (an audit correction, an inventory scan, or a quarantine notice that becomes relevant later).
+    
+    The agent pulls pages with ``next_events``; when a page ends with a decision it must call
+    ``store(shelf)``. The environment then applies the rule-correct storage regardless of the answer,
+    so the world (and therefore every page and every "needed" set) is fixed by the seed. That is what
+    lets the oracle and the minimal sufficient sets be computed exactly.
+    
+    ``rule_read`` is the rule reader: it sees only page text. ``need[d]`` is a minimal set of pages with
+    which the rule reader still gets decision ``d`` right.
+    """
+    
+    from __future__ import annotations
+    
+    import random
+    import re
+    from dataclasses import dataclass, field
+    
+&gt;   from state_study.probes.warehouse import RULE, Event, _World
+E   ModuleNotFoundError: No module named 'state_study'
+
+self_paging/envs/t1_warehouse.py:22: ModuleNotFoundError</failure></testcase><testcase classname="self_paging.tests.test_token_baselines" name="test_token_pagers_hold_the_budget_and_match_single_pass[snapkv]" time="0.001"><failure message="ModuleNotFoundError: No module named 'state_study'">method = 'snapkv'
+toy = (&lt;self_paging.core.protocol.Tok object at 0x7f3644e90a10&gt;, Qwen3ForCausalLM(
+  (model): Qwen3Model(
+    (embed_tokens)...e-06)
+    (rotary_emb): Qwen3RotaryEmbedding()
+  )
+  (lm_head): Linear(in_features=64, out_features=106, bias=False)
+))
+
+    @pytest.mark.parametrize("method", list(TOKEN_PAGERS))
+    def test_token_pagers_hold_the_budget_and_match_single_pass(method, toy):
+        tok, model = toy
+&gt;       rec, log = _episode(method, model, tok)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+self_paging/tests/test_token_baselines.py:311: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+self_paging/tests/test_token_baselines.py:288: in _episode
+    from self_paging.data.build_t1_sft import t1_budget
+self_paging/data/build_t1_sft.py:25: in &lt;module&gt;
+    from ..envs.t1_warehouse import T1Config, WarehouseEnv
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    """T1: multi-turn warehouse environment (docs/experiment_plan.md §3, docs/data_and_training.md §1.1).
+    
+    The event stream reuses the world simulator of the warehouse probe (``state_study.probes.warehouse``).
+    An episode has several decision points; each one depends on a key event earlier in the stream
+    (an audit correction, an inventory scan, or a quarantine notice that becomes relevant later).
+    
+    The agent pulls pages with ``next_events``; when a page ends with a decision it must call
+    ``store(shelf)``. The environment then applies the rule-correct storage regardless of the answer,
+    so the world (and therefore every page and every "needed" set) is fixed by the seed. That is what
+    lets the oracle and the minimal sufficient sets be computed exactly.
+    
+    ``rule_read`` is the rule reader: it sees only page text. ``need[d]`` is a minimal set of pages with
+    which the rule reader still gets decision ``d`` right.
+    """
+    
+    from __future__ import annotations
+    
+    import random
+    import re
+    from dataclasses import dataclass, field
+    
+&gt;   from state_study.probes.warehouse import RULE, Event, _World
+E   ModuleNotFoundError: No module named 'state_study'
+
+self_paging/envs/t1_warehouse.py:22: ModuleNotFoundError</failure></testcase><testcase classname="self_paging.tests.test_token_baselines" name="test_token_pagers_hold_the_budget_and_match_single_pass[quest_token]" time="0.001"><failure message="ModuleNotFoundError: No module named 'state_study'">method = 'quest_token'
+toy = (&lt;self_paging.core.protocol.Tok object at 0x7f3644e90a10&gt;, Qwen3ForCausalLM(
+  (model): Qwen3Model(
+    (embed_tokens)...e-06)
+    (rotary_emb): Qwen3RotaryEmbedding()
+  )
+  (lm_head): Linear(in_features=64, out_features=106, bias=False)
+))
+
+    @pytest.mark.parametrize("method", list(TOKEN_PAGERS))
+    def test_token_pagers_hold_the_budget_and_match_single_pass(method, toy):
+        tok, model = toy
+&gt;       rec, log = _episode(method, model, tok)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+self_paging/tests/test_token_baselines.py:311: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+self_paging/tests/test_token_baselines.py:288: in _episode
+    from self_paging.data.build_t1_sft import t1_budget
+self_paging/data/build_t1_sft.py:25: in &lt;module&gt;
+    from ..envs.t1_warehouse import T1Config, WarehouseEnv
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    """T1: multi-turn warehouse environment (docs/experiment_plan.md §3, docs/data_and_training.md §1.1).
+    
+    The event stream reuses the world simulator of the warehouse probe (``state_study.probes.warehouse``).
+    An episode has several decision points; each one depends on a key event earlier in the stream
+    (an audit correction, an inventory scan, or a quarantine notice that becomes relevant later).
+    
+    The agent pulls pages with ``next_events``; when a page ends with a decision it must call
+    ``store(shelf)``. The environment then applies the rule-correct storage regardless of the answer,
+    so the world (and therefore every page and every "needed" set) is fixed by the seed. That is what
+    lets the oracle and the minimal sufficient sets be computed exactly.
+    
+    ``rule_read`` is the rule reader: it sees only page text. ``need[d]`` is a minimal set of pages with
+    which the rule reader still gets decision ``d`` right.
+    """
+    
+    from __future__ import annotations
+    
+    import random
+    import re
+    from dataclasses import dataclass, field
+    
+&gt;   from state_study.probes.warehouse import RULE, Event, _World
+E   ModuleNotFoundError: No module named 'state_study'
+
+self_paging/envs/t1_warehouse.py:22: ModuleNotFoundError</failure></testcase><testcase classname="self_paging.tests.test_token_baselines" name="test_token_pagers_choose_different_tokens" time="0.001"><failure message="ModuleNotFoundError: No module named 'state_study'">toy = (&lt;self_paging.core.protocol.Tok object at 0x7f3644e90a10&gt;, Qwen3ForCausalLM(
+  (model): Qwen3Model(
+    (embed_tokens)...e-06)
+    (rotary_emb): Qwen3RotaryEmbedding()
+  )
+  (lm_head): Linear(in_features=64, out_features=106, bias=False)
+))
+
+    def test_token_pagers_choose_different_tokens(toy):
+        tok, model = toy
+        finals = {}
+        for method in TOKEN_PAGERS:
+&gt;           _, log = _episode(method, model, tok, record_keep=False)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+self_paging/tests/test_token_baselines.py:331: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+self_paging/tests/test_token_baselines.py:288: in _episode
+    from self_paging.data.build_t1_sft import t1_budget
+self_paging/data/build_t1_sft.py:25: in &lt;module&gt;
+    from ..envs.t1_warehouse import T1Config, WarehouseEnv
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    """T1: multi-turn warehouse environment (docs/experiment_plan.md §3, docs/data_and_training.md §1.1).
+    
+    The event stream reuses the world simulator of the warehouse probe (``state_study.probes.warehouse``).
+    An episode has several decision points; each one depends on a key event earlier in the stream
+    (an audit correction, an inventory scan, or a quarantine notice that becomes relevant later).
+    
+    The agent pulls pages with ``next_events``; when a page ends with a decision it must call
+    ``store(shelf)``. The environment then applies the rule-correct storage regardless of the answer,
+    so the world (and therefore every page and every "needed" set) is fixed by the seed. That is what
+    lets the oracle and the minimal sufficient sets be computed exactly.
+    
+    ``rule_read`` is the rule reader: it sees only page text. ``need[d]`` is a minimal set of pages with
+    which the rule reader still gets decision ``d`` right.
+    """
+    
+    from __future__ import annotations
+    
+    import random
+    import re
+    from dataclasses import dataclass, field
+    
+&gt;   from state_study.probes.warehouse import RULE, Event, _World
+E   ModuleNotFoundError: No module named 'state_study'
+
+self_paging/envs/t1_warehouse.py:22: ModuleNotFoundError</failure></testcase><testcase classname="self_paging.tests.test_token_baselines" name="test_token_sanity_runs_both_modes" time="0.425" /><testcase classname="self_paging.tests.test_token_baselines" name="test_cost_counts_only_visible_tokens[snapkv]" time="0.002"><failure message="ModuleNotFoundError: No module named 'state_study'">method = 'snapkv'
+toy = (&lt;self_paging.core.protocol.Tok object at 0x7f3644e90a10&gt;, Qwen3ForCausalLM(
+  (model): Qwen3Model(
+    (embed_tokens)...e-06)
+    (rotary_emb): Qwen3RotaryEmbedding()
+  )
+  (lm_head): Linear(in_features=64, out_features=106, bias=False)
+))
+
+    @pytest.mark.parametrize("method", ["snapkv", "quest_token"])
+    def test_cost_counts_only_visible_tokens(method, toy):
+        from self_paging.core.costs import visible_counts
+    
+        tok, model = toy
+&gt;       rec, log = _episode(method, model, tok)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+self_paging/tests/test_token_baselines.py:360: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+self_paging/tests/test_token_baselines.py:288: in _episode
+    from self_paging.data.build_t1_sft import t1_budget
+self_paging/data/build_t1_sft.py:25: in &lt;module&gt;
+    from ..envs.t1_warehouse import T1Config, WarehouseEnv
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    """T1: multi-turn warehouse environment (docs/experiment_plan.md §3, docs/data_and_training.md §1.1).
+    
+    The event stream reuses the world simulator of the warehouse probe (``state_study.probes.warehouse``).
+    An episode has several decision points; each one depends on a key event earlier in the stream
+    (an audit correction, an inventory scan, or a quarantine notice that becomes relevant later).
+    
+    The agent pulls pages with ``next_events``; when a page ends with a decision it must call
+    ``store(shelf)``. The environment then applies the rule-correct storage regardless of the answer,
+    so the world (and therefore every page and every "needed" set) is fixed by the seed. That is what
+    lets the oracle and the minimal sufficient sets be computed exactly.
+    
+    ``rule_read`` is the rule reader: it sees only page text. ``need[d]`` is a minimal set of pages with
+    which the rule reader still gets decision ``d`` right.
+    """
+    
+    from __future__ import annotations
+    
+    import random
+    import re
+    from dataclasses import dataclass, field
+    
+&gt;   from state_study.probes.warehouse import RULE, Event, _World
+E   ModuleNotFoundError: No module named 'state_study'
+
+self_paging/envs/t1_warehouse.py:22: ModuleNotFoundError</failure></testcase><testcase classname="self_paging.tests.test_token_baselines" name="test_cost_counts_only_visible_tokens[quest_token]" time="0.001"><failure message="ModuleNotFoundError: No module named 'state_study'">method = 'quest_token'
+toy = (&lt;self_paging.core.protocol.Tok object at 0x7f3644e90a10&gt;, Qwen3ForCausalLM(
+  (model): Qwen3Model(
+    (embed_tokens)...e-06)
+    (rotary_emb): Qwen3RotaryEmbedding()
+  )
+  (lm_head): Linear(in_features=64, out_features=106, bias=False)
+))
+
+    @pytest.mark.parametrize("method", ["snapkv", "quest_token"])
+    def test_cost_counts_only_visible_tokens(method, toy):
+        from self_paging.core.costs import visible_counts
+    
+        tok, model = toy
+&gt;       rec, log = _episode(method, model, tok)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+self_paging/tests/test_token_baselines.py:360: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+self_paging/tests/test_token_baselines.py:288: in _episode
+    from self_paging.data.build_t1_sft import t1_budget
+self_paging/data/build_t1_sft.py:25: in &lt;module&gt;
+    from ..envs.t1_warehouse import T1Config, WarehouseEnv
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    """T1: multi-turn warehouse environment (docs/experiment_plan.md §3, docs/data_and_training.md §1.1).
+    
+    The event stream reuses the world simulator of the warehouse probe (``state_study.probes.warehouse``).
+    An episode has several decision points; each one depends on a key event earlier in the stream
+    (an audit correction, an inventory scan, or a quarantine notice that becomes relevant later).
+    
+    The agent pulls pages with ``next_events``; when a page ends with a decision it must call
+    ``store(shelf)``. The environment then applies the rule-correct storage regardless of the answer,
+    so the world (and therefore every page and every "needed" set) is fixed by the seed. That is what
+    lets the oracle and the minimal sufficient sets be computed exactly.
+    
+    ``rule_read`` is the rule reader: it sees only page text. ``need[d]`` is a minimal set of pages with
+    which the rule reader still gets decision ``d`` right.
+    """
+    
+    from __future__ import annotations
+    
+    import random
+    import re
+    from dataclasses import dataclass, field
+    
+&gt;   from state_study.probes.warehouse import RULE, Event, _World
+E   ModuleNotFoundError: No module named 'state_study'
+
+self_paging/envs/t1_warehouse.py:22: ModuleNotFoundError</failure></testcase></testsuite></testsuites>

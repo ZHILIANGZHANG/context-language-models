@@ -1,0 +1,45 @@
+{
+  "identity": {
+    "pid": 1603745,
+    "uid": 1037,
+    "cwd": "/data/zhangcheng/context-language-models-faithful-20261117",
+    "start_ticks": 1269121351
+  },
+  "gpu": 2,
+  "job": {
+    "name": "t1-100001-h2o",
+    "args": [
+      "/data/zhangcheng/self-paging-20261116/venv/bin/python",
+      "-m",
+      "self_paging.eval.faithful_eval",
+      "--model",
+      "/nas/Public/zhangcheng/self-paging-v2-20261117/checkpoints/sft-v2-r64",
+      "--tokenizer",
+      "/nas/Public/zhangcheng/models/Qwen3-8B",
+      "--out",
+      "/nas/Public/zhangcheng/self-paging-v2-20261117/faithful-baselines/t1-100001-h2o",
+      "--seeds",
+      "100001",
+      "100006",
+      "--methods",
+      "h2o",
+      "--ratios",
+      "0.25",
+      "0.35",
+      "0.4",
+      "0.5",
+      "0.6"
+    ],
+    "lo": 100001,
+    "hi": 100006,
+    "method": "h2o",
+    "ratios": [
+      0.25,
+      0.35,
+      0.4,
+      0.5,
+      0.6
+    ]
+  },
+  "time": 1794899617.280183
+}

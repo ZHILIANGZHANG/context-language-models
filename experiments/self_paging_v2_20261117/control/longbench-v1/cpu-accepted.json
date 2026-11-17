@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "rows": 36,
+  "manifest_sha256": "96d9871bfa5aa669b856a4eb12fd23c0d495d3688b7382a7e600f0648558fb63",
+  "official_metric_agreement": 36,
+  "page_and_final_turn_checks": 36,
+  "official_prompt_api_checks": 36
+}

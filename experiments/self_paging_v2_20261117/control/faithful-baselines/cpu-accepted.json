@@ -1,0 +1,9 @@
+{
+  "passed": 60,
+  "failed": 0,
+  "skipped": 0,
+  "deselected": 2,
+  "excluded": "unrelated CPU SFT-overfit and GRPO training tests",
+  "log_sha256": "f9f636480732f8cf5dd44314dfb24f4d345f47ff809386430a161ec6cbc10b45",
+  "time": 1794896766.9215188
+}

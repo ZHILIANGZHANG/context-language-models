@@ -1,0 +1,12 @@
+{
+  "returncode": 0,
+  "identity": {
+    "pid": 3986710,
+    "uid": 1037,
+    "start_ticks": 1262844485,
+    "cwd": "/data/zhangcheng/context-language-models-223cc65-rlprep"
+  },
+  "time": 1794838489.8292186,
+  "adopted": false,
+  "completion_marker_valid": true
+}

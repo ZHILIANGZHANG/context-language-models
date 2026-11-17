@@ -1,0 +1,12 @@
+{
+  "base_commit": "0943f60ec784d57809b1dcb031bc97b6b5318805",
+  "upstream": "9c7dbd582610203cdf4ef80747424b93b5ec3022",
+  "source_manifest_sha256": "0e2d019fce2442f6f0ef3cfe66baec918bd85510d8557c49f87c5a9ce6fed6ea",
+  "controller_sha256": "bb623a085bb6bac4576e9e17e0727f00570857ed1ac3c913c4a680e06b8e5a02",
+  "new_source_files": {
+    "context-language-models/self_paging/hf/faithful_cache.py": "cfabaadcdb75e5511b54d7b08e453ee5e73f21a46cd709690208dad167c3e284",
+    "context-language-models/self_paging/eval/faithful_eval.py": "deebee486cbddc853b3ccd9ac4c01893f60bf058533271cbae5c47b95572686b",
+    "context-language-models/self_paging/eval/faithful_probe.py": "0dc481f1e6056d373ffd2083b0413bdac11c2cebd66da9826e4c944635b179c8",
+    "context-language-models/self_paging/tests/test_faithful_baselines.py": "5fb66a4549756fcd1f0705680baf876b212df294b3cbf2b55041b7ef307620ce"
+  }
+}

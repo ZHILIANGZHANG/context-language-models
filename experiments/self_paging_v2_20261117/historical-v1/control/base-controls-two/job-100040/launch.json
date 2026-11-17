@@ -1,0 +1,19 @@
+{
+  "identity": {
+    "pid": 971752,
+    "uid": 1037,
+    "start_ticks": 1263168044,
+    "cwd": "/data/zhangcheng/context-language-models-223cc65-rlprep"
+  },
+  "gpu": 1,
+  "cmd": [
+    "/data/zhangcheng/self-paging-20261116/venv/bin/python",
+    "/home/zhangcheng/self-paging-20261116/base_controls_two_worker.py",
+    "--start",
+    "100040",
+    "--end",
+    "100045"
+  ],
+  "expected": 30,
+  "time": 1794840084.2090204
+}

@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "adapter_effect_max_abs": 13.0,
+  "telemetry_max_abs": 0.0,
+  "active_adapters": [
+    "default"
+  ],
+  "checkpoint": "/nas/Public/zhangcheng/self-paging-20261116/checkpoints/sft-quality-val50-r64",
+  "model_training": false
+}

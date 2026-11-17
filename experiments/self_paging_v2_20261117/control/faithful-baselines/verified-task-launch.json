@@ -1,0 +1,55 @@
+{
+  "time": 1794897427.931128,
+  "health": {
+    "phase": "CANARY",
+    "time": 1794897425.5652251,
+    "pending": [],
+    "active": {
+      "2": {
+        "identity": {
+          "pid": 677393,
+          "uid": 1037,
+          "cwd": "/data/zhangcheng/context-language-models-faithful-20261117",
+          "start_ticks": 1268867885
+        },
+        "job": "canary-streaming"
+      },
+      "0": {
+        "identity": {
+          "pid": 767801,
+          "uid": 1037,
+          "cwd": "/data/zhangcheng/context-language-models-faithful-20261117",
+          "start_ticks": 1268893094
+        },
+        "job": "canary-h2o"
+      }
+    }
+  },
+  "verified": [
+    {
+      "job": "canary-streaming",
+      "identity": {
+        "pid": 677393,
+        "uid": 1037,
+        "cwd": "/data/zhangcheng/context-language-models-faithful-20261117",
+        "start_ticks": 1268867885
+      },
+      "cuda": [
+        "CUDA_VISIBLE_DEVICES=2"
+      ]
+    },
+    {
+      "job": "canary-h2o",
+      "identity": {
+        "pid": 767801,
+        "uid": 1037,
+        "cwd": "/data/zhangcheng/context-language-models-faithful-20261117",
+        "start_ticks": 1268893094
+      },
+      "cuda": [
+        "CUDA_VISIBLE_DEVICES=0"
+      ]
+    }
+  ],
+  "source_files_unchanged": 81
+}

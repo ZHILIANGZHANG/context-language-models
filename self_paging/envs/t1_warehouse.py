@@ -290,6 +290,15 @@ TOOLS = [
 
 
 class WarehouseEnv:
+    def system_for_tools(self, kv_tools: bool) -> str:
+        """Keep trained paging prompt unchanged; system baselines get task instructions only."""
+        if kv_tools:
+            return self.system
+        return ("You are a warehouse agent. " + RULE + " "
+                "Read the event log page by page with next_events. When a page ends with DECISION REQUIRED, "
+                "decide the shelf and call store. Use only the listed task tools. "
+                "Memory is managed automatically by the system; focus on completing the warehouse task.")
+
     """Environment protocol used by ``self_paging.agent.episode``:
 
     ``system``/``task``/``tools`` describe the episode; ``step(name, args)`` returns

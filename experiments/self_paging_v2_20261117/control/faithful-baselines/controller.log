@@ -1,0 +1,13 @@
+Traceback (most recent call last):
+  File "/home/zhangcheng/self-paging-v2-20261117/faithful-baselines/campaign.py", line 155, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/home/zhangcheng/self-paging-v2-20261117/faithful-baselines/campaign.py", line 147, in main
+    run_jobs('T1_COMPARISON',jobs,active);finalize()
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zhangcheng/self-paging-v2-20261117/faithful-baselines/campaign.py", line 75, in run_jobs
+    stop()
+  File "/home/zhangcheng/self-paging-v2-20261117/faithful-baselines/campaign.py", line 13, in stop
+    if (H/'STOP').exists() or (R/'STOP').exists():raise RuntimeError('User STOP')
+                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: User STOP

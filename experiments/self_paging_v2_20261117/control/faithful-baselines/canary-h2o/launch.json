@@ -1,0 +1,37 @@
+{
+  "identity": {
+    "pid": 767801,
+    "uid": 1037,
+    "cwd": "/data/zhangcheng/context-language-models-faithful-20261117",
+    "start_ticks": 1268893094
+  },
+  "gpu": 0,
+  "job": {
+    "name": "canary-h2o",
+    "args": [
+      "/data/zhangcheng/self-paging-20261116/venv/bin/python",
+      "-m",
+      "self_paging.eval.faithful_eval",
+      "--model",
+      "/nas/Public/zhangcheng/self-paging-v2-20261117/checkpoints/sft-v2-r64",
+      "--tokenizer",
+      "/nas/Public/zhangcheng/models/Qwen3-8B",
+      "--out",
+      "/nas/Public/zhangcheng/self-paging-v2-20261117/faithful-baselines/canary-h2o",
+      "--seeds",
+      "100000",
+      "100001",
+      "--methods",
+      "h2o",
+      "--ratios",
+      "0.25"
+    ],
+    "lo": 100000,
+    "hi": 100001,
+    "method": "h2o",
+    "ratios": [
+      0.25
+    ]
+  },
+  "time": 1794897334.7065773
+}

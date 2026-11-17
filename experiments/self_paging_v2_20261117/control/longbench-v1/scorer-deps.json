@@ -1,0 +1,21 @@
+{
+  "fuzzywuzzy": {
+    "version": "0.18.0",
+    "sha256": "928244b28db720d1e0ee7587acf660ea49d7e4c632569cad4f1cd7e68a5f0993",
+    "source": "https://files.pythonhosted.org/packages/43/ff/74f23998ad2f93b945c0309f825be92e04e0348e062026998b5eefef4c33/fuzzywuzzy-0.18.0-py2.py3-none-any.whl"
+  },
+  "rouge": {
+    "version": "1.0.1",
+    "sha256": "28d118536e8c774dc47d1d15ec266479b4dd0914c4672ce117d4002789bdc644",
+    "source": "https://files.pythonhosted.org/packages/32/7c/650ae86f92460e9e8ef969cc5008b24798dcf56a9a8947d04c78f550b3f5/rouge-1.0.1-py3-none-any.whl"
+  },
+  "six": {
+    "version": "1.17.0",
+    "sha256": "4721f391ed90541fddacab5acf947aa0d3dc7d27b2e1e8eda2be8970586c3274",
+    "source": "https://files.pythonhosted.org/packages/b7/ce/149a00dd41f10bc29e5921b496af8b574d8413afcd5e30dfa0ed46c2cc5e/six-1.17.0-py2.py3-none-any.whl"
+  },
+  "jieba": {
+    "version": "0.42.1",
+    "source": "uv source cache from pypi.org"
+  }
+}

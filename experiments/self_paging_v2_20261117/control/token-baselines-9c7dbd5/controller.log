@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/home/zhangcheng/self-paging-v2-20261117/token-baselines-9c7dbd5/queue_token_baselines.py", line 278, in <module>
+    main()
+  File "/home/zhangcheng/self-paging-v2-20261117/token-baselines-9c7dbd5/queue_token_baselines.py", line 250, in main
+    wait_for_dependency()
+  File "/home/zhangcheng/self-paging-v2-20261117/token-baselines-9c7dbd5/queue_token_baselines.py", line 62, in wait_for_dependency
+    check_stop()
+  File "/home/zhangcheng/self-paging-v2-20261117/token-baselines-9c7dbd5/queue_token_baselines.py", line 36, in check_stop
+    raise RuntimeError(f"STOP at {root}")
+RuntimeError: STOP at /home/zhangcheng/self-paging-v2-20261117/post-sft-eval

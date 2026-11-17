@@ -1,0 +1,45 @@
+{
+  "identity": {
+    "pid": 3657443,
+    "uid": 1037,
+    "cwd": "/data/zhangcheng/context-language-models-faithful-20261117",
+    "start_ticks": 1269691805
+  },
+  "gpu": 0,
+  "job": {
+    "name": "t1-100006-streaming",
+    "args": [
+      "/data/zhangcheng/self-paging-20261116/venv/bin/python",
+      "-m",
+      "self_paging.eval.faithful_eval",
+      "--model",
+      "/nas/Public/zhangcheng/self-paging-v2-20261117/checkpoints/sft-v2-r64",
+      "--tokenizer",
+      "/nas/Public/zhangcheng/models/Qwen3-8B",
+      "--out",
+      "/nas/Public/zhangcheng/self-paging-v2-20261117/faithful-baselines/t1-100006-streaming",
+      "--seeds",
+      "100006",
+      "100011",
+      "--methods",
+      "streaming",
+      "--ratios",
+      "0.25",
+      "0.35",
+      "0.4",
+      "0.5",
+      "0.6"
+    ],
+    "lo": 100006,
+    "hi": 100011,
+    "method": "streaming",
+    "ratios": [
+      0.25,
+      0.35,
+      0.4,
+      0.5,
+      0.6
+    ]
+  },
+  "time": 1794905321.8108573
+}

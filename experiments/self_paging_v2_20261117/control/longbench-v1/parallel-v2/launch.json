@@ -1,0 +1,67 @@
+{
+  "workers": {
+    "0": {
+      "pid": 303384,
+      "uid": 1037,
+      "cwd": "/home/zhangcheng/self-paging-v2-20261117/longbench-v1/src",
+      "start_ticks": 1269875925
+    },
+    "1": {
+      "pid": 303433,
+      "uid": 1037,
+      "cwd": "/home/zhangcheng/self-paging-v2-20261117/longbench-v1/src",
+      "start_ticks": 1269875938
+    },
+    "2": {
+      "pid": 303477,
+      "uid": 1037,
+      "cwd": "/home/zhangcheng/self-paging-v2-20261117/longbench-v1/src",
+      "start_ticks": 1269875950
+    }
+  },
+  "indices": {
+    "0": [
+      30,
+      13,
+      31,
+      2,
+      8,
+      26,
+      4,
+      16,
+      22,
+      5,
+      23,
+      29
+    ],
+    "1": [
+      0,
+      6,
+      12,
+      25,
+      14,
+      20,
+      32,
+      15,
+      28,
+      34,
+      17,
+      35
+    ],
+    "2": [
+      3,
+      18,
+      24,
+      1,
+      7,
+      19,
+      9,
+      21,
+      27,
+      33,
+      10,
+      11
+    ]
+  },
+  "time": 1794907163.2651715
+}

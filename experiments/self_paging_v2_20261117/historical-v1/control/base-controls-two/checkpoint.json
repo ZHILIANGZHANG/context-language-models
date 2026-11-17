@@ -1,0 +1,7 @@
+{
+  "path": "/nas/Public/zhangcheng/self-paging-20261116/checkpoints/sft-quality-val50-r64",
+  "sha256": {
+    "adapter_model.safetensors": "fc54783900c7b70f7e406cb457bb2d4a800da4e78d97cf125fdca8aedd7f0d90",
+    "adapter_config.json": "46384eccd264bc1a6f65dbcbd8a4b3ef1f863b0e0956e5e3281e216cef64679f"
+  }
+}

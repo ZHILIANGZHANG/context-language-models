@@ -1,0 +1,42 @@
+{
+  "identity": {
+    "pid": 3572455,
+    "uid": 1037,
+    "cwd": "/data/zhangcheng/context-language-models-sft-v2-8fc082e",
+    "start_ticks": 1268515291
+  },
+  "gpu": 2,
+  "args": [
+    "/data/zhangcheng/self-paging-20261116/venv/bin/python",
+    "-m",
+    "self_paging.eval.t1_eval",
+    "--model",
+    "/nas/Public/zhangcheng/self-paging-v2-20261117/checkpoints/sft-v2-r64",
+    "--tokenizer",
+    "/nas/Public/zhangcheng/models/Qwen3-8B",
+    "--methods",
+    "recent",
+    "belady",
+    "--ratios",
+    "0.25",
+    "0.4",
+    "0.6",
+    "--seeds",
+    "100010",
+    "100015",
+    "--n-decisions",
+    "4",
+    "--attn",
+    "sdpa",
+    "--temperature",
+    "0.6",
+    "--sample-seed",
+    "0",
+    "--out",
+    "/home/zhangcheng/self-paging-v2-20261117/post-sft-eval/controls-100010/summary.jsonl",
+    "--records-out",
+    "/home/zhangcheng/self-paging-v2-20261117/post-sft-eval/controls-100010/records.jsonl"
+  ],
+  "expected": 30,
+  "time": 1794893556.680187
+}

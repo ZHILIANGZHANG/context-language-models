@@ -1,0 +1,32 @@
+{
+  "weights": "final SFT adapter, 431 completed updates",
+  "checkpoint": "/nas/Public/zhangcheng/self-paging-20261116/checkpoints/sft-quality-val50-r64",
+  "methods": [
+    "recent",
+    "quest"
+  ],
+  "ratios": [
+    0.25,
+    0.4,
+    0.6
+  ],
+  "seeds": [
+    100000,
+    100050
+  ],
+  "episodes": 300,
+  "decisions_per_world": 4,
+  "temperature": 0.6,
+  "top_p": 0.95,
+  "top_k": 20,
+  "max_turns": 60,
+  "max_new_tokens": 1024,
+  "max_invalid": 5,
+  "thinking": false,
+  "source": "/data/zhangcheng/context-language-models-sft-controls-20261116",
+  "memory_tool_permission_fix": "reject model memory calls when kv_tools=False; counted as invalid and disabled_kv_calls",
+  "old_autonomous_comparison": "reuse SFT 150 model-controlled episodes; enabled-tool execution unchanged",
+  "strict_full": "not part of this run",
+  "next": "existing bounded RL profile64x4, no training",
+  "no_push": true
+}

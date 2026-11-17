@@ -1,0 +1,37 @@
+Loading weights:   0%|          | 0/399 [00:00<?, ?it/s]Loading weights:  10%|▉         | 39/399 [00:00<00:05, 64.86it/s]Loading weights:  12%|█▏        | 46/399 [00:00<00:06, 53.11it/s]Loading weights:  13%|█▎        | 51/399 [00:01<00:11, 29.71it/s]Loading weights:  14%|█▍        | 56/399 [00:01<00:11, 30.36it/s]Loading weights:  15%|█▌        | 60/399 [00:01<00:12, 26.86it/s]Loading weights:  17%|█▋        | 67/399 [00:01<00:10, 30.90it/s]Loading weights:  18%|█▊        | 71/399 [00:02<00:10, 29.95it/s]Loading weights:  19%|█▉        | 77/399 [00:02<00:09, 32.46it/s]Loading weights:  20%|██        | 81/399 [00:02<00:11, 27.41it/s]Loading weights:  21%|██        | 84/399 [00:02<00:13, 22.76it/s]Loading weights:  24%|██▎       | 94/399 [00:03<00:14, 20.85it/s]Loading weights:  26%|██▌       | 102/399 [00:03<00:12, 24.45it/s]Loading weights:  26%|██▋       | 105/399 [00:03<00:13, 21.70it/s]Loading weights:  28%|██▊       | 113/399 [00:03<00:11, 25.44it/s]Loading weights:  30%|██▉       | 119/399 [00:03<00:09, 28.43it/s]Loading weights:  31%|███       | 123/399 [00:04<00:12, 22.89it/s]Loading weights:  32%|███▏      | 126/399 [00:04<00:17, 15.73it/s]Loading weights:  32%|███▏      | 128/399 [00:04<00:17, 15.31it/s]Loading weights:  33%|███▎      | 130/399 [00:05<00:18, 14.87it/s]Loading weights:  36%|███▌      | 142/399 [00:05<00:09, 26.30it/s]Loading weights:  37%|███▋      | 147/399 [00:05<00:09, 27.86it/s]Loading weights:  38%|███▊      | 151/399 [00:05<00:08, 27.59it/s]Loading weights:  39%|███▉      | 156/399 [00:06<00:13, 17.76it/s]Loading weights:  41%|████      | 164/399 [00:06<00:13, 17.78it/s]Loading weights:  44%|████▎     | 174/399 [00:06<00:10, 22.11it/s]Loading weights:  45%|████▌     | 180/399 [00:06<00:08, 25.07it/s]Loading weights:  46%|████▋     | 185/399 [00:07<00:11, 19.41it/s]Loading weights:  48%|████▊     | 192/399 [00:07<00:09, 22.12it/s]Loading weights:  49%|████▉     | 197/399 [00:07<00:09, 22.15it/s]Loading weights:  50%|█████     | 200/399 [00:08<00:09, 21.76it/s]Loading weights:  52%|█████▏    | 206/399 [00:08<00:08, 23.21it/s]Loading weights:  52%|█████▏    | 209/399 [00:08<00:08, 22.53it/s]Loading weights:  53%|█████▎    | 213/399 [00:08<00:07, 23.53it/s]Loading weights:  54%|█████▍    | 216/399 [00:08<00:10, 18.09it/s]Loading weights:  57%|█████▋    | 226/399 [00:09<00:09, 18.60it/s]Loading weights:  57%|█████▋    | 228/399 [00:09<00:10, 16.33it/s]Loading weights:  60%|█████▉    | 238/399 [00:09<00:08, 20.07it/s]Loading weights:  62%|██████▏   | 249/399 [00:10<00:05, 29.17it/s]Loading weights:  63%|██████▎   | 253/399 [00:10<00:06, 22.19it/s]Loading weights:  65%|██████▍   | 258/399 [00:10<00:05, 24.20it/s]Loading weights:  66%|██████▌   | 262/399 [00:10<00:05, 24.72it/s]Loading weights:  66%|██████▋   | 265/399 [00:10<00:05, 23.70it/s]Loading weights:  67%|██████▋   | 268/399 [00:11<00:07, 16.76it/s]Loading weights:  69%|██████▊   | 274/399 [00:11<00:06, 19.55it/s]Loading weights:  70%|███████   | 280/399 [00:11<00:04, 23.87it/s]Loading weights:  71%|███████   | 284/399 [00:12<00:06, 18.22it/s]Loading weights:  72%|███████▏  | 287/399 [00:12<00:06, 18.56it/s]Loading weights:  73%|███████▎  | 293/399 [00:12<00:04, 24.60it/s]Loading weights:  74%|███████▍  | 297/399 [00:12<00:05, 19.36it/s]Loading weights:  76%|███████▌  | 302/399 [00:12<00:04, 22.39it/s]Loading weights:  76%|███████▋  | 305/399 [00:12<00:04, 21.88it/s]Loading weights:  77%|███████▋  | 308/399 [00:13<00:04, 19.07it/s]Loading weights:  79%|███████▊  | 314/399 [00:13<00:03, 21.56it/s]Loading weights:  79%|███████▉  | 317/399 [00:13<00:04, 18.99it/s]Loading weights:  80%|████████  | 320/399 [00:13<00:05, 15.63it/s]Loading weights:  81%|████████  | 322/399 [00:14<00:07,  9.91it/s]Loading weights:  83%|████████▎ | 333/399 [00:14<00:03, 18.86it/s]Loading weights:  84%|████████▍ | 336/399 [00:14<00:03, 19.09it/s]Loading weights:  87%|████████▋ | 349/399 [00:14<00:01, 32.95it/s]Loading weights:  89%|████████▊ | 354/399 [00:15<00:01, 29.72it/s]Loading weights:  90%|████████▉ | 358/399 [00:15<00:01, 23.65it/s]Loading weights:  91%|█████████ | 363/399 [00:16<00:02, 15.85it/s]Loading weights:  93%|█████████▎| 370/399 [00:16<00:01, 20.62it/s]Loading weights:  94%|█████████▍| 376/399 [00:16<00:00, 24.13it/s]Loading weights:  95%|█████████▌| 380/399 [00:16<00:00, 22.41it/s]Loading weights:  96%|█████████▌| 383/399 [00:16<00:00, 21.95it/s]Loading weights:  98%|█████████▊| 391/399 [00:17<00:00, 24.85it/s]Loading weights: 100%|██████████| 399/399 [00:17<00:00, 23.47it/s]
+/data/zhangcheng/self-paging-20261116/venv/lib/python3.12/site-packages/transformers/modeling_utils.py:3303: FutureWarning: `is_gradient_checkpointing` is deprecated and will be removed in v6. Use `is_activation_checkpointing` instead.
+  warnings.warn(
+{
+ "full@1.0": {
+  "n": 5,
+  "reward": 0.95,
+  "cost": 133640128.22096355,
+  "peak_resident": 11132.0,
+  "invalid": 0.0,
+  "truncated": 0.0
+ },
+ "model@0.25": {
+  "n": 5,
+  "reward": 0.85,
+  "cost": 96423873.86032987,
+  "peak_resident": 4149.8,
+  "invalid": 0.0,
+  "truncated": 77.2
+ },
+ "model@0.4": {
+  "n": 5,
+  "reward": 0.9,
+  "cost": 99191337.8263889,
+  "peak_resident": 4408.0,
+  "invalid": 0.0,
+  "truncated": 0.0
+ },
+ "model@0.6": {
+  "n": 5,
+  "reward": 0.95,
+  "cost": 109315919.73663194,
+  "peak_resident": 5153.2,
+  "invalid": 0.0,
+  "truncated": 0.0
+ }
+}

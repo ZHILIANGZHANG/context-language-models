@@ -1,0 +1,10 @@
+{
+  "returncode": -15,
+  "worker": {
+    "pid": 111425,
+    "uid": 1037,
+    "cwd": "/home/zhangcheng/self-paging-v2-20261117/longbench-v1/src",
+    "start_ticks": 1269825936
+  },
+  "time": 1794906908.1225893
+}

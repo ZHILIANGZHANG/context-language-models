@@ -1,0 +1,4 @@
+{
+  "traceback": "Traceback (most recent call last):\n  File \"/home/zhangcheng/self-paging-v2-20261117/token-baselines-9c7dbd5/queue_token_baselines.py\", line 250, in main\n    wait_for_dependency()\n  File \"/home/zhangcheng/self-paging-v2-20261117/token-baselines-9c7dbd5/queue_token_baselines.py\", line 62, in wait_for_dependency\n    check_stop()\n  File \"/home/zhangcheng/self-paging-v2-20261117/token-baselines-9c7dbd5/queue_token_baselines.py\", line 36, in check_stop\n    raise RuntimeError(f\"STOP at {root}\")\nRuntimeError: STOP at /home/zhangcheng/self-paging-v2-20261117/post-sft-eval\n",
+  "time": 1794895657.5087442
+}

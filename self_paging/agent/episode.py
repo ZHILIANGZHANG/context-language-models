@@ -58,16 +58,17 @@ class EpisodeState:
     notes: dict[int, str] = field(default_factory=dict)      # note pid -> text
     last_access: dict[int, int] = field(default_factory=dict)
     meta: dict = field(default_factory=dict)
+    latency: object | None = None
 
 
 def _fill_to(log, pid, ids):
     return log.feed(pid, ids)
 
 
-def run_episode(env, log, policy, tok: Tok, cfg: EpisodeConfig, pager=None) -> dict:
+def run_episode(env, log, policy, tok: Tok, cfg: EpisodeConfig, pager=None, *, latency=None) -> dict:
     if cfg.overflow not in ("truncate", "lru"):
         raise ValueError("Unknown overflow policy")
-    st = EpisodeState(env, log, tok, cfg)
+    st = EpisodeState(env, log, tok, cfg, latency=latency)
     st.meta.update(invalid=0, truncated_tokens=0, forced_evictions=0, kv_errors=0,
                    kv_out=0, kv_in=0, notes=0, turns=0)
     tools = list(env.tools) + (kv_tool_schemas(cfg.reversible, cfg.notes) if cfg.kv_tools else [])
@@ -79,7 +80,7 @@ def run_episode(env, log, policy, tok: Tok, cfg: EpisodeConfig, pager=None) -> d
         ids = tok.encode(text_or_ids) if isinstance(text_or_ids, str) else list(text_or_ids)
         if cfg.max_log_tokens is not None and log.log_len + len(ids) > cfg.max_log_tokens:
             raise ValueError("Absolute log limit would be exceeded")
-        out = log.feed(pid, ids)
+        out = log.feed(pid, ids) if latency is None else latency.feed(log, pid, ids)
         st.last_access[pid] = log.log_len
         loss_mask.extend([1 if gen else 0] * len(ids))
         ctrl_mask.extend([0] * len(ids))
@@ -89,7 +90,8 @@ def run_episode(env, log, policy, tok: Tok, cfg: EpisodeConfig, pager=None) -> d
     def pinned(kind, text):
         return feed(log.open(kind, pinned=True), text)
 
-    pinned("system", render_system(env.system, tools))
+    system = env.system_for_tools(cfg.kv_tools) if hasattr(env, "system_for_tools") else env.system
+    pinned("system", render_system(system, tools))
     last = pinned("task", render_user(env.task))
     if cfg.max_log_tokens is not None:
         if cfg.answer_reserve < cfg.max_new_tokens + 256:
@@ -129,8 +131,12 @@ def run_episode(env, log, policy, tok: Tok, cfg: EpisodeConfig, pager=None) -> d
                 st.meta["log_limit_reached"] = 1
                 break
         start = log.log_len
+        if latency is not None:
+            latency.begin_decode()
         ids, lps = policy.generate(log, a, None if last is None else last[-1], room, st)
         n = len(ids)
+        if latency is not None:
+            latency.end_decode(n)
         loss_mask.extend([1] * n)
         ctrl_mask.extend([0] * n)
         logprobs.extend(lps if lps is not None else [0.0] * n)
@@ -185,6 +191,8 @@ def run_episode(env, log, policy, tok: Tok, cfg: EpisodeConfig, pager=None) -> d
         if done or getattr(env, "done", False) or st.meta["invalid"] >= cfg.max_invalid or st.meta.get("structural_exhausted", 0):
             break
 
+    if latency is not None:
+        latency.finish()
     st.meta["over_budget"] = int(cfg.budget is not None and log.peak_resident > cfg.budget)
     rec = log.record()
     rec.update(loss_mask=loss_mask, ctrl_mask=ctrl_mask, logprobs=logprobs,
@@ -398,6 +406,8 @@ class ModelPolicy:
             if self.t == 0:
                 lp = torch.log_softmax(logits.float(), -1)
                 t = int(logits.argmax())
+                if not ids and st.latency is not None:
+                    st.latency.first_token()
                 ids.append(t)
                 lps.append(float(lp[t]))
                 logits = _feed_generated(log, pid, [t], st)[-1]
@@ -417,6 +427,8 @@ class ModelPolicy:
                 probs = torch.zeros_like(probs).scatter(0, si, sp)
             probs = probs / probs.sum()
             t = int(torch.multinomial(probs, 1, generator=self.gen))
+            if not ids and st.latency is not None:
+                st.latency.first_token()
             ids.append(t)
             lps.append(float(probs[t].log()))
             logits = _feed_generated(log, pid, [t], st)[-1]

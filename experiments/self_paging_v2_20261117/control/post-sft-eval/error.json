@@ -1,0 +1,4 @@
+{
+  "traceback": "Traceback (most recent call last):\n  File \"/home/zhangcheng/self-paging-v2-20261117/post-sft-eval/post_sft_eval.py\", line 275, in main\n    dispatch('controls', [(s, s+5) for s in range(100000, 100050, 5)], active)\n  File \"/home/zhangcheng/self-paging-v2-20261117/post-sft-eval/post_sft_eval.py\", line 165, in dispatch\n    check_stop()\n  File \"/home/zhangcheng/self-paging-v2-20261117/post-sft-eval/post_sft_eval.py\", line 66, in check_stop\n    raise RuntimeError('User STOP')\nRuntimeError: User STOP\n",
+  "time": 1794895649.0019052
+}

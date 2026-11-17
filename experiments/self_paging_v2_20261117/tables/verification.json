@@ -1,0 +1,140 @@
+{
+  "captured_at": "2026-11-17T11:05:37.514308+00:00",
+  "verified_files": 1173,
+  "verified_historical_files": 533,
+  "historical_captured_at": "2026-11-17T11:09:23.594661+00:00",
+  "verified_trajectory_pairs": 285,
+  "longbench_completed": 92,
+  "longbench_target": 180,
+  "method_counts": {
+    "full": 19,
+    "h2o": 17,
+    "model": 19,
+    "official_full": 19,
+    "streaming": 18
+  },
+  "paired_items": 17,
+  "paired_indices": [
+    0,
+    1,
+    2,
+    3,
+    6,
+    7,
+    12,
+    13,
+    15,
+    18,
+    19,
+    20,
+    24,
+    25,
+    26,
+    30,
+    31
+  ],
+  "sft_completed_steps": 516,
+  "validation": [
+    {
+      "epoch": 0,
+      "eval_loss": 0.09905938200961936,
+      "eval_step": 49,
+      "completed_steps": 50,
+      "eval_records": 240,
+      "eval_sec": 646.495
+    },
+    {
+      "epoch": 0,
+      "eval_loss": 0.07165963780035307,
+      "eval_step": 99,
+      "completed_steps": 100,
+      "eval_records": 240,
+      "eval_sec": 644.457
+    },
+    {
+      "epoch": 0,
+      "eval_loss": 0.06132220194370699,
+      "eval_step": 149,
+      "completed_steps": 150,
+      "eval_records": 240,
+      "eval_sec": 644.554
+    },
+    {
+      "epoch": 0,
+      "eval_loss": 0.058463650791252146,
+      "eval_step": 199,
+      "completed_steps": 200,
+      "eval_records": 240,
+      "eval_sec": 644.665
+    },
+    {
+      "epoch": 0,
+      "eval_loss": 0.052913610363469483,
+      "eval_step": 249,
+      "completed_steps": 250,
+      "eval_records": 240,
+      "eval_sec": 644.456
+    },
+    {
+      "epoch": 0,
+      "eval_loss": 0.05080269897939565,
+      "eval_step": 299,
+      "completed_steps": 300,
+      "eval_records": 240,
+      "eval_sec": 644.426
+    },
+    {
+      "epoch": 0,
+      "eval_loss": 0.04818337279263633,
+      "eval_step": 349,
+      "completed_steps": 350,
+      "eval_records": 240,
+      "eval_sec": 644.665
+    },
+    {
+      "epoch": 0,
+      "eval_loss": 0.046464838378292954,
+      "eval_step": 399,
+      "completed_steps": 400,
+      "eval_records": 240,
+      "eval_sec": 644.821
+    },
+    {
+      "epoch": 0,
+      "eval_loss": 0.04582739673300181,
+      "eval_step": 449,
+      "completed_steps": 450,
+      "eval_records": 240,
+      "eval_sec": 644.611
+    },
+    {
+      "epoch": 0,
+      "eval_loss": 0.04544104219293366,
+      "eval_step": 499,
+      "completed_steps": 500,
+      "eval_records": 240,
+      "eval_sec": 644.646
+    },
+    {
+      "epoch": 0,
+      "eval_loss": 0.045459969218780816,
+      "eval_step": 515,
+      "completed_steps": 516,
+      "eval_records": 240,
+      "eval_sec": 644.391
+    }
+  ],
+  "legacy_superseded_post_sft_rows": 298,
+  "kv_totals": {
+    "attempts": 30,
+    "successful_calls": 18,
+    "failed_calls": 12,
+    "out_pages": 43,
+    "assistant_pages": 30,
+    "tool_pages": 10,
+    "note_pages": 3,
+    "kv_in": 0,
+    "forced_out": 121,
+    "truncated_tokens": 18315
+  }
+}

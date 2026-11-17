@@ -1,0 +1,21 @@
+{
+  "time": 1794836398.0630748,
+  "controller": {
+    "pid": 3352228,
+    "uid": 1037,
+    "start_ticks": 1262660503,
+    "cwd": "/data/zhangcheng/context-language-models-223cc65-rlprep"
+  },
+  "workers": [
+    {
+      "pid": 3677627,
+      "uid": 1037,
+      "start_ticks": 1262754432,
+      "cwd": "/data/zhangcheng/context-language-models-223cc65-rlprep"
+    }
+  ],
+  "new_methods": [
+    "recent",
+    "quest"
+  ]
+}

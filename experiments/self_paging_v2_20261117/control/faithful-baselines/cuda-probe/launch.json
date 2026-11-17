@@ -1,0 +1,24 @@
+{
+  "identity": {
+    "pid": 572354,
+    "uid": 1037,
+    "cwd": "/data/zhangcheng/context-language-models-faithful-20261117",
+    "start_ticks": 1268837555
+  },
+  "gpu": 0,
+  "job": {
+    "name": "cuda-probe",
+    "args": [
+      "/data/zhangcheng/self-paging-20261116/venv/bin/python",
+      "-m",
+      "self_paging.eval.faithful_probe",
+      "--model",
+      "/nas/Public/zhangcheng/self-paging-v2-20261117/checkpoints/sft-v2-r64",
+      "--tokenizer",
+      "/nas/Public/zhangcheng/models/Qwen3-8B",
+      "--out",
+      "/home/zhangcheng/self-paging-v2-20261117/faithful-baselines/cuda-probe.json"
+    ]
+  },
+  "time": 1794896779.3187537
+}

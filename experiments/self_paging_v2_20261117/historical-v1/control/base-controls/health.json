@@ -1,0 +1,13 @@
+{
+  "time": 1794836388.129078,
+  "phase": "FIRST_WORLD_ALL_METHODS",
+  "pending": [],
+  "active": {
+    "0": {
+      "pid": 3677627,
+      "uid": 1037,
+      "start_ticks": 1262754432,
+      "cwd": "/data/zhangcheng/context-language-models-223cc65-rlprep"
+    }
+  }
+}

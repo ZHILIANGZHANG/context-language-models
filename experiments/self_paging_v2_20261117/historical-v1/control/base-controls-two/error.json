@@ -1,0 +1,4 @@
+{
+  "time": 1794841232.4456463,
+  "traceback": "Traceback (most recent call last):\n  File \"/home/zhangcheng/self-paging-20261116/queue_base_controls_three_gpu.py\", line 199, in <module>\n    main()\n  File \"/home/zhangcheng/self-paging-20261116/queue_base_controls_three_gpu.py\", line 184, in main\n    dispatch([(100001,100005)]+[(s,s+5) for s in range(100005,100050,5)],'BASE_CONTROLS')\n  File \"/home/zhangcheng/self-paging-20261116/queue_base_controls_three_gpu.py\", line 62, in dispatch\n    stop()\n  File \"/home/zhangcheng/self-paging-20261116/queue_base_controls_three_gpu.py\", line 51, in stop\n    raise RuntimeError('User STOP')\nRuntimeError: User STOP\n"
+}
