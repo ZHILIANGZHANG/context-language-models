@@ -105,29 +105,42 @@ uv pip install "transformers==5.23.0" peft numpy pytest
 > 不满足就先查数据，不要上 RL。
 >
 > **v2.5 重新准备 RL 题库**
-> - 页头和预算都变了，所以要用 `self_paging/data/rl_preparation.py` 把 CPU 准备重跑一遍：可行性、预算、Belady/Recent 的分数都会变；划分不变；
-> - OOD 按 `rl_design.md` §3 重新生成在 32K 以内的版本；
-> - 64 × 4 试画像。
+> 1. 页头和预算都变了，所以要用 `self_paging/data/rl_preparation.py` 把 CPU 准备重跑一遍（`server_helpers/build_rl_cpu.py` 的流程）：可行性、预算、Belady/Recent 的分数都会变；划分不变；
+> 2. OOD 已经换成 32K 以内的 v2 配置（`rl_preparation.ood_config_v2`，2026-11-17）。7–9 个决策点，每页 6–10 个事件，warmup 5–10，gap 均值约 16，比训练略长。用 Qwen3-8B 分词器量过：种子 210000–210039 里，40/40 的完整参考在 32K 以内，旧配置是 0/30。重跑第 1 步时自动生效，OOD 行会带 `ood_version: 2`；
+> 3. 按决策类型分层，重新选训练题库，并给评测划分加标注：
+>
+>    ```bash
+>    python -m self_paging.data.rl_strata --profile $N/cpu-profile.jsonl --out-dir $N/strata
+>    ```
+>
+>    - 输出 `rl_train_pool_stratified.jsonl`（RL 用这个，代替 `rl_train_pool.jsonl`）、`profile64_stratified.jsonl`（按"预算 × 分层"均衡的 64 题画像集）、`{dev,test,ood}_all_conditions_annotated.jsonl`（不筛选，只加 `n_delayed`、`stratum` 等字段，方便按决策类型报告），以及 `strata-report.json`；
+>    - 预算配额和决策点数的均衡和原来一样。每档预算内 delayed 决策占比 ≥ 40%，"关键事件在 4 页以前的 delayed 决策"所在的题 ≥ 35%。在训练配置的随机世界上，这两个数的自然值是 35% 和 27.5%；
+>    - **验收**：`strata-report.json` 里 `gaps` 全为 0；每档预算的 `delayed_target_met`、`long_target_met` 为真。哪档为假，说明那档可行的 delayed 题不够，要报告，不要放宽可行性；
+> 4. 用 `profile64_stratified.jsonl` 做 64 × 4 试画像。
 >
 > **v2.6 RL v2**
 >
 > ```bash
 > torchrun --nproc_per_node 8 -m self_paging.train.grpo --model ckpt/sft_v2 --tokenizer $M --out ckpt/rl_v2 \
->   --log logs/rl_v2.jsonl --save-every 20 --pool pools/t1_train.jsonl --reward v2 \
->   --w-credit 1.0 --w-eff 0.25 --w-eff-warmup 50 --w-eff-ramp 50 \
+>   --log logs/rl_v2.jsonl --save-every 20 --pool $N/strata/rl_train_pool_stratified.jsonl --reward v2 \
+>   --w-credit 1.0 --w-eff 0.25 --w-eff-warmup 50 --w-eff-ramp 50 --ratio-start 0.25:30 \
 >   --steps 200 --prompts 16 --group 8 --lora-r 64 --lr 1e-5 --attn flex_attention
 > ```
 >
 > - 先 `--group 4 --steps 10` 冒烟：测吞吐，看 `logprob_mismatch`；再 G = 8 跑 20 步做开发检查；最后才是 200 步；
 > - 题库里每行要有 `seed`、`ratio`、`t1_config`，可选 `weight`；
-> - 课程：前 20–50 步只用 0.6 和 0.4 两档预算的题，可以先从题库里筛掉 0.25 的行。
+> - **课程**：`--ratio-start 0.25:30` 表示前 30 步不抽 0.25 档的题（1.0、0.6、0.4 照常），第 30 步起加入。可以写多个，例如 `--ratio-start 0.4:10 0.25:30`；
+> - **自适应抽题**（`train/sampler.py`，默认开）：按（预算, 决策点数, delayed 数）分桶，记录每桶组内"任务分 + 卫生"标准差的滑动平均；方差接近 0 的桶降权；10% 的抽题不看自适应，只按题库权重（`--explore`）。`--no-adaptive` 关掉，只按题库权重抽。旧题库没有 `n_delayed` 字段也能用，启动时会自动补；
 > - **日志里要看的新字段**：
 >   - `blamed_kv_out`：每条轨迹被反事实信用追责的换出次数，应该下降；
 >   - `credited_kv_in`：起作用的换回次数，应该上升；
 >   - `reasoning_errors`；
 >   - `hygiene`：卫生惩罚，应该向 0 靠拢；
 >   - `w_eff`：前 50 步应为 0；
->   - `groups_kept`。
+>   - `groups_kept`；
+>   - `sampler_buckets_quiet`、`sampler_quiet_mass`：方差接近 0 的桶数，以及它们实际还占多少抽题概率（不会低于约 10% × 它们的题库权重）；
+>   - `sampler_p_delayed`：当前抽到含 delayed 决策的题的概率；
+>   - `sampler_ratios`：当前课程允许的预算档。每个 rank 各自统计，日志里是 rank 0 的。
 >
 > **v2.7 消融**：`--w-credit 0`（纯结果奖励）、`--reward v1`（旧奖励）、`--no-digest`（无页头摘要）、`--irreversible`、`--w-eff 0`。
 
@@ -338,6 +351,15 @@ torchrun --nproc_per_node 8 -m self_paging.train.grpo --model ckpt/sft --tokeniz
 | D9 | T1b 查找环境 `envs/t1b_lookup.py` | experiment_plan §3.1 | 实体记录逐页到达，按实体名提问；规则读者 + 最小充分集，和 T1 的接口一样；它是对相似度检索友好的对照 |
 
 ---
+
+**和基线公平对比要补的任务**（规格见 [`baseline_protocol.md`](baseline_protocol.md) §7）：
+
+| 编号 | 任务 | 要点 |
+|---|---|---|
+| D10 | token 级驻留 + 注意力钩子 | **已完成（2026-11-17）**：`PagedKV.set_keep`、`hf/token_probe.py`，等价性测试通过 |
+| D11 | token 级基线 | **代码和单元测试已完成（2026-11-17）**：`agent/token_pagers.py`，`control_eval --methods streaming h2o tova snapkv quest_token`。**服务器上要做**：`python -m self_paging.eval.token_sanity --model $M --tokenizer $M --out eval/token_sanity.jsonl --lengths 4000 8000 --budgets 0.1 0.25 --n 50`。`oneshot` 模式下应有 SnapKV、TOVA、Quest 远好于 StreamingLLM，H2O 居中；没复现出来就先查实现，不要报基线数字。PyramidKV 没做（见 baseline_protocol §7） |
+| D12 | 训练对齐的系统对照 | 同样的 SFT 数据和 RL 步数，由系统换页，`kv_tools=False` |
+| D13 | 统一评测 | 预算扫描、"问题先给出 / 最后给出"两种设定、曲线数据、按世界配对 |
 
 ## 5. 默认超参
 

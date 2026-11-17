@@ -37,7 +37,7 @@ class PageTable:
 
     ``snapshots[v]`` is the resident set of version ``v``. A page opened during version ``v`` is
     added to ``snapshots[v]`` in place: tokens written earlier in that version cannot see it anyway
-    (causality), so no new version is needed. ``page_out``/``page_in``/``drop`` start a new version.
+    (causality), so no new version is needed. ``page_out``/``page_in``/``drop``/``bump`` start a new version.
     """
 
     def __init__(self) -> None:
@@ -104,6 +104,12 @@ class PageTable:
         for p in pids:
             self.pages[p].where = "gpu"
         return pids
+
+    def bump(self) -> int:
+        """Start a new version with the same resident set (a token-level retention change,
+        ``PagedKV.set_keep``: the visible tokens change although no page moved)."""
+        self.snapshots.append(self.resident())
+        return self.version
 
     def drop(self, pids) -> list[int]:
         """Irreversible removal (only offered in the no-host-tier ablation)."""

@@ -87,8 +87,9 @@ def test_oracle_conflicting_pages_and_budget_filter(seed, clean):
     else:
         # Correct privileged answers alone must NEVER admit an unsupported
         # budget-constrained trajectory into the teacher training corpus.
+        # Since the 2026-11-16 oracle fixes (state-preserving evictions, decision-time shrink) this world's
+        # answers are supported by the visible text; the forced eviction alone must keep it out.
         assert rec["meta"]["forced_evictions"] > 0
-        assert rec["meta"]["oracle_unsupported"] > 0
         assert not passes(rec, 1.0)
 
 

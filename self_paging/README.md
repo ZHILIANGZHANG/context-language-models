@@ -34,14 +34,15 @@
 | `pages.py` | 页表：页的元数据、驻留集的版本历史、换出 / 换回 / 删除的合法性检查（钉住页、正在写的页、位置不对、超预算会抛 `PagingError`） | `PageTable.open / grow / page_out / page_in / drop / resident / resident_tokens / in_order`；`KINDS` 是合法的页类型 |
 | `log.py` | `TokenLog`：记账。记录每个 token 的 id、页号、版本号和峰值驻留量；导出可 JSON 序列化的记录。造 SFT 数据时用它，不需要模型 | `open / feed / page_out / page_in / drop / record() / trajectory()` |
 | `protocol.py` | Qwen3 格式的渲染和解析：system 加工具签名、用户轮、assistant 前缀（非思考模式会加空的 `<think>` 块）、工具结果块的各个片段、页头 `[[PAGE n …]]`、仪表盘 `[KV] …`、转义（防止工具输出伪造页头或对话结构）、`<tool_call>` 解析、页号解析（"3,5-8"）；`Tok` 分词器适配器 | `render_system / render_user / assistant_prefix / block_open / response_header / response_trailer / block_close / gauge / escape / parse_tool_calls / parse_pages / kv_tool_schemas / Tok` |
-| `costs.py` | 每个 token 能看到多少个 key（O(T)），以及代价 C = Σ(κ + 可见 key 数)；κ 按服务时的 batch 折算（Qwen3-8B：batch 1 约 11 万，batch 32 约 3.5K） | `visible_counts(rec) / episode_cost(rec, batch) / kappa(batch)` |
+| `costs.py` | 每个 token 能看到多少个 key（O(T)；token 级基线扣掉隐藏的 token），以及代价 C = Σ(κ + 可见 key 数)；κ 按服务时的 batch 折算（Qwen3-8B：batch 1 约 11 万，batch 32 约 3.5K） | `visible_counts(rec) / episode_cost(rec, batch) / kappa(batch)` |
 
 ### 2.2 `hf/`：在 HuggingFace 模型上的实现
 
 | 文件 | 做什么 | 主要接口 |
 |---|---|---|
-| `logstore.py` | `PagedKV(TokenLog)`：**参考推理引擎**。每次前向时，把驻留页的 KV 按日志顺序拼成 `DynamicCache`（驻留集不变就复用上一次的），新 token 用全局位置，并传一个显式的 4D 掩码。`page_out(physical=True)` 会把 KV 真的挪到内存（CUDA 上用锁页内存） | `feed(pid, ids) -> logits[n, vocab]`；其余接口同 `TokenLog` |
+| `logstore.py` | `PagedKV(TokenLog)`：**参考推理引擎**。每次前向时，把驻留页的 KV 按日志顺序拼成 `DynamicCache`（驻留集不变就复用上一次的），新 token 用全局位置，并传一个显式的 4D 掩码。`page_out(physical=True)` 会把 KV 真的挪到内存（CUDA 上用锁页内存）。**token 级保留掩码（D10）**：`set_keep(keep[层, KV 头, 位置])`，token 可见 = 所在页驻留且该层该头保留；每个（层, 头）保留数必须相同，这样拼出的 cache 形状一致；页级换入换出让各头不等时，系统隐藏多出的最旧 token（`keep_equalized`）；`resident_tokens()` 只算保留的；`record_keep=True` 时可用 `visibility_parts` / `visibility_rows` / `token_visibility` 重建逐层逐头可见性；记录里的 `hidden_pages` 供代价计算 | `feed(pid, ids) -> logits[n, vocab]`；`set_keep`、`keep_view`、`visible_positions`；其余接口同 `TokenLog` |
 | `masks.py` | 训练用的掩码：驻留矩阵、可见性矩阵、HF 用的加性 4D 掩码、FlexAttention 的 `mask_mod`（支持多条轨迹打包） | `resident_matrix / visibility / additive_mask / make_mask_mod` |
+| `token_probe.py` | `ProbedPagedKV(PagedKV)`：token 级基线用的观测，不改任何注意力输出。记录每层最近 `window` 个 token 的 query（过了 norm 和 RoPE）；`accumulate=True` 时把每个 query 对每个可见 key 的注意力累加到 `acc[层, KV 头, 位置]`（H2O）；`window_attention(layer)`：窗口 query 对现在可见的 key 的注意力（TOVA、SnapKV）；`all_keys(layer)`：所有驻留 token 的 key（Quest 的块上下界）。测试里和单次前向的注意力逐项对上 | `window_attention / visible_keys / all_keys / acc` |
 
 ### 2.3 `envs/`：环境
 
@@ -65,6 +66,7 @@
 |---|---|
 | `episode.py` | `run_episode(env, log, policy, tok, cfg, pager=None) -> record`：造数据、RL 采样、评测共用这一个循环。每回合依次是：系统换页器（如果有）→ 最小空间检查 → assistant 页（前缀 + 策略生成 + `<|im_end|>\n`）→ 解析工具调用并标出 KV 调用的 token → 先执行 KV 工具、再执行环境工具 → 写工具结果块（页头钉住、正文可换出、页尾钉住；回执和旧仪表盘由系统换出；正文超预算就截断）。<br>`EpisodeConfig`：预算、最大回合数、单回合最大生成长度、是否思考、可逆/不可逆、是否有笔记工具、是否提供 KV 工具、最多允许几次非法调用等。<br>`ModelPolicy`：逐 token 采样，记录行为 log-prob。`ScriptedPolicy(fn)`：强制输出 `fn(state)` 返回的文本；日志带模型时，也记录这些 token 的 log-prob |
 | `pagers.py` | 系统换页基线，运行时不提供 KV 工具，模型只做任务。`RecentPager`：只留最近的页。`BeladyPager`：用未来信息换页，是 T1 上的上界；和 oracle 一样不会拆散成对的记录。`rule_task_policy`：用规则读者作答、从不碰 KV，和换页器配合，可以在不用模型的情况下判断题目可不可行、换页敏不敏感 |
+| `token_pagers.py` | **token 级系统基线（D11）**，和页级换页器一样在回合之间调用、严格守预算：`StreamingLLMPager`（sink + 最近）、`H2OPager`（累计注意力 + 最近窗口，逐层逐头）、`TOVAPager`（最新 query 的注意力，逐层，头平均）、`SnapKVPager`（观察窗口投票 + 一维池化，逐层逐头）、`QuestPager`（16-token 块的 key 上下界，逐层逐头，**可逆**，每次重选）。打分函数是纯函数，可以单独测。`protect_pinned=True`（默认）保留钉住的结构页，和我们的预算口径一致，是可调超参。和论文不同的地方写在文件开头。`make_token_log(method, model, budget)` 给出对应的 `PagedKV`。**注意**：`rule_task_policy` 按页读文本，看不到 token 级隐藏，所以 token 级基线只能用模型评测 |
 
 ### 2.6 `data/`：造训练数据
 
@@ -72,6 +74,8 @@
 |---|---|
 | `build_t1_sft.py` | 用 oracle 造 T1 的 SFT 数据。默认：四种模式（paging、notes、eager、mixed）；每个种子随机难度（`--vary`）；以 15% 的概率加入失误后恢复的样本（`--recovery`，失误回合不算损失）。每个种子在多个预算下各跑一次（1.0 表示不设预算，就是"不换页"样本），按换页、笔记两种模式。质量门槛：答对；没有非法调用、截断、强制换出、KV 报错；不超预算；答案有依据。可选 `--max-future-share` 过滤掉主要靠未来信息的 episode；`--teacher` 用真实模型写理由。`t1_budget(env, tok, ratio)` 定义预算 |
 | `build_rl_pool.py` | RL 题库。`build`：不需要模型，丢掉预算不可行的题，换页敏感的题加权；`profile`：用策略模型测通过率，只留 0.1–0.9 之间的；`eval`：固定的分布内、分布外评测题库。格式：每行 `{env, seed, ratio, t1_config, budget, n_pages, n_decisions, rule_belady, rule_recent, sensitivity, oracle_ok, pass_rate, weight}` |
+| `rl_preparation.py` | 服务器 agent 的 CPU 题库准备（划分、每个世界的难度、参考方法判可行、按预算 × 决策点数选 5000 题）。OOD 用 `ood_config_v2`（7–9 个决策点，放得进 32K；`config(seed, True, ood_version=1)` 是旧版） |
+| `rl_strata.py` | 按决策类型分层（不需要模型和分词器）：`annotate` 给题目加 `n_delayed`、`n_long_delayed`、`max_gap_pages`、`stratum`（long_delayed / delayed / no_delayed）和每个决策的关键事件距离；`select_stratified` 在原有配额上保证 delayed 决策 ≥ 40%、远距离题 ≥ 35%；`select_profile_stratified` 选按"预算 × 分层"均衡的 64 题画像集。命令行读 `cpu-profile.jsonl`，见 runbook v2.5 |
 | `inspect_sft.py` | 数据质量和多样性报告：按预算 × 模式统计换出、换回、反复换回的页、换出多久后换回；动作组合种类；episode 形态；恢复样本数（`docs/data_and_training.md` §2.8–§2.9） |
 | `reject_sample.py` | 预算压力下的拒绝采样：用当前模型采样，只留成功且干净的，每个种子最多留几条。输出格式和 oracle 数据相同 |
 
@@ -83,13 +87,16 @@
 | `common.py` | 加载模型（指定注意力实现；可选 LoRA、gradient checkpointing、YaRN；可以直接读 LoRA 目录）、FSDP2 切分、读写 JSONL、cosine 学习率、加载分词器（`toy` 表示测试分词器）、`tiny_qwen3()` 随机小模型 |
 | `sft.py` | SFT：按 token 数切 micro-batch，只对 assistant 生成的 token 算损失。单卡直接跑；torchrun 下全参数用 FSDP2，LoRA 每卡一份副本、对 adapter 梯度做 all-reduce。保存为 HF 格式 |
 | `advantage.py` | **reward v2**：`hygiene_penalty`（强制换出、截断页、非法调用、KV 错误的小额惩罚，总上限 −0.25）、`counterfactual_credit`（用规则读者找出导致答错的那次 `kv_out` 和起作用的 `kv_in`，把 ±c 加在那一回合的控制 token 上）、`advantages_v2`、`has_signal`（`docs/rl_design.md` §4）。旧的： `r − mean`（不除以标准差）；CLM 的效率项只在组内成功的轨迹之间按代价比较，只加在 KV 工具调用的 token 上；`informative()` 用于动态采样，奖励全相同的组丢弃 |
-| `grpo.py` | GRPO 主循环：采题（种子 + 预算比例）→ 每题 G 次 rollout（`PagedKV` + `ModelPolicy`，rollout 时切到 sdpa）→ 算奖励和代价 → 算优势 → 丢掉无信息的组 → 切回 flex，算 token 级裁剪损失，乘截断重要性权重 → 更新。torchrun 下每卡一份副本（8B 用 LoRA），梯度 all-reduce。`--save-every K` 保存中间 checkpoint。`--pool` 从题库按权重抽题；`PromptSampler` 按（预算比例, 决策点数）分桶，自动降权一直全对或一直全错的桶。`rollout_fn` 参数留给以后接 SGLang。reward v2 相关参数：`--reward v2`（默认）、`--w-credit`、`--w-eff-warmup`、`--w-eff-ramp`；另有 `--pool`（每行含 seed、ratio、t1_config）、`--no-digest` |
+| `grpo.py` | GRPO 主循环：采题（种子 + 预算比例）→ 每题 G 次 rollout（`PagedKV` + `ModelPolicy`，rollout 时切到 sdpa）→ 算奖励和代价 → 算优势 → 丢掉无信息的组 → 切回 flex，算 token 级裁剪损失，乘截断重要性权重 → 更新。torchrun 下每卡一份副本（8B 用 LoRA），梯度 all-reduce。`--save-every K` 保存中间 checkpoint。`--pool` 时由 `sampler.py` 的 `PromptSampler` 抽题；`--ratio-start 0.25:30` 是预算课程；`--no-adaptive`、`--explore` 控制自适应。`rollout_fn` 参数留给以后接 SGLang。reward v2 相关参数：`--reward v2`（默认）、`--w-credit`、`--w-eff-warmup`、`--w-eff-ramp`；另有 `--pool`（每行含 seed、ratio、t1_config）、`--no-digest` |
+| `sampler.py` | GRPO 的抽题器：题库权重 × 桶的信号（桶 = 预算, 决策点数, delayed 数；信号 = 组内"任务分 + 卫生"标准差的滑动平均，只有信用或效率差的组算弱信号）；10% 的抽题只看题库权重；`ratio_start` 课程。旧题库缺 `n_delayed` 时启动时自动标注 |
 
 ### 2.8 `eval/`
 
 | 文件 | 做什么 |
 |---|---|
 | `t1_eval.py` | T1 评测，五种方法：`model`（模型自己管 KV）、`full`（不设预算）、`recent`、`belady`（系统换页）、`oracle`（健全性检查，应该是 1.0）。每个 episode 一行 JSONL（奖励、代价、峰值驻留、各种计数），结束时打印按"方法 @ 预算"汇总的结果。`--pool` 直接读评测题库 |
+| `control_eval.py` | 正式的 E0 系统基线评测（服务器 agent 写的，贪心解码，按世界存档、可续跑）。方法：`full`、`recent`、`belady`、页级近似 `quest` 和 `attn_evict`、`model`，以及 token 级的 `streaming`、`h2o`、`tova`、`snapkv`、`quest_token`。token 级超参用 `--pager-kwargs '{"snapkv": {"kernel": 7}}'`，观测窗口用 `--window`；只在开发集上调参 |
+| `token_sanity.py` | D11 的验收：单轮大海捞针（问题在最后）。`oneshot` 是论文设定：整段 prefill，以问题为观察窗口压缩一次，再解码，预期 SnapKV、TOVA、Quest 远好于 StreamingLLM，H2O 居中；`stream` 是我们的协议：预算严格，逐页压缩，预期不可逆方法跌到“针还在”的比例，Quest 能恢复 |
 
 ### 2.9 `testing/` 和 `tests/`
 
@@ -100,6 +107,9 @@
 | `tests/test_pipeline.py` | 协议解析；T1 环境（规则读者、最小充分集）；oracle 数据；代价和可见 key 数一致；**rollout log-prob 等于训练端 log-prob**；SFT 能过拟合；GRPO 的更新方向正确；Belady 换页器 |
 | `tests/test_t2_and_teacher.py` | BCP 环境（假检索器、假评判）；特权提示老师 |
 | `tests/test_template_server.py` | 我们的渲染和官方 `apply_chat_template` 逐字比较，并检查分段分词等于整段分词。需要设置 `QWEN3_TOKENIZER`，**在服务器上跑** |
+| `tests/test_rl_sampling_v2.py` | RL 抽题：决策类型标注、分层选题的占比和配额、无法达标时如实报告、自适应抽题器的降权和 10% 探索、课程、GRPO 抽题循环、OOD v2 比 v1 短 |
+| `tests/test_token_baselines.py` | D10：全真掩码逐位相同；任意逐层逐头掩码（加上页级换入换出）下，逐步推理等于单次前向；校验和自动拉平。观测：H2O 的累计注意力、窗口注意力等于参考前向的注意力。D11：各打分函数用手工构造的张量检查；五种方法在 T1 回合里守住预算，记录的 log-prob 等于单次前向；只有 Quest 会换回；各方法选的 token 不同，粒度符合设计；代价只算可见 token；`token_sanity` 两种模式能跑 |
+| `tests/test_rl_preparation.py` | 服务器 agent 的题库准备；OOD v2 的完整参考在 32K 以内。需要 `QWEN3_TOKENIZER`（2026-11-17 已在云端用 ModelScope 下载的分词器跑通） |
 
 ---
 

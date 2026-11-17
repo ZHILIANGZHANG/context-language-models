@@ -31,6 +31,7 @@ from .advantage import (advantages_v2, counterfactual_credit, group_advantages, 
                         informative, token_advantages)
 from .batch import pack, token_logprobs
 from .common import append_jsonl, dist_info, load_model, load_tokenizer, read_jsonl, tiny_qwen3
+from .sampler import PromptSampler
 
 
 @dataclass
@@ -68,6 +69,12 @@ class GRPOConfig:
     w_eff_ramp: int = 50            # ... over these steps up to w_eff
     pool: list | None = None        # prompt rows with seed, ratio, t1_config (data/rl_preparation.py or
                                     # data/build_rl_pool.py); sampled by their "weight" (default 1)
+    # prompt sampler (train/sampler.py, docs/rl_design.md §3)
+    adaptive: bool = True           # down-weight (ratio, decisions, delayed) buckets whose groups have no variance
+    explore: float = 0.1            # share of draws that ignore the adaptation
+    sampler_ema: float = 0.3
+    std_ref: float = 0.25           # within-group score std that counts as full signal
+    ratio_start: dict | None = None  # curriculum: {ratio: first step it may be drawn}, e.g. {0.25: 30}
 
 
 def rollout_group(model, tok, seed, ratio, cfg: GRPOConfig, gen) -> list[dict]:
@@ -280,23 +287,49 @@ def sample_seed(rng, cfg):
         offset -= b - a
 
 
-def collect_groups(model, tok, cfg, rng, gen, rollout_fn, target):
-    """Replace equal-reward groups, with a finite diagnostic stop if no signal exists."""
+def make_sampler(cfg: GRPOConfig) -> PromptSampler | None:
+    if not cfg.pool:
+        return None
+    return PromptSampler(cfg.pool, adaptive=cfg.adaptive, explore=cfg.explore, ema=cfg.sampler_ema,
+                         std_ref=cfg.std_ref, ratio_start=cfg.ratio_start)
+
+
+def allowed_ratios(cfg: GRPOConfig, step: int) -> list[float]:
+    start = cfg.ratio_start or {}
+    out = [r for r in cfg.ratios if start.get(r, 0) <= step]
+    if not out:
+        raise ValueError(f"curriculum leaves no budget ratio at step {step}")
+    return out
+
+
+def collect_groups(model, tok, cfg, rng, gen, rollout_fn, target, sampler=None, step=0):
+    """Replace equal-reward groups, with a finite diagnostic stop if no signal exists. With a pool,
+    prompts come from ``sampler`` (train/sampler.py), which also learns from every sampled group."""
     sampled, kept = [], []
+    if cfg.pool and sampler is None:
+        sampler = make_sampler(cfg)
     for _ in range(cfg.max_sampling_rounds):
         for _ in range(target - len(kept)):
+            row = None
             if cfg.pool:
-                row = rng.choices(cfg.pool, weights=[r.get("weight", 1.0) for r in cfg.pool], k=1)[0]
+                row = sampler.sample(rng, step)
                 t1 = T1Config(**{k: tuple(v) if isinstance(v, list) else v for k, v in row["t1_config"].items()
                                  if k in T1Config.__dataclass_fields__})
                 t1.digest = cfg.t1.digest  # the ablation flag wins over whatever the pool stored
-                g = rollout_fn(model, tok, row["seed"], row["ratio"], replace(cfg, t1=t1), gen)
+                # per-prompt turn/generation limits from the pool (rl_preparation sets max_turns from the page
+                # count; a fixed 30 would make long prompts fail for lack of turns)
+                pcfg = replace(cfg, t1=t1, max_turns=row.get("max_turns", cfg.max_turns),
+                               max_new_tokens=row.get("max_new_tokens", cfg.max_new_tokens))
+                g = rollout_fn(model, tok, row["seed"], row["ratio"], pcfg, gen)
             else:
-                g = rollout_fn(model, tok, sample_seed(rng, cfg), rng.choice(cfg.ratios), cfg, gen)
+                g = rollout_fn(model, tok, sample_seed(rng, cfg), rng.choice(allowed_ratios(cfg, step)), cfg, gen)
             if len(g) != cfg.group:
                 raise ValueError("Rollout group size differs from configured G")
             sampled.append(g)
-            if group_has_signal(g, cfg):
+            signal = group_has_signal(g, cfg)
+            if row is not None:
+                sampler.update(row, g, has_other_signal=signal)
+            if signal:
                 kept.append(g)
         if len(kept) == target:
             break
@@ -331,13 +364,14 @@ def train_grpo(model, tok, cfg: GRPOConfig, log=None, out=None, rank=0, world=1,
     gen = torch.Generator(device=next(model.parameters()).device).manual_seed(cfg.seed + rank)
     opt = torch.optim.AdamW([p for p in model.parameters() if p.requires_grad], lr=cfg.lr, betas=(0.9, 0.95))
     rollout_fn = rollout_fn or (batched_rollout_group if cfg.rollout_batch > 1 else rollout_group)
+    sampler = make_sampler(cfg)
     history = []
     for step in range(cfg.steps):
         t0 = time.time()
         model.eval()
         set_attn(model, rollout_attn)
         target = len(range(rank, cfg.prompts, world))
-        sampled, groups = collect_groups(model, tok, cfg, rng, gen, rollout_fn, target)
+        sampled, groups = collect_groups(model, tok, cfg, rng, gen, rollout_fn, target, sampler, step)
         device = next(model.parameters()).device
         enough = torch.tensor(int(len(groups) == target), device=device)
         if world > 1:
@@ -351,6 +385,7 @@ def train_grpo(model, tok, cfg: GRPOConfig, log=None, out=None, rank=0, world=1,
         row = {"step": step, **global_summary(sampled, world, device),
                **train_step(model, opt, groups, cfg, world, w_eff=w_eff_at(cfg, step)),
                "w_eff": w_eff_at(cfg, step), **credit_summary(sampled), "groups_sampled": int(sampled_count),
+               **(sampler.summary(step) if sampler else {"ratios": allowed_ratios(cfg, step)}),
                "sec": round(time.time() - t0, 1)}
         history.append(row)
         if log and rank == 0:
@@ -380,6 +415,10 @@ def main() -> None:
     ap.add_argument("--w-eff-ramp", type=int, default=50)
     ap.add_argument("--no-digest", action="store_true", help="ablation: T1 page headers without digests")
     ap.add_argument("--pool", help="prompt pool JSONL (rows with seed, ratio, t1_config[, weight])")
+    ap.add_argument("--no-adaptive", action="store_true", help="sample by pool weights only")
+    ap.add_argument("--explore", type=float, default=0.1, help="share of draws that ignore the adaptation")
+    ap.add_argument("--ratio-start", nargs="*", default=[], metavar="RATIO:STEP",
+                    help="curriculum, e.g. 0.25:30 = budget 0.25 only from step 30")
     ap.add_argument("--lora-r", type=int, default=0)
     ap.add_argument("--attn", default="flex_attention")
     ap.add_argument("--max-new-tokens", type=int, default=512)
@@ -394,6 +433,10 @@ def main() -> None:
     a = ap.parse_args()
     if a.rollout_batch < 1:
         ap.error('--rollout-batch must be positive')
+    try:
+        ratio_start = {float(x.split(":")[0]): int(x.split(":")[1]) for x in a.ratio_start}
+    except (IndexError, ValueError):
+        ap.error("--ratio-start takes RATIO:STEP pairs, e.g. 0.25:30")
     rank, world, local = dist_info()
     torch.manual_seed(a.seed)  # Replicated adapters must start identically.
     tok = load_tokenizer(a.tokenizer or (None if a.model == "tiny" else a.model))
@@ -406,7 +449,8 @@ def main() -> None:
                      max_new_tokens=a.max_new_tokens, max_turns=a.max_turns, reversible=not a.irreversible,
                      notes=not a.no_notes, seed=a.seed, t1=T1Config(n_decisions=a.n_decisions, digest=not a.no_digest),
                      pool=read_jsonl(a.pool) if a.pool else None,
-                     rollout_batch=a.rollout_batch)
+                     rollout_batch=a.rollout_batch, adaptive=not a.no_adaptive, explore=a.explore,
+                     ratio_start=ratio_start or None)
     if rank == 0 and a.log:
         append_jsonl(a.log, {"config": {k: str(v) for k, v in asdict(cfg).items() if k != "pool"},
                              "pool_size": len(cfg.pool) if cfg.pool else 0})
