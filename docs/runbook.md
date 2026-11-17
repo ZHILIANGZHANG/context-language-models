@@ -356,8 +356,8 @@ torchrun --nproc_per_node 8 -m self_paging.train.grpo --model ckpt/sft --tokeniz
 
 | 编号 | 任务 | 要点 |
 |---|---|---|
-| D10 | token 级驻留 + 注意力钩子 | `PagedKV` 加每个 token 的保留掩码；做等价性测试 |
-| D11 | token 级基线 | StreamingLLM、H2O、TOVA、SnapKV（可选 PyramidKV），以及按原文用 key 上下界打分的 Quest；在单轮长文 QA 上复现原论文的趋势 |
+| D10 | token 级驻留 + 注意力钩子 | **已完成（2026-11-17）**：`PagedKV.set_keep`、`hf/token_probe.py`，等价性测试通过 |
+| D11 | token 级基线 | **代码和单元测试已完成（2026-11-17）**：`agent/token_pagers.py`，`control_eval --methods streaming h2o tova snapkv quest_token`。**服务器上要做**：`python -m self_paging.eval.token_sanity --model $M --tokenizer $M --out eval/token_sanity.jsonl --lengths 4000 8000 --budgets 0.1 0.25 --n 50`。`oneshot` 模式下应有 SnapKV、TOVA、Quest 远好于 StreamingLLM，H2O 居中；没复现出来就先查实现，不要报基线数字。PyramidKV 没做（见 baseline_protocol §7） |
 | D12 | 训练对齐的系统对照 | 同样的 SFT 数据和 RL 步数，由系统换页，`kv_tools=False` |
 | D13 | 统一评测 | 预算扫描、"问题先给出 / 最后给出"两种设定、曲线数据、按世界配对 |
 

@@ -23,16 +23,24 @@ def visible_counts(rec: dict) -> list[int]:
     """v_t for every token, in O(T + S·P), from an episode record (``TokenLog.record()``).
 
     Pages are written one after another, so any other visible page is complete; the own page is
-    visible up to and including t."""
+    visible up to and including t. Token-level baselines (``hidden_pages`` from ``PagedKV`` with a
+    retention mask) subtract the tokens hidden at that version; every head keeps the same number."""
+    import bisect
+
     starts = {p["pid"]: p["start"] for p in rec["pages"]}
     lengths = {p["pid"]: p["length"] for p in rec["pages"]}
     snaps = [set(s) for s in rec["snapshots"]]
+    hidden_log = rec.get("hidden_pages") or []
+    hidden_versions = [v for v, _ in hidden_log]
     cache: dict[tuple[int, int], int] = {}
     out = []
     for t, (pid, seg) in enumerate(zip(rec["page_of"], rec["seg_of"])):
         key = (seg, pid)
         if key not in cache:
-            cache[key] = sum(lengths[q] for q in snaps[seg] if q != pid and starts[q] < starts[pid])
+            visible = [q for q in snaps[seg] if q != pid and starts[q] < starts[pid]]
+            i = bisect.bisect_right(hidden_versions, seg) - 1
+            hidden = dict(hidden_log[i][1]) if i >= 0 else {}
+            cache[key] = sum(lengths[q] - hidden.get(q, 0) for q in visible)
         out.append(cache[key] + (t - starts[pid] + 1))
     return out
 

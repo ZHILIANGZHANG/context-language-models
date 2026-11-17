@@ -40,6 +40,10 @@ def pack(records: list[dict], advantages: list[list[float]] | None = None) -> Pa
     blocks = []
     p_off = s_off = 0
     for d, r in enumerate(records):
+        if r.get("hidden_pages"):
+            # token-level system baselines (agent/token_pagers.py) hide tokens per layer and head; the
+            # page-level BlockMask below would let the trainer see them (docs/baseline_protocol.md §7, D12)
+            raise ValueError("records with a token-level retention mask cannot be packed for training yet")
         n = len(r["tokens"])
         ids += r["tokens"]
         pos += list(range(n))

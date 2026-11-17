@@ -24,12 +24,12 @@
 |---|---|---|---|---|---|
 | 上界 | Full（不设预算） | — | — | — | 有；执行器已修好，是严格基线 |
 | 上界 | Belady（用未来信息换页） | 页 | 是 | 用真值 | 有（`agent/pagers.py`） |
-| 窗口 | StreamingLLM（sink + 最近窗口） | token | 否 | 否 | 页级版本 Recent 已有；**token 级要补** |
-| 注意力淘汰 | H2O（累计注意力） | token | 否 | 否 | 页级版本 AttnEvict 已有；**token 级要补** |
-| 注意力淘汰 | TOVA（只看当前 query 的注意力） | token | 否 | 是 | **要补** |
-| 问题感知压缩 | SnapKV（观察窗口投票 + 池化） | token | 否 | 是 | **要补** |
-| 问题感知压缩 | PyramidKV（逐层不同预算） | token | 否 | 是 | 可选 |
-| 检索换页 | Quest（页级 key 上下界，每步选页） | 页 | 是 | 是 | 页级 key 均值的近似版 QuestPage 已有；**按原文的上下界打分要补** |
+| 窗口 | StreamingLLM（sink + 最近窗口） | token | 否 | 否 | 页级 Recent；token 级 `StreamingLLMPager`（2026-11-17） |
+| 注意力淘汰 | H2O（累计注意力） | token | 否 | 否 | 页级 AttnEvict；token 级 `H2OPager`（逐层逐头） |
+| 注意力淘汰 | TOVA（只看当前 query 的注意力） | token | 否 | 是 | `TOVAPager`（逐层，头平均） |
+| 问题感知压缩 | SnapKV（观察窗口投票 + 池化） | token | 否 | 是 | `SnapKVPager`（逐层逐头） |
+| 问题感知压缩 | PyramidKV（逐层不同预算） | token | 否 | 是 | 没做：各层保留数必须相同（cache 形状一致），见 §7 |
+| 检索换页 | Quest（页级 key 上下界，每步选页） | 页 | 是 | 是 | 页级近似 QuestPage；按原文上下界打分的 `QuestPager`（16-token 块，逐层逐头，可逆） |
 | 检索换页 | InfLLM / ArkVale（块存 CPU，按代表 token 取回） | 块 | 是 | 是 | 可选；QuestPage 是同一族 |
 | 模型决定 · 文本 | CLM（文本编辑） | — | 否 | 模型自己决定 | 用 CLM 的 harness 在 Qwen3-8B 上重跑 |
 | 模型决定 · 文本 | ACM memtool（摘要、存盘、查回） | — | 是 | 模型自己决定 | 用 ACM 的代码在 Qwen3-8B 上重跑 |
@@ -112,6 +112,22 @@
 |---|---|---|
 | **D10** | token 级驻留：`PagedKV` 加一个每个 token 的保留掩码（驻留 = 页驻留且 token 被保留），拼 cache 时按 token 下标筛选；再加一个钩子，能取到最近 k 个 query 对全部 key 的注意力 | 等价性测试：保留掩码全为真时，结果和现在完全一致；任意掩码下，等于单次前向加 token 级可见性矩阵的结果 |
 | **D11** | 在 D10 上实现 StreamingLLM、H2O、TOVA、SnapKV（可选 PyramidKV），以及按原文用 key 上下界打分的 Quest | 每个方法写单元测试，用手工构造的注意力检查选中的 token；在单轮长文 QA 上复现原论文的趋势：问题感知的方法优于窗口方法 |
+
+**D10、D11 的实现状态（2026-11-17）**：
+- **代码**：`hf/logstore.py`（`set_keep`）、`hf/token_probe.py`、`agent/token_pagers.py`、`eval/token_sanity.py`，接进了 `eval/control_eval.py`；
+- **云端已验收**（`tests/test_token_baselines.py`，24 项）：
+  - 全真掩码时逐位相同；任意逐层、逐头掩码，再加上页级换入换出，逐步推理等于一次前向；
+  - H2O 的累计注意力、窗口注意力，和参考前向的注意力逐项一致；
+  - 五种方法在 T1 回合里守住预算，记录的 log-prob 等于一次前向；只有 Quest 会把 token 换回来；
+  - 代价 C 只计可见的 token；
+- **服务器上还要做**：用 `eval/token_sanity.py --modes oneshot` 在 Qwen3-8B 上复现论文趋势。没复现出来之前，不要报告这些基线的数字；
+- **和论文的差别**：
+  - 所有（层, 头）保留同样多的 token，所以 PyramidKV 没做；
+  - Quest 前两层不豁免，每次在回合之间用观察窗口的 query 选一次，不是每个解码步都选；
+  - GQA 下，同一个 KV 头的各 query 头的分数相加；
+  - `protect_pinned`（默认开）保留结构页，和我们的预算口径一致；关掉就是论文那样的平铺序列；
+  - 规则读者看不到 token 级隐藏，所以这些基线不能用规则读者判可行性，只能用模型评测；
+- **训练打包**：`train/batch.pack` 还不支持 token 级掩码，遇到会报错。D12 先用页级换页器；要用 token 级方法做 C 组，得先给 FlexAttention 的 `mask_mod` 加上逐层逐头的保留表。
 | **D12** | 训练对齐的系统对照（§2 的 C 组）：`train/grpo.py` 的 rollout 支持传入换页器并设 `kv_tools=False`；SFT 数据的"只做任务"版本 | 和 D 组用同样的数据、步数、种子；日志里 `kv_out` 恒为 0 |
 | **D13** | 评测脚本统一：`control_eval` 支持 token 级方法、预算扫描、"问题先给出 / 最后给出"两种设定，输出曲线数据 | 所有方法同一批世界、同一套解码参数，按世界配对 |
 
