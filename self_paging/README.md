@@ -75,6 +75,9 @@
 |---|---|
 | `build_t1_sft.py` | 用 oracle 造 T1 的 SFT 数据。默认：四种模式（paging、notes、eager、mixed）；每个种子随机难度（`--vary`）；以 15% 的概率加入失误后恢复的样本（`--recovery`，失误回合不算损失）。每个种子在多个预算下各跑一次（1.0 表示不设预算，就是"不换页"样本），按换页、笔记两种模式。质量门槛：答对；没有非法调用、截断、强制换出、KV 报错；不超预算；答案有依据。可选 `--max-future-share` 过滤掉主要靠未来信息的 episode；`--teacher` 用真实模型写理由。`t1_budget(env, tok, ratio)` 定义预算 |
 | `build_rl_pool.py` | RL 题库。`build`：不需要模型，丢掉预算不可行的题，换页敏感的题加权；`profile`：用策略模型测通过率，只留 0.1–0.9 之间的；`eval`：固定的分布内、分布外评测题库。格式：每行 `{env, seed, ratio, t1_config, budget, n_pages, n_decisions, rule_belady, rule_recent, sensitivity, oracle_ok, pass_rate, weight}` |
+| `qa_sources.py` | 真实 QA 数据的读取（2026-11-17，`docs/real_data_sft.md`）：HotpotQA、2WikiMultihopQA、MuSiQue、Qasper 的官方训练文件，统一成"段落 + 问题 + 证据段落下标"。丢掉能猜的题（是/否、答案在问题里）；`Exclusion` 按问题和段落文本，和 LongBench 等评测集去重；能读大文件，也能读截断的文件开头 |
+| `qa_streams.py` | 把真实文档排成页流：多道题的段落合成一串（或一篇 Qasper 论文按阅读顺序），每页 1–3 段，问题先给或最后给，预算是随机的绝对槽数，环境声明页长上限。不需要模型 |
+| `qa_checks.py` | 页流的模型无关检查：答案是否也在非证据页上、证据里有没有答案、只靠最近窗口能不能答（`recall_needed`）、BM25 下证据页的排名；`report` 汇总长度、预算、压力出现的位置、证据位置等分布 |
 | `rl_preparation.py` | 服务器 agent 的 CPU 题库准备（划分、每个世界的难度、参考方法判可行、按预算 × 决策点数选 5000 题）。OOD 用 `ood_config_v2`（7–9 个决策点，放得进 32K；`config(seed, True, ood_version=1)` 是旧版） |
 | `rl_strata.py` | 按决策类型分层（不需要模型和分词器）：`annotate` 给题目加 `n_delayed`、`n_long_delayed`、`max_gap_pages`、`stratum`（long_delayed / delayed / no_delayed）和每个决策的关键事件距离；`select_stratified` 在原有配额上保证 delayed 决策 ≥ 40%、远距离题 ≥ 35%；`select_profile_stratified` 选按"预算 × 分层"均衡的 64 题画像集。命令行读 `cpu-profile.jsonl`，见 runbook v2.5 |
 | `inspect_sft.py` | 数据质量和多样性报告：按预算 × 模式统计换出、换回、反复换回的页、换出多久后换回；动作组合种类；episode 形态；恢复样本数（`docs/data_and_training.md` §2.8–§2.9） |
@@ -97,6 +100,7 @@
 |---|---|
 | `t1_eval.py` | T1 评测，五种方法：`model`（模型自己管 KV）、`full`（不设预算）、`recent`、`belady`（系统换页）、`oracle`（健全性检查，应该是 1.0）。每个 episode 一行 JSONL（奖励、代价、峰值驻留、各种计数），结束时打印按"方法 @ 预算"汇总的结果。`--pool` 直接读评测题库 |
 | `control_eval.py` | 正式的 E0 系统基线评测（服务器 agent 写的，贪心解码，按世界存档、可续跑）。方法：`full`、`recent`、`belady`、页级近似 `quest` 和 `attn_evict`、`model`，以及 token 级的 `streaming`、`h2o`、`tova`、`snapkv`、`quest_token`。token 级超参用 `--pager-kwargs '{"snapkv": {"kernel": 7}}'`，观测窗口用 `--window`；只在开发集上调参 |
+| `qa_necessity.py` | 必要性检查（服务器 GPU）：Qwen3-8B 分别在闭卷、不含证据页、全部页三种视图下作答；只有"有证据能答对、没有就答不对"的题才进 SFT |
 | `t1_audit.py` | T1 是否真的考记忆、模型换页在响应什么（2026-11-17 诊断）。`shortcut`：只看最近 k 页、把没见过的货架当作已占用的读者能答对多少，命中率高说明这个配置不考记忆；`trajectories`：模型轨迹里每个决策作答时驻留文本够不够、驻留环境页比例、发出 kv_out 时的驻留占比和其他回合的对比 |
 | `token_sanity.py` | D11 的验收：单轮大海捞针（问题在最后）。`oneshot` 是论文设定：整段 prefill，以问题为观察窗口压缩一次，再解码，预期 SnapKV、TOVA、Quest 远好于 StreamingLLM，H2O 居中；`stream` 是我们的协议：预算严格，逐页压缩，预期不可逆方法跌到“针还在”的比例，Quest 能恢复 |
 
@@ -110,6 +114,7 @@
 | `tests/test_t2_and_teacher.py` | BCP 环境（假检索器、假评判）；特权提示老师 |
 | `tests/test_template_server.py` | 我们的渲染和官方 `apply_chat_template` 逐字比较，并检查分段分词等于整段分词。需要设置 `QWEN3_TOKENIZER`，**在服务器上跑** |
 | `tests/test_rl_sampling_v2.py` | RL 抽题：决策类型标注、分层选题的占比和配额、无法达标时如实报告、自适应抽题器的降权和 10% 探索、课程、GRPO 抽题循环、OOD v2 比 v1 短 |
+| `tests/test_qa_data.py` | 真实数据页流：官方格式的读取（含截断文件）、能猜题的过滤、评测去重、页流构造（证据在证据页上、提问时机、预算下限）、Qasper 保持阅读顺序、各项检查、必要性检查的打分和运行 |
 | `tests/test_token_baselines.py` | D10：全真掩码逐位相同；任意逐层逐头掩码（加上页级换入换出）下，逐步推理等于单次前向；校验和自动拉平。观测：H2O 的累计注意力、窗口注意力等于参考前向的注意力。D11：各打分函数用手工构造的张量检查；五种方法在 T1 回合里守住预算，记录的 log-prob 等于单次前向；只有 Quest 会换回；各方法选的 token 不同，粒度符合设计；代价只算可见 token；`token_sanity` 两种模式能跑 |
 | `tests/test_rl_preparation.py` | 服务器 agent 的题库准备；OOD v2 的完整参考在 32K 以内。需要 `QWEN3_TOKENIZER`（2026-11-17 已在云端用 ModelScope 下载的分词器跑通） |
 
