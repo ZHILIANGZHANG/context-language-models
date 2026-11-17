@@ -72,6 +72,8 @@
 |---|---|
 | `build_t1_sft.py` | 用 oracle 造 T1 的 SFT 数据。默认：四种模式（paging、notes、eager、mixed）；每个种子随机难度（`--vary`）；以 15% 的概率加入失误后恢复的样本（`--recovery`，失误回合不算损失）。每个种子在多个预算下各跑一次（1.0 表示不设预算，就是"不换页"样本），按换页、笔记两种模式。质量门槛：答对；没有非法调用、截断、强制换出、KV 报错；不超预算；答案有依据。可选 `--max-future-share` 过滤掉主要靠未来信息的 episode；`--teacher` 用真实模型写理由。`t1_budget(env, tok, ratio)` 定义预算 |
 | `build_rl_pool.py` | RL 题库。`build`：不需要模型，丢掉预算不可行的题，换页敏感的题加权；`profile`：用策略模型测通过率，只留 0.1–0.9 之间的；`eval`：固定的分布内、分布外评测题库。格式：每行 `{env, seed, ratio, t1_config, budget, n_pages, n_decisions, rule_belady, rule_recent, sensitivity, oracle_ok, pass_rate, weight}` |
+| `rl_preparation.py` | 服务器 agent 的 CPU 题库准备（划分、每个世界的难度、参考方法判可行、按预算 × 决策点数选 5000 题）。OOD 用 `ood_config_v2`（7–9 个决策点，放得进 32K；`config(seed, True, ood_version=1)` 是旧版） |
+| `rl_strata.py` | 按决策类型分层（不需要模型和分词器）：`annotate` 给题目加 `n_delayed`、`n_long_delayed`、`max_gap_pages`、`stratum`（long_delayed / delayed / no_delayed）和每个决策的关键事件距离；`select_stratified` 在原有配额上保证 delayed 决策 ≥ 40%、远距离题 ≥ 35%；`select_profile_stratified` 选按"预算 × 分层"均衡的 64 题画像集。命令行读 `cpu-profile.jsonl`，见 runbook v2.5 |
 | `inspect_sft.py` | 数据质量和多样性报告：按预算 × 模式统计换出、换回、反复换回的页、换出多久后换回；动作组合种类；episode 形态；恢复样本数（`docs/data_and_training.md` §2.8–§2.9） |
 | `reject_sample.py` | 预算压力下的拒绝采样：用当前模型采样，只留成功且干净的，每个种子最多留几条。输出格式和 oracle 数据相同 |
 
@@ -83,7 +85,8 @@
 | `common.py` | 加载模型（指定注意力实现；可选 LoRA、gradient checkpointing、YaRN；可以直接读 LoRA 目录）、FSDP2 切分、读写 JSONL、cosine 学习率、加载分词器（`toy` 表示测试分词器）、`tiny_qwen3()` 随机小模型 |
 | `sft.py` | SFT：按 token 数切 micro-batch，只对 assistant 生成的 token 算损失。单卡直接跑；torchrun 下全参数用 FSDP2，LoRA 每卡一份副本、对 adapter 梯度做 all-reduce。保存为 HF 格式 |
 | `advantage.py` | **reward v2**：`hygiene_penalty`（强制换出、截断页、非法调用、KV 错误的小额惩罚，总上限 −0.25）、`counterfactual_credit`（用规则读者找出导致答错的那次 `kv_out` 和起作用的 `kv_in`，把 ±c 加在那一回合的控制 token 上）、`advantages_v2`、`has_signal`（`docs/rl_design.md` §4）。旧的： `r − mean`（不除以标准差）；CLM 的效率项只在组内成功的轨迹之间按代价比较，只加在 KV 工具调用的 token 上；`informative()` 用于动态采样，奖励全相同的组丢弃 |
-| `grpo.py` | GRPO 主循环：采题（种子 + 预算比例）→ 每题 G 次 rollout（`PagedKV` + `ModelPolicy`，rollout 时切到 sdpa）→ 算奖励和代价 → 算优势 → 丢掉无信息的组 → 切回 flex，算 token 级裁剪损失，乘截断重要性权重 → 更新。torchrun 下每卡一份副本（8B 用 LoRA），梯度 all-reduce。`--save-every K` 保存中间 checkpoint。`--pool` 从题库按权重抽题；`PromptSampler` 按（预算比例, 决策点数）分桶，自动降权一直全对或一直全错的桶。`rollout_fn` 参数留给以后接 SGLang。reward v2 相关参数：`--reward v2`（默认）、`--w-credit`、`--w-eff-warmup`、`--w-eff-ramp`；另有 `--pool`（每行含 seed、ratio、t1_config）、`--no-digest` |
+| `grpo.py` | GRPO 主循环：采题（种子 + 预算比例）→ 每题 G 次 rollout（`PagedKV` + `ModelPolicy`，rollout 时切到 sdpa）→ 算奖励和代价 → 算优势 → 丢掉无信息的组 → 切回 flex，算 token 级裁剪损失，乘截断重要性权重 → 更新。torchrun 下每卡一份副本（8B 用 LoRA），梯度 all-reduce。`--save-every K` 保存中间 checkpoint。`--pool` 时由 `sampler.py` 的 `PromptSampler` 抽题；`--ratio-start 0.25:30` 是预算课程；`--no-adaptive`、`--explore` 控制自适应。`rollout_fn` 参数留给以后接 SGLang。reward v2 相关参数：`--reward v2`（默认）、`--w-credit`、`--w-eff-warmup`、`--w-eff-ramp`；另有 `--pool`（每行含 seed、ratio、t1_config）、`--no-digest` |
+| `sampler.py` | GRPO 的抽题器：题库权重 × 桶的信号（桶 = 预算, 决策点数, delayed 数；信号 = 组内"任务分 + 卫生"标准差的滑动平均，只有信用或效率差的组算弱信号）；10% 的抽题只看题库权重；`ratio_start` 课程。旧题库缺 `n_delayed` 时启动时自动标注 |
 
 ### 2.8 `eval/`
 
@@ -100,6 +103,8 @@
 | `tests/test_pipeline.py` | 协议解析；T1 环境（规则读者、最小充分集）；oracle 数据；代价和可见 key 数一致；**rollout log-prob 等于训练端 log-prob**；SFT 能过拟合；GRPO 的更新方向正确；Belady 换页器 |
 | `tests/test_t2_and_teacher.py` | BCP 环境（假检索器、假评判）；特权提示老师 |
 | `tests/test_template_server.py` | 我们的渲染和官方 `apply_chat_template` 逐字比较，并检查分段分词等于整段分词。需要设置 `QWEN3_TOKENIZER`，**在服务器上跑** |
+| `tests/test_rl_sampling_v2.py` | RL 抽题：决策类型标注、分层选题的占比和配额、无法达标时如实报告、自适应抽题器的降权和 10% 探索、课程、GRPO 抽题循环、OOD v2 比 v1 短 |
+| `tests/test_rl_preparation.py` | 服务器 agent 的题库准备；OOD v2 的完整参考在 32K 以内。需要 `QWEN3_TOKENIZER`（2026-11-17 已在云端用 ModelScope 下载的分词器跑通） |
 
 ---
 

@@ -64,6 +64,7 @@
 | 33 | 看新推送（agent 的 SFT 结果 `cbdf9fc`），研究 RL 的数据和奖励该怎么做 | 写 `eval/error_analysis.py` 分析 50 个世界的评测：120 个错误里 115 个是作答时信息不在，75% 集中在 delayed 题，缺的大多是隔离通知；`kv_in` 每种配置只有 20–25 次。根因：Belady oracle 先换出"最晚才用"的隔离通知，靠未来信息换回，而 T1 页头没有内容线索，换回不可实现。写 `docs/rl_design.md`：RL 前先修页头摘要、换回的可实现性、执行器工具权限；奖励 = 任务分 + 卫生惩罚 + 成功门控效率 + 反事实信用。合并 main，冲突文件以 main 为准；发现 main 上 `BeladyPager` 空间估算没算新的目录开销（两条测试标 xfail） |
 | 34 | 按新要求组织 SFT 数据、再训一版 SFT，然后 RL | 实现 `rl_design.md` 的 §2 和 §4：T1 页头摘要；换回的可实现性门槛；执行器拒绝没提供的 KV 工具；换页器和 oracle 按真实目录开销预留空间（修好 main 上的 Belady）；`t1_budget` 计入摘要；reward v2（卫生惩罚、反事实信用、效率预热、按 token 优势保留组）；GRPO 可读题库。实测：有摘要时 216 次换回全部可推断，没有摘要时 541 次不可推断。新数据 403 条。runbook 加"SFT v2 → RL v2"的步骤和上 RL 的条件 |
 | 35 | 怎么和 KV 剪枝基线公平对比 | 写 `docs/baseline_protocol.md`：四组对照（底座 + 基线、我们的权重 + 基线、训练对齐的系统对照、本文），把"学会任务"和"学会管 KV"分开；预算统一按实际驻留 KV 计量、画曲线；信息、打分时机、调参对齐；加入基线主场的基准；现有 QuestPage / AttnEvict 是页级近似，token 级的 H2O、SnapKV、TOVA、StreamingLLM、Quest 列为开发任务 D10–D13 |
+| 36 | 实现 RL 抽题的四项改进（`rl_design.md` §3） | `data/rl_strata.py`：按决策类型分层。在训练配置的随机世界上，delayed 决策的自然占比是 35%，选题后 ≥ 40%；关键事件在 4 页以前的远距离题从 27.5% 提到 ≥ 35%，预算配额和决策点数的均衡不变。`train/sampler.py`：按（预算, 决策点数, delayed 数）分桶，用组内分数标准差自适应降权，保留 10% 探索，接进 `grpo.py`。`--ratio-start` 课程。OOD v2：用从 ModelScope 下载的 Qwen3-8B 分词器实测，每页 3–6 个事件反而更长，因为每页约有 400 token 的固定开销；改成每页 6–10 个事件后，40/40 的完整参考在 32K 以内，旧配置是 0/30。顺带让 `test_rl_preparation` 读 `QWEN3_TOKENIZER`，在云端用真实分词器跑通 |
 
 ---
 

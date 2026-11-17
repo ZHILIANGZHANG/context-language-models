@@ -23,9 +23,25 @@ HISTORICAL = [(0, 1000), (2000, 3000), (90000, 90100), (91000, 91100),
 def digest(obj):
     return hashlib.sha256(json.dumps(obj, sort_keys=True, separators=(',', ':')).encode()).hexdigest()
 
-def config(seed, ood=False):
+OOD_VERSION = 2
+
+def ood_config_v2(seed):
+    """OOD that fits the 32K scope (docs/rl_design.md §3): 7-9 decisions (training: 2-6), gaps a
+    little longer than training (mean ~16 vs ~15 events), 6-10 events per page, short warm-up.
+    v1 (warm-up 30-50, gap 20-60, 8-16 events per page) put the full-context reference over 32K on
+    almost every world: 1/300 conditions supported. Measured with the Qwen3-8B tokenizer on seeds
+    210000-210039: page body 11.5K-18.5K tokens (median 13.7K), full-reference log 1.57-1.80x the
+    body, 40/40 worlds with a clean full reference within 32768 tokens."""
+    r = random.Random(f'ood2-{seed}')
+    lo = r.randint(8, 12)
+    return T1Config(n_decisions=r.randint(7, 9), warmup=r.randint(5, 10), gap=(lo, lo+r.randint(4, 8)),
+                    events_per_page=(6, 10), p_arrival=r.uniform(.2, .4), p_dispatch=r.uniform(.08, .2))
+
+def config(seed, ood=False, ood_version=OOD_VERSION):
+    if ood and ood_version == 2:
+        return ood_config_v2(seed)
     r = random.Random(f'ood-{seed}' if ood else f'cfg-{seed}')
-    if ood:
+    if ood:  # v1, kept to reproduce the 2026-11-16 preparation
         return T1Config(n_decisions=r.randint(7, 9), warmup=r.randint(30, 50), gap=(20, 60),
                         events_per_page=(8, 16), p_arrival=r.uniform(.2, .4), p_dispatch=r.uniform(.08, .2))
     lo, ep_lo = r.randint(2, 10), r.randint(2, 6)
@@ -75,7 +91,8 @@ def describe(seed, split, tok):
         assert rule_read([env.ep.pages[i] for i in sorted(env.ep.need[d.page])]) == d.answer
     cfgdict = json.loads(json.dumps(asdict(cfg)))
     max_turns = max(60, len(env.ep.pages)*2 + 4*len(env.ep.decisions) + 8)
-    return dict(split=split, env='t1', seed=seed, t1_config=cfgdict,
+    extra = {'ood_version': OOD_VERSION} if split == 'ood' else {}
+    return dict(split=split, env='t1', seed=seed, t1_config=cfgdict, **extra,
                 world_hash=digest(env.ep.pages), config_hash=digest(cfgdict),
                 n_pages=len(lengths), n_decisions=len(env.ep.decisions),
                 page_tokens=sum(lengths), page_lengths=lengths,

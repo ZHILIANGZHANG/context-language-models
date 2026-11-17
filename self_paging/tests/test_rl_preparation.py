@@ -1,4 +1,5 @@
 import json
+import os
 import pytest
 from self_paging.data.rl_preparation import (config, decode_config, describe, reference,
     clean_reference, split_audit, select_training, select_profile)
@@ -7,7 +8,10 @@ from self_paging.envs.t1_warehouse import T1Config
 
 @pytest.fixture(scope='module')
 def tok():
-    return load_tokenizer('/nas/Public/zhangcheng/models/Qwen3-8B')
+    path = os.environ.get('QWEN3_TOKENIZER', '/nas/Public/zhangcheng/models/Qwen3-8B')
+    if not os.path.isdir(path):
+        pytest.skip('needs the real Qwen3 tokenizer (set QWEN3_TOKENIZER)')
+    return load_tokenizer(path)
 
 def test_split_and_determinism(tok):
     assert split_audit()['seed_overlap']==0
@@ -42,3 +46,11 @@ def test_full_length_guard_not_silent_truncation(tok):
     a,c=describe(210000,'ood',tok)
     assert c.n_decisions>=7 and a['max_log_tokens']==32768
     assert a['page_tokens']==sum(a['page_lengths'])
+
+def test_ood_v2_fits_the_32k_scope(tok):
+    # v1 put the full-context reference over 32K on almost every world (1/300 supported)
+    for seed in (210000, 210001):
+        a, c = describe(seed, 'ood', tok)
+        assert a['ood_version'] == 2 and a['n_decisions'] >= 7 and a['page_tokens'] <= 20000
+        full = reference(seed, c, tok, 1., 'full', a['max_turns'])
+        assert clean_reference(full) and len(full['tokens']) <= 32768

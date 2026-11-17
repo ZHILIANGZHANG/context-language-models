@@ -50,10 +50,11 @@ def dict_to_config(d: dict) -> T1Config:
 
 
 def ood_config(seed: int) -> T1Config:
-    """Out-of-distribution difficulty: more decisions, longer gaps, longer pages than training."""
-    r = random.Random(f"ood-{seed}")
-    return T1Config(n_decisions=r.randint(7, 9), warmup=r.randint(30, 50), gap=(20, 60),
-                    events_per_page=(8, 16), p_arrival=r.uniform(0.2, 0.4), p_dispatch=r.uniform(0.08, 0.2))
+    """Out-of-distribution difficulty: more decisions (7-9) than training, still within the 32K scope.
+    Same generator as ``rl_preparation.ood_config_v2`` (the v1 OOD did not fit 32K)."""
+    from .rl_preparation import ood_config_v2
+
+    return ood_config_v2(seed)
 
 
 def profile_prompt(seed: int, ratio: float, cfg: T1Config, tok, max_turns: int = 120) -> dict:
