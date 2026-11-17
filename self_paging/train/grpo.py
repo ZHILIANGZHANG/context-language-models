@@ -290,7 +290,11 @@ def collect_groups(model, tok, cfg, rng, gen, rollout_fn, target):
                 t1 = T1Config(**{k: tuple(v) if isinstance(v, list) else v for k, v in row["t1_config"].items()
                                  if k in T1Config.__dataclass_fields__})
                 t1.digest = cfg.t1.digest  # the ablation flag wins over whatever the pool stored
-                g = rollout_fn(model, tok, row["seed"], row["ratio"], replace(cfg, t1=t1), gen)
+                # per-prompt turn/generation limits from the pool (rl_preparation sets max_turns from the page
+                # count; a fixed 30 would make long prompts fail for lack of turns)
+                pcfg = replace(cfg, t1=t1, max_turns=row.get("max_turns", cfg.max_turns),
+                               max_new_tokens=row.get("max_new_tokens", cfg.max_new_tokens))
+                g = rollout_fn(model, tok, row["seed"], row["ratio"], pcfg, gen)
             else:
                 g = rollout_fn(model, tok, sample_seed(rng, cfg), rng.choice(cfg.ratios), cfg, gen)
             if len(g) != cfg.group:

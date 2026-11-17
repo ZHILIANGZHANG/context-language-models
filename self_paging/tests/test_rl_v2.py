@@ -137,3 +137,21 @@ def test_grpo_step_with_reward_v2():
     opt = torch.optim.AdamW(model.parameters(), lr=cfg.lr)
     stats = train_step(model, opt, [group], cfg, w_eff=0.0)
     assert stats["groups_kept"] == 1 and stats["optimizer_step"]
+
+
+def test_pool_rows_set_turn_limits():
+    import random
+    from self_paging.train.grpo import GRPOConfig, collect_groups
+
+    seen = []
+
+    def fake_rollout(model, tok, seed, ratio, cfg, gen):
+        seen.append((seed, ratio, cfg.max_turns, cfg.max_new_tokens, cfg.t1.n_decisions))
+        return [{"reward": float(i), "hygiene": 0.0, "cost": 1.0, "credit": None} for i in range(cfg.group)]
+
+    row = {"seed": 10001, "ratio": 0.4, "max_turns": 97, "max_new_tokens": 512,
+           "t1_config": {**CFG.__dict__, "gap": list(CFG.gap), "events_per_page": list(CFG.events_per_page),
+                         "kinds": list(CFG.kinds)}}
+    cfg = GRPOConfig(pool=[row], group=2)
+    _, kept = collect_groups(None, TOK, cfg, random.Random(0), None, fake_rollout, 1)
+    assert kept and seen[0] == (10001, 0.4, 97, 512, CFG.n_decisions)
